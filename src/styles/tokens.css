@@ -24,6 +24,8 @@
     --omnia-palette-cobalt-bright: #4b3bff;
     --omnia-palette-cobalt-bright-hover: #3a28d6;
     --omnia-palette-cobalt-bright-active: #2a1bb0;
+    --omnia-palette-cobalt-light: #8c84ff;
+    --omnia-palette-cobalt-light-hover: #a7a1ff;
     --omnia-palette-coral: #ff3d7f;
     --omnia-palette-coral-hover: #ff2e74;
     --omnia-palette-coral-active: #ff1f6b;
@@ -64,6 +66,7 @@
     --omnia-palette-pixel-navy: #1a4f8a;
     --omnia-palette-pixel-navy-deep: #154275;
     --omnia-palette-pixel-navy-dark: #113661;
+    --omnia-palette-pixel-violet-light: #b79bff;
     --omnia-palette-pixel-night: #140f1c;
     --omnia-palette-pixel-night-raised: #281c38;
 
@@ -118,6 +121,8 @@
     --omnia-color-border-default: var(--omnia-palette-ink-soft);
     --omnia-color-border-strong: var(--omnia-palette-ink);
     --omnia-color-border-focus: var(--omnia-palette-violet);
+    --omnia-color-link: var(--omnia-palette-cobalt);
+    --omnia-color-link-hover: var(--omnia-palette-cobalt-hover);
 
     --omnia-font-display: var(--omnia-palette-font-display);
     --omnia-font-sans: var(--omnia-palette-font-sans);
@@ -172,6 +177,8 @@
     --omnia-color-border-default: var(--omnia-palette-lilac-border);
     --omnia-color-border-strong: var(--omnia-palette-parchment);
     --omnia-color-border-focus: var(--omnia-palette-violet-bright);
+    --omnia-color-link: var(--omnia-palette-cobalt-light);
+    --omnia-color-link-hover: var(--omnia-palette-cobalt-light-hover);
   }
 
   :root[data-skin='pixel'] {
@@ -203,6 +210,8 @@
     --omnia-color-border-default: var(--omnia-palette-ink);
     --omnia-color-border-strong: var(--omnia-palette-ink);
     --omnia-color-border-focus: var(--omnia-palette-pixel-violet-deep);
+    --omnia-color-link: var(--omnia-palette-pixel-violet);
+    --omnia-color-link-hover: var(--omnia-palette-pixel-violet-deep);
   }
 
   :root[data-theme='dark'][data-skin='pixel'] {
@@ -216,6 +225,8 @@
     --omnia-color-border-default: var(--omnia-palette-parchment);
     --omnia-color-border-strong: var(--omnia-palette-parchment);
     --omnia-color-border-focus: var(--omnia-palette-violet-bright);
+    --omnia-color-link: var(--omnia-palette-violet-bright);
+    --omnia-color-link-hover: var(--omnia-palette-pixel-violet-light);
   }
 
   /* Intent map — the single source of rest/hover/press colours per data-intent (ADR 0012). */

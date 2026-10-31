@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-link {
+    --omnia-link-color: var(--omnia-color-accent-active);
+    --omnia-link-color-hover: var(--omnia-color-danger);
+  }
+}

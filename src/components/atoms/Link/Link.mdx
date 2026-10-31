@@ -1,0 +1,160 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as LinkStories from './Link.stories';
+
+<Meta of={LinkStories} />
+
+# Link
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Link</strong> atom renders a native <code>&lt;a&gt;</code> for
+        navigation. It consumes semantic <code>var(--…)</code> tokens only, so it reskins
+        across the light/dark theme axis and the neutral/pixel skin axis without any
+        change to its own CSS. <code>href</code> is required.
+      </p>
+      <p>
+        Use <code>variant</code> for placement: <code>inline</code> inherits the
+        surrounding text's size and weight for a link inside a paragraph;{' '}
+        <code>standalone</code> (the default) carries its own type for a link on its own
+        line. Both variants are underlined, so a link is distinguishable without relying
+        on colour alone (WCAG 1.4.1). Underlining is the variant's job, not a separate
+        prop.
+      </p>
+      <p>
+        Set <code>external</code> for a link that opens in a new window: it adds{' '}
+        <code>target="_blank"</code> and <code>rel="noopener noreferrer"</code>, a
+        visually-hidden "opens in new window" label for assistive technology, and a
+        decorative trailing icon (<code>aria-hidden</code>). <code>external</code> is a
+        design-system prop; the native <code>target</code> stays native and passable, and
+        a caller's own <code>target</code> wins (ADR 0015). There is no polymorphic{' '}
+        <code>as</code> prop, no <code>visited</code> styling and no <code>disabled</code>
+        : a disabled link is not a link.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Link</strong> rend un <code>&lt;a&gt;</code> natif pour la
+        navigation. Il ne consomme que des jetons sémantiques <code>var(--…)</code> : il
+        change donc d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage
+        neutre/pixel, sans modifier son propre CSS. <code>href</code> est requis.
+      </p>
+      <p>
+        Utilisez <code>variant</code> pour le placement : <code>inline</code> hérite de la
+        taille et de la graisse du texte environnant pour un lien dans un paragraphe ;{' '}
+        <code>standalone</code> (par défaut) porte sa propre typographie pour un lien sur
+        sa propre ligne. Les deux variantes sont soulignées : un lien reste donc
+        distinguable sans dépendre uniquement de la couleur (WCAG 1.4.1). Le soulignement
+        relève de la variante, pas d'une propriété séparée.
+      </p>
+      <p>
+        Activez <code>external</code> pour un lien qui s'ouvre dans une nouvelle fenêtre :
+        il ajoute <code>target="_blank"</code> et <code>rel="noopener noreferrer"</code>,
+        un libellé « ouvre dans une nouvelle fenêtre » masqué visuellement pour les
+        technologies d'assistance, et une icône décorative en fin de ligne (
+        <code>aria-hidden</code>). <code>external</code> est une propriété du système de
+        design ; le <code>target</code> natif reste natif et transmissible, et un{' '}
+        <code>target</code> fourni par l'appelant l'emporte (ADR 0015). Il n'y a pas de
+        propriété polymorphe <code>as</code>, pas de style <code>visited</code> ni de{' '}
+        <code>disabled</code> : un lien désactivé n'est pas un lien.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={LinkStories.Variants} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="External" fr="Externe" />
+
+<Canvas of={LinkStories.External} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Link follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-link-color</code>,{' '}
+          <code>--omnia-link-color-hover</code>. Each falls back to its semantic token (
+          <code>--omnia-color-link</code> / <code>--omnia-color-link-hover</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>link</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>link</code> (the anchor, where your <code>className</code> merges) and{' '}
+          <code>icon</code> (the external icon).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="link"</code>:{' '}
+          <code>data-variant</code>, <code>data-external</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points <code>--omnia-link-color</code>/
+        <code>--omnia-link-color-hover</code> from <code>@layer overrides</code>, with no{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Link suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-link-color</code>,{' '}
+          <code>--omnia-link-color-hover</code>. Chacune se rabat sur son jeton sémantique
+          (<code>--omnia-color-link</code> / <code>--omnia-color-link-hover</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>link</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>link</code> (l'ancre, où votre <code>className</code> fusionne) et{' '}
+          <code>icon</code> (l'icône externe).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="link"</code> :{' '}
+          <code>data-variant</code>, <code>data-external</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-link-color</code>/<code>--omnia-link-color-hover</code> depuis{' '}
+        <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={LinkStories.Overridden} />

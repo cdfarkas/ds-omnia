@@ -67,6 +67,11 @@ const stories = [
   { id: 'atoms-badge--danger', name: 'badge-danger' },
   { id: 'atoms-badge--intents', name: 'badge-intents' },
   { id: 'atoms-badge--overridden', name: 'badge-overridden' },
+  { id: 'atoms-link--standalone', name: 'link-standalone' },
+  { id: 'atoms-link--inline', name: 'link-inline' },
+  { id: 'atoms-link--external', name: 'link-external' },
+  { id: 'atoms-link--variants', name: 'link-variants' },
+  { id: 'atoms-link--overridden', name: 'link-overridden' },
   { id: 'atoms-input--playground', name: 'input-playground' },
   { id: 'atoms-input--sizes', name: 'input-sizes' },
   { id: 'atoms-input--with-adornments', name: 'input-with-adornments' },
@@ -244,6 +249,26 @@ if (!filter || filter.includes('switch')) {
       true,
     );
   }
+}
+
+if (!filter || filter.includes('link')) {
+  for (const m of modes) {
+    await shoot(
+      'atoms-link--standalone',
+      'link-standalone',
+      m,
+      'en',
+      `focus-${m.key}`,
+      true,
+    );
+  }
+  await shoot(
+    'atoms-link--external',
+    'link-external',
+    modes[0],
+    'fr',
+    'light-neutral__fr',
+  );
 }
 
 await page.setViewportSize({ width: 320, height: 568 });
