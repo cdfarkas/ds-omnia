@@ -2,7 +2,8 @@
 
 ## Status
 
-Proposed
+Proposed — the "Release CI" clause is amended by ADR 0018 (release.yml now runs on push to main so
+the Version PR opens while private; npm publish stays gated by `"private": true`).
 
 ## Context
 
