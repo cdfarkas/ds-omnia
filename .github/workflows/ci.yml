@@ -1,40 +1,44 @@
 name: CI
 
+# PR-only: the merge to main is the same tree these checks already passed, and
+# Release + Pages cover push-to-main. Each job below is its own PR check.
 on:
-  push:
-    branches: [main]
   pull_request:
 
 jobs:
-  verify:
+  lint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm lint
 
-      - uses: pnpm/action-setup@v4
+  typecheck:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm typecheck
 
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 22
-          cache: pnpm
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm build
 
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
-
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
+      - run: pnpm test
 
-      - name: Lint
-        run: pnpm lint
-
-      - name: Type-check
-        run: pnpm typecheck
-
-      - name: Build library
-        run: pnpm build
-
-      - name: Test (unit + interaction + a11y)
-        run: pnpm test
-
-      - name: Build Storybook
-        run: pnpm build-storybook
+  build-storybook:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm build-storybook

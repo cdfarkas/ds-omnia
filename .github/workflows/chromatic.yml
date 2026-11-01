@@ -5,9 +5,12 @@ on:
     branches: [main]
   pull_request:
 
-# Chromatic's four theme×skin modes are declared on the Button story meta
-# (chromatic.modes). Keep PR runs for drift review; the push-to-main run
-# establishes and maintains the accepted baseline.
+# Chromatic and CI are two separate workflows, so a PR shows two independent
+# runs — not a double-trigger: each pull_request event fires each once.
+# Chromatic builds Storybook here for visual snapshots; CI's build-storybook job
+# is the separate build-passes gate. Keep push-to-main: --auto-accept-changes=main
+# only updates the accepted baseline on a build of the main branch.
+# The four theme×skin modes are declared on the Button story meta (chromatic.modes).
 
 jobs:
   chromatic:
