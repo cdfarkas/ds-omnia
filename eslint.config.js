@@ -7,7 +7,14 @@ import prettier from 'eslint-config-prettier';
 
 export default tseslint.config(
   {
-    ignores: ['dist', 'storybook-static', 'coverage', 'visual-report', 'node_modules'],
+    ignores: [
+      'dist',
+      'storybook-static',
+      'coverage',
+      'visual-report',
+      'node_modules',
+      '.claude/worktrees',
+    ],
   },
   js.configs.recommended,
   tseslint.configs.recommended,
