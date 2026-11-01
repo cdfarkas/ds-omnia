@@ -1,8 +1,10 @@
-# Manual-only release, gated on `"private": false` in package.json and an NPM_TOKEN secret (ADR 0011).
-# Pending changesets open a "Version Packages" PR; once it is merged, the next run publishes.
+# Changesets open/update a "Version Packages" PR; merging it bumps version + CHANGELOG (= the release).
+# npm publish stays a no-op while "private": true and privatePackages.tag: false hold (ADR 0011, 0018).
 name: Release
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
 permissions:
@@ -25,28 +27,10 @@ jobs:
           cache: pnpm
           registry-url: https://registry.npmjs.org
 
-      - name: Check release gate
-        id: gate
-        env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-        run: |
-          private=$(node -p "require('./package.json').private === true")
-          if [ "$private" = "true" ]; then
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::package.json is \"private\": true — skipping release. This is not a failure."
-          elif [ -z "$NPM_TOKEN" ]; then
-            echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::notice::NPM_TOKEN secret is not set — skipping release. This is not a failure."
-          else
-            echo "ready=true" >> "$GITHUB_OUTPUT"
-          fi
-
       - name: Install dependencies
-        if: steps.gate.outputs.ready == 'true'
         run: pnpm install --frozen-lockfile
 
       - name: Version PR or publish
-        if: steps.gate.outputs.ready == 'true'
         uses: changesets/action@v2
         with:
           version-script: pnpm version-packages
