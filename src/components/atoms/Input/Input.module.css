@@ -98,8 +98,31 @@
     cursor: not-allowed;
   }
 
+  /* Pixel skin: notched box, 2px border. The notch clips box-shadow and an outer
+     outline (docs/adr/0009), so the shadow is dropped and the focus ring inset. */
   :global([data-skin='pixel']) .root {
+    border-width: var(--omnia-palette-border-med);
     border-radius: 0;
+    box-shadow: none;
+    clip-path: var(--omnia-clip-notch);
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+  }
+
+  :global([data-skin='pixel']) .input,
+  :global([data-skin='pixel']) .adornment {
+    font-size: 0.72em;
+    line-height: 1.5;
+  }
+
+  :global([data-skin='pixel']) .root:focus-within {
+    outline-offset: -6px;
+  }
+
+  :global([data-skin='pixel'])
+    .root:where(:hover, :focus-within):not([data-disabled], [data-readonly]) {
+    transform: none;
+    box-shadow: none;
   }
 
   @media (prefers-reduced-motion: reduce) {

@@ -84,9 +84,21 @@
     cursor: not-allowed;
   }
 
+  /* Square thumb jumps off->on in steps via the --omnia-ease-out reassignment. */
   :global([data-skin='pixel']) .track,
   :global([data-skin='pixel']) .track::before {
     border-radius: 0;
+  }
+
+  :global([data-skin='pixel']) .track {
+    border-width: var(--omnia-palette-border-med);
+  }
+
+  :global([data-skin='pixel']) .label {
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+    font-size: 0.72em;
+    line-height: 1.5;
   }
 
   .track:focus-visible {

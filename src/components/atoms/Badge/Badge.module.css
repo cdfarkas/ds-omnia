@@ -14,6 +14,12 @@
   }
 
   :global([data-skin='pixel']) .badge {
+    border-width: var(--omnia-palette-border-med);
     border-radius: 0;
+    clip-path: var(--omnia-clip-notch);
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+    font-size: 0.625rem;
+    line-height: 1.5;
   }
 }

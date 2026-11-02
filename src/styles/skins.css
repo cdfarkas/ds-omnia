@@ -1,18 +1,14 @@
-/* Pixel skin structural carve-out (ADR/ARCHITECTURE): not design tokens. */
-@font-face {
-  font-family: 'ds-pixel';
-  src:
-    local('Pixelify Sans'), local('Press Start 2P'), local('VT323'), local('Courier New');
-  font-display: swap;
-}
-
+/* Pixel skin structural carve-out (ADR/ARCHITECTURE): not design tokens.
+   'Press Start 2P' is bundled via @fontsource/press-start-2p (imported in the
+   Storybook preview, alongside the other faces). */
 @layer base {
   :root {
     --omnia-font-family-base: var(--omnia-font-sans);
   }
 
   :root[data-skin='pixel'] {
-    --omnia-font-family-base: 'ds-pixel', 'Courier New', monospace;
+    /* Prose/body keeps the readable sans; controls and headings opt into pixel. */
+    --omnia-font-pixel: 'Press Start 2P', 'Courier New', monospace;
 
     image-rendering: pixelated;
   }
@@ -32,6 +28,25 @@
   }
 
   :root[data-skin='pixel'] :is(h1, h2, h3, h4) {
-    font-family: var(--omnia-font-family-base);
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+    line-height: 1.4;
+  }
+
+  /* Press Start 2P renders large; moderate the display scale so headings fit. */
+  :root[data-skin='pixel'] h1 {
+    font-size: 1.5rem;
+  }
+
+  :root[data-skin='pixel'] h2 {
+    font-size: 1.2rem;
+  }
+
+  :root[data-skin='pixel'] h3 {
+    font-size: 1rem;
+  }
+
+  :root[data-skin='pixel'] h4 {
+    font-size: 0.85rem;
   }
 }
