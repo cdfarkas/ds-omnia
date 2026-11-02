@@ -49,6 +49,7 @@ a credential is still the explicit, separate step that enables publishing.
   merge, no tag and no npm account required.
 - Pages deploys build Storybook on every push to `main`, overlapping with `ci.yml`'s own
   `build-storybook`. Accepted: Pages needs the artifact, and the concurrency group collapses bursts.
-- The favicon links in `.storybook/main.ts` use absolute `/brand/*` paths; served from the
-  `/ds-omnia/` subpath they resolve to the domain root and 404. Cosmetic (favicons only); the
-  catalogue itself loads. Left for a follow-up.
+- The brand asset URLs (favicon and app-icon links in `.storybook/main.ts`, the sidebar
+  `brandImage` in `.storybook/manager.ts`, and the Favicon foundations page) are relative
+  (`brand/*`, no leading slash) so they resolve under the deploy base: `/brand/*` at the dev root
+  and `/ds-omnia/brand/*` on Pages. They were absolute `/brand/*` and 404'd on the subpath.
