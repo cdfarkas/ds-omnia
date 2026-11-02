@@ -120,12 +120,17 @@
   color: var(--omnia-palette-ink-soft);
 }
 
-.omnia-nav {
+.omnia-nav.omnia-nav {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--omnia-palette-space-3);
   margin: var(--omnia-palette-space-4) 0;
   padding: 0;
+  list-style: none;
+}
+
+.omnia-nav.omnia-nav li {
+  margin: 0;
   list-style: none;
 }
 
