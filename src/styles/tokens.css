@@ -82,6 +82,7 @@
     --omnia-palette-radius-lg: 0.875rem;
 
     --omnia-palette-border-thin: 1px;
+    --omnia-palette-border-med: 2px;
     --omnia-palette-border-thick: 3px;
 
     /* Type primitives — expressive serif display + grotesk sans. */
@@ -212,6 +213,21 @@
     --omnia-color-border-focus: var(--omnia-palette-pixel-violet-deep);
     --omnia-color-link: var(--omnia-palette-pixel-violet);
     --omnia-color-link-hover: var(--omnia-palette-pixel-violet-deep);
+
+    /* The 32-bit tell: every --omnia-ease-out transition now ticks frame-by-frame. */
+    --omnia-ease-out: steps(5, end);
+
+    /* Beveled-sprite silhouette shared by Button, Badge and Input. */
+    --omnia-clip-notch: polygon(
+      4px 0,
+      calc(100% - 4px) 0,
+      100% 4px,
+      100% calc(100% - 4px),
+      calc(100% - 4px) 100%,
+      4px 100%,
+      0 calc(100% - 4px),
+      0 4px
+    );
   }
 
   :root[data-theme='dark'][data-skin='pixel'] {

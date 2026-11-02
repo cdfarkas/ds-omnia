@@ -82,7 +82,21 @@
   }
 
   :global([data-skin='pixel']) .input {
+    border-width: var(--omnia-palette-border-med);
     border-radius: 0;
+  }
+
+  /* Blocky checkmark; indeterminate keeps its (already blocky) bar. Snap-in is
+     the stepped --omnia-ease-out reassignment, not a new transition. */
+  :global([data-skin='pixel']) .input:checked::before {
+    clip-path: polygon(4% 48%, 20% 30%, 40% 52%, 80% 6%, 96% 24%, 40% 92%);
+  }
+
+  :global([data-skin='pixel']) .label {
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+    font-size: 0.72em;
+    line-height: 1.5;
   }
 
   .input:focus-visible {

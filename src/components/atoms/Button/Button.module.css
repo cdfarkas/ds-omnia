@@ -88,20 +88,20 @@
     border: 0;
   }
 
-  /* Pixel skin: sharp corners, notched silhouette. */
+  /* Pixel skin: sharp corners, notched silhouette, 2px border, pixel face. */
   :global([data-skin='pixel']) .button {
+    border-width: var(--omnia-palette-border-med);
     border-radius: 0;
     box-shadow: none;
-    clip-path: polygon(
-      4px 0,
-      calc(100% - 4px) 0,
-      100% 4px,
-      100% calc(100% - 4px),
-      calc(100% - 4px) 100%,
-      4px 100%,
-      0 calc(100% - 4px),
-      0 4px
-    );
+    clip-path: var(--omnia-clip-notch);
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+  }
+
+  /* Press Start 2P renders large/wide; shrink the label off the control size. */
+  :global([data-skin='pixel']) .button [data-part='label'] {
+    font-size: 0.72em;
+    line-height: 1.5;
   }
 
   /* The notch clip-path clips any shadow on the button itself, so the offset

@@ -43,6 +43,20 @@
     border: 0;
   }
 
+  /* Pixel skin: chunky dashed underline and a hard square focus ring. Prose may
+     hold inline links, so the font is left to the surrounding text. */
+  :global([data-skin='pixel']) .link {
+    border-radius: 0;
+    text-decoration-style: dashed;
+    text-decoration-thickness: var(--omnia-palette-border-med);
+    text-underline-offset: 0.25em;
+  }
+
+  :global([data-skin='pixel']) .link:focus-visible {
+    outline-width: var(--omnia-palette-border-thick);
+    outline-offset: 3px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .link {
       transition: none;
