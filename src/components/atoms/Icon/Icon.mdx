@@ -1,0 +1,154 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Icon</strong> atom draws one inline SVG glyph from a fixed v1 set (
+        <code>github</code>, <code>linkedin</code>, <code>bluesky</code>, <code>sun</code>
+        , <code>moon</code>, <code>arrow-up-right</code>, <code>arrow-down</code>), chosen
+        with the <code>glyph</code> prop. Every glyph is a solid single-colour shape on
+        one <code>0 0 24 24</code> grid, filled with <code>currentColor</code>, so the
+        icon follows the surrounding text colour and reskins across the light/dark theme
+        and neutral/pixel skin axes with no change to its own CSS.{' '}
+        <code>--omnia-icon-color</code> overrides the colour through a semantic token.
+      </p>
+      <p>
+        Size follows the text by default (<code>1em</code>). Pass <code>variantSize</code>{' '}
+        (<code>sm</code> / <code>md</code> / <code>lg</code> → 1 / 1.5 / 2rem) for a fixed
+        size — <code>size</code> is a native HTML name, so the axis is renamed (ADR 0015).
+      </p>
+      <p>
+        Icons are <strong>decorative by default</strong>: with no label the atom sets{' '}
+        <code>aria-hidden="true"</code> and no role, so a screen reader ignores it — the
+        usual case for an icon inside a labelled <code>Button</code> or <code>Link</code>.
+        Passing <code>aria-label</code> or <code>aria-labelledby</code> makes the icon
+        meaningful (<code>role="img"</code>, <code>aria-hidden</code> dropped) per WCAG
+        1.1.1. The label is the caller's, so no localised string ships with the atom.
+        There is no <code>color</code>, <code>title</code>, <code>width</code>/
+        <code>height</code> or custom-children prop: a clickable icon is a{' '}
+        <code>Button</code> or <code>Link</code> wrapping an <code>Icon</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Icon</strong> dessine une icône SVG en ligne issue d'un jeu
+        v1 figé (<code>github</code>, <code>linkedin</code>, <code>bluesky</code>,{' '}
+        <code>sun</code>, <code>moon</code>, <code>arrow-up-right</code>,{' '}
+        <code>arrow-down</code>), choisie via la propriété <code>glyph</code>. Chaque
+        icône est une forme pleine d'une seule couleur sur une grille{' '}
+        <code>0 0 24 24</code>, remplie avec <code>currentColor</code> : elle suit donc la
+        couleur du texte environnant et change d'apparence selon l'axe de thème
+        clair/sombre et l'axe d'habillage neutre/pixel, sans modifier son propre CSS.{' '}
+        <code>--omnia-icon-color</code> remplace la couleur via un jeton sémantique.
+      </p>
+      <p>
+        La taille suit le texte par défaut (<code>1em</code>). Fournissez{' '}
+        <code>variantSize</code> (<code>sm</code> / <code>md</code> / <code>lg</code> → 1
+        / 1,5 / 2rem) pour une taille fixe — <code>size</code> est un nom HTML natif,
+        l'axe est donc renommé (ADR 0015).
+      </p>
+      <p>
+        Les icônes sont <strong>décoratives par défaut</strong> : sans libellé, le
+        composant pose <code>aria-hidden="true"</code> sans rôle, et un lecteur d'écran
+        l'ignore — le cas habituel d'une icône dans un <code>Button</code> ou un{' '}
+        <code>Link</code> déjà nommé. Fournir <code>aria-label</code> ou{' '}
+        <code>aria-labelledby</code> rend l'icône signifiante (<code>role="img"</code>,{' '}
+        <code>aria-hidden</code> retiré) selon le WCAG 1.1.1. Le libellé appartient à
+        l'appelant : aucune chaîne localisée n'est livrée avec le composant. Il n'y a ni{' '}
+        <code>color</code>, ni <code>title</code>, ni <code>width</code>/
+        <code>height</code>, ni enfants personnalisés : une icône cliquable est un{' '}
+        <code>Button</code> ou un <code>Link</code> entourant un <code>Icon</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={IconStories.AllGlyphs} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Decorative" fr="Décoratif" />
+
+<Canvas of={IconStories.Decorative} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Icon follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variable</strong>: <code>--omnia-icon-color</code> (defaults
+          to <code>currentColor</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>icon</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the <code>&lt;svg&gt;</code>, where your{' '}
+          <code>className</code> merges).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Icon suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variable de composant</strong> : <code>--omnia-icon-color</code> (par
+          défaut <code>currentColor</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>icon</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le <code>&lt;svg&gt;</code>, où votre{' '}
+          <code>className</code> fusionne).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={IconStories.Overridden} />

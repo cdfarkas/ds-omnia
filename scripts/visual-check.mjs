@@ -99,6 +99,11 @@ const stories = [
   { id: 'atoms-switch--long-label', name: 'switch-long-label' },
   { id: 'atoms-switch--states', name: 'switch-states' },
   { id: 'atoms-switch--overridden', name: 'switch-overridden' },
+  { id: 'atoms-icon--all-glyphs', name: 'icon-all-glyphs' },
+  { id: 'atoms-icon--sizes', name: 'icon-sizes' },
+  { id: 'atoms-icon--playground', name: 'icon-playground' },
+  { id: 'atoms-icon--decorative', name: 'icon-decorative' },
+  { id: 'atoms-icon--overridden', name: 'icon-overridden' },
 ];
 
 const filter = process.argv[2];

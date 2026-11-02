@@ -1,0 +1,25 @@
+@layer components {
+  .root {
+    display: inline-block;
+    inline-size: 1em;
+    block-size: 1em;
+    flex-shrink: 0;
+    vertical-align: middle;
+    color: var(--omnia-icon-color, currentcolor);
+  }
+
+  .sm {
+    inline-size: 1rem;
+    block-size: 1rem;
+  }
+
+  .md {
+    inline-size: 1.5rem;
+    block-size: 1.5rem;
+  }
+
+  .lg {
+    inline-size: 2rem;
+    block-size: 2rem;
+  }
+}
