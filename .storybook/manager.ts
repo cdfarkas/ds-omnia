@@ -9,7 +9,7 @@ addons.setConfig({
   theme: create({
     base: prefersDark ? 'dark' : 'light',
     brandTitle: 'Omnia',
-    brandImage: prefersDark ? '/brand/logo-dark.svg' : '/brand/logo.svg',
+    brandImage: prefersDark ? 'brand/logo-dark.svg' : 'brand/logo.svg',
     brandUrl: undefined,
   }),
 });
