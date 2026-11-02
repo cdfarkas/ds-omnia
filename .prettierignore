@@ -6,3 +6,4 @@ visual-report
 pnpm-lock.yaml
 *.md
 renovate.json
+.claude
