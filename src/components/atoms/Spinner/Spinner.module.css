@@ -1,0 +1,54 @@
+@layer components {
+  .root {
+    display: inline-flex;
+    color: var(--omnia-spinner-color, currentcolor);
+  }
+
+  /* Loading is essential feedback, so the ring keeps turning even under reduced
+     motion; a frozen ring would read as a stalled process (see Button). */
+  .ring {
+    inline-size: var(--omnia-spinner-size);
+    block-size: var(--omnia-spinner-size);
+    border: var(--omnia-spinner-thickness) solid currentcolor;
+    border-top-color: transparent;
+    border-radius: 50%;
+    animation: omnia-spinner-spin 0.6s linear infinite;
+  }
+
+  @keyframes omnia-spinner-spin {
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
+  .sm {
+    --omnia-spinner-size: 1rem;
+    --omnia-spinner-thickness: 0.125rem;
+  }
+
+  .md {
+    --omnia-spinner-size: 1.5rem;
+    --omnia-spinner-thickness: 0.1875rem;
+  }
+
+  .lg {
+    --omnia-spinner-size: 2rem;
+    --omnia-spinner-thickness: 0.25rem;
+  }
+
+  :global([data-skin='pixel']) .ring {
+    border-radius: 0;
+  }
+
+  .srOnly {
+    position: absolute;
+    overflow: hidden;
+    clip-path: inset(50%);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    white-space: nowrap;
+    border: 0;
+  }
+}
