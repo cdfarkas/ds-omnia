@@ -1,5 +1,5 @@
-"""Omnia pixel icon set: 16x16 grid, solid 2px blocks, currentColor."""
-import math, pathlib, sys
+"""Omnia pixel icon set: 16x16 grid, 2px blocks, currentColor, regular and solid styles."""
+import copy, math, pathlib, sys
 
 N = 16
 OUT = pathlib.Path(sys.argv[1])
@@ -307,6 +307,50 @@ def tri(gr, top, bottom, v=1):
     return gr
 
 
+def clone(gr):
+    g = G()
+    g.p = copy.deepcopy(gr.p)
+    return g
+
+
+def erode(gr):
+    g = G()
+    for y in range(N):
+        for x in range(N):
+            g.p[y][x] = int(gr.p[y][x] and all(
+                0 <= x + dx < N and 0 <= y + dy < N and gr.p[y + dy][x + dx]
+                for dx, dy in ((1, 0), (-1, 0), (0, 1), (0, -1))))
+    return g
+
+
+def outline(gr, k=2):
+    inner = gr
+    for _ in range(k):
+        inner = erode(inner)
+    g = clone(gr)
+    for y in range(N):
+        for x in range(N):
+            if inner.p[y][x]:
+                g.p[y][x] = 0
+    return g
+
+
+def fill_holes(gr):
+    seen = [[0] * N for _ in range(N)]
+    stack = [(x, y) for x in range(N) for y in (0, N - 1)] + [(x, y) for y in range(N) for x in (0, N - 1)]
+    while stack:
+        x, y = stack.pop()
+        if 0 <= x < N and 0 <= y < N and not seen[y][x] and not gr.p[y][x]:
+            seen[y][x] = 1
+            stack += [(x + 1, y), (x - 1, y), (x, y + 1), (x, y - 1)]
+    g = clone(gr)
+    for y in range(N):
+        for x in range(N):
+            if not seen[y][x]:
+                g.p[y][x] = 1
+    return g
+
+
 def build():
     I = {}
     I["close"] = g().art(CLOSE)
@@ -358,9 +402,57 @@ def build():
     return I
 
 
+def build_styles():
+    base = build()
+    reg = {k: clone(v) for k, v in base.items()}
+    sol = {k: clone(v) for k, v in base.items()}
+
+    ring = lambda: G().ring(8, 8, 7, 5)
+    reg["info"] = ring().R(7, 4, 8, 5).R(7, 7, 8, 11)
+    x_mark = [(5, 5), (6, 5), (9, 5), (10, 5), (6, 6), (7, 6), (8, 6), (9, 6), (7, 7), (8, 7),
+              (7, 8), (8, 8), (6, 9), (7, 9), (8, 9), (9, 9), (5, 10), (6, 10), (9, 10), (10, 10)]
+    reg["error"] = ring()
+    for x, y in x_mark:
+        reg["error"].set(x, y)
+    reg["success"] = ring().diag(4, 7, 6, 9, 2).diag(7, 9, 10, 6, 2)
+    reg["warning"] = outline(tri(G(), 1, 14)).R(7, 7, 8, 9).R(7, 11, 8, 11)
+    reg["user"] = outline(base["user"])
+    gear = G().disk(8, 8, 5.2).R(6, 1, 9, 14).R(1, 6, 14, 9)
+    for (x, y) in [(2, 2), (11, 2), (2, 11), (11, 11)]:
+        gear.R(x, y, x + 2, y + 2)
+    reg["settings"] = gear.disk(8, 8, 3.3, 0)
+    reg["home"] = outline(base["home"])
+    reg["trash"] = (G().R(1, 3, 14, 4).R(5, 1, 10, 2).E(7, 2, 8, 2)
+                    .R(2, 6, 3, 14).R(12, 6, 13, 14).R(2, 13, 13, 14).R(7, 7, 8, 11)
+                    .E(2, 14, 2, 14).E(13, 14, 13, 14))
+    reg["copy"] = G().R(1, 1, 10, 10).E(3, 3, 8, 8).E(4, 4, 15, 15).R(5, 5, 14, 14).E(7, 7, 12, 12)
+    for k in ("heart", "star", "bell"):
+        reg[k] = outline(base[k])
+    reg["sun"] = (G().ring(8, 8, 3.6, 1.7).R(7, 0, 8, 2).R(7, 13, 8, 15).R(0, 7, 2, 8).R(13, 7, 15, 8)
+                  .R(2, 2, 3, 3).R(12, 2, 13, 3).R(2, 12, 3, 13).R(12, 12, 13, 13))
+
+    sol["search"] = fill_holes(base["search"])
+    sol["eye"] = fill_holes(base["eye"]).ring(8, 8, 3.4, 2.1, v=0)
+    se = clone(sol["eye"])
+    for y in range(1, 14):
+        se.E(13 - y, y, 16 - y, y).R(14 - y, y, 15 - y, y)
+    sol["eye-off"] = se
+    sol["calendar"] = fill_holes(base["calendar"]).E(3, 6, 12, 6).E(9, 9, 10, 10)
+    globe = G().disk(8, 8, 7).E(1, 8, 14, 8)
+    for y in range(N):
+        for x in range(N):
+            e = ((x + 0.5 - 8) / 3.4) ** 2 + ((y + 0.5 - 8) / 7) ** 2
+            if 0.72 < e <= 1:
+                globe.set(x, y, 0)
+    sol["globe"] = globe
+    return reg, sol
+
+
 if __name__ == "__main__":
-    I = build()
-    OUT.mkdir(parents=True, exist_ok=True)
-    for name, gr in I.items():
-        (OUT / f"{name}.svg").write_text(gr.svg(), encoding="utf-8")
-    print(len(I), "glyphs ->", OUT)
+    reg, sol = build_styles()
+    for style, I in (("regular", reg), ("solid", sol)):
+        d = OUT / style
+        d.mkdir(parents=True, exist_ok=True)
+        for name, gr in I.items():
+            (d / f"{name}.svg").write_text(gr.svg(), encoding="utf-8")
+    print(len(reg), len(sol), "->", OUT)
