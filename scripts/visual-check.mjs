@@ -99,6 +99,10 @@ const stories = [
   { id: 'atoms-switch--long-label', name: 'switch-long-label' },
   { id: 'atoms-switch--states', name: 'switch-states' },
   { id: 'atoms-switch--overridden', name: 'switch-overridden' },
+  { id: 'atoms-spinner--playground', name: 'spinner-playground' },
+  { id: 'atoms-spinner--sizes', name: 'spinner-sizes' },
+  { id: 'atoms-spinner--decorative', name: 'spinner-decorative' },
+  { id: 'atoms-spinner--overridden', name: 'spinner-overridden' },
 ];
 
 const filter = process.argv[2];

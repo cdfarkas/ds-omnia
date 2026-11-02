@@ -1,0 +1,171 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as SpinnerStories from './Spinner.stories';
+
+<Meta of={SpinnerStories} />
+
+# Spinner
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Spinner</strong> atom is an indeterminate loading indicator. It
+        consumes semantic <code>var(--…)</code> tokens only, so it reskins across the
+        light/dark theme axis and the neutral/pixel skin axis without any change to its
+        own CSS. The animated ring uses <code>currentColor</code>, so it inherits the
+        surrounding text colour and meets WCAG 1.4.11 (3:1 non-text contrast) wherever
+        that text already passes.
+      </p>
+      <p>
+        The root is a <code>&lt;span role="status"&gt;</code> — a polite live region —
+        whose accessible name defaults to <code>t('spinner.loading')</code> ("Loading"),
+        set as <code>aria-label</code>, with the same string repeated as visually hidden
+        text so a screen reader announces it when the region appears. Pass{' '}
+        <code>aria-label</code> to name the activity specifically (for example "Loading
+        products"); it overrides the default name. Use <code>variantSize</code> (
+        <code>sm</code> / <code>md</code> / <code>lg</code>, default <code>md</code>) for
+        the ring size — <code>size</code> is a native HTML name, so the axis is renamed
+        (ADR 0015).
+      </p>
+      <p>
+        When the surrounding text already announces the wait (a button label, a sentence
+        beside the ring), pass <code>aria-hidden</code> to make the spinner decorative and
+        avoid a second announcement. There is no <code>value</code>, <code>color</code>,{' '}
+        <code>delay</code>, visible label or overlay: a determinate progress indicator is
+        a separate future component. The ring keeps turning under{' '}
+        <code>prefers-reduced-motion</code> because loading is essential feedback — a
+        frozen ring would read as a stalled process.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Spinner</strong> est un indicateur de chargement indéterminé.
+        Il ne consomme que des jetons sémantiques <code>var(--…)</code> : il change donc
+        d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage neutre/pixel,
+        sans modifier son propre CSS. L'anneau animé utilise <code>currentColor</code> :
+        il hérite de la couleur du texte environnant et respecte le WCAG 1.4.11 (contraste
+        non-textuel de 3:1) partout où ce texte passe déjà.
+      </p>
+      <p>
+        La racine est un <code>&lt;span role="status"&gt;</code> — une région live polie —
+        dont le nom accessible vaut par défaut <code>t('spinner.loading')</code>{' '}
+        («&nbsp;Chargement&nbsp;»), posé comme <code>aria-label</code>, la même chaîne
+        étant répétée en texte masqué visuellement pour qu'un lecteur d'écran l'annonce à
+        l'apparition de la région. Fournissez <code>aria-label</code> pour nommer
+        précisément l'activité (par exemple «&nbsp;Chargement des produits&nbsp;») : il
+        remplace le nom par défaut. Utilisez <code>variantSize</code> (<code>sm</code> /{' '}
+        <code>md</code> / <code>lg</code>, par défaut <code>md</code>) pour la taille de
+        l'anneau — <code>size</code> est un nom HTML natif, l'axe est donc renommé (ADR
+        0015).
+      </p>
+      <p>
+        Quand le texte environnant annonce déjà l'attente (un libellé de bouton, une
+        phrase à côté de l'anneau), fournissez <code>aria-hidden</code> pour rendre le
+        spinner décoratif et éviter une seconde annonce. Il n'y a ni <code>value</code>,
+        ni <code>color</code>, ni <code>delay</code>, ni libellé visible, ni superposition
+        : un indicateur de progression déterminé est un futur composant séparé. L'anneau
+        continue de tourner sous <code>prefers-reduced-motion</code> car le chargement est
+        un retour essentiel — un anneau figé laisserait croire que le processus est
+        bloqué.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={SpinnerStories.Sizes} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Decorative" fr="Décoratif" />
+
+<Canvas of={SpinnerStories.Decorative} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Spinner follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-spinner-color</code>{' '}
+          (defaults to <code>currentColor</code>), <code>--omnia-spinner-size</code>,{' '}
+          <code>--omnia-spinner-thickness</code>. <code>variantSize</code> sets the last
+          two.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>spinner</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the status span, where your <code>className</code> merges)
+          and <code>ring</code> (the decorative animated ring).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-spinner-color</code>/<code>--omnia-spinner-thickness</code> from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Spinner suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-spinner-color</code>{' '}
+          (par défaut <code>currentColor</code>), <code>--omnia-spinner-size</code>,{' '}
+          <code>--omnia-spinner-thickness</code>. <code>variantSize</code> définit les
+          deux dernières.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>spinner</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le span de statut, où votre <code>className</code>{' '}
+          fusionne) et <code>ring</code> (l'anneau animé décoratif).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-spinner-color</code>/<code>--omnia-spinner-thickness</code> depuis{' '}
+        <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={SpinnerStories.Overridden} />

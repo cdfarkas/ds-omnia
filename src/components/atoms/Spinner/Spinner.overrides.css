@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-spinner {
+    --omnia-spinner-color: var(--omnia-color-link);
+    --omnia-spinner-thickness: 0.375rem;
+  }
+}
