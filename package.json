@@ -64,7 +64,7 @@
     "@vitejs/plugin-react": "6.1.2",
     "@vitest/browser": "4.1.12",
     "@vitest/browser-playwright": "4.1.12",
-    "chromatic": "18.13.4",
+    "chromatic": "18.13.6",
     "eslint": "10.13.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react-hooks": "7.1.1",
