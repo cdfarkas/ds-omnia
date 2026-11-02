@@ -44,11 +44,12 @@ export const Playground: Story = {
 };
 
 export const Sizes: Story = {
-  render: (args) => (
+  parameters: { controls: { disable: true } },
+  render: () => (
     <div style={row}>
-      <Spinner {...args} variantSize="sm" />
-      <Spinner {...args} variantSize="md" />
-      <Spinner {...args} variantSize="lg" />
+      <Spinner variantSize="sm" />
+      <Spinner variantSize="md" />
+      <Spinner variantSize="lg" />
     </div>
   ),
 };
