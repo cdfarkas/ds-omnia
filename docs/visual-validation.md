@@ -55,11 +55,10 @@ Modes are driven through the Storybook iframe globals query parameter, e.g.
 - The focus ring is visible on keyboard focus — in **every** skin, including pixel
   where a clip-path would otherwise clip an outer outline.
 
-## Chromatic
+## No pixel-diff service
 
-`scripts/visual-check.mjs` is the agent's own eyes and runs with no account. Chromatic
-is the human-facing visual-regression history and runs later on the maintainer's token.
-`.github/workflows/chromatic.yml` is wired with the four theme×skin modes but gated on
-`secrets.CHROMATIC_PROJECT_TOKEN`, and runs the installed `chromatic` CLI via `pnpm exec`; without the secret the job is skipped, not failed.
-The two are complementary: the agent gate blocks a bad PR before review, Chromatic
-tracks pixel drift over time once a project and token exist.
+There is no hosted visual-regression tool (no Chromatic). This agent gate is the only
+visual check: it blocks a bad PR before review, but it does not keep a pixel-diff baseline
+over time — the honest trade-off recorded in ADR 0022. For human eyes-on, the Storybook is
+published to GitHub Pages (ADR 0018); the a11y addon (ADR 0006) is the hard proof on
+contrast and WCAG rules.

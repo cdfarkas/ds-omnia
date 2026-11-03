@@ -52,7 +52,6 @@
   },
   "devDependencies": {
     "@changesets/cli": "3.0.3",
-    "@chromatic-com/storybook": "5.6.0",
     "@eslint/js": "10.0.1",
     "@fontsource-variable/fraunces": "5.3.0",
     "@fontsource-variable/space-grotesk": "5.3.0",
@@ -67,7 +66,6 @@
     "@vitest/browser": "4.1.12",
     "@vitest/coverage-v8": "4.1.12",
     "@vitest/browser-playwright": "4.1.12",
-    "chromatic": "18.13.6",
     "eslint": "10.14.0",
     "eslint-config-prettier": "10.1.8",
     "eslint-plugin-react-hooks": "7.1.1",

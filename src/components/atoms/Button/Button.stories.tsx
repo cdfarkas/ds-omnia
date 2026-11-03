@@ -22,16 +22,6 @@ const meta = {
     pending: { control: 'boolean' },
     disabled: { control: 'boolean' },
   },
-  parameters: {
-    chromatic: {
-      modes: {
-        'light-neutral': { theme: 'light', skin: 'default' },
-        'dark-neutral': { theme: 'dark', skin: 'default' },
-        'light-pixel': { theme: 'light', skin: 'pixel' },
-        'dark-pixel': { theme: 'dark', skin: 'pixel' },
-      },
-    },
-  },
 } satisfies Meta<typeof Button>;
 
 export default meta;

@@ -24,14 +24,6 @@ const meta = {
   },
   parameters: {
     layout: 'padded',
-    chromatic: {
-      modes: {
-        'light-neutral': { theme: 'light', skin: 'default' },
-        'dark-neutral': { theme: 'dark', skin: 'default' },
-        'light-pixel': { theme: 'light', skin: 'pixel' },
-        'dark-pixel': { theme: 'dark', skin: 'pixel' },
-      },
-    },
   },
 } satisfies Meta<typeof Checkbox>;
 
