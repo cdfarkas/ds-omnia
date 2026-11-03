@@ -19,5 +19,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["src", ".storybook", "scripts", "*.config.ts", "eslint.config.js"]
+  "include": ["src", ".storybook", "scripts", "*.config.ts", "eslint.config.js"],
+  "exclude": ["scripts/**/*.test.ts"]
 }
