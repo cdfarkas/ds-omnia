@@ -181,3 +181,14 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## DescriptionList
+
+Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDListElement>` | no | — | — |
+
+Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
+
