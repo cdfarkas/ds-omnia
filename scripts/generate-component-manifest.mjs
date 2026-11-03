@@ -19,7 +19,7 @@ function jsDocText(node) {
 
 export function discoverComponents(root) {
   const source = readFileSync(join(root, 'src', 'index.ts'), 'utf8');
-  const re = /export \* from '\.\/(components\/atoms\/[^']+)'/g;
+  const re = /export \* from '\.\/(components\/(?:atoms|molecules)\/[^']+)'/g;
   const found = [];
   let match;
   while ((match = re.exec(source)))
@@ -103,6 +103,11 @@ function componentEntry(program, checker, root, { name, dir }) {
   let iface;
   sf.forEachChild((node) => {
     if (ts.isFunctionDeclaration(node) && node.name?.text === name) func = node;
+    if (
+      ts.isVariableStatement(node) &&
+      node.declarationList.declarations.some((d) => d.name.getText(sf) === name)
+    )
+      func = node;
     if (ts.isInterfaceDeclaration(node) && node.name.text === `${name}Props`)
       iface = node;
   });

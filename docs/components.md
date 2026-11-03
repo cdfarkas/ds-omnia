@@ -181,3 +181,15 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## Card
+
+Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.
+
+Source: `src/components/molecules/Card/Card.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-card--playground`, `molecules-card--body-only`, `molecules-card--with-header`, `molecules-card--narrow`, `molecules-card--overridden`, `molecules-card--dark-neutral`, `molecules-card--pixel-light`, `molecules-card--pixel-dark`
+

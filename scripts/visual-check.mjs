@@ -127,6 +127,11 @@ const stories = [
   { id: 'atoms-text--scale', name: 'text-scale' },
   { id: 'atoms-text--tones', name: 'text-tones' },
   { id: 'atoms-text--overridden', name: 'text-overridden' },
+  { id: 'molecules-card--playground', name: 'card-playground' },
+  { id: 'molecules-card--body-only', name: 'card-body-only' },
+  { id: 'molecules-card--with-header', name: 'card-with-header' },
+  { id: 'molecules-card--narrow', name: 'card-narrow' },
+  { id: 'molecules-card--overridden', name: 'card-overridden' },
 ];
 
 const filter = process.argv[2];

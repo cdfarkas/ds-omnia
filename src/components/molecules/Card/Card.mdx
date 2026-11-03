@@ -1,0 +1,176 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as CardStories from './Card.stories';
+
+<Meta of={CardStories} />
+
+# Card
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Card</strong> to group related content on a raised surface — a
+        summary, a setting, or an item in a grid — with its title and actions kept
+        together.
+      </p>
+      <ul>
+        <li>
+          <strong>Three optional parts, in order.</strong> <code>Card.Header</code> holds
+          the title, <code>Card.Body</code> the content and <code>Card.Footer</code> the
+          actions. Use only the parts you need; they stack in the order you write them.
+        </li>
+        <li>
+          <strong>A plain container.</strong> Card and its parts carry no meaning of their
+          own for assistive technology. When the content stands on its own, such as a post
+          in a feed or a product in a list, wrap the card in an{' '}
+          <code>&lt;article&gt;</code> or a list item and give it a real heading.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Surface, border, corners and shadow come
+          from tokens, so Card follows the light/dark theme and the neutral/pixel skin
+          with no CSS changes.
+        </li>
+        <li>
+          <strong>It adapts to its own width.</strong> The padding grows once the card is
+          wide enough, whatever the screen size, and footer actions wrap onto a new line
+          on a narrow card.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Card</strong> pour regrouper un contenu lié sur une surface en
+        relief — un résumé, un réglage ou un élément d'une grille — en gardant ensemble
+        son titre et ses actions.
+      </p>
+      <ul>
+        <li>
+          <strong>Trois parties facultatives, dans l'ordre.</strong>{' '}
+          <code>Card.Header</code> porte le titre, <code>Card.Body</code> le contenu et{' '}
+          <code>Card.Footer</code> les actions. N'utilisez que les parties utiles ; elles
+          s'empilent dans l'ordre où vous les écrivez.
+        </li>
+        <li>
+          <strong>Un simple conteneur.</strong> Card et ses parties n'ont aucun sens
+          propre pour les technologies d'assistance. Quand le contenu se suffit à
+          lui-même, comme un billet dans un fil ou un produit dans une liste, placez la
+          carte dans un <code>&lt;article&gt;</code> ou un élément de liste, avec un vrai
+          titre.
+        </li>
+        <li>
+          <strong>Elle s'adapte toute seule.</strong> La surface, la bordure, les coins et
+          l'ombre viennent des jetons : Card suit le thème clair/sombre et l'habillage
+          neutre/pixel sans retoucher son CSS.
+        </li>
+        <li>
+          <strong>Elle suit sa propre largeur.</strong> Les marges intérieures grandissent
+          dès que la carte est assez large, quelle que soit la taille de l'écran, et les
+          actions du pied passent à la ligne sur une carte étroite.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={CardStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Body only" fr="Corps seul" />
+
+<Canvas of={CardStories.BodyOnly} />
+
+### <Localized en="Header and body" fr="En-tête et corps" />
+
+<Canvas of={CardStories.WithHeader} />
+
+### <Localized en="Narrow" fr="Étroite" />
+
+<Canvas of={CardStories.Narrow} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Card follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-card-bg</code> (defaults to{' '}
+          <code>--omnia-color-bg-surface</code>), <code>--omnia-card-border-color</code>{' '}
+          (defaults to <code>--omnia-color-border-strong</code>),{' '}
+          <code>--omnia-card-radius</code> (defaults to <code>--omnia-radius-lg</code>),{' '}
+          <code>--omnia-card-shadow</code> (defaults to <code>--omnia-shadow-raised</code>
+          ) and <code>--omnia-card-padding</code>, the padding of each part.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>card</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, <code>header</code>, <code>body</code> and{' '}
+          <code>footer</code>; each part merges its own <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-card-border-color</code>/<code>--omnia-card-radius</code> from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Card suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-la via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-card-bg</code> (par
+          défaut <code>--omnia-color-bg-surface</code>),{' '}
+          <code>--omnia-card-border-color</code> (par défaut{' '}
+          <code>--omnia-color-border-strong</code>), <code>--omnia-card-radius</code> (par
+          défaut <code>--omnia-radius-lg</code>), <code>--omnia-card-shadow</code> (par
+          défaut <code>--omnia-shadow-raised</code>) et <code>--omnia-card-padding</code>,
+          la marge intérieure de chaque partie.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>card</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, <code>header</code>, <code>body</code> et{' '}
+          <code>footer</code> ; chaque partie fusionne son propre <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-card-border-color</code>/<code>--omnia-card-radius</code> depuis{' '}
+        <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={CardStories.Overridden} />

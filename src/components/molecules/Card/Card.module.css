@@ -1,0 +1,39 @@
+@layer components {
+  .root {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    border: var(--omnia-border-width-thick) solid
+      var(--omnia-card-border-color, var(--omnia-color-border-strong));
+    border-radius: var(--omnia-card-radius, var(--omnia-radius-lg));
+    background-color: var(--omnia-card-bg, var(--omnia-color-bg-surface));
+    box-shadow: var(--omnia-card-shadow, var(--omnia-shadow-raised));
+    color: var(--omnia-color-text-primary);
+  }
+
+  .part {
+    padding: var(--omnia-card-padding, var(--omnia-palette-space-4));
+  }
+
+  .part + .part {
+    padding-block-start: 0;
+  }
+
+  .footer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(--omnia-palette-space-2);
+  }
+
+  @container (width >= 24rem) {
+    .part {
+      padding: var(--omnia-card-padding, var(--omnia-palette-space-5));
+    }
+  }
+
+  :global([data-skin='pixel']) .root {
+    border-width: var(--omnia-palette-border-med);
+    border-radius: 0;
+  }
+}

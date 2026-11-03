@@ -1007,6 +1007,53 @@
           "id": "atoms-text--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "Card",
+      "description": "Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.",
+      "source": "src/components/molecules/Card/Card.tsx",
+      "props": [
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-card--playground"
+        },
+        {
+          "name": "BodyOnly",
+          "id": "molecules-card--body-only"
+        },
+        {
+          "name": "WithHeader",
+          "id": "molecules-card--with-header"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-card--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-card--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-card--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-card--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-card--pixel-dark"
+        }
+      ]
     }
   ]
 }
