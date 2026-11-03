@@ -1,0 +1,166 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as IconStories from './Icon.stories';
+
+<Meta of={IconStories} />
+
+# Icon
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Icon</strong> atom renders one of 33 semantic glyphs (ADR 0019). It
+        consumes semantic <code>var(--…)</code> tokens only and paints with{' '}
+        <code>currentColor</code>, so it inherits the surrounding text colour and reskins
+        across the light/dark theme axis and the neutral/pixel skin axis without any
+        change to its own CSS. Both skins' SVGs are rendered and CSS shows the one
+        matching the active <code>data-skin</code> — the single source of truth from{' '}
+        <code>OmniaThemeProvider</code> (ADR 0017), so an icon stays in step even when a
+        consumer sets <code>data-skin</code> without the React provider.
+      </p>
+      <p>
+        Pick the drawing with <code>glyph</code> (the typed <code>IconGlyph</code> union;{' '}
+        <code>name</code> is a native HTML name and is not used, ADR 0015). Use{' '}
+        <code>variantStyle</code> (<code>regular</code> / <code>solid</code>, default{' '}
+        <code>regular</code>) for the active/selected state, and <code>variantSize</code>{' '}
+        (<code>sm</code> / <code>md</code> / <code>lg</code>) for a fixed size — with no{' '}
+        <code>variantSize</code> the icon is <code>1em</code> square and follows the
+        surrounding type.
+      </p>
+      <p>
+        Accessibility follows WCAG 1.1.1. The icon is{' '}
+        <strong>decorative by default</strong>(<code>aria-hidden</code>, no role) — the
+        common case is an icon inside a labelled <code>Button</code> or <code>Link</code>.
+        Pass <code>aria-label</code> or <code>aria-labelledby</code> to promote it to a
+        named <code>role="img"</code> for standalone use. There is no <code>color</code>{' '}
+        prop: colour comes from <code>currentColor</code>, overridable through{' '}
+        <code>--omnia-icon-color</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Icon</strong> affiche l'un des 33 glyphes sémantiques (ADR
+        0019). Il ne consomme que des jetons sémantiques <code>var(--…)</code> et peint
+        avec <code>currentColor</code> : il hérite de la couleur du texte environnant et
+        change d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage
+        neutre/pixel, sans modifier son propre CSS. Les SVG des deux habillages sont
+        rendus et le CSS affiche celui qui correspond au <code>data-skin</code> actif — la
+        source de vérité unique de <code>OmniaThemeProvider</code> (ADR 0017) — de sorte
+        qu'une icône reste cohérente même quand un consommateur pose{' '}
+        <code>data-skin</code> sans le provider React.
+      </p>
+      <p>
+        Choisissez le dessin avec <code>glyph</code> (l'union typée <code>IconGlyph</code>{' '}
+        ; <code>name</code> est un nom HTML natif et n'est pas utilisé, ADR 0015).
+        Utilisez <code>variantStyle</code> (<code>regular</code> / <code>solid</code>, par
+        défaut <code>regular</code>) pour l'état actif/sélectionné, et{' '}
+        <code>variantSize</code> (<code>sm</code> / <code>md</code> / <code>lg</code>)
+        pour une taille fixe — sans <code>variantSize</code>, l'icône fait{' '}
+        <code>1em</code> et suit le texte environnant.
+      </p>
+      <p>
+        L'accessibilité suit le WCAG 1.1.1. L'icône est{' '}
+        <strong>décorative par défaut</strong> (<code>aria-hidden</code>, sans rôle) : le
+        cas courant est une icône dans un <code>Button</code> ou un <code>Link</code> déjà
+        étiqueté. Fournissez <code>aria-label</code> ou <code>aria-labelledby</code> pour
+        la promouvoir en <code>role="img"</code> nommé pour un usage autonome. Il n'y a
+        pas de prop <code>color</code> : la couleur vient de <code>currentColor</code>,
+        personnalisable via <code>--omnia-icon-color</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={IconStories.Catalog} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Sizes" fr="Tailles" />
+
+<Canvas of={IconStories.Sizes} />
+
+### <Localized en="Decorative and labelled" fr="Décoratif et étiqueté" />
+
+<Canvas of={IconStories.Decorative} />
+<Canvas of={IconStories.Labelled} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Icon follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-icon-color</code> (defaults
+          to <code>currentColor</code>) and <code>--omnia-icon-size</code>.{' '}
+          <code>variantSize</code> sets the size.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>icon</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the span, where your <code>className</code> merges),{' '}
+          <code>glyph-default</code> and <code>glyph-pixel</code> (the two skin SVGs).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-glyph</code>, <code>data-variant-style</code>,{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Icon suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-icon-color</code> (par
+          défaut <code>currentColor</code>) et <code>--omnia-icon-size</code>.{' '}
+          <code>variantSize</code> définit la taille.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>icon</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le span, où votre <code>className</code> fusionne),{' '}
+          <code>glyph-default</code> et <code>glyph-pixel</code> (les deux SVG
+          d'habillage).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-glyph</code>, <code>data-variant-style</code>,{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={IconStories.Overridden} />

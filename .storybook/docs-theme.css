@@ -1,0 +1,5 @@
+/* Storybook docs chrome (never shipped): theme the story-preview blocks so currentColor glyphs
+   stay visible in every mode. Unlayered on purpose — it must beat Storybook's own emotion class. */
+.sbdocs.sbdocs-preview {
+  background-color: var(--omnia-color-bg-surface);
+}
