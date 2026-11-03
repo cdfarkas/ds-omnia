@@ -1,0 +1,177 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as DescriptionListStories from './DescriptionList.stories';
+
+<Meta of={DescriptionListStories} />
+
+# DescriptionList
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>DescriptionList</strong> to show labelled facts about one thing — a
+        record's properties, a summary before submitting a form, a product's
+        specifications. Each row pairs a term with its detail.
+      </p>
+      <ul>
+        <li>
+          <strong>Build it from parts.</strong> Wrap each pair in{' '}
+          <code>DescriptionList.Item</code>, with one <code>DescriptionList.Term</code>{' '}
+          followed by its <code>DescriptionList.Detail</code>. A term with several values
+          can take more than one detail.
+        </li>
+        <li>
+          <strong>Real list semantics.</strong> It renders a native description list, so
+          screen readers announce how many items there are and which detail belongs to
+          which term.
+        </li>
+        <li>
+          <strong>It adapts to its own width.</strong> In a narrow space each term sits
+          above its detail; once the list is wide enough, terms form a left column and
+          details a wider right one. It follows the space it is given, not the screen
+          size, so it works the same in a sidebar or a full page. It fills the width of
+          its container, so inside a parent that shrinks to fit its content (a centred
+          flex item, an inline-block) give it a width.
+        </li>
+        <li>
+          <strong>Details take any content.</strong> Plain text, a badge, a link — long
+          values wrap instead of overflowing.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour, font and dividers come from
+          tokens, so it follows the light/dark theme and the neutral/pixel skin with no
+          CSS changes.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>DescriptionList</strong> pour présenter des informations
+        étiquetées sur un même sujet — les propriétés d'un enregistrement, un
+        récapitulatif avant l'envoi d'un formulaire, les caractéristiques d'un produit.
+        Chaque ligne associe un terme à son détail.
+      </p>
+      <ul>
+        <li>
+          <strong>Composez-la par parties.</strong> Placez chaque paire dans un{' '}
+          <code>DescriptionList.Item</code>, avec un <code>DescriptionList.Term</code>{' '}
+          suivi de son <code>DescriptionList.Detail</code>. Un terme à plusieurs valeurs
+          peut recevoir plusieurs détails.
+        </li>
+        <li>
+          <strong>Une vraie sémantique de liste.</strong> Elle produit une liste de
+          descriptions native : les lecteurs d'écran annoncent le nombre d'éléments et
+          quel détail appartient à quel terme.
+        </li>
+        <li>
+          <strong>Elle s'adapte à sa propre largeur.</strong> Dans un espace étroit,
+          chaque terme se place au-dessus de son détail ; dès que la liste est assez
+          large, les termes forment une colonne à gauche et les détails une colonne plus
+          large à droite. Elle suit l'espace qu'on lui donne, pas la taille de l'écran :
+          elle se comporte de la même façon dans une barre latérale ou une page entière.
+          Elle occupe la largeur de son conteneur : dans un parent qui se réduit à son
+          contenu (un élément flex centré, un inline-block), donnez-lui une largeur.
+        </li>
+        <li>
+          <strong>Les détails acceptent tout contenu.</strong> Du texte, un badge, un lien
+          — les valeurs longues passent à la ligne au lieu de déborder.
+        </li>
+        <li>
+          <strong>Elle s'adapte toute seule au thème.</strong> Couleurs, police et
+          séparateurs viennent des jetons : elle suit le thème clair/sombre et l'habillage
+          neutre/pixel sans retoucher son CSS.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={DescriptionListStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Narrow space" fr="Espace étroit" />
+
+<Canvas of={DescriptionListStories.Narrow} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        DescriptionList follows the system override contract (see{' '}
+        <code>docs/overrides.md</code>). Restyle it through this public surface — never
+        through the hashed CSS-Module class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>:{' '}
+          <code>--omnia-description-list-term-color</code>,{' '}
+          <code>--omnia-description-list-detail-color</code>,{' '}
+          <code>--omnia-description-list-divider-color</code>,{' '}
+          <code>--omnia-description-list-item-padding</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>description-list</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, <code>item</code>, <code>term</code> and{' '}
+          <code>detail</code> — each part merges your <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points the term and divider colours
+        from <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        DescriptionList suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-la via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> :{' '}
+          <code>--omnia-description-list-term-color</code>,{' '}
+          <code>--omnia-description-list-detail-color</code>,{' '}
+          <code>--omnia-description-list-divider-color</code>,{' '}
+          <code>--omnia-description-list-item-padding</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>description-list</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, <code>item</code>, <code>term</code> et <code>detail</code>{' '}
+          — chaque partie fusionne votre <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige les couleurs du terme et du
+        séparateur depuis <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={DescriptionListStories.Overridden} />
