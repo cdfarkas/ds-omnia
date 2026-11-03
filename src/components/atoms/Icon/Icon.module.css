@@ -1,0 +1,49 @@
+@layer components {
+  .root {
+    display: inline-flex;
+    inline-size: var(--omnia-icon-size, 1em);
+    block-size: var(--omnia-icon-size, 1em);
+    color: var(--omnia-icon-color, currentcolor);
+    flex: none;
+  }
+
+  .default,
+  .pixel {
+    display: inline-flex;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  .default svg,
+  .pixel svg {
+    display: block;
+    inline-size: 100%;
+    block-size: 100%;
+  }
+
+  /* One SVG per skin ships; show the active skin's and hide the other, with the default
+     skin as the no-provider fallback (ADR 0020). */
+  .pixel {
+    display: none;
+  }
+
+  :global([data-skin='pixel']) .default {
+    display: none;
+  }
+
+  :global([data-skin='pixel']) .pixel {
+    display: inline-flex;
+  }
+
+  .sm {
+    --omnia-icon-size: 1rem;
+  }
+
+  .md {
+    --omnia-icon-size: 1.5rem;
+  }
+
+  .lg {
+    --omnia-icon-size: 2rem;
+  }
+}

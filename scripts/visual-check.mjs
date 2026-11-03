@@ -103,6 +103,14 @@ const stories = [
   { id: 'atoms-spinner--sizes', name: 'spinner-sizes' },
   { id: 'atoms-spinner--decorative', name: 'spinner-decorative' },
   { id: 'atoms-spinner--overridden', name: 'spinner-overridden' },
+  { id: 'atoms-icon--playground', name: 'icon-playground' },
+  { id: 'atoms-icon--catalog', name: 'icon-catalog' },
+  { id: 'atoms-icon--gallery', name: 'icon-gallery' },
+  { id: 'atoms-icon--solid', name: 'icon-solid' },
+  { id: 'atoms-icon--sizes', name: 'icon-sizes' },
+  { id: 'atoms-icon--decorative', name: 'icon-decorative' },
+  { id: 'atoms-icon--labelled', name: 'icon-labelled' },
+  { id: 'atoms-icon--overridden', name: 'icon-overridden' },
 ];
 
 const filter = process.argv[2];

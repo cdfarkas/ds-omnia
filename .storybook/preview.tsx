@@ -9,6 +9,7 @@ import '../src/styles/layers.css';
 import '../src/styles/reset.css';
 import '../src/styles/tokens.css';
 import '../src/styles/skins.css';
+import './docs-theme.css';
 
 const prefersDark =
   typeof window !== 'undefined' &&
