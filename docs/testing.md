@@ -27,6 +27,14 @@ A story is the primary artefact. Each story is:
 - **a11y** — automatically checked by the a11y addon (see below),
 - **visual** — a snapshot target for visual regression.
 
+**Show code must be the integration snippet, not the story's scaffolding.** A single-instance story
+is written args-only (or `render: (args) => <Component {...args} />`) so Storybook serialises a clean
+`<Component … />` a consumer can paste. A gallery or multi-instance story keeps its `render` for the
+visual but sets `parameters.docs.source.code` to one concise, representative snippet (e.g.
+`'<Spinner variantSize="lg" />'`) — never the whole wrapper `<div>` with every instance. When a
+story wraps the component in a non-exported helper (such as `Input`'s labelled `Field`), the same
+`parameters.docs.source.code` overrides the `<Helper … />` output with the real usage.
+
 ### Layer 2 — tests next to the story
 
 - **`*.test.tsx` — edge cases on composed stories.** Import the stories with `composeStories` and

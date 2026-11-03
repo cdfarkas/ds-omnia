@@ -69,6 +69,11 @@ export const Indeterminate: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      source: { code: '<Checkbox variantSize="lg">Accept the terms</Checkbox>' },
+    },
+  },
   render: (args) => (
     <div style={stack}>
       <Checkbox {...args} variantSize="sm" defaultChecked>
@@ -87,6 +92,9 @@ export const Sizes: Story = {
 export const Invalid: Story = { args: { invalid: true } };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: { source: { code: '<Checkbox disabled>Accept the terms</Checkbox>' } },
+  },
   render: (args) => (
     <div style={stack}>
       <Checkbox {...args} disabled>
@@ -113,6 +121,9 @@ export const LongLabel: Story = {
 
 /** Every state in one view; the mode stories below reuse it so axe checks each state per mode. */
 export const States: Story = {
+  parameters: {
+    docs: { source: { code: '<Checkbox>Accept the terms</Checkbox>' } },
+  },
   render: (args) => (
     <div style={stack}>
       <Checkbox {...args}>Unchecked</Checkbox>
@@ -148,6 +159,13 @@ export const States: Story = {
  * `[data-part="label"]` sub-part — no `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<Checkbox className="omnia-demo-override-checkbox">Keep me signed in</Checkbox>',
+      },
+    },
+  },
   render: (args) => (
     <div style={stack}>
       <Checkbox {...args} className="omnia-demo-override-checkbox" />

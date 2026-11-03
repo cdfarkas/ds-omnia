@@ -41,6 +41,13 @@ export const Standalone: Story = {};
 /** Inline links inherit the surrounding paragraph's size and weight. */
 export const Inline: Story = {
   args: { variant: 'inline' },
+  parameters: {
+    docs: {
+      source: {
+        code: '<Link variant="inline" href="https://example.com">full documentation</Link>',
+      },
+    },
+  },
   render: (args) => (
     <p style={{ maxWidth: '32ch', fontSize: '1.125rem' }}>
       Read the <Link {...args}>full documentation</Link> before you start.
@@ -63,6 +70,13 @@ export const External: Story = {
 };
 
 export const Variants: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<Link href="https://example.com">Omnia design system</Link>',
+      },
+    },
+  },
   render: (args) => (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.75rem' }}>
       <Link {...args} variant="standalone">
@@ -88,11 +102,7 @@ export const Variants: Story = {
  * `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
-  render: (args) => (
-    <Link {...args} className="omnia-demo-override-link">
-      Overridden
-    </Link>
-  ),
+  args: { className: 'omnia-demo-override-link', children: 'Overridden' },
 };
 
 export const DarkNeutral: Story = { ...Variants, globals: { theme: 'dark' } };

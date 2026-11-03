@@ -44,7 +44,10 @@ export const Playground: Story = {
 };
 
 export const Sizes: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: { source: { code: '<Spinner variantSize="lg" />' } },
+  },
   render: () => (
     <div style={row}>
       <Spinner variantSize="sm" />
@@ -59,6 +62,7 @@ export const Sizes: Story = {
  * after the defaults), dropping the spinner from the accessibility tree.
  */
 export const Decorative: Story = {
+  parameters: { docs: { source: { code: '<Spinner aria-hidden="true" />' } } },
   render: (args) => (
     <span style={row}>
       <Spinner {...args} aria-hidden="true" />
@@ -73,9 +77,7 @@ export const Decorative: Story = {
  * `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
-  render: (args) => (
-    <Spinner {...args} variantSize="lg" className="omnia-demo-override-spinner" />
-  ),
+  args: { variantSize: 'lg', className: 'omnia-demo-override-spinner' },
 };
 
 export const DarkNeutral: Story = { ...Sizes, globals: { theme: 'dark' } };

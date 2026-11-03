@@ -43,6 +43,7 @@ export const Neutral: Story = { args: { intent: 'neutral' } };
 export const Danger: Story = { args: { intent: 'danger' } };
 
 export const Intents: Story = {
+  parameters: { docs: { source: { code: '<Badge intent="danger">Danger</Badge>' } } },
   render: (args) => (
     <div
       style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}
@@ -62,11 +63,7 @@ export const Intents: Story = {
  * no `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
-  render: (args) => (
-    <Badge {...args} className="omnia-demo-override-badge">
-      Overridden
-    </Badge>
-  ),
+  args: { className: 'omnia-demo-override-badge', children: 'Overridden' },
 };
 
 export const DarkNeutral: Story = { ...Intents, globals: { theme: 'dark' } };

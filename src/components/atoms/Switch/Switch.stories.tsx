@@ -63,6 +63,11 @@ export const Playground: Story = {
 export const Checked: Story = { args: { defaultChecked: true } };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      source: { code: '<Switch variantSize="lg">Email notifications</Switch>' },
+    },
+  },
   render: (args) => (
     <div style={stack}>
       <Switch {...args} variantSize="sm" defaultChecked>
@@ -81,6 +86,9 @@ export const Sizes: Story = {
 export const Invalid: Story = { args: { invalid: true } };
 
 export const Disabled: Story = {
+  parameters: {
+    docs: { source: { code: '<Switch disabled>Email notifications</Switch>' } },
+  },
   render: (args) => (
     <div style={stack}>
       <Switch {...args} disabled>
@@ -107,6 +115,9 @@ export const LongLabel: Story = {
 
 /** Every state in one view; the mode stories below reuse it so axe checks each state per mode. */
 export const States: Story = {
+  parameters: {
+    docs: { source: { code: '<Switch>Email notifications</Switch>' } },
+  },
   render: (args) => (
     <div style={stack}>
       <Switch {...args}>Off</Switch>
@@ -136,6 +147,13 @@ export const States: Story = {
  * `[data-part="label"]` sub-part — no `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<Switch className="omnia-demo-override-switch">Auto-save drafts</Switch>',
+      },
+    },
+  },
   render: (args) => (
     <div style={stack}>
       <Switch {...args} className="omnia-demo-override-switch" />
