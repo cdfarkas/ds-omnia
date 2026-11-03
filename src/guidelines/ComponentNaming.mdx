@@ -1,0 +1,120 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Component naming" />
+
+# <Localized en="Component naming & compound" fr="Nommage & composition" />
+
+<Localized
+  en={
+    <p>
+      How a component earns its name and how its parts are shaped. Names are decided
+      before any code is written, so the catalogue reads consistently.
+    </p>
+  }
+  fr={
+    <p>
+      Comment un composant gagne son nom et comment ses parties sont structurées. Les noms
+      sont décidés avant d'écrire la moindre ligne, pour que le catalogue se lise de façon
+      cohérente.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>Naming study first.</strong> Before a new component exists, a short survey
+        records how major design systems name it and its variants, with source URLs, in{' '}
+        <code>docs/naming/&lt;component&gt;.md</code>. The owner picks the name before any
+        code.
+      </li>
+      <li>
+        A singular root — <code>Badge</code>, <code>Button</code>, <code>Input</code> —
+        never a plural.
+      </li>
+      <li>
+        Parts hang off the root in dot-notation — <code>Card.Header</code>,{' '}
+        <code>Card.Body</code>.
+      </li>
+      <li>
+        Compound shape follows shared state: parts that share state (open/close, selected
+        value, validation) use a React <strong>Context</strong>; a pure slot layout uses
+        plain dot-notation with no context. A context with nothing to share is ceremony.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Étude de nommage d'abord.</strong> Avant qu'un nouveau composant existe,
+        une courte étude recense comment les grands design systems le nomment, lui et ses
+        variantes, avec les URL sources, dans{' '}
+        <code>docs/naming/&lt;composant&gt;.md</code>. Le propriétaire choisit le nom
+        avant tout code.
+      </li>
+      <li>
+        Une racine au singulier — <code>Badge</code>, <code>Button</code>,{' '}
+        <code>Input</code> — jamais au pluriel.
+      </li>
+      <li>
+        Les parties s'accrochent à la racine en notation pointée —{' '}
+        <code>Card.Header</code>, <code>Card.Body</code>.
+      </li>
+      <li>
+        La forme composée suit l'état partagé : des parties qui partagent un état
+        (ouvert/fermé, valeur sélectionnée, validation) passent par un{' '}
+        <strong>Context</strong> React ; une simple disposition de slots utilise la
+        notation pointée sans context. Un context sans rien à partager est du cérémonial.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale" fr="Justification" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        The naming-study requirement is in{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/CLAUDE.md">CLAUDE.md</a>{' '}
+        (“Naming study first”); the studies live in{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/tree/main/docs/naming">
+          docs/naming/
+        </a>
+        .
+      </li>
+      <li>
+        The compound decision tree is in{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/ARCHITECTURE.md">
+          ARCHITECTURE.md
+        </a>
+        .
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        L'exigence d'étude de nommage est dans{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/CLAUDE.md">CLAUDE.md</a>{' '}
+        (« Naming study first ») ; les études sont dans{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/tree/main/docs/naming">
+          docs/naming/
+        </a>
+        .
+      </li>
+      <li>
+        L'arbre de décision de composition est dans{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/ARCHITECTURE.md">
+          ARCHITECTURE.md
+        </a>
+        .
+      </li>
+    </ul>
+  }
+/>

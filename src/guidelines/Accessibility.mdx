@@ -1,0 +1,97 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Accessibility" />
+
+# <Localized en="Accessibility" fr="Accessibilité" />
+
+<Localized
+  en={
+    <p>
+      WCAG 2.1 AA is the floor, not a target — the EU legal baseline (EN 301 549, the
+      European Accessibility Act). The a11y addon enforces it on every story, in every
+      mode.
+    </p>
+  }
+  fr={
+    <p>
+      WCAG 2.1 AA est le plancher, pas un objectif — la base légale de l'UE (EN 301 549,
+      la directive européenne sur l'accessibilité). Le module a11y l'impose sur chaque
+      story, dans chaque mode.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        The a11y addon runs with <code>a11y.test: 'error'</code> across every theme and
+        skin, pixel included — the pixel palette is chosen to meet 4.5:1 contrast.
+      </li>
+      <li>
+        An axe <em>incomplete</em> result fails like a violation; it is never waved
+        through.
+      </li>
+      <li>
+        <code>src/styles/contrast.test.ts</code> asserts SC 1.4.11 (3:1) on boundary and
+        indicator tokens in all four theme × skin modes.
+      </li>
+      <li>
+        WCAG 2.2 rules run as <code>'warn'</code> — surfaced, not yet gated.
+      </li>
+      <li>
+        After a typing <code>play</code>, blur the field so the a11y scan runs on a
+        settled DOM.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        Le module a11y tourne avec <code>a11y.test: 'error'</code> sur chaque thème et
+        habillage, pixel compris — la palette pixel est choisie pour atteindre un
+        contraste de 4,5:1.
+      </li>
+      <li>
+        Un résultat axe <em>incomplete</em> échoue comme une violation ; jamais laissé
+        passer.
+      </li>
+      <li>
+        <code>src/styles/contrast.test.ts</code> vérifie le SC 1.4.11 (3:1) sur les jetons
+        de bordure et d'indicateur dans les quatre modes thème × habillage.
+      </li>
+      <li>
+        Les règles WCAG 2.2 tournent en <code>'warn'</code> — signalées, pas encore
+        bloquantes.
+      </li>
+      <li>
+        Après un <code>play</code> de saisie, retirez le focus du champ pour que le scan
+        a11y s'exécute sur un DOM stabilisé.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale (ADR)" fr="Justification (ADR)" />
+
+<Localized
+  en={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0006-a11y-wcag-21-aa.md">
+        ADR 0006
+      </a>{' '}
+      — the WCAG 2.1 AA floor and the EU legal baseline behind it.
+    </p>
+  }
+  fr={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0006-a11y-wcag-21-aa.md">
+        ADR 0006
+      </a>{' '}
+      — le plancher WCAG 2.1 AA et la base légale de l'UE qui le sous-tend.
+    </p>
+  }
+/>

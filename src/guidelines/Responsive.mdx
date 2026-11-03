@@ -1,0 +1,85 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Responsive" />
+
+# <Localized en="Responsive" fr="Responsive" />
+
+<Localized
+  en={
+    <p>
+      Mobile-first, with a fixed, small set of breakpoints and container queries where
+      layout follows a component's own width. No responsive props, no utility classes.
+    </p>
+  }
+  fr={
+    <p>
+      Mobile-first, avec un jeu de points de rupture fixe et restreint, et des container
+      queries là où la mise en page suit la largeur propre d'un composant. Pas de props
+      responsive, pas de classes utilitaires.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>Mobile-first. The base layout works at 320 CSS px.</li>
+      <li>
+        Viewport <code>@media</code> uses only <code>30em</code>, <code>48em</code>,{' '}
+        <code>64em</code> and <code>80em</code>, in range notation —{' '}
+        <code>(width &gt;= 48em)</code>. Stylelint rejects any other width.
+      </li>
+      <li>
+        A component whose layout follows its own width uses <code>@container</code> with
+        local <code>rem</code> thresholds; atoms stay fluid.
+      </li>
+      <li>
+        No responsive prop, no utility class, no hook until one is genuinely needed.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>Mobile-first. La mise en page de base fonctionne à 320 px CSS.</li>
+      <li>
+        Les <code>@media</code> de viewport n'utilisent que <code>30em</code>,{' '}
+        <code>48em</code>, <code>64em</code> et <code>80em</code>, en notation
+        d'intervalle — <code>(width &gt;= 48em)</code>. Stylelint rejette toute autre
+        largeur.
+      </li>
+      <li>
+        Un composant dont la mise en page suit sa propre largeur utilise{' '}
+        <code>@container</code> avec des seuils <code>rem</code> locaux ; les atomes
+        restent fluides.
+      </li>
+      <li>
+        Pas de prop responsive, pas de classe utilitaire, pas de hook tant qu'il n'est pas
+        vraiment nécessaire.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale (ADR)" fr="Justification (ADR)" />
+
+<Localized
+  en={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0014-responsive-strategy.md">
+        ADR 0014
+      </a>{' '}
+      — em breakpoints, container queries, no utilities.
+    </p>
+  }
+  fr={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0014-responsive-strategy.md">
+        ADR 0014
+      </a>{' '}
+      — points de rupture en em, container queries, pas d'utilitaires.
+    </p>
+  }
+/>

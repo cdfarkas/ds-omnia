@@ -1,0 +1,184 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Testing & gates" />
+
+# <Localized en="Testing & gates" fr="Tests & garde-fous" />
+
+<Localized
+  en={
+    <p>
+      One Storybook-driven runner, two test layers, and five gates that all turn green
+      before a change is done. Tests live beside the stories they exercise.
+    </p>
+  }
+  fr={
+    <p>
+      Un seul runner piloté par Storybook, deux couches de tests, et cinq garde-fous qui
+      passent tous au vert avant qu'un changement soit terminé. Les tests vivent à côté
+      des stories qu'ils éprouvent.
+    </p>
+  }
+/>
+
+## <Localized en="The two layers" fr="Les deux couches" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        A <code>play</code> function on a story is a catalogue-worthy happy-path
+        interaction, shown in the docs.
+      </li>
+      <li>
+        <code>*.test.tsx</code> holds edge cases on composed stories (
+        <code>composeStories</code>), additive to the <code>play</code>.
+      </li>
+      <li>
+        <code>*.test.ts</code> holds pure logic, with no rendering.
+      </li>
+      <li>Accessibility runs inside the same runner — see the Accessibility page.</li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        Une fonction <code>play</code> sur une story est une interaction heureuse digne du
+        catalogue, montrée dans la doc.
+      </li>
+      <li>
+        <code>*.test.tsx</code> porte les cas limites sur des stories composées (
+        <code>composeStories</code>), en complément du <code>play</code>.
+      </li>
+      <li>
+        <code>*.test.ts</code> porte la logique pure, sans rendu.
+      </li>
+      <li>L'accessibilité tourne dans le même runner — voir la page Accessibilité.</li>
+    </ul>
+  }
+/>
+
+## <Localized en="The five gates" fr="Les cinq garde-fous" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <code>pnpm lint</code> — ESLint + Prettier + stylelint, including the
+        no-raw-colour rule.
+      </li>
+      <li>
+        <code>pnpm typecheck</code> — full <code>tsc --noEmit</code>, including the
+        prop-name check.
+      </li>
+      <li>
+        <code>pnpm test</code> — unit + interaction + a11y, one runner.
+      </li>
+      <li>
+        <code>pnpm build-storybook</code> — the catalogue builds.
+      </li>
+      <li>
+        Agent visual validation — <code>pnpm visual-check</code> screenshots every state
+        in all four theme × skin modes; the agent reads the images and records a verdict.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <code>pnpm lint</code> — ESLint + Prettier + stylelint, dont la règle
+        anti-couleur-brute.
+      </li>
+      <li>
+        <code>pnpm typecheck</code> — <code>tsc --noEmit</code> complet, dont la
+        vérification des noms de props.
+      </li>
+      <li>
+        <code>pnpm test</code> — unitaires + interaction + a11y, un seul runner.
+      </li>
+      <li>
+        <code>pnpm build-storybook</code> — le catalogue se construit.
+      </li>
+      <li>
+        Validation visuelle par l'agent — <code>pnpm visual-check</code> capture chaque
+        état dans les quatre modes thème × habillage ; l'agent lit les images et consigne
+        un verdict.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="The generated API index" fr="L'index d'API généré" />
+
+<Localized
+  en={
+    <p>
+      The component API is generated, never hand-listed: <code>pnpm docs:manifest</code>{' '}
+      writes <code>docs/components.json</code> and <code>docs/components.md</code> from
+      the sources, and CI fails a PR whose manifest is stale. Regenerate and commit it
+      alongside any change to a component's props, variants, stories or exports.
+    </p>
+  }
+  fr={
+    <p>
+      L'API des composants est générée, jamais listée à la main :{' '}
+      <code>pnpm docs:manifest</code> écrit <code>docs/components.json</code> et{' '}
+      <code>docs/components.md</code> depuis les sources, et la CI bloque une PR dont le
+      manifeste est périmé. Régénérez-le et validez-le avec tout changement de props,
+      variantes, stories ou exports d'un composant.
+    </p>
+  }
+/>
+
+## <Localized en="Rationale" fr="Justification" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/testing.md">
+          docs/testing.md
+        </a>{' '}
+        — the single-runner, two-layer contract in full.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0005-single-runner-testing.md">
+          ADR 0005
+        </a>{' '}
+        (runner),{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0022-drop-chromatic.md">
+          ADR 0022
+        </a>{' '}
+        (visual-check replaces Chromatic),{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0023-agent-component-manifest.md">
+          ADR 0023
+        </a>{' '}
+        (manifest + staleness gate).
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/testing.md">
+          docs/testing.md
+        </a>{' '}
+        — le contrat un-runner, deux-couches en entier.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0005-single-runner-testing.md">
+          ADR 0005
+        </a>{' '}
+        (runner),{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0022-drop-chromatic.md">
+          ADR 0022
+        </a>{' '}
+        (visual-check remplace Chromatic),{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0023-agent-component-manifest.md">
+          ADR 0023
+        </a>{' '}
+        (manifeste + garde-fou de péremption).
+      </li>
+    </ul>
+  }
+/>

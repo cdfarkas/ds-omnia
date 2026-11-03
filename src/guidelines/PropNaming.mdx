@@ -1,0 +1,97 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Prop naming" />
+
+# <Localized en="Prop naming" fr="Nommage des props" />
+
+<Localized
+  en={
+    <p>
+      A prop name that also exists as a native HTML attribute is a trap: a consumer
+      expects the native behaviour. This rule keeps native names honest and renames the
+      rest. It is a build gate, not a convention.
+    </p>
+  }
+  fr={
+    <p>
+      Un nom de prop qui existe aussi comme attribut HTML natif est un piège : le
+      consommateur en attend le comportement natif. Cette règle garde les noms natifs
+      honnêtes et renomme le reste. C'est un garde-fou au build, pas une convention.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        A prop whose name is native on <strong>any</strong> HTML element keeps the native
+        type and reaches the native element. A narrower subset is fine —{' '}
+        <code>Input.type</code>.
+      </li>
+      <li>
+        A visual variant axis with a native name becomes <code>variant&lt;Axis&gt;</code>{' '}
+        — <code>variantSize</code>, not <code>size</code>.
+      </li>
+      <li>
+        Any other custom prop with a native name gets a non-native one —{' '}
+        <code>pending</code>, not <code>disabled</code>.
+      </li>
+      <li>
+        <code>data-*</code> names never change.
+      </li>
+      <li>
+        Enforced by <code>src/native-prop-names.check.ts</code> over every component
+        exported from <code>src/index.ts</code>, under <code>pnpm typecheck</code>.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        Une prop dont le nom est natif sur <strong>n'importe quel</strong> élément HTML
+        garde le type natif et atteint l'élément natif. Un sous-ensemble plus étroit est
+        admis — <code>Input.type</code>.
+      </li>
+      <li>
+        Un axe de variante visuelle au nom natif devient <code>variant&lt;Axe&gt;</code> —{' '}
+        <code>variantSize</code>, pas <code>size</code>.
+      </li>
+      <li>
+        Toute autre prop personnalisée au nom natif en reçoit un non natif —{' '}
+        <code>pending</code>, pas <code>disabled</code>.
+      </li>
+      <li>
+        Les noms <code>data-*</code> ne changent jamais.
+      </li>
+      <li>
+        Imposé par <code>src/native-prop-names.check.ts</code> sur chaque composant
+        exporté depuis <code>src/index.ts</code>, sous <code>pnpm typecheck</code>.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale (ADR)" fr="Justification (ADR)" />
+
+<Localized
+  en={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0015-native-attribute-prop-names.md">
+        ADR 0015
+      </a>{' '}
+      — prop names that collide with native HTML attributes.
+    </p>
+  }
+  fr={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0015-native-attribute-prop-names.md">
+        ADR 0015
+      </a>{' '}
+      — noms de props en collision avec des attributs HTML natifs.
+    </p>
+  }
+/>
