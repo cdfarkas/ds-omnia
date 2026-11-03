@@ -144,7 +144,7 @@ only `transform` / `box-shadow` / `background-color` / `border-color`, so neighb
 motion is wrapped in `@media (prefers-reduced-motion: reduce)`, which disables transitions and transforms
 while keeping the colour and shadow state cues, so states stay distinguishable without movement; the
 loading spinner is exempt and keeps turning, since it is essential progress feedback. Every state holds
-WCAG 2.1 AA (ADR 0006).
+WCAG 2.2 AA (ADR 0026).
 
 ## CSS Modules + `@layer`
 

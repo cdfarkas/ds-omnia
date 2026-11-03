@@ -110,7 +110,7 @@ reach sub-parts and does not scale. Prefer a tier above it whenever the override
 - **No `!important`.** `@layer overrides` already wins; reaching for `!important` means you are
   fighting the wrong layer or targeting the wrong selector.
 - **Do not break the DOM or ARIA structure.** Restyle parts; never rely on removing them, reordering
-  them, or stripping `aria-*` / roles. Accessibility (WCAG 2.1 AA, ADR 0006) is a floor your override
+  them, or stripping `aria-*` / roles. Accessibility (WCAG 2.2 AA, ADR 0026) is a floor your override
   must keep — check contrast after a colour change.
 - **Prefer the lowest tier.** A token beats a component variable beats a `data-*` rule beats `style`.
 
