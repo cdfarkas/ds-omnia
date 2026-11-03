@@ -1007,6 +1007,65 @@
           "id": "atoms-text--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "NavBar",
+      "description": "Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.",
+      "source": "src/components/molecules/NavBar/NavBar.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "`NavBar.Link` parts; each renders as an item of the bar's list."
+        }
+      ],
+      "variantAxes": [],
+      "parts": [
+        {
+          "name": "NavBar.Link",
+          "props": [
+            {
+              "name": "current",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Marks the link to the page being shown (`aria-current=\"page\"`); a caller `aria-current` wins."
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-navbar--playground"
+        },
+        {
+          "name": "Current",
+          "id": "molecules-navbar--current"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-navbar--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-navbar--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-navbar--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-navbar--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-navbar--pixel-dark"
+        }
+      ]
     }
   ]
 }

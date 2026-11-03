@@ -1,0 +1,183 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as NavBarStories from './NavBar.stories';
+
+<Meta of={NavBarStories} />
+
+# NavBar
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>NavBar</strong> for a site's or section's main links — typically in
+        the page header. Put one <code>NavBar.Link</code> inside it per destination.
+      </p>
+      <ul>
+        <li>
+          <strong>A real navigation landmark.</strong> It renders a labelled{' '}
+          <code>&lt;nav&gt;</code> holding a list, so screen-reader users can jump to it
+          and hear how many links it has. The label defaults to "Main"; pass your own{' '}
+          <code>aria-label</code> when a page has more than one NavBar.
+        </li>
+        <li>
+          <strong>The current page is marked.</strong> Set <code>current</code> on the
+          link to the page being shown: it gets a thicker underline and the body text
+          colour, and screen readers announce it as the current page. On a one-page site
+          with anchor links, pass <code>aria-current="location"</code> yourself instead —
+          yours wins.
+        </li>
+        <li>
+          <strong>Each link is a Link.</strong> <code>NavBar.Link</code> takes everything
+          Link takes — <code>href</code>, <code>external</code> and native anchor
+          attributes — and is always the standalone kind.
+        </li>
+        <li>
+          <strong>It wraps on small screens.</strong> When the links no longer fit on one
+          line they flow onto the next, down to a 320 px wide screen. There is no
+          hamburger menu: keep the list short enough to read at a glance.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colours and spacing come from tokens, so
+          NavBar follows the light/dark theme and the neutral/pixel skin with no CSS
+          changes.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>NavBar</strong> pour les liens principaux d'un site ou d'une
+        section — en général dans l'en-tête de page. Placez-y un <code>NavBar.Link</code>{' '}
+        par destination.
+      </p>
+      <ul>
+        <li>
+          <strong>Un vrai repère de navigation.</strong> Le composant rend un{' '}
+          <code>&lt;nav&gt;</code> nommé qui contient une liste : les utilisateurs de
+          lecteurs d'écran peuvent y sauter directement et entendre combien de liens il
+          compte. L'étiquette vaut « Principale » par défaut ; fournissez votre propre{' '}
+          <code>aria-label</code> quand une page contient plusieurs NavBar.
+        </li>
+        <li>
+          <strong>La page en cours est signalée.</strong> Ajoutez <code>current</code> au
+          lien de la page affichée : il prend un soulignement plus épais et la couleur du
+          texte courant, et les lecteurs d'écran l'annoncent comme page en cours. Sur un
+          site d'une seule page avec des liens d'ancre, passez plutôt vous-même{' '}
+          <code>aria-current="location"</code> — votre valeur l'emporte.
+        </li>
+        <li>
+          <strong>Chaque lien est un Link.</strong> <code>NavBar.Link</code> accepte tout
+          ce que Link accepte — <code>href</code>, <code>external</code> et les attributs
+          natifs d'une ancre — et reste toujours de type autonome.
+        </li>
+        <li>
+          <strong>Il passe à la ligne sur petit écran.</strong> Quand les liens ne
+          tiennent plus sur une ligne, ils continuent sur la suivante, jusqu'à un écran de
+          320 px de large. Pas de menu hamburger : gardez une liste assez courte pour se
+          lire d'un coup d'œil.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Les couleurs et les espacements viennent
+          des jetons : NavBar suit le thème clair/sombre et l'habillage neutre/pixel sans
+          retoucher son CSS.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={NavBarStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Narrow screens" fr="Écrans étroits" />
+
+<Canvas of={NavBarStories.Narrow} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        NavBar follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names. Each link also keeps Link's own contract.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-navbar-gap-x</code> and{' '}
+          <code>--omnia-navbar-gap-y</code> (space between links), and{' '}
+          <code>--omnia-navbar-current-color</code> (the current link, which falls back to{' '}
+          <code>--omnia-color-text-primary</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>navbar</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the <code>&lt;nav&gt;</code>, where your{' '}
+          <code>className</code> merges), <code>list</code> and <code>item</code>.
+        </li>
+        <li>
+          <strong>State attribute</strong>: the current link carries{' '}
+          <code>aria-current</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below widens the gap and recolours the current
+        link from <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        NavBar suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés. Chaque lien garde aussi le contrat de
+        Link.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-navbar-gap-x</code> et{' '}
+          <code>--omnia-navbar-gap-y</code> (espace entre les liens), et{' '}
+          <code>--omnia-navbar-current-color</code> (le lien en cours, qui se rabat sur{' '}
+          <code>--omnia-color-text-primary</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>navbar</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le <code>&lt;nav&gt;</code>, où votre{' '}
+          <code>className</code> fusionne), <code>list</code> et <code>item</code>.
+        </li>
+        <li>
+          <strong>Attribut d'état</strong> : le lien en cours porte{' '}
+          <code>aria-current</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous élargit l'espacement et recolore le
+        lien en cours depuis <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={NavBarStories.Overridden} />

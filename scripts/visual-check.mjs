@@ -127,6 +127,9 @@ const stories = [
   { id: 'atoms-text--scale', name: 'text-scale' },
   { id: 'atoms-text--tones', name: 'text-tones' },
   { id: 'atoms-text--overridden', name: 'text-overridden' },
+  { id: 'molecules-navbar--playground', name: 'navbar-playground' },
+  { id: 'molecules-navbar--narrow', name: 'navbar-narrow' },
+  { id: 'molecules-navbar--overridden', name: 'navbar-overridden' },
 ];
 
 const filter = process.argv[2];
@@ -297,6 +300,19 @@ if (!filter || filter.includes('link')) {
     'fr',
     'light-neutral__fr',
   );
+}
+
+if (!filter || filter.includes('navbar')) {
+  for (const m of modes) {
+    await shoot(
+      'molecules-navbar--playground',
+      'navbar-playground',
+      m,
+      'en',
+      `focus-${m.key}`,
+      true,
+    );
+  }
 }
 
 await page.setViewportSize({ width: 320, height: 568 });

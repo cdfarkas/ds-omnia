@@ -28,6 +28,18 @@ describe('component manifest generator', () => {
     expect(button?.variantAxes).toEqual(['intent', 'variantSize']);
   });
 
+  test('records a compound component and its dot-notation parts', () => {
+    const navBar = manifest.components.find((c) => c.name === 'NavBar');
+    expect(navBar?.source).toBe('src/components/molecules/NavBar/NavBar.tsx');
+    expect(navBar?.description).toMatch(/Navigation bar/);
+    expect(navBar?.parts?.[0]?.name).toBe('NavBar.Link');
+    expect(navBar?.parts?.[0]?.props.find((p) => p.name === 'current')).toMatchObject({
+      type: 'boolean',
+      required: false,
+      default: 'false',
+    });
+  });
+
   test('every component resolves to a non-empty, well-formed entry', () => {
     for (const c of manifest.components) {
       expect(c.props.length).toBeGreaterThan(0);

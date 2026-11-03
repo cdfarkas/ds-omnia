@@ -181,3 +181,21 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## NavBar
+
+Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.
+
+Source: `src/components/molecules/NavBar/NavBar.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+
+### NavBar.Link
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `current` | `boolean` | no | `false` | — |
+
+Stories: `molecules-navbar--playground`, `molecules-navbar--current`, `molecules-navbar--narrow`, `molecules-navbar--overridden`, `molecules-navbar--dark-neutral`, `molecules-navbar--pixel-light`, `molecules-navbar--pixel-dark`
+
