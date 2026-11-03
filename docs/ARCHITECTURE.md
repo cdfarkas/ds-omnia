@@ -91,26 +91,33 @@ two tiers cleanly separated.
 
 Two orthogonal axes — **`theme` (light / dark)** and **`skin` (default / pixel)** — both resolve
 against the semantic token layer on the **document root**. One exported component drives them:
-`OmniaThemeProvider` sets `data-theme` and `data-skin` on `<html>` and exposes the active pair
-through `useTheme()` (ADR 0017). It is the single theming mechanism for the library, Storybook and
+`OmniaThemeProvider` sets `data-theme` and `data-skin` on `<html>` and exposes `{ theme, skin,
+locale }` plus their setters (`setTheme`, `setSkin`, `setLocale`, `toggleTheme`) through `useTheme()`
+(ADR 0025, superseding ADR 0017). It is the single theming mechanism for the library, Storybook and
 the docs.
 
-A consumer wraps their app once:
+The provider is stateful. Passing a `theme`/`skin`/`locale` prop makes that axis **controlled** —
+props win and each setter fires the matching `onThemeChange`/`onSkinChange`/`onLocaleChange`
+callback. Omit the prop and the provider **owns** that axis, persisting the choice to `localStorage`
+(`omnia-theme`). An uncontrolled app wraps once and lets a toggle flip the theme:
 
 ```tsx
 import { OmniaThemeProvider, useTheme } from '@cdfarkas/omnia';
 import '@cdfarkas/omnia/styles.css';
 
-<OmniaThemeProvider theme="dark" skin="pixel">
+<OmniaThemeProvider defaultTheme="dark" defaultSkin="pixel">
   <App />
 </OmniaThemeProvider>;
 ```
 
-Storybook drives the same provider from one decorator reading the `theme` and `skin` toolbar
-globals; the `theme` global defaults to the viewer's `prefers-color-scheme`. CSS selectors combine
-the two axes (`:root[data-theme][data-skin]`) to resolve the semantic layer. Theming is
-document-wide — one active theme per document; nested, differently-themed subtrees are not supported
-(ADR 0017).
+To avoid a theme flash before the provider's effect runs, inject `getThemeInitScript()` as an inline
+`<script>` in `<head>` — it applies the persisted (or fallback) attributes before first paint.
+
+Storybook drives the same provider in controlled mode from one decorator reading the `theme`, `skin`
+and `locale` toolbar globals; the `theme` global defaults to the viewer's `prefers-color-scheme`. CSS
+selectors combine the two visual axes (`:root[data-theme][data-skin]`) to resolve the semantic layer.
+Theming is document-wide — one active theme per document; nested, differently-themed subtrees are not
+supported (ADR 0025).
 
 ### Structural carve-out for the pixel skin
 

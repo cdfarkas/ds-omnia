@@ -2,7 +2,10 @@
 
 ## Status
 
-Accepted <!-- supersedes ADR 0004 -->
+Superseded by ADR 0025 <!-- supersedes ADR 0004 -->
+
+ADR 0025 makes the provider stateful (controlled + uncontrolled); the controlled-only decision below
+no longer holds. The document-root single-source-of-truth contract is unchanged and still in force.
 
 ## Context
 

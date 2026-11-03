@@ -1,0 +1,257 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Localized } from './Localized';
+import * as ThemeProviderStories from './OmniaThemeProvider.stories';
+
+<Meta of={ThemeProviderStories} />
+
+# OmniaThemeProvider
+
+<Localized
+  en={
+    <p>
+      <strong>OmniaThemeProvider</strong> is Omnia's single theming mechanism. Wrap your
+      app in it once: it sets <code>data-theme</code> and <code>data-skin</code> on the
+      document root — where the semantic token layer resolves — and exposes the active
+      theme, skin and locale, with their setters, through <code>useTheme()</code>. See ADR
+      0025.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>OmniaThemeProvider</strong> est l'unique mécanisme de thème d'Omnia.
+      Englobez votre application une fois : il pose <code>data-theme</code> et{' '}
+      <code>data-skin</code> sur la racine du document — là où la couche de jetons
+      sémantiques se résout — et expose le thème, l'habillage et la langue actifs, avec
+      leurs setters, via <code>useTheme()</code>. Voir l'ADR 0025.
+    </p>
+  }
+/>
+
+## <Localized en="Why it exists" fr="Son intérêt" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>One mechanism for everything.</strong> The library, Storybook and a
+        consuming app all theme through the same provider — no bespoke <code>data-*</code>{' '}
+        wiring per app.
+      </li>
+      <li>
+        <strong>Two axes plus locale.</strong> A light/dark <code>theme</code>, a
+        neutral/pixel <code>skin</code>, and the FR/EN <code>locale</code> — all read from
+        one hook.
+      </li>
+      <li>
+        <strong>Stateful, so toggles just work.</strong> It owns the current values and
+        gives you setters, so a theme or language toggle flips them from anywhere below
+        it.
+      </li>
+      <li>
+        <strong>Collision-safe.</strong> Every custom property is <code>--omnia-</code>
+        -prefixed, so it never clashes with the host app's own variables.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Un seul mécanisme.</strong> La bibliothèque, Storybook et l'application
+        hôte passent tous par le même provider — aucun câblage <code>data-*</code> propre
+        à chaque app.
+      </li>
+      <li>
+        <strong>Deux axes plus la langue.</strong> Un <code>theme</code> clair/sombre, un{' '}
+        <code>skin</code> neutre/pixel, et la <code>locale</code> FR/EN — tout se lit
+        depuis un seul hook.
+      </li>
+      <li>
+        <strong>Avec état : les bascules fonctionnent.</strong> Il détient les valeurs
+        courantes et fournit les setters, donc une bascule de thème ou de langue les
+        change depuis n'importe où en dessous.
+      </li>
+      <li>
+        <strong>Sans collision.</strong> Chaque propriété personnalisée est préfixée{' '}
+        <code>--omnia-</code> : aucun conflit avec les variables de l'application hôte.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Integration" fr="Intégration" />
+
+<Localized
+  en={
+    <p>
+      <strong>Uncontrolled (the common case).</strong> Wrap the app once. The provider
+      owns the state and persists each choice to <code>localStorage</code>, so a reload
+      restores it.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Non contrôlé (cas courant).</strong> Englobez l'application une fois. Le
+      provider détient l'état et persiste chaque choix dans <code>localStorage</code> : un
+      rechargement le restaure.
+    </p>
+  }
+/>
+
+```tsx
+import { OmniaThemeProvider } from '@cdfarkas/omnia';
+import '@cdfarkas/omnia/styles.css';
+
+export function App() {
+  return (
+    <OmniaThemeProvider defaultTheme="light" defaultSkin="default" defaultLocale="en">
+      <Shell />
+    </OmniaThemeProvider>
+  );
+}
+```
+
+<Localized
+  en={
+    <p>
+      Read and flip the active values from any descendant with <code>useTheme()</code>:
+    </p>
+  }
+  fr={
+    <p>
+      Lisez et basculez les valeurs actives depuis n'importe quel descendant avec{' '}
+      <code>useTheme()</code> :
+    </p>
+  }
+/>
+
+```tsx
+import { useTheme } from '@cdfarkas/omnia';
+
+function ThemeToggle() {
+  const { theme, toggleTheme } = useTheme();
+  return <button onClick={toggleTheme}>{theme === 'dark' ? 'Light' : 'Dark'}</button>;
+}
+```
+
+<Localized
+  en={
+    <p>
+      <strong>Controlled.</strong> If your app already owns theme state, pass the prop and
+      handle the callback — the provider follows your value and never writes{' '}
+      <code>localStorage</code>. The callbacks are <code>onThemeChange</code> /{' '}
+      <code>onSkinChange</code> / <code>onLocaleChange</code>, never <code>onChange</code>{' '}
+      (ADR 0015).
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Contrôlé.</strong> Si votre application détient déjà l'état du thème, passez
+      la propriété et gérez le callback — le provider suit votre valeur et n'écrit jamais
+      dans <code>localStorage</code>. Les callbacks sont <code>onThemeChange</code> /{' '}
+      <code>onSkinChange</code> / <code>onLocaleChange</code>, jamais{' '}
+      <code>onChange</code> (ADR 0015).
+    </p>
+  }
+/>
+
+```tsx
+<OmniaThemeProvider theme={theme} onThemeChange={setTheme}>
+  <Shell />
+</OmniaThemeProvider>
+```
+
+<Localized
+  en={
+    <p>
+      <strong>No flash.</strong> The provider sets the root attributes in an effect, after
+      hydration, so on its own there is a brief flash on load. Add a blocking inline{' '}
+      <code>&lt;script&gt;</code> in the document <code>&lt;head&gt;</code>, before the
+      app, to apply the saved theme first. This mirrors <code>next-themes</code> and MUI's{' '}
+      <code>InitColorSchemeScript</code>; it is safe because the script body is a fixed
+      string Omnia generates, never user input.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Pas de clignotement.</strong> Le provider pose les attributs racine dans un
+      effet, après l'hydratation : seul, il laisse donc un bref clignotement au
+      chargement. Ajoutez un <code>&lt;script&gt;</code> en ligne et bloquant dans le{' '}
+      <code>&lt;head&gt;</code> du document, avant l'application, pour appliquer d'abord
+      le thème enregistré. C'est le même choix que <code>next-themes</code> et{' '}
+      <code>InitColorSchemeScript</code> de MUI ; c'est sûr, car le corps du script est
+      une chaîne fixe générée par Omnia, jamais une entrée utilisateur.
+    </p>
+  }
+/>
+
+<Localized
+  en={
+    <p>
+      <strong>Static HTML</strong> (Vite, CRA): paste the blocking script — the body{' '}
+      <code>getThemeInitScript()</code> returns — into <code>index.html</code>.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>HTML statique</strong> (Vite, CRA) : collez le script bloquant — le corps
+      renvoyé par <code>getThemeInitScript()</code> — dans <code>index.html</code>.
+    </p>
+  }
+/>
+
+```html
+<!-- index.html, inside <head>, before your app -->
+<script>
+  (function () {
+    try {
+      var s = JSON.parse(localStorage.getItem('omnia-theme') || '{}'),
+        r = document.documentElement;
+      r.setAttribute('data-theme', s.theme || 'light');
+      r.setAttribute('data-skin', s.skin || 'default');
+    } catch (e) {}
+  })();
+</script>
+```
+
+<Localized
+  en={
+    <p>
+      <strong>Server-rendered head</strong> (Next.js app router, Remix, Astro): inject the
+      helper's output as an inline script.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Head rendu côté serveur</strong> (Next.js app router, Remix, Astro) :
+      injectez la sortie du helper comme script en ligne.
+    </p>
+  }
+/>
+
+```tsx
+import { getThemeInitScript } from '@cdfarkas/omnia';
+
+// In the server-rendered <head>:
+<script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />;
+```
+
+## <Localized en="Live demo" fr="Démo interactive" />
+
+<Localized
+  en={
+    <p>
+      The buttons flip theme, skin and locale through <code>useTheme()</code>; the choices
+      persist across a reload. This demo owns its own theming, so the toolbar's
+      Theme/Skin/Locale controls do not drive it.
+    </p>
+  }
+  fr={
+    <p>
+      Les boutons basculent le thème, l'habillage et la langue via <code>useTheme()</code>{' '}
+      ; les choix persistent au rechargement. Cette démo gère son propre thème : les
+      contrôles Thème/Habillage/Langue de la barre d'outils n'agissent donc pas sur elle.
+    </p>
+  }
+/>
+
+<Canvas of={ThemeProviderStories.Stateful} />
