@@ -1054,6 +1054,50 @@
           "id": "molecules-card--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "DescriptionList",
+      "description": "Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.",
+      "source": "src/components/molecules/DescriptionList/DescriptionList.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDListElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-descriptionlist--playground"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-descriptionlist--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-descriptionlist--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-descriptionlist--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-descriptionlist--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-descriptionlist--pixel-dark"
+        }
+      ]
     }
   ]
 }

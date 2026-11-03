@@ -193,3 +193,16 @@ Source: `src/components/molecules/Card/Card.tsx`
 
 Stories: `molecules-card--playground`, `molecules-card--body-only`, `molecules-card--with-header`, `molecules-card--narrow`, `molecules-card--overridden`, `molecules-card--dark-neutral`, `molecules-card--pixel-light`, `molecules-card--pixel-dark`
 
+## DescriptionList
+
+Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.
+
+Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDListElement>` | no | — | — |
+
+Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
+

@@ -132,6 +132,9 @@ const stories = [
   { id: 'molecules-card--with-header', name: 'card-with-header' },
   { id: 'molecules-card--narrow', name: 'card-narrow' },
   { id: 'molecules-card--overridden', name: 'card-overridden' },
+  { id: 'molecules-descriptionlist--playground', name: 'description-list-playground' },
+  { id: 'molecules-descriptionlist--narrow', name: 'description-list-narrow' },
+  { id: 'molecules-descriptionlist--overridden', name: 'description-list-overridden' },
 ];
 
 const filter = process.argv[2];
