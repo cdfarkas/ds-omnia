@@ -43,8 +43,9 @@ and uploads `coverage/lcov.info`; `codecov.yml` defines two blocking statuses:
   and the small threshold keeps measurement noise from failing a PR.
 - `patch` → `target: 80%`: the lines a PR adds or changes must be 80% covered.
 
-Upload is tokenless (public repo), with `CODECOV_TOKEN` referenced from secrets so it keeps working
-if the repo goes private. A coverage badge is in `README.md`.
+Upload authenticates via **OIDC** (`use_oidc: true`, with `id-token: write` on the job), so no
+token secret is stored. The Codecov org is tokenless, but uploads targeting a protected branch
+(the PR base) still require auth, which OIDC provides. A coverage badge is in `README.md`.
 
 ## Consequences
 
@@ -60,5 +61,6 @@ if the repo goes private. A coverage badge is in `README.md`.
 - In a design system, "coverage" largely reflects **which component variants the stories render**,
   not how rigorously logic is asserted. A high number here means the catalogue exercises the
   components broadly; it is not a proof of correctness. Read it as a breadth signal.
-- Codecov is a third-party dependency in the PR path. The gate degrades to tokenless upload and can
-  be made non-blocking per status if the service is unavailable.
+- Codecov is a third-party dependency in the PR path. The upload step is `fail_ci_if_error: false`,
+  so an upload hiccup does not red the test job — the Codecov project/patch status checks remain the
+  real coverage gate.
