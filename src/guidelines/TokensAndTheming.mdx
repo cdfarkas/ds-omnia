@@ -1,0 +1,156 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Tokens & theming" />
+
+# <Localized en="Tokens & theming" fr="Jetons & thème" />
+
+<Localized
+  en={
+    <p>
+      How colour, shape and type reach a component, and how the two theme axes repaint
+      them. This page states the current rule; the linked ADRs hold the reasoning.
+    </p>
+  }
+  fr={
+    <p>
+      Comment la couleur, la forme et la typographie parviennent à un composant, et
+      comment les deux axes de thème les repeignent. Cette page énonce la règle actuelle ;
+      les ADR liées en portent la justification.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        Components consume semantic <code>var(--omnia-…)</code> tokens only. No raw{' '}
+        <code>hex</code>, <code>rgb()</code> or <code>hsl()</code> may appear in a{' '}
+        <code>*.module.css</code> — a stylelint rule is the build gate.
+      </li>
+      <li>
+        Tokens live in one two-tier file, <code>src/styles/tokens.css</code>: a primitive{' '}
+        <code>--omnia-palette-*</code> layer (raw, fixed) and a semantic{' '}
+        <code>--omnia-color-* / --omnia-radius-* / --omnia-shadow-*</code> layer that
+        aliases it. Themes and skins reassign <strong>only</strong> the semantic layer.
+      </li>
+      <li>
+        Two independent axes — a light/dark <strong>theme</strong> and a neutral/pixel{' '}
+        <strong>skin</strong> — driven by <code>OmniaThemeProvider</code>. Two axes, not
+        four hand-built themes.
+      </li>
+      <li>
+        Every Omnia custom property carries the <code>--omnia-</code> prefix, so it never
+        collides with a consuming app's own variables.
+      </li>
+      <li>
+        Each status is a pair — a fill and its{' '}
+        <code>--omnia-color-text-on-&lt;status&gt;</code> text colour. <code>danger</code>{' '}
+        is the error status.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        Les composants ne consomment que des jetons sémantiques{' '}
+        <code>var(--omnia-…)</code>. Aucun <code>hex</code>, <code>rgb()</code> ou{' '}
+        <code>hsl()</code> brut dans un <code>*.module.css</code> — une règle stylelint
+        sert de garde-fou au build.
+      </li>
+      <li>
+        Les jetons tiennent dans un seul fichier à deux niveaux,{' '}
+        <code>src/styles/tokens.css</code> : une couche primitive{' '}
+        <code>--omnia-palette-*</code> (brute, figée) et une couche sémantique{' '}
+        <code>--omnia-color-* / --omnia-radius-* / --omnia-shadow-*</code> qui l'aliase.
+        Les thèmes et habillages ne réassignent <strong>que</strong> la couche sémantique.
+      </li>
+      <li>
+        Deux axes indépendants — un <strong>thème</strong> clair/sombre et un{' '}
+        <strong>habillage</strong> neutre/pixel — pilotés par{' '}
+        <code>OmniaThemeProvider</code>. Deux axes, pas quatre thèmes écrits à la main.
+      </li>
+      <li>
+        Chaque propriété personnalisée Omnia porte le préfixe <code>--omnia-</code> : elle
+        n'entre jamais en collision avec les variables de l'application hôte.
+      </li>
+      <li>
+        Chaque statut est une paire — un fond et sa couleur de texte{' '}
+        <code>--omnia-color-text-on-&lt;statut&gt;</code>. <code>danger</code> est le
+        statut d'erreur.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale (ADRs)" fr="Justification (ADR)" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0003-token-contract.md">
+          ADR 0003
+        </a>{' '}
+        — two-tier token contract + the no-raw-colour fitness function.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0013-omnia-prefixed-tokens.md">
+          ADR 0013
+        </a>{' '}
+        — the <code>--omnia-</code> prefix on every custom property.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0004-two-axis-theming.md">
+          ADR 0004
+        </a>{' '}
+        and{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0017-unified-theme-provider.md">
+          ADR 0017
+        </a>{' '}
+        — two-axis theming via <code>OmniaThemeProvider</code>.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0012-status-colour-tokens.md">
+          ADR 0012
+        </a>{' '}
+        — status colour tokens.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0003-token-contract.md">
+          ADR 0003
+        </a>{' '}
+        — contrat de jetons à deux niveaux + la fonction de forme anti-couleur-brute.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0013-omnia-prefixed-tokens.md">
+          ADR 0013
+        </a>{' '}
+        — le préfixe <code>--omnia-</code> sur chaque propriété personnalisée.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0004-two-axis-theming.md">
+          ADR 0004
+        </a>{' '}
+        et{' '}
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0017-unified-theme-provider.md">
+          ADR 0017
+        </a>{' '}
+        — thème à deux axes via <code>OmniaThemeProvider</code>.
+      </li>
+      <li>
+        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0012-status-colour-tokens.md">
+          ADR 0012
+        </a>{' '}
+        — jetons de couleur de statut.
+      </li>
+    </ul>
+  }
+/>

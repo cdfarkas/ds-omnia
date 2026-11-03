@@ -3,8 +3,15 @@
 Orientation for an agent working on Omnia — a bilingual, themeable React 19 design system
 catalogued in Storybook. Read this once, then work from the sources it points to.
 
+Two layers carry the knowledge, and they never duplicate each other: the **Guidelines** pages say
+how a rule *is now*; the **ADRs** say *why and when* it was decided. This file points to both.
+
 ## Start here
 
+- **Conventions, living — the Guidelines section in Storybook** (`src/guidelines/*.mdx`). The
+  always-current distillation of each rule — tokens & theming, prop naming, component naming,
+  accessibility, responsive, testing & gates, bilingual — each page linking its ADR for the
+  rationale. Deployed with the catalogue to GitHub Pages; this is the human-facing reference.
 - **API index — [`components.json`](./components.json)** (generated, machine-readable). One entry
   per component exported from `src/index.ts`: props (name, type, default, required), variant axes,
   story ids, and the authored a11y/contract notes. A human-readable mirror is
@@ -27,6 +34,8 @@ catalogued in Storybook. Read this once, then work from the sources it points to
 - **Theming**: two axes — light/dark × default/pixel — via `OmniaThemeProvider` (ADR 0004, 0017).
 - **Props**: a native HTML prop name keeps its native type; a visual axis with a native name becomes
   `variant<Axis>`; any other custom prop gets a non-native name (ADR 0015).
+- **Naming**: a naming study in `docs/naming/<name>.md` and the owner's pick precede any new
+  component; singular root, parts in dot-notation (CLAUDE.md, ARCHITECTURE.md).
 - **Tests**: one Storybook-driven runner — a story `play` for the happy path, `*.test.tsx` for edge
   cases, `*.test.ts` for pure logic (`docs/testing.md`).
 - **A11y**: WCAG 2.1 AA across every theme and skin; an axe *incomplete* fails like a violation
@@ -36,6 +45,12 @@ catalogued in Storybook. Read this once, then work from the sources it points to
 - **Previewing motion**: flip the toolbar's reduced-motion control (CSS user preferences addon) to
   `reduce` to preview how motion-gated components behave under `prefers-reduced-motion` — it emulates
   both the CSS media query and `window.matchMedia`.
+
+## The five gates (done = all green)
+
+`pnpm lint` · `pnpm typecheck` · `pnpm test` · `pnpm build-storybook` · agent `pnpm visual-check`.
+Then build one component per branch and PR, owner-validated in Storybook before any push. The full
+contract is in `CLAUDE.md`.
 
 ## Regenerate the API index
 

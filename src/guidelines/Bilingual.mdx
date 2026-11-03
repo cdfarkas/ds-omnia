@@ -1,0 +1,91 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from '../lib/Localized';
+
+<Meta title="Guidelines/Bilingual" />
+
+# <Localized en="Bilingual FR/EN" fr="Bilingue FR/EN" />
+
+<Localized
+  en={
+    <p>
+      One language is shown at a time, driven by the <code>locale</code> toolbar global —
+      never both at once. There is no i18n library; the whole mechanism is a typed
+      indirection.
+    </p>
+  }
+  fr={
+    <p>
+      Une seule langue est affichée à la fois, pilotée par le global de barre d'outils{' '}
+      <code>locale</code> — jamais les deux en même temps. Pas de bibliothèque i18n ; tout
+      le mécanisme est une indirection typée.
+    </p>
+  }
+/>
+
+## <Localized en="The rule" fr="La règle" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        Labels and ARIA strings go through a typed <code>t()</code> over a{' '}
+        <code>Record&lt;Locale, …&gt;</code>, driven by the <code>locale</code> global.
+      </li>
+      <li>
+        MDX prose is authored once and wrapped in{' '}
+        <code>
+          &lt;Localized fr={'{…}'} en={'{…}'} /&gt;
+        </code>{' '}
+        (<code>src/lib/Localized.tsx</code>), which renders only the active language and
+        switches live with the <code>locale</code> global. Never stacked FR+EN blocks.
+      </li>
+      <li>
+        Autodocs auto-generated blocks (JSDoc descriptions, arg tables) stay
+        single-language, as authored — they do not follow the <code>locale</code> global.
+        Accepted.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        Les libellés et chaînes ARIA passent par un <code>t()</code> typé sur un{' '}
+        <code>Record&lt;Locale, …&gt;</code>, piloté par le global <code>locale</code>.
+      </li>
+      <li>
+        La prose MDX est écrite une fois et enveloppée dans{' '}
+        <code>
+          &lt;Localized fr={'{…}'} en={'{…}'} /&gt;
+        </code>{' '}
+        (<code>src/lib/Localized.tsx</code>), qui ne rend que la langue active et bascule
+        en direct avec le global <code>locale</code>. Jamais de blocs FR+EN empilés.
+      </li>
+      <li>
+        Les blocs auto-générés par Autodocs (descriptions JSDoc, tables d'arguments)
+        restent monolingues, tels qu'écrits — ils ne suivent pas le global{' '}
+        <code>locale</code>. Accepté.
+      </li>
+    </ul>
+  }
+/>
+
+## <Localized en="Rationale (ADR)" fr="Justification (ADR)" />
+
+<Localized
+  en={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0007-bilingual-typed-strings.md">
+        ADR 0007
+      </a>{' '}
+      — bilingual via typed strings + <code>t()</code>, and locale-switched MDX prose.
+    </p>
+  }
+  fr={
+    <p>
+      <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0007-bilingual-typed-strings.md">
+        ADR 0007
+      </a>{' '}
+      — bilingue par chaînes typées + <code>t()</code>, et prose MDX commutée par locale.
+    </p>
+  }
+/>
