@@ -115,6 +115,12 @@ const stories = [
   { id: 'atoms-divider--vertical', name: 'divider-vertical' },
   { id: 'atoms-divider--decorative', name: 'divider-decorative' },
   { id: 'atoms-divider--overridden', name: 'divider-overridden' },
+  { id: 'atoms-indicator--playground', name: 'indicator-playground' },
+  { id: 'atoms-indicator--intents', name: 'indicator-intents' },
+  { id: 'atoms-indicator--sizes', name: 'indicator-sizes' },
+  { id: 'atoms-indicator--pulse', name: 'indicator-pulse' },
+  { id: 'atoms-indicator--decorative', name: 'indicator-decorative' },
+  { id: 'atoms-indicator--overridden', name: 'indicator-overridden' },
 ];
 
 const filter = process.argv[2];

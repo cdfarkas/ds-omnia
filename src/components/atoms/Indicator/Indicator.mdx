@@ -1,0 +1,168 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as IndicatorStories from './Indicator.stories';
+
+<Meta of={IndicatorStories} />
+
+# Indicator
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Indicator</strong> atom is a small inline status dot — the "live" dot
+        in a hero, or wait / running / ok dots in a status list. It consumes semantic{' '}
+        <code>var(--…)</code> tokens only, so it reskins across the light/dark theme axis
+        and the neutral/pixel skin axis without any change to its own CSS.
+      </p>
+      <p>
+        The root is a <code>&lt;span role="img"&gt;</code> whose <code>aria-label</code>{' '}
+        is <strong>required</strong> and carries the state in words (for example
+        "Available"): the state is never colour-only, so it meets WCAG 1.4.1.{' '}
+        <code>intent</code> (<code>primary</code> / <code>neutral</code> /{' '}
+        <code>success</code> / <code>warning</code> / <code>info</code> /{' '}
+        <code>danger</code>, default <code>neutral</code>) only tints the dot. The dot
+        carries an ink/parchment ring in <code>--omnia-color-border-strong</code>, which
+        keeps it at 3:1 against the surface (WCAG 1.4.11) in every theme and skin,
+        whatever the fill.
+      </p>
+      <p>
+        Use <code>variantSize</code> (<code>sm</code> / <code>md</code>, default{' '}
+        <code>md</code>) for the dot size — <code>size</code> is a native HTML name, so
+        the axis is renamed (ADR 0015). When the surrounding text already states the
+        status, pass <code>aria-hidden</code> to make the dot decorative and drop it from
+        the accessibility tree. <code>pulse</code> adds a pulsing halo for a live/running
+        state; it is emphasis, not essential feedback, so it stops under{' '}
+        <code>prefers-reduced-motion</code> while the dot stays fully visible.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Indicator</strong> est une petite pastille d'état en ligne —
+        le point «&nbsp;en direct&nbsp;» d'un en-tête, ou les points attente / en cours /
+        ok d'une liste d'états. Il ne consomme que des jetons sémantiques{' '}
+        <code>var(--…)</code> : il change d'apparence selon l'axe de thème clair/sombre et
+        l'axe d'habillage neutre/pixel, sans modifier son propre CSS.
+      </p>
+      <p>
+        La racine est un <code>&lt;span role="img"&gt;</code> dont l'
+        <code>aria-label</code> est <strong>obligatoire</strong> et porte l'état en toutes
+        lettres (par exemple «&nbsp;Disponible&nbsp;») : l'état n'est jamais porté par la
+        seule couleur, ce qui respecte le WCAG 1.4.1. <code>intent</code> (
+        <code>primary</code> / <code>neutral</code> / <code>success</code> /{' '}
+        <code>warning</code> / <code>info</code> / <code>danger</code>, par défaut{' '}
+        <code>neutral</code>) ne fait que teinter la pastille. La pastille porte un anneau
+        encre/parchemin via <code>--omnia-color-border-strong</code>, qui la maintient à
+        3:1 sur le fond (WCAG 1.4.11) dans chaque thème et habillage, quelle que soit la
+        teinte.
+      </p>
+      <p>
+        Utilisez <code>variantSize</code> (<code>sm</code> / <code>md</code>, par défaut{' '}
+        <code>md</code>) pour la taille — <code>size</code> est un nom HTML natif, l'axe
+        est donc renommé (ADR 0015). Quand le texte environnant indique déjà l'état,
+        fournissez <code>aria-hidden</code> pour rendre la pastille décorative et la
+        retirer de l'arbre d'accessibilité. <code>pulse</code> ajoute un halo pulsé pour
+        un état en direct / en cours ; c'est de l'emphase, pas un retour essentiel, il
+        s'arrête donc sous <code>prefers-reduced-motion</code> tandis que la pastille
+        reste pleinement visible.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={IndicatorStories.Intents} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Sizes" fr="Tailles" />
+
+<Canvas of={IndicatorStories.Sizes} />
+
+### <Localized en="Live (pulse)" fr="En direct (pulse)" />
+
+<Canvas of={IndicatorStories.Pulse} />
+
+### <Localized en="Decorative" fr="Décoratif" />
+
+<Canvas of={IndicatorStories.Decorative} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Indicator follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-indicator-color</code> (the
+          dot fill, defaults to the active <code>--omnia-intent-bg</code>) and{' '}
+          <code>--omnia-indicator-ring</code> (the dot ring, defaults to{' '}
+          <code>--omnia-color-border-strong</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>indicator</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the <code>role="img"</code> span, where your{' '}
+          <code>className</code> merges) and <code>dot</code> (the decorative dot).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-intent</code>, <code>data-variant-size</code>,{' '}
+          <code>data-pulse</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Indicator suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-indicator-color</code>{' '}
+          (la teinte de la pastille, par défaut le <code>--omnia-intent-bg</code> actif)
+          et <code>--omnia-indicator-ring</code> (l'anneau, par défaut{' '}
+          <code>--omnia-color-border-strong</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>indicator</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le span <code>role="img"</code>, où votre{' '}
+          <code>className</code> fusionne) et <code>dot</code> (la pastille décorative).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-intent</code>, <code>data-variant-size</code>,{' '}
+          <code>data-pulse</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={IndicatorStories.Overridden} />
