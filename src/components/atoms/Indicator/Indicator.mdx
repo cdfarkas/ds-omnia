@@ -10,64 +10,82 @@ import * as IndicatorStories from './Indicator.stories';
   en={
     <>
       <p>
-        The <strong>Indicator</strong> atom is a small inline status dot — the "live" dot
-        in a hero, or wait / running / ok dots in a status list. It consumes semantic{' '}
-        <code>var(--…)</code> tokens only, so it reskins across the light/dark theme axis
-        and the neutral/pixel skin axis without any change to its own CSS.
+        Use <strong>Indicator</strong> for a small status dot set inline — the “live” dot
+        in a header, or a waiting, running or done dot in a status list.
       </p>
-      <p>
-        The root is a <code>&lt;span role="img"&gt;</code> whose <code>aria-label</code>{' '}
-        is <strong>required</strong> and carries the state in words (for example
-        "Available"): the state is never colour-only, so it meets WCAG 1.4.1.{' '}
-        <code>intent</code> (<code>primary</code> / <code>neutral</code> /{' '}
-        <code>success</code> / <code>warning</code> / <code>info</code> /{' '}
-        <code>danger</code>, default <code>neutral</code>) only tints the dot. The dot
-        carries an ink/parchment ring in <code>--omnia-color-border-strong</code>, which
-        keeps it at 3:1 against the surface (WCAG 1.4.11) in every theme and skin,
-        whatever the fill.
-      </p>
-      <p>
-        Use <code>variantSize</code> (<code>sm</code> / <code>md</code>, default{' '}
-        <code>md</code>) for the dot size — <code>size</code> is a native HTML name, so
-        the axis is renamed (ADR 0015). When the surrounding text already states the
-        status, pass <code>aria-hidden</code> to make the dot decorative and drop it from
-        the accessibility tree. <code>pulse</code> adds a pulsing halo for a live/running
-        state; it is emphasis, not essential feedback, so it stops under{' '}
-        <code>prefers-reduced-motion</code> while the dot stays fully visible.
-      </p>
+      <ul>
+        <li>
+          <strong>The label carries the state.</strong> <code>aria-label</code> is
+          required and says the state in words, such as “Available”. The colour is never
+          the only signal.
+        </li>
+        <li>
+          <strong>The intent only tints the dot.</strong> <code>intent</code> picks one of
+          six colour intents, from primary to danger; the default is neutral. A
+          contrasting ring keeps the dot at 3:1 against the surface, whatever the fill.
+        </li>
+        <li>
+          <strong>Two sizes.</strong> <code>variantSize</code> is <code>sm</code> or{' '}
+          <code>md</code>; the default is <code>md</code>.
+        </li>
+        <li>
+          <strong>A pulse for live states.</strong> <code>pulse</code> adds a pulsing halo
+          for something live or running. It is emphasis only, so it stops under reduced
+          motion while the dot stays fully visible.
+        </li>
+        <li>
+          <strong>Decorative when the text already says it.</strong> When the text beside
+          the dot already states the status, pass <code>aria-hidden</code> so it is not
+          announced twice.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colours come from tokens, so Indicator
+          follows the light/dark theme and the neutral/pixel skin with no CSS changes. In
+          the pixel skin the dot turns square.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Indicator</strong> est une petite pastille d'état en ligne —
-        le point «&nbsp;en direct&nbsp;» d'un en-tête, ou les points attente / en cours /
-        ok d'une liste d'états. Il ne consomme que des jetons sémantiques{' '}
-        <code>var(--…)</code> : il change d'apparence selon l'axe de thème clair/sombre et
-        l'axe d'habillage neutre/pixel, sans modifier son propre CSS.
+        Utilisez <strong>Indicator</strong> pour une petite pastille d'état en ligne — le
+        point « en direct » d'un en-tête, ou les points attente, en cours ou terminé d'une
+        liste d'états.
       </p>
-      <p>
-        La racine est un <code>&lt;span role="img"&gt;</code> dont l'
-        <code>aria-label</code> est <strong>obligatoire</strong> et porte l'état en toutes
-        lettres (par exemple «&nbsp;Disponible&nbsp;») : l'état n'est jamais porté par la
-        seule couleur, ce qui respecte le WCAG 1.4.1. <code>intent</code> (
-        <code>primary</code> / <code>neutral</code> / <code>success</code> /{' '}
-        <code>warning</code> / <code>info</code> / <code>danger</code>, par défaut{' '}
-        <code>neutral</code>) ne fait que teinter la pastille. La pastille porte un anneau
-        encre/parchemin via <code>--omnia-color-border-strong</code>, qui la maintient à
-        3:1 sur le fond (WCAG 1.4.11) dans chaque thème et habillage, quelle que soit la
-        teinte.
-      </p>
-      <p>
-        Utilisez <code>variantSize</code> (<code>sm</code> / <code>md</code>, par défaut{' '}
-        <code>md</code>) pour la taille — <code>size</code> est un nom HTML natif, l'axe
-        est donc renommé (ADR 0015). Quand le texte environnant indique déjà l'état,
-        fournissez <code>aria-hidden</code> pour rendre la pastille décorative et la
-        retirer de l'arbre d'accessibilité. <code>pulse</code> ajoute un halo pulsé pour
-        un état en direct / en cours ; c'est de l'emphase, pas un retour essentiel, il
-        s'arrête donc sous <code>prefers-reduced-motion</code> tandis que la pastille
-        reste pleinement visible.
-      </p>
+      <ul>
+        <li>
+          <strong>Le libellé porte l'état.</strong> <code>aria-label</code> est
+          obligatoire et énonce l'état en toutes lettres, par exemple « Disponible ». La
+          couleur n'est jamais le seul signal.
+        </li>
+        <li>
+          <strong>L'intention ne fait que teinter la pastille.</strong>{' '}
+          <code>intent</code> choisit l'une des six intentions de couleur, de primary à
+          danger ; la valeur par défaut est neutral. Un anneau contrasté maintient la
+          pastille à 3:1 sur le fond, quelle que soit la teinte.
+        </li>
+        <li>
+          <strong>Deux tailles.</strong> <code>variantSize</code> vaut <code>sm</code> ou{' '}
+          <code>md</code> ; la valeur par défaut est <code>md</code>.
+        </li>
+        <li>
+          <strong>Une pulsation pour les états en direct.</strong> <code>pulse</code>{' '}
+          ajoute un halo pulsé pour ce qui est en direct ou en cours. C'est de l'emphase
+          seulement : il s'arrête en mouvement réduit, tandis que la pastille reste
+          pleinement visible.
+        </li>
+        <li>
+          <strong>Décorative quand le texte le dit déjà.</strong> Quand le texte à côté de
+          la pastille indique déjà l'état, fournissez <code>aria-hidden</code> pour qu'il
+          ne soit pas annoncé deux fois.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Les couleurs viennent des jetons :
+          Indicator suit le thème clair/sombre et l'habillage neutre/pixel sans retoucher
+          son CSS. Dans l'habillage pixel, la pastille devient carrée.
+        </li>
+      </ul>
     </>
   }
 />

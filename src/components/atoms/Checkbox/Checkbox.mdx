@@ -10,97 +10,100 @@ import * as CheckboxStories from './Checkbox.stories';
   en={
     <>
       <p>
-        The <strong>Checkbox</strong> atom is the native{' '}
-        <code>&lt;input type="checkbox"&gt;</code>, drawn by CSS, inside a{' '}
-        <code>&lt;label&gt;</code>. Its <code>children</code> are the visible label, so
-        the whole row is the click target, and Space, focus, form posting and the
-        accessible role all stay native.
+        Use <strong>Checkbox</strong> for an option the user turns on or off in a form
+        they submit, or to select rows in a list.
       </p>
-      <p>
-        A checkbox without children has no visible label: give it an accessible name with{' '}
-        <code>aria-label</code> or <code>aria-labelledby</code>, as in a table row
-        selector. The types do not enforce it, so check every bare checkbox.
-      </p>
-      <p>
-        Use <code>variantSize</code> for scale (<code>sm</code>, <code>md</code>,{' '}
-        <code>lg</code>, the same scale as Input). <code>invalid</code> sets{' '}
-        <code>aria-invalid</code> and a danger border; colour is never the only signal, so
-        pair it with an error message in text.
-      </p>
-      <p>
-        <code>indeterminate</code> shows the mixed state, for a "select all" over a
-        partial selection. It sets the DOM <code>indeterminate</code> property, which has
-        no HTML attribute, and never changes <code>checked</code>: the form value is
-        whatever <code>checked</code> says. A click clears the mixed state in the browser;
-        the atom puts it back as long as the prop stays <code>true</code>, so set it to{' '}
-        <code>false</code> in your <code>onChange</code> when the selection changes.
-      </p>
-      <p>
-        The atom is display only (ADR 0016): it ships no validation and no error text.
-        Pair it with a form library or the platform. <code>name</code>, <code>value</code>
-        , <code>checked</code>, <code>defaultChecked</code>, <code>required</code>,{' '}
-        <code>onChange</code>, <code>onBlur</code> and <code>ref</code> reach the native
-        input, so React Hook Form's <code>register</code>, <code>FormData</code> and React
-        19 actions work as on a plain checkbox. <code>className</code> and{' '}
-        <code>style</code> land on the root <code>&lt;label&gt;</code>.
-      </p>
-      <p>
-        On hover the box lifts by one pixel and a checked box takes the hover accent; on
-        press it drops by one pixel (ADR 0009). Focus draws the focus ring around the box.
-        A disabled box gets a dashed border, so it differs from an enabled one without
-        colour. All motion respects <code>prefers-reduced-motion</code>. A long label
-        wraps next to the box, down to 320 CSS px.
-      </p>
+      <ul>
+        <li>
+          <strong>It is a native checkbox.</strong> A real checkbox input sits inside a
+          label, so keyboard, focus, form posting and screen-reader support stay native.
+          The whole row is the click target.
+        </li>
+        <li>
+          <strong>Always give it a name.</strong> <code>children</code> is the visible
+          label. Without it, pass <code>aria-label</code> or <code>aria-labelledby</code>;
+          the types do not enforce this, so check every bare checkbox.
+        </li>
+        <li>
+          <strong>A mixed state for “select all”.</strong> <code>indeterminate</code>{' '}
+          shows that only part of a group is selected. It never changes{' '}
+          <code>checked</code>, which alone sets the form value. The mixed state stays
+          while the prop is true, even after a click, so set it to false in your{' '}
+          <code>onChange</code> when the selection changes.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the scale, from{' '}
+          <code>sm</code> to <code>lg</code>; it is the same scale as Input.
+        </li>
+        <li>
+          <strong>An invalid look, no validation.</strong> <code>invalid</code> marks the
+          box invalid for assistive technology and draws a danger border. The atom ships
+          no validation or error text, so pair it with an error message in text.
+        </li>
+        <li>
+          <strong>It works with form libraries.</strong> Every form prop, <code>ref</code>{' '}
+          included, reaches the native input, so React Hook Form, <code>FormData</code>{' '}
+          and React 19 actions work as on a plain checkbox. Only <code>className</code>{' '}
+          and <code>style</code> go on the label wrapper.
+        </li>
+        <li>
+          <strong>States show without colour alone.</strong> A disabled box has a dashed
+          border, and focus draws a ring around the box. Hover and press nudge the box by
+          one pixel, except under reduced motion.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Checkbox</strong> est la case à cocher native{' '}
-        <code>&lt;input type="checkbox"&gt;</code>, dessinée en CSS, dans un{' '}
-        <code>&lt;label&gt;</code>. Ses <code>children</code> forment le libellé visible :
-        toute la ligne est cliquable, et la barre d'espace, le focus, l'envoi du
-        formulaire et le rôle accessible restent natifs.
+        Utilisez <strong>Checkbox</strong> pour une option que l'utilisateur active ou
+        désactive dans un formulaire qu'il envoie, ou pour sélectionner des lignes d'une
+        liste.
       </p>
-      <p>
-        Une case sans <code>children</code> n'a pas de libellé visible : donnez-lui un nom
-        accessible avec <code>aria-label</code> ou <code>aria-labelledby</code>, comme
-        pour la sélection d'une ligne de tableau. Les types ne l'imposent pas, vérifiez
-        donc chaque case nue.
-      </p>
-      <p>
-        Utilisez <code>variantSize</code> pour la taille (<code>sm</code>, <code>md</code>
-        , <code>lg</code>, la même échelle qu'Input). <code>invalid</code> pose{' '}
-        <code>aria-invalid</code> et une bordure de danger ; la couleur n'est jamais le
-        seul signal, accompagnez-la d'un message d'erreur en texte.
-      </p>
-      <p>
-        <code>indeterminate</code> affiche l'état mixte, pour un « tout sélectionner » sur
-        une sélection partielle. Il pose la propriété DOM <code>indeterminate</code>, qui
-        n'a pas d'attribut HTML, et ne change jamais <code>checked</code> : la valeur du
-        formulaire est celle de <code>checked</code>. Un clic efface l'état mixte dans le
-        navigateur ; le composant le rétablit tant que la propriété reste à{' '}
-        <code>true</code>, passez-la donc à <code>false</code> dans votre{' '}
-        <code>onChange</code> quand la sélection change.
-      </p>
-      <p>
-        Le composant sert uniquement à l'affichage (ADR 0016) : il ne fournit ni
-        validation ni texte d'erreur. Associez-le à une bibliothèque de formulaires ou à
-        la plateforme. <code>name</code>, <code>value</code>, <code>checked</code>,{' '}
-        <code>defaultChecked</code>, <code>required</code>, <code>onChange</code>,{' '}
-        <code>onBlur</code> et <code>ref</code> vont sur la case native : le{' '}
-        <code>register</code> de React Hook Form, <code>FormData</code> et les actions de
-        React 19 fonctionnent comme sur une case ordinaire. <code>className</code> et{' '}
-        <code>style</code> vont sur le <code>&lt;label&gt;</code> racine.
-      </p>
-      <p>
-        Au survol, la case se soulève d'un pixel et une case cochée prend l'accent de
-        survol ; à l'appui, elle s'enfonce d'un pixel (ADR 0009). Le focus trace l'anneau
-        de focus autour de la case. Une case désactivée prend une bordure en tirets, pour
-        se distinguer sans la couleur. Toute animation respecte{' '}
-        <code>prefers-reduced-motion</code>. Un libellé long passe à la ligne à côté de la
-        case, jusqu'à 320 px CSS.
-      </p>
+      <ul>
+        <li>
+          <strong>C'est une case à cocher native.</strong> Une vraie case native est
+          placée dans un libellé : le clavier, le focus, l'envoi du formulaire et la prise
+          en charge des lecteurs d'écran restent natifs. Toute la ligne est cliquable.
+        </li>
+        <li>
+          <strong>Donnez-lui toujours un nom.</strong> <code>children</code> est le
+          libellé visible. Sans lui, fournissez <code>aria-label</code> ou{' '}
+          <code>aria-labelledby</code> ; les types ne l'imposent pas, vérifiez donc chaque
+          case nue.
+        </li>
+        <li>
+          <strong>Un état mixte pour « tout sélectionner ».</strong>{' '}
+          <code>indeterminate</code> indique qu'une partie seulement d'un groupe est
+          sélectionnée. Il ne change jamais <code>checked</code>, qui seul fixe la valeur
+          du formulaire. L'état mixte reste tant que la propriété est vraie, même après un
+          clic : passez-la donc à faux dans votre <code>onChange</code> quand la sélection
+          change.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle l'échelle, de{' '}
+          <code>sm</code> à <code>lg</code> ; c'est la même échelle qu'Input.
+        </li>
+        <li>
+          <strong>Un aspect invalide, sans validation.</strong> <code>invalid</code>{' '}
+          signale la case comme invalide aux technologies d'assistance et trace une
+          bordure de danger. Le composant ne fournit ni validation ni texte d'erreur :
+          accompagnez-le d'un message d'erreur en texte.
+        </li>
+        <li>
+          <strong>Il fonctionne avec les bibliothèques de formulaires.</strong> Chaque
+          propriété de formulaire, <code>ref</code> compris, va sur la case native : React
+          Hook Form, <code>FormData</code> et les actions de React 19 fonctionnent comme
+          sur une case ordinaire. Seuls <code>className</code> et <code>style</code> vont
+          sur le libellé englobant.
+        </li>
+        <li>
+          <strong>Les états se lisent sans la couleur seule.</strong> Une case désactivée
+          a une bordure en tirets, et le focus trace un anneau autour de la case. Le
+          survol et l'appui déplacent la case d'un pixel, sauf en mouvement réduit.
+        </li>
+      </ul>
     </>
   }
 />

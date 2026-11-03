@@ -10,58 +10,72 @@ import * as LinkStories from './Link.stories';
   en={
     <>
       <p>
-        The <strong>Link</strong> atom renders a native <code>&lt;a&gt;</code> for
-        navigation. It consumes semantic <code>var(--…)</code> tokens only, so it reskins
-        across the light/dark theme axis and the neutral/pixel skin axis without any
-        change to its own CSS. <code>href</code> is required.
+        Use <strong>Link</strong> to take the user to another page or place — inside a
+        sentence, or on a line of its own.
       </p>
-      <p>
-        Use <code>variant</code> for placement: <code>inline</code> inherits the
-        surrounding text's size and weight for a link inside a paragraph;{' '}
-        <code>standalone</code> (the default) carries its own type for a link on its own
-        line. Both variants are underlined, so a link is distinguishable without relying
-        on colour alone (WCAG 1.4.1). Underlining is the variant's job, not a separate
-        prop.
-      </p>
-      <p>
-        Set <code>external</code> for a link that opens in a new window: it adds{' '}
-        <code>target="_blank"</code> and <code>rel="noopener noreferrer"</code>, a
-        visually-hidden "opens in new window" label for assistive technology, and a
-        decorative trailing icon (<code>aria-hidden</code>). <code>external</code> is a
-        design-system prop; the native <code>target</code> stays native and passable, and
-        a caller's own <code>target</code> wins (ADR 0015). There is no polymorphic{' '}
-        <code>as</code> prop, no <code>visited</code> styling and no <code>disabled</code>
-        : a disabled link is not a link.
-      </p>
+      <ul>
+        <li>
+          <strong>Inline or standalone.</strong> <code>variant</code> sets the placement.
+          An inline link takes the size and weight of the sentence around it; a standalone
+          link, the default, carries its own type on its own line.
+        </li>
+        <li>
+          <strong>Always underlined.</strong> Both variants are underlined, so a link
+          stands out without relying on colour.
+        </li>
+        <li>
+          <strong>External links say so.</strong> <code>external</code> opens the link in
+          a new window with safe defaults, adds a trailing icon, and tells screen-reader
+          users that it opens a new window. A <code>target</code> you pass yourself still
+          wins.
+        </li>
+        <li>
+          <strong>Deliberately minimal.</strong> <code>href</code> is required, and it
+          always renders a native <code>&lt;a&gt;</code>. There is no visited style and no
+          disabled state: a disabled link is not a link.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour and type come from tokens, so
+          Link follows the light/dark theme and the neutral/pixel skin with no CSS
+          changes. In the pixel skin the underline turns dashed.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Link</strong> rend un <code>&lt;a&gt;</code> natif pour la
-        navigation. Il ne consomme que des jetons sémantiques <code>var(--…)</code> : il
-        change donc d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage
-        neutre/pixel, sans modifier son propre CSS. <code>href</code> est requis.
+        Utilisez <strong>Link</strong> pour mener l'utilisateur vers une autre page ou un
+        autre endroit — dans une phrase, ou sur sa propre ligne.
       </p>
-      <p>
-        Utilisez <code>variant</code> pour le placement : <code>inline</code> hérite de la
-        taille et de la graisse du texte environnant pour un lien dans un paragraphe ;{' '}
-        <code>standalone</code> (par défaut) porte sa propre typographie pour un lien sur
-        sa propre ligne. Les deux variantes sont soulignées : un lien reste donc
-        distinguable sans dépendre uniquement de la couleur (WCAG 1.4.1). Le soulignement
-        relève de la variante, pas d'une propriété séparée.
-      </p>
-      <p>
-        Activez <code>external</code> pour un lien qui s'ouvre dans une nouvelle fenêtre :
-        il ajoute <code>target="_blank"</code> et <code>rel="noopener noreferrer"</code>,
-        un libellé « ouvre dans une nouvelle fenêtre » masqué visuellement pour les
-        technologies d'assistance, et une icône décorative en fin de ligne (
-        <code>aria-hidden</code>). <code>external</code> est une propriété du système de
-        design ; le <code>target</code> natif reste natif et transmissible, et un{' '}
-        <code>target</code> fourni par l'appelant l'emporte (ADR 0015). Il n'y a pas de
-        propriété polymorphe <code>as</code>, pas de style <code>visited</code> ni de{' '}
-        <code>disabled</code> : un lien désactivé n'est pas un lien.
-      </p>
+      <ul>
+        <li>
+          <strong>En ligne ou autonome.</strong> <code>variant</code> règle le placement.
+          Un lien en ligne prend la taille et la graisse de la phrase qui l'entoure ; un
+          lien autonome, par défaut, porte sa propre typographie sur sa propre ligne.
+        </li>
+        <li>
+          <strong>Toujours souligné.</strong> Les deux variantes sont soulignées : un lien
+          se distingue sans dépendre de la couleur.
+        </li>
+        <li>
+          <strong>Un lien externe le signale.</strong> <code>external</code> ouvre le lien
+          dans une nouvelle fenêtre avec des valeurs sûres, ajoute une icône en fin de
+          lien, et indique aux utilisateurs de lecteurs d'écran qu'il ouvre une nouvelle
+          fenêtre. Un <code>target</code> que vous fournissez vous-même l'emporte
+          toujours.
+        </li>
+        <li>
+          <strong>Volontairement minimal.</strong> <code>href</code> est requis, et le
+          composant rend toujours un <code>&lt;a&gt;</code> natif. Il n'y a ni style de
+          lien visité, ni état désactivé : un lien désactivé n'est pas un lien.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> La couleur et la typographie viennent
+          des jetons : Link suit le thème clair/sombre et l'habillage neutre/pixel sans
+          retoucher son CSS. Dans l'habillage pixel, le soulignement passe en tirets.
+        </li>
+      </ul>
     </>
   }
 />

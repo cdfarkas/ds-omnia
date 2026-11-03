@@ -10,66 +10,80 @@ import * as IconStories from './Icon.stories';
   en={
     <>
       <p>
-        The <strong>Icon</strong> atom renders one of 33 semantic glyphs (ADR 0019). It
-        consumes semantic <code>var(--…)</code> tokens only and paints with{' '}
-        <code>currentColor</code>, so it inherits the surrounding text colour and reskins
-        across the light/dark theme axis and the neutral/pixel skin axis without any
-        change to its own CSS. Both skins' SVGs are rendered and CSS shows the one
-        matching the active <code>data-skin</code> — the single source of truth from{' '}
-        <code>OmniaThemeProvider</code> (ADR 0017), so an icon stays in step even when a
-        consumer sets <code>data-skin</code> without the React provider.
+        Use <strong>Icon</strong> to show a small symbol beside a label or inside a
+        control — a search glass, a close cross, a status mark.
       </p>
-      <p>
-        Pick the drawing with <code>glyph</code> (the typed <code>IconGlyph</code> union;{' '}
-        <code>name</code> is a native HTML name and is not used, ADR 0015). Use{' '}
-        <code>variantStyle</code> (<code>regular</code> / <code>solid</code>, default{' '}
-        <code>regular</code>) for the active/selected state, and <code>variantSize</code>{' '}
-        (<code>sm</code> / <code>md</code> / <code>lg</code>) for a fixed size — with no{' '}
-        <code>variantSize</code> the icon is <code>1em</code> square and follows the
-        surrounding type.
-      </p>
-      <p>
-        Accessibility follows WCAG 1.1.1. The icon is{' '}
-        <strong>decorative by default</strong>(<code>aria-hidden</code>, no role) — the
-        common case is an icon inside a labelled <code>Button</code> or <code>Link</code>.
-        Pass <code>aria-label</code> or <code>aria-labelledby</code> to promote it to a
-        named <code>role="img"</code> for standalone use. There is no <code>color</code>{' '}
-        prop: colour comes from <code>currentColor</code>, overridable through{' '}
-        <code>--omnia-icon-color</code>.
-      </p>
+      <ul>
+        <li>
+          <strong>Pick the drawing by name.</strong> <code>glyph</code> chooses one of 33
+          named glyphs. The searchable catalogue below shows them all.
+        </li>
+        <li>
+          <strong>It swaps with the skin.</strong> Each glyph has a neutral drawing and a
+          pixel-art drawing. The icon shows the one that matches the active skin, even
+          when the skin is set without the React provider.
+        </li>
+        <li>
+          <strong>Regular or solid.</strong> <code>variantStyle</code> switches to the
+          filled drawing for an active or selected state; the default is regular.
+        </li>
+        <li>
+          <strong>It follows the text size.</strong> With no <code>variantSize</code>, the
+          icon is as tall as the surrounding text. Set it for a fixed size, from{' '}
+          <code>sm</code> to <code>lg</code>.
+        </li>
+        <li>
+          <strong>Decorative unless you name it.</strong> By default screen readers skip
+          it, which suits an icon inside a labelled Button or Link. Pass{' '}
+          <code>aria-label</code> or <code>aria-labelledby</code> when the icon stands
+          alone and must be announced as an image.
+        </li>
+        <li>
+          <strong>It takes the text colour.</strong> There is no colour prop: the icon
+          paints with the surrounding text colour, so it follows the theme on its own.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Icon</strong> affiche l'un des 33 glyphes sémantiques (ADR
-        0019). Il ne consomme que des jetons sémantiques <code>var(--…)</code> et peint
-        avec <code>currentColor</code> : il hérite de la couleur du texte environnant et
-        change d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage
-        neutre/pixel, sans modifier son propre CSS. Les SVG des deux habillages sont
-        rendus et le CSS affiche celui qui correspond au <code>data-skin</code> actif — la
-        source de vérité unique de <code>OmniaThemeProvider</code> (ADR 0017) — de sorte
-        qu'une icône reste cohérente même quand un consommateur pose{' '}
-        <code>data-skin</code> sans le provider React.
+        Utilisez <strong>Icon</strong> pour afficher un petit symbole à côté d'un libellé
+        ou dans un contrôle — une loupe de recherche, une croix de fermeture, une marque
+        d'état.
       </p>
-      <p>
-        Choisissez le dessin avec <code>glyph</code> (l'union typée <code>IconGlyph</code>{' '}
-        ; <code>name</code> est un nom HTML natif et n'est pas utilisé, ADR 0015).
-        Utilisez <code>variantStyle</code> (<code>regular</code> / <code>solid</code>, par
-        défaut <code>regular</code>) pour l'état actif/sélectionné, et{' '}
-        <code>variantSize</code> (<code>sm</code> / <code>md</code> / <code>lg</code>)
-        pour une taille fixe — sans <code>variantSize</code>, l'icône fait{' '}
-        <code>1em</code> et suit le texte environnant.
-      </p>
-      <p>
-        L'accessibilité suit le WCAG 1.1.1. L'icône est{' '}
-        <strong>décorative par défaut</strong> (<code>aria-hidden</code>, sans rôle) : le
-        cas courant est une icône dans un <code>Button</code> ou un <code>Link</code> déjà
-        étiqueté. Fournissez <code>aria-label</code> ou <code>aria-labelledby</code> pour
-        la promouvoir en <code>role="img"</code> nommé pour un usage autonome. Il n'y a
-        pas de prop <code>color</code> : la couleur vient de <code>currentColor</code>,
-        personnalisable via <code>--omnia-icon-color</code>.
-      </p>
+      <ul>
+        <li>
+          <strong>Choisissez le dessin par son nom.</strong> <code>glyph</code> choisit
+          l'un des 33 glyphes nommés. Le catalogue avec recherche ci-dessous les montre
+          tous.
+        </li>
+        <li>
+          <strong>Elle change avec l'habillage.</strong> Chaque glyphe a un dessin neutre
+          et un dessin pixel art. L'icône affiche celui qui correspond à l'habillage
+          actif, même quand l'habillage est posé sans le provider React.
+        </li>
+        <li>
+          <strong>Regular ou solid.</strong> <code>variantStyle</code> passe au dessin
+          plein pour un état actif ou sélectionné ; la valeur par défaut est regular.
+        </li>
+        <li>
+          <strong>Elle suit la taille du texte.</strong> Sans <code>variantSize</code>,
+          l'icône a la hauteur du texte environnant. Réglez-le pour une taille fixe, de{' '}
+          <code>sm</code> à <code>lg</code>.
+        </li>
+        <li>
+          <strong>Décorative, sauf si vous la nommez.</strong> Par défaut, les lecteurs
+          d'écran l'ignorent, ce qui convient à une icône dans un Button ou un Link déjà
+          étiqueté. Fournissez <code>aria-label</code> ou <code>aria-labelledby</code>{' '}
+          quand l'icône est seule et doit être annoncée comme une image.
+        </li>
+        <li>
+          <strong>Elle prend la couleur du texte.</strong> Il n'y a pas de propriété de
+          couleur : l'icône peint avec la couleur du texte environnant, et suit donc le
+          thème toute seule.
+        </li>
+      </ul>
     </>
   }
 />

@@ -9,14 +9,13 @@ import { Localized } from '../lib/Localized';
   en={
     <p>
       How colour, shape and type reach a component, and how the two theme axes repaint
-      them. This page states the current rule; the linked ADRs hold the reasoning.
+      them. This page states the current rule.
     </p>
   }
   fr={
     <p>
       Comment la couleur, la forme et la typographie parviennent à un composant, et
-      comment les deux axes de thème les repeignent. Cette page énonce la règle actuelle ;
-      les ADR liées en portent la justification.
+      comment les deux axes de thème les repeignent. Cette page énonce la règle actuelle.
     </p>
   }
 />
@@ -81,75 +80,6 @@ import { Localized } from '../lib/Localized';
         Chaque statut est une paire — un fond et sa couleur de texte{' '}
         <code>--omnia-color-text-on-&lt;statut&gt;</code>. <code>danger</code> est le
         statut d'erreur.
-      </li>
-    </ul>
-  }
-/>
-
-## <Localized en="Rationale (ADRs)" fr="Justification (ADR)" />
-
-<Localized
-  en={
-    <ul>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0003-token-contract.md">
-          ADR 0003
-        </a>{' '}
-        — two-tier token contract + the no-raw-colour fitness function.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0013-omnia-prefixed-tokens.md">
-          ADR 0013
-        </a>{' '}
-        — the <code>--omnia-</code> prefix on every custom property.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0004-two-axis-theming.md">
-          ADR 0004
-        </a>{' '}
-        and{' '}
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0017-unified-theme-provider.md">
-          ADR 0017
-        </a>{' '}
-        — two-axis theming via <code>OmniaThemeProvider</code>.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0012-status-colour-tokens.md">
-          ADR 0012
-        </a>{' '}
-        — status colour tokens.
-      </li>
-    </ul>
-  }
-  fr={
-    <ul>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0003-token-contract.md">
-          ADR 0003
-        </a>{' '}
-        — contrat de jetons à deux niveaux + la fonction de forme anti-couleur-brute.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0013-omnia-prefixed-tokens.md">
-          ADR 0013
-        </a>{' '}
-        — le préfixe <code>--omnia-</code> sur chaque propriété personnalisée.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0004-two-axis-theming.md">
-          ADR 0004
-        </a>{' '}
-        et{' '}
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0017-unified-theme-provider.md">
-          ADR 0017
-        </a>{' '}
-        — thème à deux axes via <code>OmniaThemeProvider</code>.
-      </li>
-      <li>
-        <a href="https://github.com/cdfarkas/ds-omnia/blob/main/docs/adr/0012-status-colour-tokens.md">
-          ADR 0012
-        </a>{' '}
-        — jetons de couleur de statut.
       </li>
     </ul>
   }
