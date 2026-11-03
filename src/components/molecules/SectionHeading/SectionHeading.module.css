@@ -1,0 +1,32 @@
+@layer components {
+  .root {
+    container-type: inline-size;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--omnia-section-heading-row-gap, var(--omnia-palette-space-2))
+      var(--omnia-section-heading-column-gap, var(--omnia-palette-space-4));
+  }
+
+  .root > * {
+    grid-column: 1 / -1;
+  }
+
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--omnia-palette-space-2);
+  }
+
+  @container (width >= 30rem) {
+    .title,
+    .description {
+      grid-column: 1;
+    }
+
+    .actions {
+      grid-column: 2;
+      grid-row: 1;
+      align-self: center;
+    }
+  }
+}
