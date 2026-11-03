@@ -14,5 +14,16 @@ export { locales, setLocale, getLocale } from './lib/i18n';
 export type { Locale } from './lib/i18n';
 export { intents } from './lib/intents';
 export type { Intent } from './lib/intents';
-export { OmniaThemeProvider, useTheme, themes, skins } from './lib/OmniaThemeProvider';
-export type { Theme, Skin, ThemeState } from './lib/OmniaThemeProvider';
+export {
+  OmniaThemeProvider,
+  useTheme,
+  themes,
+  skins,
+  getThemeInitScript,
+} from './lib/OmniaThemeProvider';
+export type {
+  Theme,
+  Skin,
+  ThemeState,
+  ThemeContextValue,
+} from './lib/OmniaThemeProvider';

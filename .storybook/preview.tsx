@@ -1,5 +1,5 @@
 import type { Preview, Decorator } from '@storybook/react-vite';
-import { setLocale, type Locale } from '../src/lib/i18n';
+import { type Locale } from '../src/lib/i18n';
 import { OmniaThemeProvider, type Theme, type Skin } from '../src/lib/OmniaThemeProvider';
 
 import '@fontsource-variable/fraunces';
@@ -15,18 +15,17 @@ const prefersDark =
   typeof window !== 'undefined' &&
   window.matchMedia?.('(prefers-color-scheme: dark)').matches;
 
-const withTheme: Decorator = (Story, context) => (
-  <OmniaThemeProvider
-    theme={(context.globals.theme ?? 'light') as Theme}
-    skin={(context.globals.skin ?? 'default') as Skin}
-  >
-    <Story />
-  </OmniaThemeProvider>
-);
-
-const withLocale: Decorator = (Story, context) => {
-  setLocale((context.globals.locale ?? 'en') as Locale);
-  return <Story />;
+const withTheme: Decorator = (Story, context) => {
+  if (context.parameters?.selfThemed) return <Story />;
+  return (
+    <OmniaThemeProvider
+      theme={(context.globals.theme ?? 'light') as Theme}
+      skin={(context.globals.skin ?? 'default') as Skin}
+      locale={(context.globals.locale ?? 'en') as Locale}
+    >
+      <Story />
+    </OmniaThemeProvider>
+  );
 };
 
 const preview: Preview = {
@@ -104,7 +103,7 @@ const preview: Preview = {
       },
     },
   },
-  decorators: [withTheme, withLocale],
+  decorators: [withTheme],
   tags: ['autodocs'],
 };
 
