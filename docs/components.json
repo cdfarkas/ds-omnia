@@ -765,6 +765,95 @@
           "id": "atoms-divider--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "Indicator",
+      "description": "Inline status dot. The root is a `<span role=\"img\">` named by the required `aria-label` (the state, e.g. \"Available\"), so the state is never colour-only (WCAG 1.4.1); `intent` only tints the dot. A caller whose visible text already states the state passes `aria-hidden` to make it decorative. `pulse` adds a live halo that stops under `prefers-reduced-motion`.",
+      "source": "src/components/atoms/Indicator/Indicator.tsx",
+      "props": [
+        {
+          "name": "intent",
+          "type": "Intent",
+          "required": false,
+          "default": "'neutral'",
+          "options": [
+            "primary",
+            "neutral",
+            "success",
+            "warning",
+            "info",
+            "danger"
+          ]
+        },
+        {
+          "name": "variantSize",
+          "type": "IndicatorSize",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md"
+          ]
+        },
+        {
+          "name": "pulse",
+          "type": "boolean",
+          "required": false,
+          "default": "false"
+        },
+        {
+          "name": "'aria-label'",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLSpanElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "intent",
+        "variantSize"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-indicator--playground"
+        },
+        {
+          "name": "Intents",
+          "id": "atoms-indicator--intents"
+        },
+        {
+          "name": "Sizes",
+          "id": "atoms-indicator--sizes"
+        },
+        {
+          "name": "Pulse",
+          "id": "atoms-indicator--pulse"
+        },
+        {
+          "name": "Decorative",
+          "id": "atoms-indicator--decorative"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-indicator--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-indicator--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-indicator--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-indicator--pixel-dark"
+        }
+      ]
     }
   ]
 }

@@ -1,0 +1,55 @@
+@layer components {
+  .root {
+    display: inline-flex;
+  }
+
+  .dot {
+    inline-size: var(--omnia-indicator-size);
+    block-size: var(--omnia-indicator-size);
+    border: var(--omnia-border-width-regular) solid
+      var(--omnia-indicator-ring, var(--omnia-color-border-strong));
+    border-radius: 50%;
+    background-color: var(--omnia-indicator-color, var(--omnia-intent-bg));
+  }
+
+  .sm {
+    --omnia-indicator-size: 0.5rem;
+  }
+
+  .md {
+    --omnia-indicator-size: 0.75rem;
+  }
+
+  /* Emphasis only — colour and label already carry the state — so the halo stops under
+     reduced motion while the solid dot keeps full 3:1 contrast throughout. */
+  .pulse {
+    animation: omnia-indicator-pulse 1.8s var(--omnia-ease-out) infinite;
+  }
+
+  /* stylelint-disable scale-unlimited/declaration-strict-value -- animated ring offsets are literals */
+  @keyframes omnia-indicator-pulse {
+    0% {
+      box-shadow: 0 0 0 0 color-mix(in srgb, var(--omnia-intent-bg) 65%, transparent);
+    }
+
+    50% {
+      box-shadow: 0 0 0 0.4rem color-mix(in srgb, var(--omnia-intent-bg) 30%, transparent);
+    }
+
+    100% {
+      box-shadow: 0 0 0 0.75rem color-mix(in srgb, var(--omnia-intent-bg) 0%, transparent);
+    }
+  }
+  /* stylelint-enable scale-unlimited/declaration-strict-value */
+
+  @media (prefers-reduced-motion: reduce) {
+    .pulse {
+      animation: none;
+    }
+  }
+
+  :global([data-skin='pixel']) .dot {
+    border-width: var(--omnia-palette-border-med);
+    border-radius: 0;
+  }
+}

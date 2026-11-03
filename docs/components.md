@@ -134,3 +134,19 @@ Source: `src/components/atoms/Divider/Divider.tsx`
 
 Stories: `atoms-divider--playground`, `atoms-divider--plain-rule`, `atoms-divider--vertical`, `atoms-divider--decorative`, `atoms-divider--overridden`, `atoms-divider--dark-neutral`, `atoms-divider--pixel-light`, `atoms-divider--pixel-dark`
 
+## Indicator
+
+Inline status dot. The root is a `<span role="img">` named by the required `aria-label` (the state, e.g. "Available"), so the state is never colour-only (WCAG 1.4.1); `intent` only tints the dot. A caller whose visible text already states the state passes `aria-hidden` to make it decorative. `pulse` adds a live halo that stops under `prefers-reduced-motion`.
+
+Source: `src/components/atoms/Indicator/Indicator.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `intent` | `Intent` | no | `'neutral'` | `primary`, `neutral`, `success`, `warning`, `info`, `danger` |
+| `variantSize` | `IndicatorSize` | no | `'md'` | `sm`, `md` |
+| `pulse` | `boolean` | no | `false` | — |
+| `'aria-label'` | `string` | yes | — | — |
+| `ref` | `Ref<HTMLSpanElement>` | no | — | — |
+
+Stories: `atoms-indicator--playground`, `atoms-indicator--intents`, `atoms-indicator--sizes`, `atoms-indicator--pulse`, `atoms-indicator--decorative`, `atoms-indicator--overridden`, `atoms-indicator--dark-neutral`, `atoms-indicator--pixel-light`, `atoms-indicator--pixel-dark`
+
