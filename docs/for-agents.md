@@ -33,6 +33,9 @@ catalogued in Storybook. Read this once, then work from the sources it points to
   (ADR 0006).
 - **Bilingual**: labels and ARIA strings go through `t()`; MDX prose through `<Localized/>`
   (ADR 0007).
+- **Previewing motion**: flip the toolbar's reduced-motion control (CSS user preferences addon) to
+  `reduce` to preview how motion-gated components behave under `prefers-reduced-motion` — it emulates
+  both the CSS media query and `window.matchMedia`.
 
 ## Regenerate the API index
 
