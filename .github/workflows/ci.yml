@@ -29,12 +29,21 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - name: Install Playwright Chromium
         run: pnpm exec playwright install --with-deps chromium
-      - run: pnpm test
+      - run: pnpm coverage
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v7.1.1
+        with:
+          files: ./coverage/lcov.info
+          use_oidc: true
+          fail_ci_if_error: false
 
   build-storybook:
     runs-on: ubuntu-latest
