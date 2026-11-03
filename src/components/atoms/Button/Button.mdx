@@ -10,72 +10,87 @@ import * as ButtonStories from './Button.stories';
   en={
     <>
       <p>
-        The <strong>Button</strong> atom is the primary interactive control. It consumes
-        semantic <code>var(--…)</code> tokens only, so it reskins across the light/dark
-        theme axis and the neutral/pixel skin axis without any change to its own CSS. Its
-        label and its loading announcement are bilingual through the typed{' '}
-        <code>t()</code> indirection.
+        Use <strong>Button</strong> for an action the user triggers — saving, submitting a
+        form, opening a dialog.
       </p>
-      <p>
-        Use <code>intent</code> for meaning (<code>primary</code>, <code>neutral</code>,{' '}
-        <code>success</code>, <code>warning</code>, <code>info</code>, <code>danger</code>
-        ), <code>variantSize</code> for scale, and <code>pending</code> to show a busy
-        state — a pending button is disabled and exposes <code>aria-busy</code> plus a
-        screen-reader-only status. Native <code>&lt;button&gt;</code> attributes pass
-        through unchanged; a prop never reuses a native name with another meaning (ADR
-        0015).
-      </p>
-      <p>
-        The status intents <code>success</code>, <code>warning</code>, <code>info</code>{' '}
-        and <code>danger</code> use the global status tokens{' '}
-        <code>--omnia-color-&lt;status&gt;</code> with their <code>-hover</code>/
-        <code>-active</code> shades and <code>--omnia-color-text-on-&lt;status&gt;</code>{' '}
-        (ADR 0012). Every intent reads its rest, hover and press colours from the shared
-        intent map (<code>--omnia-intent-bg</code>, <code>--omnia-intent-bg-hover</code>,{' '}
-        <code>--omnia-intent-bg-active</code>, <code>--omnia-intent-fg</code>).
-      </p>
-      <p>
-        On hover the button lifts and its offset shadow grows; on press it collapses onto
-        the page (see ADR 0009). All motion respects <code>prefers-reduced-motion</code>,
-        falling back to colour and shadow cues so states stay distinguishable without
-        movement.
-      </p>
+      <ul>
+        <li>
+          <strong>The intent carries the meaning.</strong> <code>intent</code> picks one
+          of six colour intents, from primary (the default) to danger. Each intent has its
+          own rest, hover and press colours.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the scale, from{' '}
+          <code>sm</code> to <code>lg</code>; the default is <code>md</code>. It is the
+          same scale as Input.
+        </li>
+        <li>
+          <strong>A busy state for slow actions.</strong> Set <code>pending</code> while
+          the action runs: the button is disabled, marked busy, and screen readers hear a
+          loading message. The prop has its own name because a custom prop never reuses a
+          native HTML attribute name.
+        </li>
+        <li>
+          <strong>A native button underneath.</strong> Every native{' '}
+          <code>&lt;button&gt;</code> attribute passes through unchanged.{' '}
+          <code>type</code> defaults to <code>button</code>, so it never submits a form by
+          accident.
+        </li>
+        <li>
+          <strong>It moves, unless motion is reduced.</strong> On hover the button lifts
+          and its shadow grows; on press it collapses onto the page. Under reduced motion
+          it stays still, and colour and shadow changes still mark each state.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colours come from tokens, so Button
+          follows the light/dark theme and the neutral/pixel skin with no CSS changes. Its
+          loading message follows the active language.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Button</strong> est le contrôle interactif principal. Il ne
-        consomme que des jetons sémantiques <code>var(--…)</code> : il change donc
-        d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage neutre/pixel,
-        sans modifier son propre CSS. Son libellé et son annonce de chargement sont
-        bilingues grâce à l'indirection typée <code>t()</code>.
+        Utilisez <strong>Button</strong> pour une action déclenchée par l'utilisateur —
+        enregistrer, envoyer un formulaire, ouvrir une boîte de dialogue.
       </p>
-      <p>
-        Utilisez <code>intent</code> pour le sens (<code>primary</code>,{' '}
-        <code>neutral</code>, <code>success</code>, <code>warning</code>,{' '}
-        <code>info</code>, <code>danger</code>), <code>variantSize</code> pour la taille,
-        et <code>pending</code> pour l'état occupé — un bouton en chargement est désactivé
-        et expose <code>aria-busy</code> ainsi qu'un statut réservé aux lecteurs d'écran.
-        Les attributs natifs de <code>&lt;button&gt;</code> passent tels quels ; une
-        propriété ne reprend jamais un nom natif avec un autre sens (ADR 0015).
-      </p>
-      <p>
-        Les intentions de statut <code>success</code>, <code>warning</code>,{' '}
-        <code>info</code> et <code>danger</code> utilisent les jetons de statut globaux{' '}
-        <code>--omnia-color-&lt;status&gt;</code> avec leurs nuances <code>-hover</code>/
-        <code>-active</code> et <code>--omnia-color-text-on-&lt;status&gt;</code> (ADR
-        0012). Chaque intention lit ses couleurs de repos, de survol et d'enfoncement dans
-        la table d'intentions partagée (<code>--omnia-intent-bg</code>,{' '}
-        <code>--omnia-intent-bg-hover</code>, <code>--omnia-intent-bg-active</code>,{' '}
-        <code>--omnia-intent-fg</code>).
-      </p>
-      <p>
-        Au survol, le bouton se soulève et son ombre portée grandit ; à l'enfoncement, il
-        s'écrase sur la page (voir l'ADR 0009). Toute animation respecte{' '}
-        <code>prefers-reduced-motion</code> et se rabat sur des indices de couleur et
-        d'ombre.
-      </p>
+      <ul>
+        <li>
+          <strong>L'intention porte le sens.</strong> <code>intent</code> choisit l'une
+          des six intentions de couleur, de primary (par défaut) à danger. Chaque
+          intention a ses propres couleurs de repos, de survol et d'appui.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle l'échelle, de{' '}
+          <code>sm</code> à <code>lg</code> ; la valeur par défaut est <code>md</code>.
+          C'est la même échelle qu'Input.
+        </li>
+        <li>
+          <strong>Un état occupé pour les actions lentes.</strong> Activez{' '}
+          <code>pending</code> pendant l'action : le bouton est désactivé, marqué comme
+          occupé, et les lecteurs d'écran entendent un message de chargement. La propriété
+          a son propre nom, car une propriété personnalisée ne reprend jamais le nom d'un
+          attribut HTML natif.
+        </li>
+        <li>
+          <strong>Un vrai bouton natif.</strong> Tous les attributs natifs de{' '}
+          <code>&lt;button&gt;</code> passent tels quels. <code>type</code> vaut{' '}
+          <code>button</code> par défaut : il n'envoie donc jamais un formulaire par
+          accident.
+        </li>
+        <li>
+          <strong>Il bouge, sauf si le mouvement est réduit.</strong> Au survol, le bouton
+          se soulève et son ombre grandit ; à l'appui, il s'écrase sur la page. En
+          mouvement réduit, il reste immobile, et les changements de couleur et d'ombre
+          marquent toujours chaque état.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Les couleurs viennent des jetons :
+          Button suit le thème clair/sombre et l'habillage neutre/pixel sans retoucher son
+          CSS. Son message de chargement suit la langue active.
+        </li>
+      </ul>
     </>
   }
 />
@@ -182,7 +197,7 @@ import * as ButtonStories from './Button.stories';
         </li>
       </ul>
       <p>
-        L'histoire <code>Overridden</code> ci-dessus redirige{' '}
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
         <code>--omnia-button-radius</code>/<code>--omnia-button-bg</code> et redimensionne
         la sous-partie <code>[data-part="spinner"]</code> depuis{' '}
         <code>@layer overrides</code>, sans <code>!important</code>.

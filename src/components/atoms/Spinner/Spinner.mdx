@@ -10,67 +10,80 @@ import * as SpinnerStories from './Spinner.stories';
   en={
     <>
       <p>
-        The <strong>Spinner</strong> atom is an indeterminate loading indicator. It
-        consumes semantic <code>var(--…)</code> tokens only, so it reskins across the
-        light/dark theme axis and the neutral/pixel skin axis without any change to its
-        own CSS. The animated ring uses <code>currentColor</code>, so it inherits the
-        surrounding text colour and meets WCAG 1.4.11 (3:1 non-text contrast) wherever
-        that text already passes.
+        Use <strong>Spinner</strong> to show that something is loading when you cannot
+        tell how long it will take.
       </p>
-      <p>
-        The root is a <code>&lt;span role="status"&gt;</code> — a polite live region —
-        whose accessible name defaults to <code>t('spinner.loading')</code> ("Loading"),
-        set as <code>aria-label</code>, with the same string repeated as visually hidden
-        text so a screen reader announces it when the region appears. Pass{' '}
-        <code>aria-label</code> to name the activity specifically (for example "Loading
-        products"); it overrides the default name. Use <code>variantSize</code> (
-        <code>sm</code> / <code>md</code> / <code>lg</code>, default <code>md</code>) for
-        the ring size — <code>size</code> is a native HTML name, so the axis is renamed
-        (ADR 0015).
-      </p>
-      <p>
-        When the surrounding text already announces the wait (a button label, a sentence
-        beside the ring), pass <code>aria-hidden</code> to make the spinner decorative and
-        avoid a second announcement. There is no <code>value</code>, <code>color</code>,{' '}
-        <code>delay</code>, visible label or overlay: a determinate progress indicator is
-        a separate future component. The ring keeps turning under{' '}
-        <code>prefers-reduced-motion</code> because loading is essential feedback — a
-        frozen ring would read as a stalled process.
-      </p>
+      <ul>
+        <li>
+          <strong>It announces itself.</strong> The spinner is a polite status region that
+          screen readers announce as “Loading”, in the active language. Pass{' '}
+          <code>aria-label</code> to name the activity, such as “Loading products”.
+        </li>
+        <li>
+          <strong>Decorative when the text already says it.</strong> When nearby text
+          already announces the wait, such as a button label, pass{' '}
+          <code>aria-hidden</code> to avoid a second announcement.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the ring size, from{' '}
+          <code>sm</code> to <code>lg</code>; the default is <code>md</code>.
+        </li>
+        <li>
+          <strong>It takes the text colour.</strong> The ring paints with the surrounding
+          text colour, so it reskins on its own and keeps 3:1 contrast wherever that text
+          already passes.
+        </li>
+        <li>
+          <strong>It keeps turning.</strong> The ring still spins under reduced motion,
+          because loading is essential feedback: a frozen ring would look like a stalled
+          process.
+        </li>
+        <li>
+          <strong>Indeterminate only.</strong> It has no value, colour, delay or visible
+          label. A progress indicator with a known value will be a separate component.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Spinner</strong> est un indicateur de chargement indéterminé.
-        Il ne consomme que des jetons sémantiques <code>var(--…)</code> : il change donc
-        d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage neutre/pixel,
-        sans modifier son propre CSS. L'anneau animé utilise <code>currentColor</code> :
-        il hérite de la couleur du texte environnant et respecte le WCAG 1.4.11 (contraste
-        non-textuel de 3:1) partout où ce texte passe déjà.
+        Utilisez <strong>Spinner</strong> pour montrer qu'un chargement est en cours quand
+        sa durée est inconnue.
       </p>
-      <p>
-        La racine est un <code>&lt;span role="status"&gt;</code> — une région live polie —
-        dont le nom accessible vaut par défaut <code>t('spinner.loading')</code>{' '}
-        («&nbsp;Chargement&nbsp;»), posé comme <code>aria-label</code>, la même chaîne
-        étant répétée en texte masqué visuellement pour qu'un lecteur d'écran l'annonce à
-        l'apparition de la région. Fournissez <code>aria-label</code> pour nommer
-        précisément l'activité (par exemple «&nbsp;Chargement des produits&nbsp;») : il
-        remplace le nom par défaut. Utilisez <code>variantSize</code> (<code>sm</code> /{' '}
-        <code>md</code> / <code>lg</code>, par défaut <code>md</code>) pour la taille de
-        l'anneau — <code>size</code> est un nom HTML natif, l'axe est donc renommé (ADR
-        0015).
-      </p>
-      <p>
-        Quand le texte environnant annonce déjà l'attente (un libellé de bouton, une
-        phrase à côté de l'anneau), fournissez <code>aria-hidden</code> pour rendre le
-        spinner décoratif et éviter une seconde annonce. Il n'y a ni <code>value</code>,
-        ni <code>color</code>, ni <code>delay</code>, ni libellé visible, ni superposition
-        : un indicateur de progression déterminé est un futur composant séparé. L'anneau
-        continue de tourner sous <code>prefers-reduced-motion</code> car le chargement est
-        un retour essentiel — un anneau figé laisserait croire que le processus est
-        bloqué.
-      </p>
+      <ul>
+        <li>
+          <strong>Il s'annonce tout seul.</strong> Le spinner est une région d'état polie
+          que les lecteurs d'écran annoncent comme « Chargement », dans la langue active.
+          Fournissez <code>aria-label</code> pour nommer l'activité, par exemple «
+          Chargement des produits ».
+        </li>
+        <li>
+          <strong>Décoratif quand le texte le dit déjà.</strong> Quand un texte voisin
+          annonce déjà l'attente, comme un libellé de bouton, fournissez{' '}
+          <code>aria-hidden</code> pour éviter une seconde annonce.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle la taille de
+          l'anneau, de <code>sm</code> à <code>lg</code> ; la valeur par défaut est{' '}
+          <code>md</code>.
+        </li>
+        <li>
+          <strong>Il prend la couleur du texte.</strong> L'anneau peint avec la couleur du
+          texte environnant : il s'adapte tout seul et garde un contraste de 3:1 partout
+          où ce texte passe déjà.
+        </li>
+        <li>
+          <strong>Il continue de tourner.</strong> L'anneau tourne même en mouvement
+          réduit, car le chargement est un retour essentiel : un anneau figé laisserait
+          croire que le processus est bloqué.
+        </li>
+        <li>
+          <strong>Indéterminé uniquement.</strong> Il n'a ni valeur, ni couleur, ni délai,
+          ni libellé visible. Un indicateur de progression avec une valeur connue sera un
+          composant séparé.
+        </li>
+      </ul>
     </>
   }
 />

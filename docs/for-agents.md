@@ -10,8 +10,9 @@ how a rule *is now*; the **ADRs** say *why and when* it was decided. This file p
 
 - **Conventions, living — the Guidelines section in Storybook** (`src/guidelines/*.mdx`). The
   always-current distillation of each rule — tokens & theming, prop naming, component naming,
-  accessibility, responsive, testing & gates, bilingual — each page linking its ADR for the
-  rationale. Deployed with the catalogue to GitHub Pages; this is the human-facing reference.
+  accessibility, responsive, testing & gates, bilingual — each page self-contained, the
+  reasoning living only in `docs/adr/`. Deployed with the catalogue to GitHub Pages; this is the
+  human-facing reference.
 - **API index — [`components.json`](./components.json)** (generated, machine-readable). One entry
   per component exported from `src/index.ts`: props (name, type, default, required), variant axes,
   story ids, and the authored a11y/contract notes. A human-readable mirror is
@@ -42,6 +43,11 @@ how a rule *is now*; the **ADRs** say *why and when* it was decided. This file p
   (ADR 0006).
 - **Bilingual**: labels and ARIA strings go through `t()`; MDX prose through `<Localized/>`
   (ADR 0007).
+- **Catalogue prose**: a component page opens with a usage-first lead (what it is for, when to reach
+  for it), then bullets with a bold plain-language label and one or two sentences; prop names in
+  code but explanations in words, no inline lists of allowed values (the Controls table carries
+  them). No catalogue page — component MDX, Guidelines or Foundations — mentions or links an ADR;
+  ADRs live only in `docs/adr/`.
 - **Previewing motion**: flip the toolbar's reduced-motion control (CSS user preferences addon) to
   `reduce` to preview how motion-gated components behave under `prefers-reduced-motion` — it emulates
   both the CSS media query and `window.matchMedia`.

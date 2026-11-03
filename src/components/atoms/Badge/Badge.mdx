@@ -10,50 +10,58 @@ import * as BadgeStories from './Badge.stories';
   en={
     <>
       <p>
-        The <strong>Badge</strong> atom is a short, non-interactive status label. It
-        consumes semantic <code>var(--…)</code> tokens only, so it reskins across the
-        light/dark theme axis and the neutral/pixel skin axis without any change to its
-        own CSS.
+        Use <strong>Badge</strong> for a short status label set next to the item it
+        describes — a state such as “Paid”, “Draft” or “Failed”.
       </p>
-      <p>
-        Use <code>intent</code> for meaning (<code>primary</code>, <code>neutral</code>,{' '}
-        <code>success</code>, <code>warning</code>, <code>info</code>, <code>danger</code>
-        ). The status intents <code>success</code>, <code>warning</code>,{' '}
-        <code>info</code> and <code>danger</code> draw on the global status tokens{' '}
-        <code>--omnia-color-&lt;status&gt;</code> /{' '}
-        <code>--omnia-color-text-on-&lt;status&gt;</code> (ADR 0012), shared by any
-        component that carries a status. Every intent reads its colours from the shared
-        intent map (<code>--omnia-intent-bg</code>/<code>--omnia-intent-fg</code>, ADR
-        0012). Colour is never the only signal: the badge text itself must carry the
-        meaning, so it still reads without colour. A badge is not a control — it has no
-        hover, press or focus state; wrap it in a real control when it must act.
-      </p>
+      <ul>
+        <li>
+          <strong>The intent carries the meaning.</strong> <code>intent</code> picks one
+          of six colour intents, from primary to danger; the default is neutral. The
+          status intents share their colours with every other component that shows a
+          status.
+        </li>
+        <li>
+          <strong>Colour is never the only signal.</strong> The badge text must state the
+          status on its own, so it still reads without colour.
+        </li>
+        <li>
+          <strong>It is not a control.</strong> A badge has no hover, press or focus
+          state. Place it inside a real control when it must trigger an action.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colours come from tokens, so Badge
+          follows the light/dark theme and the neutral/pixel skin with no CSS changes.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Badge</strong> est une étiquette de statut courte et non
-        interactive. Il ne consomme que des jetons sémantiques <code>var(--…)</code> : il
-        change donc d'apparence selon l'axe de thème clair/sombre et l'axe d'habillage
-        neutre/pixel, sans modifier son propre CSS.
+        Utilisez <strong>Badge</strong> pour une courte étiquette de statut placée à côté
+        de l'élément qu'elle décrit — un état comme « Payé », « Brouillon » ou « Échec ».
       </p>
-      <p>
-        Utilisez <code>intent</code> pour le sens (<code>primary</code>,{' '}
-        <code>neutral</code>, <code>success</code>, <code>warning</code>,{' '}
-        <code>info</code>, <code>danger</code>). Les intentions de statut{' '}
-        <code>success</code>, <code>warning</code>, <code>info</code> et{' '}
-        <code>danger</code> s'appuient sur les jetons de statut globaux{' '}
-        <code>--omnia-color-&lt;status&gt;</code> /{' '}
-        <code>--omnia-color-text-on-&lt;status&gt;</code> (ADR 0012), partagés par tout
-        composant qui porte un statut. Chaque intention lit ses couleurs dans la table
-        d'intentions partagée (<code>--omnia-intent-bg</code>/
-        <code>--omnia-intent-fg</code>, ADR 0012). La couleur n'est jamais le seul signal
-        : le texte du badge doit lui-même porter le sens, pour rester lisible sans la
-        couleur. Un badge n'est pas un contrôle — il n'a ni état de survol, ni
-        d'enfoncement, ni de focus ; placez-le dans un vrai contrôle s'il doit déclencher
-        une action.
-      </p>
+      <ul>
+        <li>
+          <strong>L'intention porte le sens.</strong> <code>intent</code> choisit l'une
+          des six intentions de couleur, de primary à danger ; la valeur par défaut est
+          neutral. Les intentions de statut partagent leurs couleurs avec tout autre
+          composant qui affiche un statut.
+        </li>
+        <li>
+          <strong>La couleur n'est jamais le seul signal.</strong> Le texte du badge doit
+          énoncer le statut à lui seul, pour rester lisible sans la couleur.
+        </li>
+        <li>
+          <strong>Ce n'est pas un contrôle.</strong> Un badge n'a ni état de survol, ni
+          d'appui, ni de focus. Placez-le dans un vrai contrôle s'il doit déclencher une
+          action.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Les couleurs viennent des jetons : Badge
+          suit le thème clair/sombre et l'habillage neutre/pixel sans retoucher son CSS.
+        </li>
+      </ul>
     </>
   }
 />

@@ -10,99 +10,98 @@ import * as SwitchStories from './Switch.stories';
   en={
     <>
       <p>
-        The <strong>Switch</strong> atom is the native{' '}
-        <code>&lt;input type="checkbox" role="switch"&gt;</code>, drawn by CSS as a track
-        and a thumb, inside a <code>&lt;label&gt;</code>. Its <code>children</code> are
-        the visible label, placed after the track, so the whole row is the click target,
-        and Space, focus and form posting stay native. The state is the native{' '}
-        <code>checked</code>; the atom never renders <code>aria-checked</code>, which ARIA
-        in HTML forbids on this input.
+        Use <strong>Switch</strong> for a setting that takes effect the moment it changes,
+        like a light switch. In a form the user submits, use Checkbox instead.
       </p>
-      <p>
-        A switch takes effect immediately, like a light switch: use it for a setting that
-        applies the moment it changes. In a form the user submits, prefer Checkbox. A
-        switch has no mixed state, so there is no <code>indeterminate</code>.
-      </p>
-      <p>
-        A switch without children has no visible label: give it an accessible name with{' '}
-        <code>aria-label</code> or <code>aria-labelledby</code>. The types do not enforce
-        it, so check every bare switch. Keep the label stable: it names the setting, not
-        its current state.
-      </p>
-      <p>
-        Use <code>variantSize</code> for scale (<code>sm</code>, <code>md</code>,{' '}
-        <code>lg</code>, the same scale as Checkbox). <code>invalid</code> sets{' '}
-        <code>aria-invalid</code> and a danger border; colour is never the only signal, so
-        pair it with an error message in text. <code>readOnly</code> has no effect on a
-        checkbox-type input (MDN): use <code>disabled</code> instead.
-      </p>
-      <p>
-        The atom is display only (ADR 0016): it ships no validation and no error text.{' '}
-        <code>name</code>, <code>value</code>, <code>checked</code>,{' '}
-        <code>defaultChecked</code>, <code>required</code>, <code>onChange</code>,{' '}
-        <code>onBlur</code> and <code>ref</code> reach the native input, so React Hook
-        Form's <code>register</code> and <code>FormData</code> work as on a plain
-        checkbox. <code>className</code> and <code>style</code> land on the root{' '}
-        <code>&lt;label&gt;</code>.
-      </p>
-      <p>
-        On, the track takes the accent fill and the thumb slides to the end; the thumb
-        position carries the state, not the colour alone. On hover the track lifts by one
-        pixel, on press it drops by one pixel (ADR 0009). Focus draws the focus ring
-        around the track. A disabled switch gets a dashed border. All motion respects{' '}
-        <code>prefers-reduced-motion</code>. A long label wraps next to the track, down to
-        320 CSS px.
-      </p>
+      <ul>
+        <li>
+          <strong>It is a native switch.</strong> A real checkbox input with the switch
+          role sits inside a label, so keyboard, focus and form posting stay native. The
+          whole row is the click target.
+        </li>
+        <li>
+          <strong>On or off, never mixed.</strong> The state is the native{' '}
+          <code>checked</code>, and there is no indeterminate state. When on, the thumb
+          slides to the end, so its position shows the state, not the colour alone.
+        </li>
+        <li>
+          <strong>Always give it a name.</strong> <code>children</code> is the visible
+          label, placed after the track. Without it, pass <code>aria-label</code> or{' '}
+          <code>aria-labelledby</code>. Keep the label stable: it names the setting, not
+          its current state.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the scale, from{' '}
+          <code>sm</code> to <code>lg</code>; it is the same scale as Checkbox.
+        </li>
+        <li>
+          <strong>An invalid look, no validation.</strong> <code>invalid</code> marks the
+          switch invalid for assistive technology and draws a danger border. The atom
+          ships no validation or error text, so pair it with an error message in text.
+        </li>
+        <li>
+          <strong>It works with form libraries.</strong> Every form prop, <code>ref</code>{' '}
+          included, reaches the native input, so React Hook Form and <code>FormData</code>{' '}
+          work as on a plain checkbox. Only <code>className</code> and <code>style</code>{' '}
+          go on the label wrapper.
+        </li>
+        <li>
+          <strong>Lock it with disabled.</strong> <code>readOnly</code> has no effect on
+          this kind of input, so use <code>disabled</code>. A disabled switch has a dashed
+          border, and focus draws a ring around the track. Hover and press nudge the track
+          by one pixel, except under reduced motion.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Switch</strong> est l'entrée native{' '}
-        <code>&lt;input type="checkbox" role="switch"&gt;</code>, dessinée en CSS comme un
-        rail et un curseur, dans un <code>&lt;label&gt;</code>. Ses <code>children</code>{' '}
-        forment le libellé visible, placé après le rail : toute la ligne est cliquable, et
-        la barre d'espace, le focus et l'envoi du formulaire restent natifs. L'état est le{' '}
-        <code>checked</code> natif ; le composant ne pose jamais <code>aria-checked</code>
-        , qu'ARIA in HTML interdit sur cette entrée.
+        Utilisez <strong>Switch</strong> pour un réglage qui s'applique dès qu'il change,
+        comme un interrupteur de lumière. Dans un formulaire que l'utilisateur envoie,
+        préférez Checkbox.
       </p>
-      <p>
-        Un interrupteur agit immédiatement, comme un interrupteur de lumière : utilisez-le
-        pour un réglage qui s'applique dès qu'il change. Dans un formulaire que
-        l'utilisateur envoie, préférez Checkbox. Un interrupteur n'a pas d'état mixte,
-        donc pas d'<code>indeterminate</code>.
-      </p>
-      <p>
-        Un interrupteur sans <code>children</code> n'a pas de libellé visible : donnez-lui
-        un nom accessible avec <code>aria-label</code> ou <code>aria-labelledby</code>.
-        Les types ne l'imposent pas, vérifiez donc chaque interrupteur nu. Gardez un
-        libellé stable : il nomme le réglage, pas son état.
-      </p>
-      <p>
-        Utilisez <code>variantSize</code> pour la taille (<code>sm</code>, <code>md</code>
-        , <code>lg</code>, la même échelle que Checkbox). <code>invalid</code> pose{' '}
-        <code>aria-invalid</code> et une bordure de danger ; la couleur n'est jamais le
-        seul signal, accompagnez-la d'un message d'erreur en texte. <code>readOnly</code>{' '}
-        n'a aucun effet sur une entrée de type case à cocher (MDN) : utilisez{' '}
-        <code>disabled</code>.
-      </p>
-      <p>
-        Le composant sert uniquement à l'affichage (ADR 0016) : il ne fournit ni
-        validation ni texte d'erreur. <code>name</code>, <code>value</code>,{' '}
-        <code>checked</code>, <code>defaultChecked</code>, <code>required</code>,{' '}
-        <code>onChange</code>, <code>onBlur</code> et <code>ref</code> vont sur l'entrée
-        native : le <code>register</code> de React Hook Form et <code>FormData</code>{' '}
-        fonctionnent comme sur une case ordinaire. <code>className</code> et{' '}
-        <code>style</code> vont sur le <code>&lt;label&gt;</code> racine.
-      </p>
-      <p>
-        Activé, le rail prend le remplissage d'accent et le curseur glisse au bout ; la
-        position du curseur porte l'état, pas la couleur seule. Au survol, le rail se
-        soulève d'un pixel ; à l'appui, il s'enfonce d'un pixel (ADR 0009). Le focus trace
-        l'anneau de focus autour du rail. Un interrupteur désactivé prend une bordure en
-        tirets. Toute animation respecte <code>prefers-reduced-motion</code>. Un libellé
-        long passe à la ligne à côté du rail, jusqu'à 320 px CSS.
-      </p>
+      <ul>
+        <li>
+          <strong>C'est un interrupteur natif.</strong> Une vraie case native avec le rôle
+          switch est placée dans un libellé : le clavier, le focus et l'envoi du
+          formulaire restent natifs. Toute la ligne est cliquable.
+        </li>
+        <li>
+          <strong>Activé ou désactivé, jamais mixte.</strong> L'état est le{' '}
+          <code>checked</code> natif, et il n'y a pas d'état indéterminé. Activé, le
+          curseur glisse au bout : sa position montre l'état, pas la couleur seule.
+        </li>
+        <li>
+          <strong>Donnez-lui toujours un nom.</strong> <code>children</code> est le
+          libellé visible, placé après le rail. Sans lui, fournissez{' '}
+          <code>aria-label</code> ou <code>aria-labelledby</code>. Gardez un libellé
+          stable : il nomme le réglage, pas son état.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle l'échelle, de{' '}
+          <code>sm</code> à <code>lg</code> ; c'est la même échelle que Checkbox.
+        </li>
+        <li>
+          <strong>Un aspect invalide, sans validation.</strong> <code>invalid</code>{' '}
+          signale l'interrupteur comme invalide aux technologies d'assistance et trace une
+          bordure de danger. Le composant ne fournit ni validation ni texte d'erreur :
+          accompagnez-le d'un message d'erreur en texte.
+        </li>
+        <li>
+          <strong>Il fonctionne avec les bibliothèques de formulaires.</strong> Chaque
+          propriété de formulaire, <code>ref</code> compris, va sur l'entrée native :
+          React Hook Form et <code>FormData</code> fonctionnent comme sur une case
+          ordinaire. Seuls <code>className</code> et <code>style</code> vont sur le
+          libellé englobant.
+        </li>
+        <li>
+          <strong>Verrouillez-le avec disabled.</strong> <code>readOnly</code> n'a aucun
+          effet sur ce type d'entrée : utilisez <code>disabled</code>. Un interrupteur
+          désactivé a une bordure en tirets, et le focus trace un anneau autour du rail.
+          Le survol et l'appui déplacent le rail d'un pixel, sauf en mouvement réduit.
+        </li>
+      </ul>
     </>
   }
 />

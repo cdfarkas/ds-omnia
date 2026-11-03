@@ -10,76 +10,93 @@ import * as InputStories from './Input.stories';
   en={
     <>
       <p>
-        The <strong>Input</strong> atom is the bare single-line text control: the native{' '}
-        <code>&lt;input&gt;</code> plus optional start and end adornments. It carries no
-        label, hint or error message; those belong to a wrapping field (a{' '}
-        <code>FormField</code> molecule is planned). Until then, give every input an
-        accessible name yourself, with a <code>&lt;label htmlFor&gt;</code> or{' '}
-        <code>aria-label</code>. A placeholder is never a label.
+        Use <strong>Input</strong> for a single line of text the user types — a name, an
+        email address, a search query. It is the bare field: the label, hint and error
+        message go around it.
       </p>
-      <p>
-        Use <code>variantSize</code> for scale (<code>sm</code>, <code>md</code>,{' '}
-        <code>lg</code>, the same scale as Button) and <code>type</code> for the text-like
-        kinds (<code>text</code>, <code>email</code>, <code>url</code>, <code>tel</code>,{' '}
-        <code>password</code>). <code>invalid</code> sets <code>aria-invalid</code> and a
-        danger border; colour is never the only signal, so pair it with an error message
-        in text. An input has no <code>intent</code>: invalid is its own state.
-      </p>
-      <p>
-        <code>className</code> and <code>style</code> land on the root wrapper, the
-        visible box. Every other prop, <code>ref</code> included, lands on the native{' '}
-        <code>&lt;input&gt;</code>, so <code>id</code>, <code>name</code>,{' '}
-        <code>autoComplete</code>, <code>aria-*</code> and even the native{' '}
-        <code>size</code> work as on a plain input (ADR 0015). Adornments are decorative
-        unless you give them meaning: mark an icon <code>aria-hidden</code>, and keep the
-        unit or prefix in the label too.
-      </p>
-      <p>
-        On hover and focus the field lifts and its offset shadow grows (ADR 0009); focus
-        also draws the focus ring around the whole field. Disabled and read-only stay
-        flat; a disabled field also gets a dashed border, so the two differ without
-        colour. All motion respects <code>prefers-reduced-motion</code>. The field fills
-        the width it is given, down to 320 CSS px.
-      </p>
+      <ul>
+        <li>
+          <strong>Always give it a name.</strong> Pair every input with a{' '}
+          <code>&lt;label htmlFor&gt;</code> or an <code>aria-label</code> until the
+          planned wrapping field component exists. A placeholder is never a label.
+        </li>
+        <li>
+          <strong>A native input underneath.</strong> <code>type</code> is the native
+          attribute, limited to the text-like kinds such as email or password. Every other
+          prop, <code>ref</code> included, reaches the native input; only{' '}
+          <code>className</code> and <code>style</code> go on the visible box.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the scale, from{' '}
+          <code>sm</code> to <code>lg</code>; it is the same scale as Button. It has its
+          own name, so the native <code>size</code> attribute still works.
+        </li>
+        <li>
+          <strong>Adornments at either end.</strong> <code>startAdornment</code> and{' '}
+          <code>endAdornment</code> hold an icon, a unit or a prefix inside the box. They
+          are decorative: mark an icon <code>aria-hidden</code>, and repeat any unit or
+          prefix in the label.
+        </li>
+        <li>
+          <strong>An invalid look, no validation.</strong> <code>invalid</code> marks the
+          field invalid for assistive technology and draws a danger border. Pair it with
+          an error message in text. Invalid is a state of its own, so an input has no
+          intent.
+        </li>
+        <li>
+          <strong>States show without colour alone.</strong> Focus draws a ring around the
+          whole field, and in the neutral skin the field lifts on hover and focus.
+          Disabled and read-only stay flat, and a disabled field adds a dashed border.
+          Movement stops under reduced motion.
+        </li>
+      </ul>
     </>
   }
   fr={
     <>
       <p>
-        Le composant <strong>Input</strong> est le contrôle de texte nu sur une ligne : le{' '}
-        <code>&lt;input&gt;</code> natif, avec des ornements facultatifs au début et à la
-        fin. Il ne porte ni libellé, ni aide, ni message d'erreur ; ceux-ci relèvent d'un
-        champ englobant (une molécule <code>FormField</code> est prévue). D'ici là, donnez
-        vous-même un nom accessible à chaque champ, avec un{' '}
-        <code>&lt;label htmlFor&gt;</code> ou <code>aria-label</code>. Un texte indicatif
-        (placeholder) n'est jamais un libellé.
+        Utilisez <strong>Input</strong> pour une ligne de texte saisie par l'utilisateur —
+        un nom, une adresse e-mail, une recherche. C'est le champ nu : le libellé, l'aide
+        et le message d'erreur se placent autour.
       </p>
-      <p>
-        Utilisez <code>variantSize</code> pour la taille (<code>sm</code>, <code>md</code>
-        , <code>lg</code>, la même échelle que Button) et <code>type</code> pour les types
-        textuels (<code>text</code>, <code>email</code>, <code>url</code>,{' '}
-        <code>tel</code>, <code>password</code>). <code>invalid</code> pose{' '}
-        <code>aria-invalid</code> et une bordure de danger ; la couleur n'est jamais le
-        seul signal, accompagnez-la d'un message d'erreur en texte. Un champ n'a pas d'
-        <code>intent</code> : l'état invalide est un état à part.
-      </p>
-      <p>
-        <code>className</code> et <code>style</code> vont sur le conteneur racine, la
-        boîte visible. Toutes les autres propriétés, <code>ref</code> compris, vont sur l'
-        <code>&lt;input&gt;</code> natif : <code>id</code>, <code>name</code>,{' '}
-        <code>autoComplete</code>, <code>aria-*</code> et même le <code>size</code> natif
-        fonctionnent comme sur un champ ordinaire (ADR 0015). Les ornements sont
-        décoratifs sauf si vous leur donnez un sens : marquez une icône{' '}
-        <code>aria-hidden</code>, et reprenez l'unité ou le préfixe dans le libellé.
-      </p>
-      <p>
-        Au survol et au focus, le champ se soulève et son ombre portée grandit (ADR 0009)
-        ; le focus trace aussi l'anneau de focus autour du champ entier. Les états
-        désactivé et en lecture seule restent à plat ; un champ désactivé prend aussi une
-        bordure en tirets, pour que les deux se distinguent sans la couleur. Toute
-        animation respecte <code>prefers-reduced-motion</code>. Le champ remplit la
-        largeur disponible, jusqu'à 320 px CSS.
-      </p>
+      <ul>
+        <li>
+          <strong>Donnez-lui toujours un nom.</strong> Associez chaque champ à un{' '}
+          <code>&lt;label htmlFor&gt;</code> ou à un <code>aria-label</code>, en attendant
+          le composant de champ englobant prévu. Un texte indicatif (placeholder) n'est
+          jamais un libellé.
+        </li>
+        <li>
+          <strong>Un vrai champ natif.</strong> <code>type</code> est l'attribut natif,
+          limité aux types textuels comme e-mail ou mot de passe. Toutes les autres
+          propriétés, <code>ref</code> compris, vont sur le champ natif ; seuls{' '}
+          <code>className</code> et <code>style</code> vont sur la boîte visible.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle l'échelle, de{' '}
+          <code>sm</code> à <code>lg</code> ; c'est la même échelle que Button. Elle a son
+          propre nom, pour que l'attribut natif <code>size</code> fonctionne toujours.
+        </li>
+        <li>
+          <strong>Des ornements aux deux bouts.</strong> <code>startAdornment</code> et{' '}
+          <code>endAdornment</code> accueillent une icône, une unité ou un préfixe dans la
+          boîte. Ils sont décoratifs : marquez une icône <code>aria-hidden</code>, et
+          reprenez l'unité ou le préfixe dans le libellé.
+        </li>
+        <li>
+          <strong>Un aspect invalide, sans validation.</strong> <code>invalid</code>{' '}
+          signale le champ comme invalide aux technologies d'assistance et trace une
+          bordure de danger. Accompagnez-le d'un message d'erreur en texte. L'état
+          invalide est un état à part : un champ n'a donc pas d'intention.
+        </li>
+        <li>
+          <strong>Les états se lisent sans la couleur seule.</strong> Le focus trace un
+          anneau autour du champ entier, et dans l'habillage neutre le champ se soulève au
+          survol et au focus. Les états désactivé et lecture seule restent à plat, et un
+          champ désactivé ajoute une bordure en tirets. Le mouvement s'arrête en mouvement
+          réduit.
+        </li>
+      </ul>
     </>
   }
 />
