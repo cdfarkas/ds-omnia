@@ -1,0 +1,52 @@
+@layer components {
+  .root {
+    container-type: inline-size;
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    font-family: var(--omnia-font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+  }
+
+  .item {
+    display: grid;
+    gap: var(--omnia-palette-space-1) var(--omnia-palette-space-4);
+    padding-block: var(
+      --omnia-description-list-item-padding,
+      var(--omnia-palette-space-3)
+    );
+  }
+
+  .item + .item {
+    border-block-start: var(--omnia-border-width-regular) solid
+      var(--omnia-description-list-divider-color, var(--omnia-color-border-default));
+  }
+
+  .term,
+  .detail {
+    margin: 0;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .term {
+    font-weight: 600;
+    color: var(--omnia-description-list-term-color, var(--omnia-color-text-primary));
+  }
+
+  .detail {
+    color: var(--omnia-description-list-detail-color, var(--omnia-color-text-primary));
+  }
+
+  /* Each item is its own grid, so fixed fractions keep every row's columns aligned. */
+  @container (width >= 24rem) {
+    .item {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 2fr);
+    }
+
+    .detail {
+      grid-column: 2;
+    }
+  }
+}

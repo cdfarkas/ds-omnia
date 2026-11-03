@@ -181,6 +181,19 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## DescriptionList
+
+Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.
+
+Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDListElement>` | no | — | — |
+
+Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
+
 ## NavBar
 
 Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.

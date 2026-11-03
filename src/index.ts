@@ -10,6 +10,7 @@ export * from './components/atoms/Divider';
 export * from './components/atoms/Indicator';
 export * from './components/atoms/Heading';
 export * from './components/atoms/Text';
+export * from './components/molecules/DescriptionList';
 export * from './components/molecules/NavBar';
 export { locales, setLocale, getLocale } from './lib/i18n';
 export type { Locale } from './lib/i18n';
