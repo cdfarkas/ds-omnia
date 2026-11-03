@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-divider {
+    --omnia-divider-color: var(--omnia-color-link);
+    --omnia-divider-thickness: 0.25rem;
+  }
+}

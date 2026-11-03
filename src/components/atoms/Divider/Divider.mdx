@@ -1,0 +1,173 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as DividerStories from './Divider.stories';
+
+<Meta of={DividerStories} />
+
+# Divider
+
+<Localized
+  en={
+    <>
+      <p>
+        The <strong>Divider</strong> atom is a horizontal rule that separates content. It
+        renders a native <code>&lt;hr&gt;</code> and consumes semantic{' '}
+        <code>var(--…)</code> tokens only, so it reskins across the light/dark theme axis
+        and the neutral/pixel skin axis without any change to its own CSS. The line is{' '}
+        <code>--omnia-color-border-default</code> at{' '}
+        <code>--omnia-border-width-regular</code>, and it meets WCAG 1.4.11 (3:1 non-text
+        contrast) in all four modes.
+      </p>
+      <p>
+        Because it is a native <code>&lt;hr&gt;</code>, it is a semantic separator by
+        default (implicit <code>role="separator"</code>): a screen reader announces the
+        content break. When the surrounding layout already separates the content visually
+        and the break carries no meaning, pass <code>role="none"</code> (or{' '}
+        <code>aria-hidden</code>) to make it purely decorative and drop it from the
+        accessibility tree.
+      </p>
+      <p>
+        <code>orientation</code> (<code>'horizontal' | 'vertical'</code>, default{' '}
+        <code>'horizontal'</code>) is the one custom prop. Horizontal is the native{' '}
+        <code>&lt;hr&gt;</code> above; vertical renders a{' '}
+        <code>&lt;div role="separator" aria-orientation="vertical"&gt;</code>, because a
+        native <code>&lt;hr&gt;</code> is semantically horizontal-only. A vertical Divider
+        needs a <strong>sized container</strong> to fill (a flex row with a height), where
+        it stretches to the full cross-axis. There is no weight or variant axis.
+      </p>
+      <p>
+        The Divider owns <strong>no margin</strong> — the parent layout owns the spacing
+        around it (a flex <code>gap</code>, say), so the rule sits flush and the same
+        Divider works at any density.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Le composant <strong>Divider</strong> est un filet horizontal qui sépare du
+        contenu. Il rend un <code>&lt;hr&gt;</code> natif et ne consomme que des jetons
+        sémantiques <code>var(--…)</code> : il change donc d'apparence selon l'axe de
+        thème clair/sombre et l'axe d'habillage neutre/pixel, sans modifier son propre
+        CSS. Le trait vaut <code>--omnia-color-border-default</code> à l'épaisseur{' '}
+        <code>--omnia-border-width-regular</code>, et respecte le WCAG 1.4.11 (contraste
+        non-textuel de 3:1) dans les quatre modes.
+      </p>
+      <p>
+        Comme il s'agit d'un <code>&lt;hr&gt;</code> natif, c'est un séparateur sémantique
+        par défaut (<code>role="separator"</code> implicite) : un lecteur d'écran annonce
+        la rupture de contenu. Quand la mise en page sépare déjà visuellement le contenu
+        et que la rupture n'a pas de sens propre, fournissez <code>role="none"</code> (ou{' '}
+        <code>aria-hidden</code>) pour le rendre purement décoratif et le retirer de
+        l'arbre d'accessibilité.
+      </p>
+      <p>
+        <code>orientation</code> (<code>'horizontal' | 'vertical'</code>, par défaut{' '}
+        <code>'horizontal'</code>) est l'unique propriété personnalisée. L'horizontal est
+        le <code>&lt;hr&gt;</code> natif ci-dessus ; le vertical rend un{' '}
+        <code>&lt;div role="separator" aria-orientation="vertical"&gt;</code>, car un{' '}
+        <code>&lt;hr&gt;</code> natif est sémantiquement horizontal uniquement. Un Divider
+        vertical a besoin d'un <strong>conteneur dimensionné</strong> à remplir (une
+        rangée flex avec une hauteur), où il s'étire sur tout l'axe transversal. Il n'y a
+        pas d'axe d'épaisseur ni de variante.
+      </p>
+      <p>
+        Le Divider ne porte <strong>aucune marge</strong> — la mise en page parente
+        possède l'espacement autour de lui (un <code>gap</code> flex, par exemple) : le
+        filet reste au ras du contenu et le même Divider fonctionne à n'importe quelle
+        densité.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={DividerStories.PlainRule} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Vertical" fr="Vertical" />
+
+<Canvas of={DividerStories.Vertical} />
+
+### <Localized en="Decorative" fr="Décoratif" />
+
+<Canvas of={DividerStories.Decorative} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Divider follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-divider-color</code>{' '}
+          (defaults to <code>--omnia-color-border-default</code>) and{' '}
+          <code>--omnia-divider-thickness</code> (defaults to{' '}
+          <code>--omnia-border-width-regular</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>divider</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the <code>&lt;hr&gt;</code>, where your{' '}
+          <code>className</code> merges).
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-divider-color</code>/<code>--omnia-divider-thickness</code> from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Divider suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-divider-color</code>{' '}
+          (par défaut <code>--omnia-color-border-default</code>) et{' '}
+          <code>--omnia-divider-thickness</code> (par défaut{' '}
+          <code>--omnia-border-width-regular</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>divider</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le <code>&lt;hr&gt;</code>, où votre <code>className</code>{' '}
+          fusionne).
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-divider-color</code>/<code>--omnia-divider-thickness</code> depuis{' '}
+        <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={DividerStories.Overridden} />
