@@ -1,0 +1,176 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as TextStories from './Text.stories';
+
+<Meta of={TextStories} />
+
+# Text
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Text</strong> for body copy and inline text — paragraphs, and short
+        runs of text set inside a line.
+      </p>
+      <ul>
+        <li>
+          <strong>
+            Pick the element with <code>as</code>.
+          </strong>{' '}
+          <code>p</code> (the default) for a block paragraph, <code>span</code> for inline
+          text inside another line.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> is <code>sm</code>,{' '}
+          <code>md</code> (the default) or <code>lg</code> — set it to match the
+          surrounding type scale.
+        </li>
+        <li>
+          <strong>
+            <code>tone</code> de-emphasises without losing contrast.
+          </strong>{' '}
+          <code>default</code> is the primary text colour; <code>muted</code> is softer
+          but still meets WCAG contrast in every theme and skin, so it reads as a
+          de-emphasis, never an accessibility loss.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour and font come from tokens, so
+          Text follows the light/dark theme and the neutral/pixel skin with no CSS
+          changes. Unlike Heading it keeps the sans font in both skins, so body prose
+          stays readable in the pixel skin.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Text</strong> pour le corps de texte et le texte en ligne —
+        paragraphes, et courts fragments placés à l'intérieur d'une ligne.
+      </p>
+      <ul>
+        <li>
+          <strong>
+            Choisissez l'élément avec <code>as</code>.
+          </strong>{' '}
+          <code>p</code> (par défaut) pour un paragraphe bloc, <code>span</code> pour du
+          texte en ligne dans une autre ligne.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> vaut <code>sm</code>,{' '}
+          <code>md</code> (par défaut) ou <code>lg</code> — réglez-le selon l'échelle
+          typographique environnante.
+        </li>
+        <li>
+          <strong>
+            <code>tone</code> atténue sans perdre le contraste.
+          </strong>{' '}
+          <code>default</code> est la couleur de texte primaire ; <code>muted</code> est
+          plus doux mais respecte toujours le contraste WCAG dans chaque thème et
+          habillage : une mise en retrait, jamais une perte d'accessibilité.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> La couleur et la police viennent des
+          jetons : Text suit le thème clair/sombre et l'habillage neutre/pixel sans
+          retoucher son CSS. Contrairement à Heading, il garde la police sans dans les
+          deux habillages, pour que la prose reste lisible sous l'habillage pixel.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={TextStories.Scale} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Tones" fr="Tons" />
+
+<Canvas of={TextStories.Tones} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Text follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-text-color</code>,{' '}
+          <code>--omnia-text-font-family</code>, <code>--omnia-text-font-size</code>,{' '}
+          <code>--omnia-text-line-height</code>. <code>variantSize</code> sets the font
+          size and <code>tone</code> sets the colour.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>text</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the text element, where your <code>className</code>{' '}
+          merges).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-variant-size</code> and <code>data-tone</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points <code>--omnia-text-color</code>{' '}
+        from <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Text suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-text-color</code>,{' '}
+          <code>--omnia-text-font-family</code>, <code>--omnia-text-font-size</code>,{' '}
+          <code>--omnia-text-line-height</code>. <code>variantSize</code> définit la
+          taille de police et <code>tone</code> définit la couleur.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>text</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (l'élément de texte, où votre <code>className</code>{' '}
+          fusionne).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-variant-size</code> et <code>data-tone</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-text-color</code> depuis <code>@layer overrides</code>, sans{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={TextStories.Overridden} />

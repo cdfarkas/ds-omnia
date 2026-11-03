@@ -8,6 +8,8 @@ export * from './components/atoms/Spinner';
 export * from './components/atoms/Icon';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Indicator';
+export * from './components/atoms/Heading';
+export * from './components/atoms/Text';
 export { locales, setLocale, getLocale } from './lib/i18n';
 export type { Locale } from './lib/i18n';
 export { intents } from './lib/intents';

@@ -1,0 +1,65 @@
+@layer components {
+  .heading {
+    margin: 0;
+    font-family: var(--omnia-heading-font-family, var(--omnia-font-display));
+    font-size: var(--omnia-heading-font-size);
+    font-weight: var(--omnia-heading-font-weight, 600);
+    line-height: var(--omnia-heading-line-height, 1.2);
+    color: var(--omnia-heading-color, var(--omnia-color-text-primary));
+    text-wrap: balance;
+  }
+
+  .xs {
+    --omnia-heading-font-size: 1.0625rem;
+  }
+
+  .sm {
+    --omnia-heading-font-size: 1.25rem;
+  }
+
+  .md {
+    --omnia-heading-font-size: 1.5rem;
+  }
+
+  .lg {
+    --omnia-heading-font-size: 1.75rem;
+  }
+
+  .xl {
+    --omnia-heading-font-size: 2.25rem;
+  }
+
+  .xxl {
+    --omnia-heading-font-size: 3rem;
+  }
+
+  :global([data-skin='pixel']) .heading {
+    font-family: var(--omnia-font-pixel);
+    line-height: 1.4;
+    -webkit-font-smoothing: none;
+  }
+
+  :global([data-skin='pixel']) .xxl {
+    --omnia-heading-font-size: 1.5rem;
+  }
+
+  :global([data-skin='pixel']) .xl {
+    --omnia-heading-font-size: 1.25rem;
+  }
+
+  :global([data-skin='pixel']) .lg {
+    --omnia-heading-font-size: 1.1rem;
+  }
+
+  :global([data-skin='pixel']) .md {
+    --omnia-heading-font-size: 1rem;
+  }
+
+  :global([data-skin='pixel']) .sm {
+    --omnia-heading-font-size: 0.85rem;
+  }
+
+  :global([data-skin='pixel']) .xs {
+    --omnia-heading-font-size: 0.72rem;
+  }
+}
