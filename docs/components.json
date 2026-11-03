@@ -854,6 +854,159 @@
           "id": "atoms-indicator--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "Heading",
+      "description": "Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).",
+      "source": "src/components/atoms/Heading/Heading.tsx",
+      "props": [
+        {
+          "name": "level",
+          "type": "HeadingLevel",
+          "required": true,
+          "description": "The semantic document level, rendered as the matching `<h1>`–`<h6>`."
+        },
+        {
+          "name": "variantSize",
+          "type": "HeadingSize",
+          "required": false,
+          "options": [
+            "sm",
+            "md",
+            "lg",
+            "xs",
+            "xl",
+            "2xl"
+          ],
+          "description": "The visual size, decoupled from `level`; defaults to the level's own step."
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLHeadingElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "variantSize"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-heading--playground"
+        },
+        {
+          "name": "Levels",
+          "id": "atoms-heading--levels"
+        },
+        {
+          "name": "Scale",
+          "id": "atoms-heading--scale"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-heading--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-heading--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-heading--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-heading--pixel-dark"
+        }
+      ]
+    },
+    {
+      "name": "Text",
+      "description": "Body and inline text. `as` picks the element (`<p>` block or `<span>` inline). `tone` maps to `--omnia-color-text-primary` or `--omnia-color-text-muted`; the muted tone still meets WCAG contrast. Type is token-driven and reskins across the theme and skin axes, staying sans in both skins.",
+      "source": "src/components/atoms/Text/Text.tsx",
+      "props": [
+        {
+          "name": "as",
+          "type": "TextElement",
+          "required": false,
+          "default": "'p'",
+          "options": [
+            "p",
+            "span"
+          ]
+        },
+        {
+          "name": "variantSize",
+          "type": "TextSize",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        {
+          "name": "tone",
+          "type": "TextTone",
+          "required": false,
+          "default": "'default'",
+          "options": [
+            "default",
+            "muted"
+          ]
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLParagraphElement | HTMLSpanElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "as",
+        "variantSize",
+        "tone"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-text--playground"
+        },
+        {
+          "name": "Scale",
+          "id": "atoms-text--scale"
+        },
+        {
+          "name": "Tones",
+          "id": "atoms-text--tones"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-text--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-text--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-text--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-text--pixel-dark"
+        }
+      ]
     }
   ]
 }

@@ -150,3 +150,34 @@ Source: `src/components/atoms/Indicator/Indicator.tsx`
 
 Stories: `atoms-indicator--playground`, `atoms-indicator--intents`, `atoms-indicator--sizes`, `atoms-indicator--pulse`, `atoms-indicator--decorative`, `atoms-indicator--overridden`, `atoms-indicator--dark-neutral`, `atoms-indicator--pixel-light`, `atoms-indicator--pixel-dark`
 
+## Heading
+
+Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).
+
+Source: `src/components/atoms/Heading/Heading.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `level` | `HeadingLevel` | yes | — | — |
+| `variantSize` | `HeadingSize` | no | — | `sm`, `md`, `lg`, `xs`, `xl`, `2xl` |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLHeadingElement>` | no | — | — |
+
+Stories: `atoms-heading--playground`, `atoms-heading--levels`, `atoms-heading--scale`, `atoms-heading--overridden`, `atoms-heading--dark-neutral`, `atoms-heading--pixel-light`, `atoms-heading--pixel-dark`
+
+## Text
+
+Body and inline text. `as` picks the element (`<p>` block or `<span>` inline). `tone` maps to `--omnia-color-text-primary` or `--omnia-color-text-muted`; the muted tone still meets WCAG contrast. Type is token-driven and reskins across the theme and skin axes, staying sans in both skins.
+
+Source: `src/components/atoms/Text/Text.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `as` | `TextElement` | no | `'p'` | `p`, `span` |
+| `variantSize` | `TextSize` | no | `'md'` | `sm`, `md`, `lg` |
+| `tone` | `TextTone` | no | `'default'` | `default`, `muted` |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLParagraphElement \| HTMLSpanElement>` | no | — | — |
+
+Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
+

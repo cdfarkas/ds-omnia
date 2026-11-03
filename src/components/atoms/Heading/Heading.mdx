@@ -1,0 +1,165 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as HeadingStories from './Heading.stories';
+
+<Meta of={HeadingStories} />
+
+# Heading
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Heading</strong> for the titles that structure a page — a page title,
+        a section title, a card title.
+      </p>
+      <ul>
+        <li>
+          <strong>It renders a real heading.</strong> <code>level</code> (<code>1</code>–
+          <code>6</code>) outputs the matching <code>&lt;h1&gt;</code>–
+          <code>&lt;h6&gt;</code>, so the document outline and screen readers stay
+          correct. Set it from the page structure, not from how big you want the text to
+          look.
+        </li>
+        <li>
+          <strong>Size is independent of the level.</strong> <code>variantSize</code>{' '}
+          controls only the appearance; leave it unset and the size follows the level.
+          This lets an <code>&lt;h2&gt;</code> look small where the layout needs it,
+          without breaking the outline. There are six sizes, from <code>xs</code> to{' '}
+          <code>2xl</code>.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour and font come from tokens, so
+          Heading follows the light/dark theme and the neutral/pixel skin with no CSS
+          changes. In the pixel skin it switches to the pixel font.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Heading</strong> pour les titres qui structurent une page — titre
+        de page, titre de section, titre de carte.
+      </p>
+      <ul>
+        <li>
+          <strong>Il produit un vrai titre.</strong> <code>level</code> (<code>1</code>–
+          <code>6</code>) génère le <code>&lt;h1&gt;</code>–<code>&lt;h6&gt;</code>{' '}
+          correspondant : le plan du document et les lecteurs d'écran restent corrects.
+          Choisissez-le d'après la structure de la page, pas d'après la taille de texte
+          voulue.
+        </li>
+        <li>
+          <strong>La taille est indépendante du niveau.</strong> <code>variantSize</code>{' '}
+          ne pilote que l'apparence ; laissez-le vide et la taille suit le niveau. Un{' '}
+          <code>&lt;h2&gt;</code> peut ainsi paraître petit là où la mise en page l'exige,
+          sans casser le plan. Il existe six tailles, de <code>xs</code> à{' '}
+          <code>2xl</code>.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> La couleur et la police viennent des
+          jetons : Heading suit le thème clair/sombre et l'habillage neutre/pixel sans
+          retoucher son CSS. Dans l'habillage pixel, il passe à la police pixel.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={HeadingStories.Levels} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Scale" fr="Échelle" />
+
+<Canvas of={HeadingStories.Scale} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Heading follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-heading-color</code>,{' '}
+          <code>--omnia-heading-font-family</code>,{' '}
+          <code>--omnia-heading-font-weight</code>, <code>--omnia-heading-font-size</code>
+          , <code>--omnia-heading-line-height</code>. <code>variantSize</code> sets the
+          font size.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>heading</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the heading element, where your <code>className</code>{' '}
+          merges).
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-level</code> and <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-heading-color</code>/<code>--omnia-heading-font-weight</code> from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Heading suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-heading-color</code>,{' '}
+          <code>--omnia-heading-font-family</code>,{' '}
+          <code>--omnia-heading-font-weight</code>, <code>--omnia-heading-font-size</code>
+          , <code>--omnia-heading-line-height</code>. <code>variantSize</code> définit la
+          taille de police.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>heading</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (l'élément de titre, où votre <code>className</code>{' '}
+          fusionne).
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-level</code> et <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-heading-color</code>/<code>--omnia-heading-font-weight</code> depuis{' '}
+        <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={HeadingStories.Overridden} />

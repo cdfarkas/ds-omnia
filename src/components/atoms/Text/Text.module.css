@@ -1,0 +1,25 @@
+@layer components {
+  .text {
+    margin: 0;
+    font-family: var(--omnia-text-font-family, var(--omnia-font-sans));
+    font-size: var(--omnia-text-font-size);
+    line-height: var(--omnia-text-line-height, 1.5);
+    color: var(--omnia-text-color, var(--omnia-color-text-primary));
+  }
+
+  .text[data-tone='muted'] {
+    --omnia-text-color: var(--omnia-color-text-muted);
+  }
+
+  .sm {
+    --omnia-text-font-size: 0.8rem;
+  }
+
+  .md {
+    --omnia-text-font-size: 1rem;
+  }
+
+  .lg {
+    --omnia-text-font-size: 1.125rem;
+  }
+}
