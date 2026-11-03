@@ -25,7 +25,7 @@ A story is the primary artefact. Each story is:
 - **interaction** — a `play` function for the **happy path**, written so it reads as documentation of
   how the component is used (catalogue-worthy, not an exhaustive edge-case dump),
 - **a11y** — automatically checked by the a11y addon (see below),
-- **visual** — a snapshot target for visual regression.
+- **visual** — a target for the agent visual-check gate (see `docs/visual-validation.md`).
 
 **Show code must be the integration snippet, not the story's scaffolding.** A single-instance story
 is written args-only (or `render: (args) => <Component {...args} />`) so Storybook serialises a clean

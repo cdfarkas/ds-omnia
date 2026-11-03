@@ -27,16 +27,6 @@ const meta = {
     variantStyle: { control: 'inline-radio', options: ['regular', 'solid'] },
     variantSize: { control: 'inline-radio', options: [undefined, 'sm', 'md', 'lg'] },
   },
-  parameters: {
-    chromatic: {
-      modes: {
-        'light-neutral': { theme: 'light', skin: 'default' },
-        'dark-neutral': { theme: 'dark', skin: 'default' },
-        'light-pixel': { theme: 'light', skin: 'pixel' },
-        'dark-pixel': { theme: 'dark', skin: 'pixel' },
-      },
-    },
-  },
 } satisfies Meta<typeof Icon>;
 
 export default meta;
