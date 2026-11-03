@@ -57,12 +57,19 @@ export const Playground: Story = {
 
 /** Searchable catalogue grouped by category, each cell showing both styles — the glyph finder. */
 export const Catalog: Story = {
-  parameters: { layout: 'padded', controls: { disable: true } },
+  parameters: {
+    layout: 'padded',
+    controls: { disable: true },
+    docs: { source: { code: '<Icon glyph="home" aria-label="Home" />' } },
+  },
   render: () => <IconCatalog />,
 };
 
 export const Gallery: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: { source: { code: '<Icon glyph="home" aria-label="Home" />' } },
+  },
   render: (args) => (
     <div style={gallery}>
       {ICON_GLYPHS.map((glyph) => (
@@ -80,10 +87,21 @@ export const Gallery: Story = {
 export const Solid: Story = {
   ...Gallery,
   args: { variantStyle: 'solid' },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: { code: '<Icon glyph="home" variantStyle="solid" aria-label="Home" />' },
+    },
+  },
 };
 
 export const Sizes: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: { code: '<Icon glyph="star" variantSize="lg" aria-label="Large star" />' },
+    },
+  },
   render: () => (
     <div style={row}>
       <Icon glyph="star" variantSize="sm" aria-label="Small star" />
@@ -101,7 +119,10 @@ export const Sizes: Story = {
  * `Link`/`Button` beside it carries the meaning.
  */
 export const Decorative: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: { source: { code: '<Icon glyph="download" variantSize="md" />' } },
+  },
   render: () => (
     <span style={row}>
       <Icon glyph="download" variantSize="md" />
@@ -112,8 +133,8 @@ export const Decorative: Story = {
 
 /** Labelled: an `aria-label` promotes the icon to a named `role="img"` for standalone use. */
 export const Labelled: Story = {
+  args: { glyph: 'warning', variantSize: 'lg', 'aria-label': 'Warning' },
   parameters: { controls: { disable: true } },
-  render: () => <Icon glyph="warning" variantSize="lg" aria-label="Warning" />,
 };
 
 /**
@@ -121,10 +142,8 @@ export const Labelled: Story = {
  * `@layer overrides` re-points `--omnia-icon-color`/`--omnia-icon-size` — no `!important`.
  */
 export const Overridden: Story = {
+  args: { glyph: 'heart', 'aria-label': 'Heart', className: 'omnia-demo-override-icon' },
   parameters: { controls: { disable: true } },
-  render: () => (
-    <Icon glyph="heart" aria-label="Heart" className="omnia-demo-override-icon" />
-  ),
 };
 
 export const DarkNeutral: Story = { ...Gallery, globals: { theme: 'dark' } };

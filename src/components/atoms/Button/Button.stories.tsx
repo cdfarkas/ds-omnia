@@ -58,6 +58,7 @@ export const Neutral: Story = { args: { intent: 'neutral' } };
 export const Danger: Story = { args: { intent: 'danger' } };
 
 export const Intents: Story = {
+  parameters: { docs: { source: { code: '<Button intent="danger">Delete</Button>' } } },
   render: (args) => (
     <div
       style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}
@@ -72,6 +73,7 @@ export const Intents: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: { docs: { source: { code: '<Button variantSize="lg">Large</Button>' } } },
   render: (args) => (
     <div
       style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}
@@ -99,6 +101,11 @@ export const Disabled: Story = { args: { disabled: true } };
  * `[data-part="spinner"]` sub-part — no `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
+  parameters: {
+    docs: {
+      source: { code: '<Button className="omnia-demo-override">Overridden</Button>' },
+    },
+  },
   render: (args) => (
     <div
       style={{ display: 'flex', flexWrap: 'wrap', gap: '0.75rem', alignItems: 'center' }}

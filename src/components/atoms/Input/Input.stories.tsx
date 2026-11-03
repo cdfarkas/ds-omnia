@@ -55,6 +55,11 @@ const meta = {
   render: (args) => <Field label="Email" {...args} />,
   parameters: {
     layout: 'padded',
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" placeholder="name@example.com" />',
+      },
+    },
     chromatic: {
       modes: {
         'light-neutral': { theme: 'light', skin: 'default' },
@@ -87,6 +92,13 @@ export const Playground: Story = {
 };
 
 export const Sizes: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" variantSize="lg" />',
+      },
+    },
+  },
   render: (args) => (
     <div style={{ display: 'grid', gap: '1rem' }}>
       <Field label="Small" {...args} variantSize="sm" />
@@ -97,6 +109,13 @@ export const Sizes: Story = {
 };
 
 export const WithAdornments: Story = {
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="website">Website</label>\n<Input id="website" type="url" startAdornment="https://" placeholder="example.com" />',
+      },
+    },
+  },
   render: (args) => (
     <div style={{ display: 'grid', gap: '1rem' }}>
       <Field
@@ -125,14 +144,37 @@ export const WithAdornments: Story = {
   ),
 };
 
-export const Invalid: Story = { args: { invalid: true, defaultValue: 'ada@' } };
+export const Invalid: Story = {
+  args: { invalid: true, defaultValue: 'ada@' },
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" invalid defaultValue="ada@" />',
+      },
+    },
+  },
+};
 
 export const Disabled: Story = {
   args: { disabled: true, defaultValue: 'ada@example.com' },
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" disabled defaultValue="ada@example.com" />',
+      },
+    },
+  },
 };
 
 export const ReadOnly: Story = {
   args: { readOnly: true, defaultValue: 'ada@example.com' },
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" readOnly defaultValue="ada@example.com" />',
+      },
+    },
+  },
 };
 
 /** Every state in one view; the mode stories below reuse it so axe checks each state per mode. */
@@ -168,6 +210,13 @@ export const Overridden: Story = {
     type: 'url',
     placeholder: 'example.com',
     startAdornment: 'https://',
+  },
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="website">Website</label>\n<Input id="website" type="url" className="omnia-demo-override-input" startAdornment="https://" />',
+      },
+    },
   },
   render: (args) => <Field label="Website" {...args} />,
 };
