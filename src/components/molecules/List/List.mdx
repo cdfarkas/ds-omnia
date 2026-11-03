@@ -1,0 +1,166 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as ListStories from './List.stories';
+
+<Meta of={ListStories} />
+
+# List
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>List</strong> for a semantic bulleted or numbered list of short,
+        related items — features, steps, links. Write each entry as a{' '}
+        <code>{'<List.Item>'}</code> child rather than passing an array.
+      </p>
+      <ul>
+        <li>
+          <strong>Compose it with List.Item.</strong> Each entry is its own{' '}
+          <code>List.Item</code> child, so you write the items as markup instead of
+          handing the list an array of data.
+        </li>
+        <li>
+          <strong>
+            Bullets or numbers with <code>as</code>.
+          </strong>{' '}
+          A list is bulleted by default; set <code>as</code> to make it numbered when the
+          order of the items matters, such as the steps of a procedure.
+        </li>
+        <li>
+          <strong>Items hold anything.</strong> An item can carry plain text, links,
+          badges or a whole nested List, which indents under its parent item.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour, font and spacing come from
+          tokens, so List follows the light/dark theme and the neutral/pixel skin with no
+          CSS changes.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>List</strong> pour une liste sémantique à puces ou numérotée
+        d'éléments courts et liés — fonctionnalités, étapes, liens. Écrivez chaque entrée
+        comme un enfant <code>{'<List.Item>'}</code> plutôt que de passer un tableau.
+      </p>
+      <ul>
+        <li>
+          <strong>Composez-la avec List.Item.</strong> Chaque entrée est son propre enfant{' '}
+          <code>List.Item</code> : vous écrivez les éléments en balisage au lieu de
+          fournir à la liste un tableau de données.
+        </li>
+        <li>
+          <strong>
+            Puces ou numéros avec <code>as</code>.
+          </strong>{' '}
+          Une liste est à puces par défaut ; réglez <code>as</code> pour la numéroter
+          quand l'ordre des éléments compte, comme les étapes d'une procédure.
+        </li>
+        <li>
+          <strong>Les éléments contiennent n'importe quoi.</strong> Un élément peut porter
+          du texte, des liens, des badges ou toute une List imbriquée, qui s'indente sous
+          son élément parent.
+        </li>
+        <li>
+          <strong>Elle s'adapte toute seule.</strong> La couleur, la police et
+          l'espacement viennent des jetons : List suit le thème clair/sombre et
+          l'habillage neutre/pixel sans retoucher son CSS.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={ListStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Numbered" fr="Numérotée" />
+
+<Canvas of={ListStories.Ordered} />
+
+### <Localized en="Nested" fr="Imbriquée" />
+
+<Canvas of={ListStories.Nested} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        List follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-list-color</code>,{' '}
+          <code>--omnia-list-marker-color</code>, <code>--omnia-list-gap</code>,{' '}
+          <code>--omnia-list-indent</code>, <code>--omnia-list-font-family</code>,{' '}
+          <code>--omnia-list-font-size</code>, <code>--omnia-list-line-height</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>list</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the list element) and <code>item</code> (each list item);
+          your <code>className</code> merges onto the part you pass it to.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-list-marker-color</code> from <code>@layer overrides</code>, with no{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        List suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-la via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-list-color</code>,{' '}
+          <code>--omnia-list-marker-color</code>, <code>--omnia-list-gap</code>,{' '}
+          <code>--omnia-list-indent</code>, <code>--omnia-list-font-family</code>,{' '}
+          <code>--omnia-list-font-size</code>, <code>--omnia-list-line-height</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>list</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (l'élément de liste) et <code>item</code> (chaque élément) ;
+          votre <code>className</code> fusionne sur la partie à laquelle vous le passez.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-list-marker-color</code> depuis <code>@layer overrides</code>, sans{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={ListStories.Overridden} />
