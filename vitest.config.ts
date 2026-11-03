@@ -46,6 +46,14 @@ export default defineConfig({
           setupFiles: ['./vitest.unit-setup.ts'],
         },
       },
+      {
+        extends: true,
+        test: {
+          name: 'node',
+          environment: 'node',
+          include: ['scripts/**/*.test.ts'],
+        },
+      },
     ],
   },
 });

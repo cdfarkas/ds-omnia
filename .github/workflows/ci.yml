@@ -60,3 +60,13 @@ jobs:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
       - run: pnpm build-storybook
+
+  manifest:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'pull_request'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: ./.github/actions/setup
+      - run: pnpm docs:manifest
+      - name: Fail if the component manifest is stale
+        run: git diff --exit-code -- docs/components.json docs/components.md
