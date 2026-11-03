@@ -181,3 +181,25 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## DescriptionList
+
+Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDListElement>` | no | — | — |
+
+Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
+
+## SectionHeading
+
+Source: `src/components/molecules/SectionHeading/SectionHeading.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-sectionheading--playground`, `molecules-sectionheading--title-only`, `molecules-sectionheading--with-description`, `molecules-sectionheading--with-actions`, `molecules-sectionheading--narrow`, `molecules-sectionheading--overridden`, `molecules-sectionheading--dark-neutral`, `molecules-sectionheading--pixel-light`, `molecules-sectionheading--pixel-dark`
+
