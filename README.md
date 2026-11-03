@@ -8,6 +8,10 @@
   A themeable, bilingual React 19 design system — light &amp; dark, neutral &amp; pixel-art.
 </p>
 
+<p align="center">
+  <a href="https://codecov.io/gh/cdfarkas/ds-omnia"><img src="https://codecov.io/gh/cdfarkas/ds-omnia/branch/main/graph/badge.svg" alt="Coverage" /></a>
+</p>
+
 A portfolio-grade design system built on **Storybook 10** and strict **Atomic Design**. The name is
 Latin *omnia* ("all things", the neuter plural of *omnis*) — one token contract spanning the whole gamut: light and dark, neutral and pixel.
 

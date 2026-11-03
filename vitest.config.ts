@@ -12,6 +12,20 @@ const makeBrowser = () => ({
 
 export default defineConfig({
   test: {
+    coverage: {
+      provider: 'v8',
+      include: ['src/**/*.{ts,tsx}'],
+      exclude: [
+        'src/**/*.stories.*',
+        'src/**/*.test.*',
+        'src/**/*.mdx',
+        'src/**/index.ts',
+        'src/bundle.ts',
+        'src/**/*.check.ts',
+        'src/**/*.d.ts',
+      ],
+      reporter: ['text-summary', 'json-summary', 'lcov'],
+    },
     projects: [
       {
         extends: true,
