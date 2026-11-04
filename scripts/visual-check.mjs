@@ -130,6 +130,11 @@ const stories = [
   { id: 'molecules-descriptionlist--playground', name: 'description-list-playground' },
   { id: 'molecules-descriptionlist--narrow', name: 'description-list-narrow' },
   { id: 'molecules-descriptionlist--overridden', name: 'description-list-overridden' },
+  { id: 'molecules-list--playground', name: 'list-playground' },
+  { id: 'molecules-list--ordered', name: 'list-ordered' },
+  { id: 'molecules-list--nested', name: 'list-nested' },
+  { id: 'molecules-list--rich-items', name: 'list-rich-items' },
+  { id: 'molecules-list--overridden', name: 'list-overridden' },
 ];
 
 const filter = process.argv[2];

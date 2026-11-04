@@ -1,0 +1,27 @@
+@layer components {
+  .list {
+    margin: 0;
+    padding-inline-start: var(--omnia-list-indent, 1.5rem);
+    font-family: var(--omnia-list-font-family, var(--omnia-font-sans));
+    font-size: var(--omnia-list-font-size, 1rem);
+    line-height: var(--omnia-list-line-height, 1.5);
+    color: var(--omnia-list-color, var(--omnia-color-text-primary));
+  }
+
+  .item {
+    padding-inline-start: var(--omnia-palette-space-1);
+  }
+
+  .item::marker {
+    color: var(--omnia-list-marker-color, var(--omnia-color-text-muted));
+  }
+
+  .item + .item,
+  .item > .list {
+    margin-block-start: var(--omnia-list-gap, var(--omnia-palette-space-2));
+  }
+
+  :global([data-skin='pixel']) ul.list {
+    list-style-type: square;
+  }
+}
