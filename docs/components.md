@@ -195,8 +195,6 @@ Stories: `molecules-card--playground`, `molecules-card--body-only`, `molecules-c
 
 ## DescriptionList
 
-Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.
-
 Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
 
 | Prop | Type | Required | Default | Options |
@@ -205,4 +203,18 @@ Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
 | `ref` | `Ref<HTMLDListElement>` | no | — | — |
 
 Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
+
+## List
+
+Semantic list of short related items. `as` picks `<ul>` (bullets) or `<ol>` (numbers); compose it with `List.Item` children, which may nest another List. Token-driven, so it reskins across the theme and skin axes.
+
+Source: `src/components/molecules/List/List.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `as` | `ListElement` | no | `'ul'` | `ul`, `ol` |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLUListElement \| HTMLOListElement>` | no | — | — |
+
+Stories: `molecules-list--playground`, `molecules-list--ordered`, `molecules-list--nested`, `molecules-list--rich-items`, `molecules-list--overridden`, `molecules-list--dark-neutral`, `molecules-list--pixel-light`, `molecules-list--pixel-dark`
 

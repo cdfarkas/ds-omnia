@@ -39,8 +39,8 @@ how a rule *is now*; the **ADRs** say *why and when* it was decided. This file p
   component; singular root, parts in dot-notation (CLAUDE.md, ARCHITECTURE.md).
 - **Tests**: one Storybook-driven runner — a story `play` for the happy path, `*.test.tsx` for edge
   cases, `*.test.ts` for pure logic (`docs/testing.md`).
-- **A11y**: WCAG 2.1 AA across every theme and skin; an axe *incomplete* fails like a violation
-  (ADR 0006).
+- **A11y**: WCAG 2.2 AA across every theme and skin; an axe *incomplete* fails like a violation
+  (ADR 0026).
 - **Bilingual**: labels and ARIA strings go through `t()`; MDX prose through `<Localized/>`
   (ADR 0007).
 - **Catalogue prose**: a component page opens with a usage-first lead (what it is for, when to reach

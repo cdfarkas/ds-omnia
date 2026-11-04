@@ -1057,7 +1057,6 @@
     },
     {
       "name": "DescriptionList",
-      "description": "Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.",
       "source": "src/components/molecules/DescriptionList/DescriptionList.tsx",
       "props": [
         {
@@ -1096,6 +1095,70 @@
         {
           "name": "PixelDark",
           "id": "molecules-descriptionlist--pixel-dark"
+        }
+      ]
+    },
+    {
+      "name": "List",
+      "description": "Semantic list of short related items. `as` picks `<ul>` (bullets) or `<ol>` (numbers); compose it with `List.Item` children, which may nest another List. Token-driven, so it reskins across the theme and skin axes.",
+      "source": "src/components/molecules/List/List.tsx",
+      "props": [
+        {
+          "name": "as",
+          "type": "ListElement",
+          "required": false,
+          "default": "'ul'",
+          "options": [
+            "ul",
+            "ol"
+          ]
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLUListElement | HTMLOListElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "as"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-list--playground"
+        },
+        {
+          "name": "Ordered",
+          "id": "molecules-list--ordered"
+        },
+        {
+          "name": "Nested",
+          "id": "molecules-list--nested"
+        },
+        {
+          "name": "RichItems",
+          "id": "molecules-list--rich-items"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-list--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-list--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-list--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-list--pixel-dark"
         }
       ]
     }

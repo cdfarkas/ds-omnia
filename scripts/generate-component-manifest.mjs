@@ -102,10 +102,9 @@ function componentEntry(program, checker, root, { name, dir }) {
   let func;
   let iface;
   sf.forEachChild((node) => {
-    if (ts.isFunctionDeclaration(node) && node.name?.text === name) func = node;
     if (
-      ts.isVariableStatement(node) &&
-      node.declarationList.declarations.some((d) => d.name.getText(sf) === name)
+      ts.isFunctionDeclaration(node) &&
+      (node.name?.text === name || node.name?.text === `${name}Root`)
     )
       func = node;
     if (ts.isInterfaceDeclaration(node) && node.name.text === `${name}Props`)

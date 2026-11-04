@@ -19,6 +19,13 @@ export interface CardFooterProps extends HTMLAttributes<HTMLDivElement> {
 
 const join = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' ');
 
+/**
+ * Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer`
+ * parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the
+ * card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens
+ * only, reskins across the theme and skin axes, and steps its padding up with its own width; footer
+ * actions wrap on a narrow card.
+ */
 function CardRoot({ className, ref, ...rest }: CardProps) {
   return (
     <div
@@ -67,13 +74,6 @@ function CardFooter({ className, ref, ...rest }: CardFooterProps) {
   );
 }
 
-/**
- * Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer`
- * parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the
- * card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens
- * only, reskins across the theme and skin axes, and steps its padding up with its own width; footer
- * actions wrap on a narrow card.
- */
 export const Card = Object.assign(CardRoot, {
   Header: CardHeader,
   Body: CardBody,
