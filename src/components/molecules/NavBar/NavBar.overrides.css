@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-navbar {
+    --omnia-navbar-gap-x: var(--omnia-palette-space-5);
+    --omnia-navbar-current-color: var(--omnia-color-accent-active);
+  }
+}
