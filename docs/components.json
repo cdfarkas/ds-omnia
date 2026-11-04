@@ -1161,6 +1161,61 @@
           "id": "molecules-list--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "SectionHeading",
+      "source": "src/components/molecules/SectionHeading/SectionHeading.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-sectionheading--playground"
+        },
+        {
+          "name": "TitleOnly",
+          "id": "molecules-sectionheading--title-only"
+        },
+        {
+          "name": "WithDescription",
+          "id": "molecules-sectionheading--with-description"
+        },
+        {
+          "name": "WithActions",
+          "id": "molecules-sectionheading--with-actions"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-sectionheading--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-sectionheading--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-sectionheading--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-sectionheading--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-sectionheading--pixel-dark"
+        }
+      ]
     }
   ]
 }

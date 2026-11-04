@@ -140,6 +140,15 @@ const stories = [
   { id: 'molecules-list--nested', name: 'list-nested' },
   { id: 'molecules-list--rich-items', name: 'list-rich-items' },
   { id: 'molecules-list--overridden', name: 'list-overridden' },
+  { id: 'molecules-sectionheading--playground', name: 'section-heading-playground' },
+  { id: 'molecules-sectionheading--title-only', name: 'section-heading-title-only' },
+  {
+    id: 'molecules-sectionheading--with-description',
+    name: 'section-heading-with-description',
+  },
+  { id: 'molecules-sectionheading--with-actions', name: 'section-heading-with-actions' },
+  { id: 'molecules-sectionheading--narrow', name: 'section-heading-narrow' },
+  { id: 'molecules-sectionheading--overridden', name: 'section-heading-overridden' },
 ];
 
 const filter = process.argv[2];
@@ -310,6 +319,20 @@ if (!filter || filter.includes('link')) {
     'fr',
     'light-neutral__fr',
   );
+}
+
+if (!filter || filter.includes('sectionheading')) {
+  await page.setViewportSize({ width: 800, height: 220 });
+  for (const m of modes) {
+    await shoot(
+      'molecules-sectionheading--playground',
+      'section-heading-playground',
+      m,
+      'en',
+      `${m.key}__w800`,
+    );
+  }
+  await page.setViewportSize({ width: 440, height: 220 });
 }
 
 await page.setViewportSize({ width: 320, height: 568 });

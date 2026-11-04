@@ -1,0 +1,173 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as SectionHeadingStories from './SectionHeading.stories';
+
+<Meta of={SectionHeadingStories} />
+
+# SectionHeading
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>SectionHeading</strong> for the title row of a page section or a
+        panel. It pairs the title with an optional short description and with buttons that
+        act on the whole section.
+      </p>
+      <ul>
+        <li>
+          <strong>Three parts, one required.</strong> Compose it from{' '}
+          <code>SectionHeading.Title</code>, <code>SectionHeading.Description</code> and{' '}
+          <code>SectionHeading.Actions</code>; only the title is required.
+        </li>
+        <li>
+          <strong>You pick the heading level.</strong> The title renders a real heading,
+          and its <code>level</code> comes from the page outline, so set it from where the
+          section sits in the page.
+        </li>
+        <li>
+          <strong>The description stays short.</strong> It is muted by default and meant
+          for one line of context, not for body copy.
+        </li>
+        <li>
+          <strong>Actions follow the component's own width.</strong> On a wide container
+          they sit opposite the title; when the component itself is narrow they drop under
+          the text, whatever the screen size. It fills the width of its parent, so place
+          it in a block rather than in a box that shrinks to its content.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Every part reads tokens, so it follows
+          the light/dark theme and the neutral/pixel skin with no CSS changes.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>SectionHeading</strong> pour la ligne de titre d'une section de
+        page ou d'un panneau. Il associe le titre à une courte description facultative et
+        à des boutons qui agissent sur toute la section.
+      </p>
+      <ul>
+        <li>
+          <strong>Trois parties, une seule obligatoire.</strong> Composez-le avec{' '}
+          <code>SectionHeading.Title</code>, <code>SectionHeading.Description</code> et{' '}
+          <code>SectionHeading.Actions</code> ; seul le titre est obligatoire.
+        </li>
+        <li>
+          <strong>Vous choisissez le niveau de titre.</strong> Le titre produit un vrai
+          titre, et son <code>level</code> vient du plan de la page : réglez-le d'après la
+          place de la section dans la page.
+        </li>
+        <li>
+          <strong>La description reste courte.</strong> Elle est atténuée par défaut et
+          prévue pour une ligne de contexte, pas pour du texte courant.
+        </li>
+        <li>
+          <strong>Les actions suivent la largeur du composant lui-même.</strong> Dans un
+          conteneur large, elles se placent face au titre ; quand le composant est étroit,
+          elles passent sous le texte, quelle que soit la taille de l'écran. Il occupe
+          toute la largeur de son parent : placez-le dans un bloc, pas dans une boîte qui
+          se réduit à son contenu.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Chaque partie lit les jetons : il suit
+          le thème clair/sombre et l'habillage neutre/pixel sans retoucher son CSS.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={SectionHeadingStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Narrow container" fr="Conteneur étroit" />
+
+<Canvas of={SectionHeadingStories.Narrow} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        SectionHeading follows the system override contract (see{' '}
+        <code>docs/overrides.md</code>). Restyle it through this public surface — never
+        through the hashed CSS-Module class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>:{' '}
+          <code>--omnia-section-heading-column-gap</code> (space between the text and the
+          actions) and <code>--omnia-section-heading-row-gap</code> (space between rows).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>section-heading</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the wrapper, where your <code>className</code> merges) and{' '}
+          <code>actions</code>.
+        </li>
+        <li>
+          <strong>Title and Description</strong> keep their own Heading and Text override
+          contracts, so restyle them through those.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points both gap variables from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        SectionHeading suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> :{' '}
+          <code>--omnia-section-heading-column-gap</code> (espace entre le texte et les
+          actions) et <code>--omnia-section-heading-row-gap</code> (espace entre les
+          lignes).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>section-heading</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le conteneur, où votre <code>className</code> fusionne) et{' '}
+          <code>actions</code>.
+        </li>
+        <li>
+          <strong>Title et Description</strong> gardent les contrats de personnalisation
+          de Heading et de Text : restylez-les par ceux-ci.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige les deux variables
+        d'espacement depuis <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={SectionHeadingStories.Overridden} />

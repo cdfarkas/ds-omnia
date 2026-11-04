@@ -218,3 +218,14 @@ Source: `src/components/molecules/List/List.tsx`
 
 Stories: `molecules-list--playground`, `molecules-list--ordered`, `molecules-list--nested`, `molecules-list--rich-items`, `molecules-list--overridden`, `molecules-list--dark-neutral`, `molecules-list--pixel-light`, `molecules-list--pixel-dark`
 
+## SectionHeading
+
+Source: `src/components/molecules/SectionHeading/SectionHeading.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-sectionheading--playground`, `molecules-sectionheading--title-only`, `molecules-sectionheading--with-description`, `molecules-sectionheading--with-actions`, `molecules-sectionheading--narrow`, `molecules-sectionheading--overridden`, `molecules-sectionheading--dark-neutral`, `molecules-sectionheading--pixel-light`, `molecules-sectionheading--pixel-dark`
+

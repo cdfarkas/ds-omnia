@@ -13,6 +13,7 @@ export * from './components/atoms/Text';
 export * from './components/molecules/Card';
 export * from './components/molecules/DescriptionList';
 export * from './components/molecules/List';
+export * from './components/molecules/SectionHeading';
 export { locales, setLocale, getLocale } from './lib/i18n';
 export type { Locale } from './lib/i18n';
 export { intents } from './lib/intents';
