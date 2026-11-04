@@ -1020,6 +1020,41 @@
         }
       ],
       "variantAxes": [],
+      "parts": [
+        {
+          "name": "Card.Header",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "Card.Body",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "Card.Footer",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
       "stories": [
         {
           "name": "Playground",
@@ -1057,6 +1092,7 @@
     },
     {
       "name": "DescriptionList",
+      "description": "Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.",
       "source": "src/components/molecules/DescriptionList/DescriptionList.tsx",
       "props": [
         {
@@ -1071,6 +1107,7 @@
         }
       ],
       "variantAxes": [],
+      "parts": [],
       "stories": [
         {
           "name": "Playground",
@@ -1127,6 +1164,24 @@
       "variantAxes": [
         "as"
       ],
+      "parts": [
+        {
+          "name": "List.Item",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true
+            },
+            {
+              "name": "ref",
+              "type": "Ref<HTMLLIElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
       "stories": [
         {
           "name": "Playground",
@@ -1163,7 +1218,67 @@
       ]
     },
     {
+      "name": "NavBar",
+      "description": "Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.",
+      "source": "src/components/molecules/NavBar/NavBar.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true,
+          "description": "`NavBar.Link` parts; each renders as an item of the bar's list."
+        }
+      ],
+      "variantAxes": [],
+      "parts": [
+        {
+          "name": "NavBar.Link",
+          "props": [
+            {
+              "name": "current",
+              "type": "boolean",
+              "required": false,
+              "default": "false",
+              "description": "Marks the link to the page being shown (`aria-current=\"page\"`); a caller `aria-current` wins."
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-navbar--playground"
+        },
+        {
+          "name": "Current",
+          "id": "molecules-navbar--current"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-navbar--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-navbar--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-navbar--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-navbar--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-navbar--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "SectionHeading",
+      "description": "Title row of a page section or panel. `Title` renders a `Heading` (its `level` stays yours), `Description` a muted `Text`, and `Actions` sits opposite the title once the component itself is wide enough, dropping under the text when narrow.",
       "source": "src/components/molecules/SectionHeading/SectionHeading.tsx",
       "props": [
         {
@@ -1178,6 +1293,7 @@
         }
       ],
       "variantAxes": [],
+      "parts": [],
       "stories": [
         {
           "name": "Playground",

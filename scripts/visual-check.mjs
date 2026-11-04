@@ -140,6 +140,9 @@ const stories = [
   { id: 'molecules-list--nested', name: 'list-nested' },
   { id: 'molecules-list--rich-items', name: 'list-rich-items' },
   { id: 'molecules-list--overridden', name: 'list-overridden' },
+  { id: 'molecules-navbar--playground', name: 'navbar-playground' },
+  { id: 'molecules-navbar--narrow', name: 'navbar-narrow' },
+  { id: 'molecules-navbar--overridden', name: 'navbar-overridden' },
   { id: 'molecules-sectionheading--playground', name: 'section-heading-playground' },
   { id: 'molecules-sectionheading--title-only', name: 'section-heading-title-only' },
   {
@@ -321,6 +324,18 @@ if (!filter || filter.includes('link')) {
   );
 }
 
+if (!filter || filter.includes('navbar')) {
+  for (const m of modes) {
+    await shoot(
+      'molecules-navbar--playground',
+      'navbar-playground',
+      m,
+      'en',
+      `focus-${m.key}`,
+      true,
+    );
+  }
+}
 if (!filter || filter.includes('sectionheading')) {
   await page.setViewportSize({ width: 800, height: 220 });
   for (const m of modes) {

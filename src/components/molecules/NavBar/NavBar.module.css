@@ -1,0 +1,23 @@
+@layer components {
+  /* Wrapping is the mobile layout: links flow onto new lines, no breakpoint needed. */
+  .list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--omnia-navbar-gap-y, var(--omnia-palette-space-2))
+      var(--omnia-navbar-gap-x, var(--omnia-palette-space-4));
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  /* The current link differs by weight of underline, not colour alone (SC 1.4.1). */
+  .item > a[aria-current]:not([aria-current='false']) {
+    color: var(--omnia-navbar-current-color, var(--omnia-color-text-primary));
+    text-decoration-thickness: var(--omnia-border-width-thick);
+  }
+
+  :global([data-skin='pixel']) .item > a[aria-current]:not([aria-current='false']) {
+    text-decoration-style: solid;
+    text-decoration-thickness: var(--omnia-palette-border-thick);
+  }
+}

@@ -97,49 +97,69 @@ function storyEntries(root, dir, name) {
   }));
 }
 
-function componentEntry(program, checker, root, { name, dir }) {
-  const sf = program.getSourceFile(join(root, 'src', dir, `${name}.tsx`));
-  let func;
-  let iface;
-  sf.forEachChild((node) => {
-    if (
-      ts.isFunctionDeclaration(node) &&
-      (node.name?.text === name || node.name?.text === `${name}Root`)
-    )
-      func = node;
-    if (ts.isInterfaceDeclaration(node) && node.name.text === `${name}Props`)
-      iface = node;
-  });
+function propsOf(checker, sf, iface, func) {
   const defaults = paramDefaults(func, sf);
   const props = [];
   const variantAxes = [];
-  if (iface) {
-    for (const member of iface.members) {
-      if (!ts.isPropertySignature(member)) continue;
-      const propName = member.name.getText(sf);
-      const options = enumOptions(checker, member.type);
-      const entry = {
-        name: propName,
-        type: member.type ? collapse(member.type.getText(sf)) : 'unknown',
-        required: !member.questionToken,
-      };
-      const def = defaults.get(propName);
-      if (def !== undefined) entry.default = def;
-      if (options) {
-        entry.options = options;
-        variantAxes.push(propName);
-      }
-      const description = jsDocText(member);
-      if (description) entry.description = description;
-      props.push(entry);
+  for (const member of iface?.members ?? []) {
+    if (!ts.isPropertySignature(member)) continue;
+    const propName = member.name.getText(sf);
+    const options = enumOptions(checker, member.type);
+    const entry = {
+      name: propName,
+      type: member.type ? collapse(member.type.getText(sf)) : 'unknown',
+      required: !member.questionToken,
+    };
+    const def = defaults.get(propName);
+    if (def !== undefined) entry.default = def;
+    if (options) {
+      entry.options = options;
+      variantAxes.push(propName);
     }
+    const description = jsDocText(member);
+    if (description) entry.description = description;
+    props.push(entry);
   }
+  return { props, variantAxes };
+}
+
+function componentEntry(program, checker, root, { name, dir }) {
+  const sf = program.getSourceFile(join(root, 'src', dir, `${name}.tsx`));
+  const funcs = new Map();
+  const ifaces = new Map();
+  let compound;
+  sf.forEachChild((node) => {
+    if (ts.isFunctionDeclaration(node) && node.name) funcs.set(node.name.text, node);
+    if (ts.isInterfaceDeclaration(node)) ifaces.set(node.name.text, node);
+    if (ts.isVariableStatement(node)) {
+      const decl = node.declarationList.declarations.find(
+        (d) => d.name.getText(sf) === name,
+      );
+      if (decl) compound = { statement: node, init: decl.initializer };
+    }
+  });
+  // A compound is `const Name = Object.assign(Root, { Part: PartFn })` (ADR 0024).
+  const assign =
+    compound?.init &&
+    ts.isCallExpression(compound.init) &&
+    compound.init.expression.getText(sf) === 'Object.assign' &&
+    compound.init.arguments;
+  const func = funcs.get(assign ? assign[0].getText(sf) : name);
   const entry = { name };
-  const description = func ? jsDocText(func) : undefined;
+  const description = (assign && jsDocText(compound.statement)) || jsDocText(func ?? {});
   if (description) entry.description = description;
   entry.source = toPosix(join('src', dir, `${name}.tsx`));
-  entry.props = props;
-  entry.variantAxes = variantAxes;
+  Object.assign(entry, propsOf(checker, sf, ifaces.get(`${name}Props`), func));
+  if (assign && ts.isObjectLiteralExpression(assign[1])) {
+    entry.parts = assign[1].properties.filter(ts.isPropertyAssignment).map((prop) => {
+      const part = prop.name.getText(sf);
+      const partFunc = funcs.get(prop.initializer.getText(sf));
+      return {
+        name: `${name}.${part}`,
+        ...propsOf(checker, sf, ifaces.get(`${name}${part}Props`), partFunc),
+      };
+    });
+  }
   entry.stories = storyEntries(root, dir, name);
   return entry;
 }
@@ -170,20 +190,27 @@ export function renderMarkdown(manifest) {
     `Machine-readable API index: [\`components.json\`](./components.json). Package \`${manifest.package}\`.`,
     '',
   ];
-  for (const c of manifest.components) {
-    lines.push(`## ${c.name}`, '');
-    if (c.description) lines.push(c.description, '');
-    lines.push(`Source: \`${c.source}\``, '');
+  const propTable = (props) => {
     lines.push(
       '| Prop | Type | Required | Default | Options |',
       '| --- | --- | --- | --- | --- |',
     );
-    for (const p of c.props) {
+    for (const p of props) {
       const def = p.default ? `\`${cell(p.default)}\`` : '—';
       const options = p.options ? p.options.map((o) => `\`${o}\``).join(', ') : '—';
       lines.push(
         `| \`${p.name}\` | \`${cell(p.type)}\` | ${p.required ? 'yes' : 'no'} | ${def} | ${options} |`,
       );
+    }
+  };
+  for (const c of manifest.components) {
+    lines.push(`## ${c.name}`, '');
+    if (c.description) lines.push(c.description, '');
+    lines.push(`Source: \`${c.source}\``, '');
+    propTable(c.props);
+    for (const part of c.parts ?? []) {
+      lines.push('', `### ${part.name}`, '');
+      propTable(part.props);
     }
     lines.push(
       '',
