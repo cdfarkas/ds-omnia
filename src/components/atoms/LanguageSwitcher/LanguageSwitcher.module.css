@@ -1,0 +1,71 @@
+@layer components {
+  .root {
+    display: inline-flex;
+    overflow: hidden;
+    border: var(--omnia-border-width-thick) solid
+      var(--omnia-language-switcher-border-color, var(--omnia-color-border-strong));
+    border-radius: var(--omnia-language-switcher-radius, var(--omnia-radius-md));
+    background-color: var(--omnia-language-switcher-bg, var(--omnia-color-bg-surface));
+    line-height: 1.2;
+  }
+
+  .option {
+    margin: 0;
+    padding: var(--omnia-palette-space-2) var(--omnia-palette-space-3);
+    border: 0;
+    background-color: transparent;
+    color: var(--omnia-language-switcher-fg, var(--omnia-color-text-primary));
+    font: inherit;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    cursor: pointer;
+    appearance: none;
+    transition:
+      background-color var(--omnia-dur-fast) var(--omnia-ease-out),
+      color var(--omnia-dur-fast) var(--omnia-ease-out);
+  }
+
+  /* Focus shows on the group root (below), so suppress each button's own UA outline. */
+  .option:focus-visible {
+    outline: none;
+  }
+
+  .option[data-active] {
+    background-color: var(--omnia-language-switcher-active-bg, var(--omnia-color-accent));
+    color: var(--omnia-language-switcher-active-fg, var(--omnia-color-text-on-accent));
+    cursor: default;
+  }
+
+  .option:where(:not([data-active])):hover {
+    background-color: var(--omnia-color-bg-subtle);
+  }
+
+  .option:where([data-active]):hover {
+    background-color: var(--omnia-color-accent-hover);
+  }
+
+  /* Pixel skin: sharp corners, pixel face, thicker frame. */
+  :global([data-skin='pixel']) .root {
+    border-width: var(--omnia-palette-border-med);
+    border-radius: 0;
+  }
+
+  :global([data-skin='pixel']) .option {
+    font-family: var(--omnia-font-pixel);
+    font-size: 0.72em;
+    line-height: 1.5;
+    -webkit-font-smoothing: none;
+  }
+
+  /* Ring the whole control so the indicator clears the overflow clip and reads on any fill. */
+  .root:has(.option:focus-visible) {
+    outline: 2px solid var(--omnia-color-border-focus);
+    outline-offset: 2px;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .option {
+      transition: none;
+    }
+  }
+}

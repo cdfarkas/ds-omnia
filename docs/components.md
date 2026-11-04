@@ -181,6 +181,18 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## LanguageSwitcher
+
+Segmented toggle for the FR/EN locale axis. Reads `locale` and calls `setLocale` on the nearest `OmniaThemeProvider`, so it takes no value props — the provider is the single source of truth. One button per locale, each labelled with its own endonym and `lang`; the active one carries `aria-pressed`. The group root gets a localized accessible name; `className`, `style` and `ref` land on it, and any other native attribute spreads onto it.
+
+Source: `src/components/atoms/LanguageSwitcher/LanguageSwitcher.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `atoms-language-switcher--playground`, `atoms-language-switcher--default`, `atoms-language-switcher--dark-neutral`, `atoms-language-switcher--pixel-light`, `atoms-language-switcher--pixel-dark`
+
 ## Card
 
 Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.
