@@ -23,6 +23,12 @@ export interface DescriptionListDetailProps extends HTMLAttributes<HTMLElement> 
 
 const join = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' ');
 
+/**
+ * Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one
+ * `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack
+ * when the list is narrow and sit side by side once it is wide enough (a container query on the
+ * list's own width). Consumes semantic tokens only; themes/skins reskin it.
+ */
 function DescriptionListRoot({
   className,
   children,
@@ -84,10 +90,4 @@ function Detail({ className, children, ref, ...rest }: DescriptionListDetailProp
   );
 }
 
-/**
- * Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one
- * `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack
- * when the list is narrow and sit side by side once it is wide enough (a container query on the
- * list's own width). Consumes semantic tokens only; themes/skins reskin it.
- */
 export const DescriptionList = Object.assign(DescriptionListRoot, { Item, Term, Detail });
