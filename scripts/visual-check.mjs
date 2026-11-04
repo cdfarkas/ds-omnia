@@ -127,6 +127,8 @@ const stories = [
   { id: 'atoms-text--scale', name: 'text-scale' },
   { id: 'atoms-text--tones', name: 'text-tones' },
   { id: 'atoms-text--overridden', name: 'text-overridden' },
+  { id: 'atoms-language-switcher--playground', name: 'language-switcher-playground' },
+  { id: 'atoms-language-switcher--default', name: 'language-switcher-default' },
   { id: 'molecules-descriptionlist--playground', name: 'description-list-playground' },
   { id: 'molecules-descriptionlist--narrow', name: 'description-list-narrow' },
   { id: 'molecules-descriptionlist--overridden', name: 'description-list-overridden' },
