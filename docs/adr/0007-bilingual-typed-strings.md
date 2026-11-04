@@ -4,6 +4,8 @@
 
 Proposed — supersedes the original "stacked FR+EN MDX prose" decision recorded in this ADR.
 
+Extended by ADR 0027 (i18n export contract).
+
 ## Context
 
 The system must be bilingual FR/EN for component labels and ARIA strings, and for authored docs
