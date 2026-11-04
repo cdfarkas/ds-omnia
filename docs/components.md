@@ -181,6 +181,36 @@ Source: `src/components/atoms/Text/Text.tsx`
 
 Stories: `atoms-text--playground`, `atoms-text--scale`, `atoms-text--tones`, `atoms-text--overridden`, `atoms-text--dark-neutral`, `atoms-text--pixel-light`, `atoms-text--pixel-dark`
 
+## Card
+
+Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.
+
+Source: `src/components/molecules/Card/Card.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### Card.Header
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### Card.Body
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### Card.Footer
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-card--playground`, `molecules-card--body-only`, `molecules-card--with-header`, `molecules-card--narrow`, `molecules-card--overridden`, `molecules-card--dark-neutral`, `molecules-card--pixel-light`, `molecules-card--pixel-dark`
+
 ## DescriptionList
 
 Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.
@@ -232,4 +262,17 @@ Source: `src/components/molecules/NavBar/NavBar.tsx`
 | `current` | `boolean` | no | `false` | — |
 
 Stories: `molecules-navbar--playground`, `molecules-navbar--current`, `molecules-navbar--narrow`, `molecules-navbar--overridden`, `molecules-navbar--dark-neutral`, `molecules-navbar--pixel-light`, `molecules-navbar--pixel-dark`
+
+## SectionHeading
+
+Title row of a page section or panel. `Title` renders a `Heading` (its `level` stays yours), `Description` a muted `Text`, and `Actions` sits opposite the title once the component itself is wide enough, dropping under the text when narrow.
+
+Source: `src/components/molecules/SectionHeading/SectionHeading.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-sectionheading--playground`, `molecules-sectionheading--title-only`, `molecules-sectionheading--with-description`, `molecules-sectionheading--with-actions`, `molecules-sectionheading--narrow`, `molecules-sectionheading--overridden`, `molecules-sectionheading--dark-neutral`, `molecules-sectionheading--pixel-light`, `molecules-sectionheading--pixel-dark`
 

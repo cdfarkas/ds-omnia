@@ -1009,6 +1009,88 @@
       ]
     },
     {
+      "name": "Card",
+      "description": "Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.",
+      "source": "src/components/molecules/Card/Card.tsx",
+      "props": [
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "parts": [
+        {
+          "name": "Card.Header",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "Card.Body",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "Card.Footer",
+          "props": [
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-card--playground"
+        },
+        {
+          "name": "BodyOnly",
+          "id": "molecules-card--body-only"
+        },
+        {
+          "name": "WithHeader",
+          "id": "molecules-card--with-header"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-card--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-card--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-card--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-card--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-card--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "DescriptionList",
       "description": "Term–detail pairs on a native `<dl>`. Each `DescriptionList.Item` is a `<div>` group holding one `DescriptionList.Term` (`<dt>`) and its `DescriptionList.Detail` (`<dd>`). Terms and details stack when the list is narrow and sit side by side once it is wide enough (a container query on the list's own width). Consumes semantic tokens only; themes/skins reskin it.",
       "source": "src/components/molecules/DescriptionList/DescriptionList.tsx",
@@ -1191,6 +1273,63 @@
         {
           "name": "PixelDark",
           "id": "molecules-navbar--pixel-dark"
+        }
+      ]
+    },
+    {
+      "name": "SectionHeading",
+      "description": "Title row of a page section or panel. `Title` renders a `Heading` (its `level` stays yours), `Description` a muted `Text`, and `Actions` sits opposite the title once the component itself is wide enough, dropping under the text when narrow.",
+      "source": "src/components/molecules/SectionHeading/SectionHeading.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "parts": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-sectionheading--playground"
+        },
+        {
+          "name": "TitleOnly",
+          "id": "molecules-sectionheading--title-only"
+        },
+        {
+          "name": "WithDescription",
+          "id": "molecules-sectionheading--with-description"
+        },
+        {
+          "name": "WithActions",
+          "id": "molecules-sectionheading--with-actions"
+        },
+        {
+          "name": "Narrow",
+          "id": "molecules-sectionheading--narrow"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-sectionheading--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-sectionheading--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-sectionheading--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-sectionheading--pixel-dark"
         }
       ]
     }

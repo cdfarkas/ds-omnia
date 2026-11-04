@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-section-heading {
+    --omnia-section-heading-column-gap: var(--omnia-palette-space-5);
+    --omnia-section-heading-row-gap: var(--omnia-palette-space-4);
+  }
+}
