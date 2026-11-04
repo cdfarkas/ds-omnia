@@ -1054,6 +1054,88 @@
       ]
     },
     {
+      "name": "List",
+      "description": "Semantic list of short related items. `as` picks `<ul>` (bullets) or `<ol>` (numbers); compose it with `List.Item` children, which may nest another List. Token-driven, so it reskins across the theme and skin axes.",
+      "source": "src/components/molecules/List/List.tsx",
+      "props": [
+        {
+          "name": "as",
+          "type": "ListElement",
+          "required": false,
+          "default": "'ul'",
+          "options": [
+            "ul",
+            "ol"
+          ]
+        },
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLUListElement | HTMLOListElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "as"
+      ],
+      "parts": [
+        {
+          "name": "List.Item",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true
+            },
+            {
+              "name": "ref",
+              "type": "Ref<HTMLLIElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-list--playground"
+        },
+        {
+          "name": "Ordered",
+          "id": "molecules-list--ordered"
+        },
+        {
+          "name": "Nested",
+          "id": "molecules-list--nested"
+        },
+        {
+          "name": "RichItems",
+          "id": "molecules-list--rich-items"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-list--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-list--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-list--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-list--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "NavBar",
       "description": "Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.",
       "source": "src/components/molecules/NavBar/NavBar.tsx",

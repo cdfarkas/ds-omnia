@@ -40,6 +40,13 @@ describe('component manifest generator', () => {
     });
   });
 
+  test('reads a compound molecule through its Root function', () => {
+    const list = manifest.components.find((c) => c.name === 'List');
+    expect(list?.source).toBe('src/components/molecules/List/List.tsx');
+    expect(list?.description).toMatch(/List\.Item/);
+    expect(list?.props.find((p) => p.name === 'as')?.default).toBe("'ul'");
+  });
+
   test('every component resolves to a non-empty, well-formed entry', () => {
     for (const c of manifest.components) {
       expect(c.props.length).toBeGreaterThan(0);

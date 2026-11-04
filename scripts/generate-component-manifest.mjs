@@ -146,7 +146,7 @@ function componentEntry(program, checker, root, { name, dir }) {
     compound.init.arguments;
   const func = funcs.get(assign ? assign[0].getText(sf) : name);
   const entry = { name };
-  const description = jsDocText(assign ? compound.statement : (func ?? {}));
+  const description = (assign && jsDocText(compound.statement)) || jsDocText(func ?? {});
   if (description) entry.description = description;
   entry.source = toPosix(join('src', dir, `${name}.tsx`));
   Object.assign(entry, propsOf(checker, sf, ifaces.get(`${name}Props`), func));

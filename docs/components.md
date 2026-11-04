@@ -194,6 +194,27 @@ Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
 
 Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
 
+## List
+
+Semantic list of short related items. `as` picks `<ul>` (bullets) or `<ol>` (numbers); compose it with `List.Item` children, which may nest another List. Token-driven, so it reskins across the theme and skin axes.
+
+Source: `src/components/molecules/List/List.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `as` | `ListElement` | no | `'ul'` | `ul`, `ol` |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLUListElement \| HTMLOListElement>` | no | — | — |
+
+### List.Item
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLLIElement>` | no | — | — |
+
+Stories: `molecules-list--playground`, `molecules-list--ordered`, `molecules-list--nested`, `molecules-list--rich-items`, `molecules-list--overridden`, `molecules-list--dark-neutral`, `molecules-list--pixel-light`, `molecules-list--pixel-dark`
+
 ## NavBar
 
 Navigation bar: a labelled `<nav>` holding a list of `NavBar.Link` parts, each a standalone `Link`. Links wrap onto new lines on narrow screens; the current page's link is marked.
