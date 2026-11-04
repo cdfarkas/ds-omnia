@@ -21,6 +21,7 @@ export default defineConfig({
         'src/**/*.mdx',
         'src/**/index.ts',
         'src/bundle.ts',
+        'src/lib/DocsTheme.tsx',
         'src/**/*.check.ts',
         'src/**/*.d.ts',
       ],

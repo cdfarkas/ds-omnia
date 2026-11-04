@@ -27,8 +27,8 @@ Latin *omnia* ("all things", the neuter plural of *omnis*) — one token contrac
 
 A greenfield reference that demonstrates state-of-the-art design-system engineering: an *enforced*
 token contract (no raw colours in component CSS), real dark mode and a reskin that proves the tokens
-work, accessibility gated at the EU legal floor (WCAG 2.1 AA), and tests that live next to the
-stories they cover.
+work, accessibility gated at WCAG 2.2 AA, a level above the EU legal floor (2.1 AA), and tests that
+live next to the stories they cover.
 
 ## How to run
 

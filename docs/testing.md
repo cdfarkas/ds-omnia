@@ -52,8 +52,10 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
 
 ## Accessibility gate
 
-- **Floor: WCAG 2.1 AA** — the EU legal baseline (EN 301 549 v3.2.1, European Accessibility Act).
-- The a11y addon runs with **`a11y.test: 'error'`**: a 2.1 AA violation fails the run.
+- **Floor: WCAG 2.2 AA** — one level above the EU legal baseline (EN 301 549 v3.2.1 → WCAG 2.1 AA,
+  European Accessibility Act).
+- The a11y addon runs with **`a11y.test: 'error'`**: a 2.2 AA violation fails the run, with axe tags
+  up to `wcag22aa`.
 - An axe **incomplete** ("needs review") result fails the run too: `.storybook/vitest.setup.ts`
   reads the a11y report addon-vitest attaches to each story test and throws, naming the rule, the
   nodes and the theme/skin. Fix the markup or styles so axe can decide; never disable the rule.
@@ -68,7 +70,8 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
   meet the 4.5:1 contrast ratio so it passes the same gate as the neutral skin; it is not exempt.
 - axe computes contrast **from the CSS**, so the result is deterministic across Windows local and
   Linux CI — the gate is not render-flaky.
-- **WCAG 2.2 rules run as `'warn'`** — surfaced for awareness, not yet blocking.
+- Of the WCAG 2.2 additions axe automates only SC 2.5.8 target size (`target-size`); the others
+  (2.4.11, 2.5.7, 3.2.6, 3.3.7, 3.3.8) are reviewed by hand when a component could hit them.
 
 ## Agent visual validation
 

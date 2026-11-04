@@ -8,16 +8,16 @@ import { Localized } from '../lib/Localized';
 <Localized
   en={
     <p>
-      WCAG 2.1 AA is the floor, not a target — the EU legal baseline (EN 301 549, the
-      European Accessibility Act). The a11y addon enforces it on every story, in every
-      mode.
+      WCAG 2.2 AA is the floor, not a target — one level above the EU legal baseline (EN
+      301 549 → WCAG 2.1 AA, the European Accessibility Act). The a11y addon enforces it
+      on every story, in every mode.
     </p>
   }
   fr={
     <p>
-      WCAG 2.1 AA est le plancher, pas un objectif — la base légale de l'UE (EN 301 549,
-      la directive européenne sur l'accessibilité). Le module a11y l'impose sur chaque
-      story, dans chaque mode.
+      WCAG 2.2 AA est le plancher, pas un objectif — un niveau au-dessus de la base légale
+      de l'UE (EN 301 549 → WCAG 2.1 AA, la directive européenne sur l'accessibilité). Le
+      module a11y l'impose sur chaque story, dans chaque mode.
     </p>
   }
 />
@@ -40,7 +40,9 @@ import { Localized } from '../lib/Localized';
         indicator tokens in all four theme × skin modes.
       </li>
       <li>
-        WCAG 2.2 rules run as <code>'warn'</code> — surfaced, not yet gated.
+        WCAG 2.2 rules are gated like the rest: interactive targets are at least 24 × 24
+        px (SC 2.5.8). The 2.2 criteria axe cannot test — focus not obscured, dragging,
+        redundant entry, accessible authentication — are checked by hand.
       </li>
       <li>
         After a typing <code>play</code>, blur the field so the a11y scan runs on a
@@ -64,8 +66,10 @@ import { Localized } from '../lib/Localized';
         de bordure et d'indicateur dans les quatre modes thème × habillage.
       </li>
       <li>
-        Les règles WCAG 2.2 tournent en <code>'warn'</code> — signalées, pas encore
-        bloquantes.
+        Les règles WCAG 2.2 bloquent comme les autres : les cibles interactives font au
+        moins 24 × 24 px (SC 2.5.8). Les critères 2.2 qu'axe ne teste pas — focus non
+        masqué, glisser-déposer, saisie redondante, authentification accessible — sont
+        vérifiés à la main.
       </li>
       <li>
         Après un <code>play</code> de saisie, retirez le focus du champ pour que le scan
