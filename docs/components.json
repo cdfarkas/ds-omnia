@@ -1009,6 +1009,42 @@
       ]
     },
     {
+      "name": "LanguageSwitcher",
+      "description": "Segmented toggle for the FR/EN locale axis. Reads `locale` and calls `setLocale` on the nearest `OmniaThemeProvider`, so it takes no value props — the provider is the single source of truth. One button per locale, each labelled with its own endonym and `lang`; the active one carries `aria-pressed`. The group root gets a localized accessible name; `className`, `style` and `ref` land on it, and any other native attribute spreads onto it.",
+      "source": "src/components/atoms/LanguageSwitcher/LanguageSwitcher.tsx",
+      "props": [
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false,
+          "description": "Reaches the group root."
+        }
+      ],
+      "variantAxes": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-language-switcher--playground"
+        },
+        {
+          "name": "Default",
+          "id": "atoms-language-switcher--default"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-language-switcher--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-language-switcher--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-language-switcher--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "Card",
       "description": "Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.",
       "source": "src/components/molecules/Card/Card.tsx",
