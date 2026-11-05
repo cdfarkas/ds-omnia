@@ -29,7 +29,9 @@ import { Localized } from '../lib/Localized';
     <ul>
       <li>
         The a11y addon runs with <code>a11y.test: 'error'</code> across every theme and
-        skin, pixel included — the pixel palette is chosen to meet 4.5:1 contrast.
+        skin, pixel included — the pixel palette is chosen to meet 4.5:1 contrast. Each
+        story is tested four times, once per theme × skin mode, so its <code>play</code>{' '}
+        must pass in all four.
       </li>
       <li>
         An axe <em>incomplete</em> result fails like a violation; it is never waved
@@ -55,7 +57,8 @@ import { Localized } from '../lib/Localized';
       <li>
         Le module a11y tourne avec <code>a11y.test: 'error'</code> sur chaque thème et
         habillage, pixel compris — la palette pixel est choisie pour atteindre un
-        contraste de 4,5:1.
+        contraste de 4,5:1. Chaque story est testée quatre fois, une par mode thème ×
+        habillage, donc son <code>play</code> doit passer dans les quatre.
       </li>
       <li>
         Un résultat axe <em>incomplete</em> échoue comme une violation ; jamais laissé
