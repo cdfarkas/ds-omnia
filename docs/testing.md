@@ -66,7 +66,12 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
   and `text-muted` (placeholder) reaches 4.5:1 on `bg-surface`, `bg-subtle` and
   `bg-disabled`. It renders no component, but unlike other `*.test.ts` it reads the DOM's computed
   CSS. A component that draws a boundary or indicator with a new token adds its pair there.
-- Enforced across **every theme and every skin — pixel included**. The pixel palette is chosen to
+- Enforced across **every theme and every skin — pixel included**. `vitest.config.ts` defines one
+  Vitest project per theme×skin mode (`storybook:light-neutral`, `storybook:dark-neutral`,
+  `storybook:light-pixel`, `storybook:dark-pixel`) through `storybookTest({ initialGlobals })`, so
+  every story — render, `play`, axe and the incomplete check — runs in all four modes; a story's own
+  `globals` still override the project's (ADR 0028). A `play` must therefore pass in every mode. Run
+  one mode with `pnpm vitest run --project storybook:dark-pixel`. The pixel palette is chosen to
   meet the 4.5:1 contrast ratio so it passes the same gate as the neutral skin; it is not exempt.
 - axe computes contrast **from the CSS**, so the result is deterministic across Windows local and
   Linux CI — the gate is not render-flaky.

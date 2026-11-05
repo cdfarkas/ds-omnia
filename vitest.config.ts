@@ -10,6 +10,13 @@ const makeBrowser = () => ({
   instances: [{ browser: 'chromium' as const }],
 });
 
+const modes = [
+  { key: 'light-neutral', theme: 'light', skin: 'default' },
+  { key: 'dark-neutral', theme: 'dark', skin: 'default' },
+  { key: 'light-pixel', theme: 'light', skin: 'pixel' },
+  { key: 'dark-pixel', theme: 'dark', skin: 'pixel' },
+];
+
 export default defineConfig({
   test: {
     coverage: {
@@ -28,15 +35,17 @@ export default defineConfig({
       reporter: ['text-summary', 'json-summary', 'lcov'],
     },
     projects: [
-      {
-        extends: true,
-        plugins: [storybookTest({ configDir: '.storybook' })],
+      ...modes.map(({ key, theme, skin }) => ({
+        extends: true as const,
+        plugins: [
+          storybookTest({ configDir: '.storybook', initialGlobals: { theme, skin } }),
+        ],
         test: {
-          name: 'storybook',
+          name: `storybook:${key}`,
           browser: makeBrowser(),
           setupFiles: ['./.storybook/vitest.setup.ts'],
         },
-      },
+      })),
       {
         extends: true,
         plugins: [react()],
