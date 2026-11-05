@@ -1,10 +1,7 @@
 import type { HTMLAttributes, Ref } from 'react';
-import { locales, t, type Locale } from '../../../lib/i18n';
+import { locales, localeNames, t } from '../../../lib/i18n';
 import { useTheme } from '../../../lib/OmniaThemeProvider';
 import styles from './LanguageSwitcher.module.css';
-
-/** Each locale's name in its own language (endonym), rendered with the matching `lang`. */
-const endonyms: Record<Locale, string> = { en: 'English', fr: 'Français' };
 
 export interface LanguageSwitcherProps extends HTMLAttributes<HTMLDivElement> {
   /** Reaches the group root. */
@@ -46,7 +43,7 @@ export function LanguageSwitcher({ className, ref, ...rest }: LanguageSwitcherPr
             data-part="option"
             data-active={active || undefined}
           >
-            {endonyms[option]}
+            {localeNames[option]}
           </button>
         );
       })}
