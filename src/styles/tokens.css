@@ -40,6 +40,7 @@
     --omnia-palette-red-bright-active: #ff3b3b;
     --omnia-palette-violet: #7a3bff;
     --omnia-palette-violet-bright: #9a6bff;
+    --omnia-palette-violet-deep: #5b1fb8;
     --omnia-palette-lime: #d4ff2e;
     --omnia-palette-cyan: #7fe0ff;
     --omnia-palette-mint: #3ddc84;
@@ -122,8 +123,8 @@
     --omnia-color-border-default: var(--omnia-palette-ink-soft);
     --omnia-color-border-strong: var(--omnia-palette-ink);
     --omnia-color-border-focus: var(--omnia-palette-violet);
-    --omnia-color-link: var(--omnia-palette-cobalt);
-    --omnia-color-link-hover: var(--omnia-palette-cobalt-hover);
+    --omnia-color-link: var(--omnia-palette-violet);
+    --omnia-color-link-hover: var(--omnia-palette-violet-deep);
 
     --omnia-font-display: var(--omnia-palette-font-display);
     --omnia-font-sans: var(--omnia-palette-font-sans);
