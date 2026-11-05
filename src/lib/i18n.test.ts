@@ -1,5 +1,13 @@
 import { describe, expect, test } from 'vitest';
-import { getLocale, locales, localeNames, setLocale, t, translations } from './i18n';
+import {
+  getLocale,
+  locales,
+  localeNames,
+  setLocale,
+  t,
+  translations,
+  type TranslationKey,
+} from './i18n';
 
 describe('t()', () => {
   test('resolves against the current locale', () => {
@@ -13,6 +21,10 @@ describe('t()', () => {
   test('an explicit locale argument overrides the current one', () => {
     setLocale('en');
     expect(t('button.loading', 'fr')).toBe('Chargement');
+  });
+
+  test('an out-of-contract key resolves through the English fallback to undefined', () => {
+    expect(t('does-not-exist' as TranslationKey, 'en')).toBeUndefined();
   });
 });
 
