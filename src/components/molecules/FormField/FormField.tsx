@@ -147,7 +147,8 @@ function nativeMessage({ control, key }: Failing): string {
         : '';
   return t(`formField.${key}${variant}` as TranslationKey).replace(
     /\{(\w+)\}/g,
-    (_, name: string) => control.getAttribute(name) ?? '',
+    // Only {step} can lack its attribute, and the default step is 1.
+    (_, name: string) => control.getAttribute(name) ?? '1',
   );
 }
 

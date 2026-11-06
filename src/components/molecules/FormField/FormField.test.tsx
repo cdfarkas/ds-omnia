@@ -471,6 +471,46 @@ describe('FormField native validation', () => {
     expect(errorText()).toBe('Use at least 8 characters.');
   });
 
+  test('type=url gets its own typeMismatch wording', async () => {
+    await mount(
+      <InForm>
+        <EmailField
+          validateOn="submit"
+          input={{ type: 'url', defaultValue: 'example' }}
+        />
+      </InForm>,
+    );
+    await submit();
+    expect(errorText()).toBe('Enter a full web address starting with https://.');
+  });
+
+  test('stepMismatch names the step, 1 when the attribute is absent', async () => {
+    await mount(
+      <InForm>
+        <FormField validateOn="submit">
+          <FormField.Control render={(props) => <input {...props} type="number" />} />
+          <FormField.Error />
+        </FormField>
+        <FormField validateOn="submit">
+          <FormField.Control
+            render={(props) => <input {...props} type="number" step="0.5" />}
+          />
+          <FormField.Error />
+        </FormField>
+      </InForm>,
+    );
+    await realUser.type(input(0), '1.5');
+    await realUser.type(input(1), '0.25');
+    await submit();
+    const messages = [...container.querySelectorAll('[data-part="error"]')].map(
+      (el) => el.textContent,
+    );
+    expect(messages).toEqual([
+      'Enter a value in steps of 1.',
+      'Enter a value in steps of 0.5.',
+    ]);
+  });
+
   test('checkbox and switch get their own valueMissing wording', async () => {
     await mount(
       <InForm>
