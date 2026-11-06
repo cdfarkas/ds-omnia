@@ -150,6 +150,22 @@ Source: `src/components/atoms/Indicator/Indicator.tsx`
 
 Stories: `atoms-indicator--playground`, `atoms-indicator--intents`, `atoms-indicator--sizes`, `atoms-indicator--pulse`, `atoms-indicator--decorative`, `atoms-indicator--overridden`, `atoms-indicator--dark-neutral`, `atoms-indicator--pixel-light`, `atoms-indicator--pixel-dark`
 
+## Avatar
+
+Circular identity picture: the `src` image, else `initials`, else a neutral user icon. `alt` names it in every state; `alt=""` hides it from assistive technology as decorative.
+
+Source: `src/components/atoms/Avatar/Avatar.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `src` | `string` | no | — | — |
+| `alt` | `string` | yes | — | — |
+| `initials` | `string` | no | — | — |
+| `variantSize` | `AvatarSize` | no | `'md'` | `sm`, `md`, `lg`, `xs`, `xl` |
+| `ref` | `Ref<HTMLSpanElement>` | no | — | — |
+
+Stories: `atoms-avatar--playground`, `atoms-avatar--image`, `atoms-avatar--initials`, `atoms-avatar--placeholder`, `atoms-avatar--sizes`, `atoms-avatar--broken-image`, `atoms-avatar--decorative`, `atoms-avatar--overridden`
+
 ## Heading
 
 Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).

@@ -856,6 +856,83 @@
       ]
     },
     {
+      "name": "Avatar",
+      "description": "Circular identity picture: the `src` image, else `initials`, else a neutral user icon. `alt` names it in every state; `alt=\"\"` hides it from assistive technology as decorative.",
+      "source": "src/components/atoms/Avatar/Avatar.tsx",
+      "props": [
+        {
+          "name": "src",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "alt",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "initials",
+          "type": "string",
+          "required": false
+        },
+        {
+          "name": "variantSize",
+          "type": "AvatarSize",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md",
+            "lg",
+            "xs",
+            "xl"
+          ]
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLSpanElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "variantSize"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-avatar--playground"
+        },
+        {
+          "name": "Image",
+          "id": "atoms-avatar--image"
+        },
+        {
+          "name": "Initials",
+          "id": "atoms-avatar--initials"
+        },
+        {
+          "name": "Placeholder",
+          "id": "atoms-avatar--placeholder"
+        },
+        {
+          "name": "Sizes",
+          "id": "atoms-avatar--sizes"
+        },
+        {
+          "name": "BrokenImage",
+          "id": "atoms-avatar--broken-image"
+        },
+        {
+          "name": "Decorative",
+          "id": "atoms-avatar--decorative"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-avatar--overridden"
+        }
+      ]
+    },
+    {
       "name": "Heading",
       "description": "Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).",
       "source": "src/components/atoms/Heading/Heading.tsx",

@@ -1,0 +1,194 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as AvatarStories from './Avatar.stories';
+
+<Meta of={AvatarStories} />
+
+# Avatar
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Avatar</strong> to show who something belongs to — a person, a team or
+        a bot — as a small round picture next to their name or content.
+      </p>
+      <ul>
+        <li>
+          <strong>Picture first, then initials, then an icon.</strong> It shows the{' '}
+          <code>src</code> image; if there is none, or it fails to load, it shows{' '}
+          <code>initials</code>; without them, a neutral user icon.
+        </li>
+        <li>
+          <strong>You write the initials.</strong> <code>initials</code> is never guessed
+          from the name, so names in every language come out right.
+        </li>
+        <li>
+          <strong>
+            <code>alt</code> is the name, and it is required.
+          </strong>{' '}
+          Screen readers announce <code>alt</code> whatever the avatar shows, picture,
+          initials or icon. When the name is already written next to the avatar, pass{' '}
+          <code>alt=""</code> so it is not announced twice.
+        </li>
+        <li>
+          <strong>Five sizes.</strong> <code>variantSize</code> goes from <code>xs</code>{' '}
+          to <code>xl</code>; the default is <code>md</code>. The initials grow with it.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colours come from tokens, so Avatar
+          follows the light/dark theme and the neutral/pixel skin with no CSS changes. In
+          the pixel skin it turns into a notched square.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Avatar</strong> pour montrer à qui appartient un élément — une
+        personne, une équipe ou un robot — sous la forme d'une petite image ronde à côté
+        de son nom ou de son contenu.
+      </p>
+      <ul>
+        <li>
+          <strong>L'image d'abord, puis les initiales, puis une icône.</strong> Il affiche
+          l'image <code>src</code> ; si elle manque ou ne se charge pas, il affiche{' '}
+          <code>initials</code> ; sans initiales, une icône d'utilisateur neutre.
+        </li>
+        <li>
+          <strong>Vous écrivez les initiales.</strong> <code>initials</code> n'est jamais
+          deviné à partir du nom, pour que les noms de toutes les langues restent justes.
+        </li>
+        <li>
+          <strong>
+            <code>alt</code> est le nom, et il est obligatoire.
+          </strong>{' '}
+          Les lecteurs d'écran annoncent <code>alt</code> quel que soit l'affichage,
+          image, initiales ou icône. Quand le nom est déjà écrit à côté de l'avatar,
+          fournissez <code>alt=""</code> pour qu'il ne soit pas annoncé deux fois.
+        </li>
+        <li>
+          <strong>Cinq tailles.</strong> <code>variantSize</code> va de <code>xs</code> à{' '}
+          <code>xl</code> ; la valeur par défaut est <code>md</code>. Les initiales
+          grandissent avec.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul.</strong> Les couleurs viennent des jetons :
+          Avatar suit le thème clair/sombre et l'habillage neutre/pixel sans retoucher son
+          CSS. Dans l'habillage pixel, il devient un carré aux coins biseautés.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={AvatarStories.Image} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Fallbacks" fr="Solutions de repli" />
+
+<Canvas of={AvatarStories.Initials} />
+
+<Canvas of={AvatarStories.Placeholder} />
+
+<Canvas of={AvatarStories.BrokenImage} />
+
+### <Localized en="Sizes" fr="Tailles" />
+
+<Canvas of={AvatarStories.Sizes} />
+
+### <Localized en="Decorative" fr="Décoratif" />
+
+<Canvas of={AvatarStories.Decorative} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Avatar follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-avatar-bg</code>,{' '}
+          <code>--omnia-avatar-fg</code>, <code>--omnia-avatar-border-color</code>,{' '}
+          <code>--omnia-avatar-radius</code>, <code>--omnia-avatar-size</code>. Each falls
+          back to its semantic token; <code>variantSize</code> sets the size.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>avatar</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the circle, where your <code>className</code> merges), and
+          inside it <code>image</code>, <code>initials</code> or <code>placeholder</code>.
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-avatar-radius</code>/<code>--omnia-avatar-bg</code>/
+        <code>--omnia-avatar-fg</code> from <code>@layer overrides</code>, with no{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Avatar suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-avatar-bg</code>,{' '}
+          <code>--omnia-avatar-fg</code>, <code>--omnia-avatar-border-color</code>,{' '}
+          <code>--omnia-avatar-radius</code>, <code>--omnia-avatar-size</code>. Chacune se
+          rabat sur son jeton sémantique ; <code>variantSize</code> définit la taille.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>avatar</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le cercle, où votre <code>className</code> fusionne) et, à
+          l'intérieur, <code>image</code>, <code>initials</code> ou{' '}
+          <code>placeholder</code>.
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-avatar-radius</code>/<code>--omnia-avatar-bg</code>/
+        <code>--omnia-avatar-fg</code> depuis <code>@layer overrides</code>, sans{' '}
+        <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={AvatarStories.Overridden} />
