@@ -6,4 +6,7 @@ export const fr: Record<keyof typeof en, string> = {
   'link.external': '(ouvre dans une nouvelle fenêtre)',
   'navBar.label': 'Principale',
   'spinner.loading': 'Chargement',
+  'themeSwitcher.dark': 'Sombre',
+  'themeSwitcher.label': 'Thème',
+  'themeSwitcher.light': 'Clair',
 };
