@@ -6,7 +6,6 @@ import { chromium } from 'playwright';
 
 const root = resolve('storybook-static');
 const outDir = resolve('visual-report');
-const PORT = 6007;
 
 if (!existsSync(root)) {
   console.error('storybook-static not found. Run `pnpm build-storybook` first.');
@@ -49,7 +48,7 @@ function serve() {
         resp.end(String(err));
       }
     });
-    server.listen(PORT, () => res(server));
+    server.listen(Number(process.env.VISUAL_CHECK_PORT) || 0, () => res(server));
   });
 }
 
@@ -176,6 +175,7 @@ const modes = [
 ];
 
 const server = await serve();
+const { port } = server.address();
 await mkdir(outDir, { recursive: true });
 const browser = await chromium.launch();
 const page = await browser.newPage({
@@ -186,7 +186,7 @@ const manifest = [];
 
 async function open(id, theme, skin, locale) {
   const globals = `theme:${theme};skin:${skin};locale:${locale}`;
-  const url = `http://localhost:${PORT}/iframe.html?id=${id}&viewMode=story&globals=${encodeURIComponent(globals)}`;
+  const url = `http://localhost:${port}/iframe.html?id=${id}&viewMode=story&globals=${encodeURIComponent(globals)}`;
   await page.goto(url, { waitUntil: 'networkidle' });
   await page.waitForSelector('#storybook-root > *', { timeout: 20000 });
   await page.waitForTimeout(250);
