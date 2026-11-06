@@ -2,7 +2,8 @@
 
 ## Status
 
-Accepted
+Accepted. Partly superseded by ADR 0031: the `project` threshold is 0%, the `patch` target is `auto`,
+and a coverage floor in the `test` job is the blocking gate.
 
 ## Context
 
@@ -39,9 +40,11 @@ exposed as `pnpm coverage`.
 The regression gate is **Codecov**, computed on Linux CI only. The CI test job runs `pnpm coverage`
 and uploads `coverage/lcov.info`; `codecov.yml` defines two blocking statuses:
 
-- `project` → `target: auto` with a `1%` threshold: the total ratio may not drop against the base,
-  and the small threshold keeps measurement noise from failing a PR.
-- `patch` → `target: 80%`: the lines a PR adds or changes must be 80% covered.
+- ~~`project` → `target: auto` with a `1%` threshold: the total ratio may not drop against the base,
+  and the small threshold keeps measurement noise from failing a PR.~~ Superseded by ADR 0031:
+  `threshold: 0%`, any drop fails.
+- ~~`patch` → `target: 80%`: the lines a PR adds or changes must be 80% covered.~~ Superseded by
+  ADR 0031: `target: auto`, the changed lines must be at least as covered as the base.
 
 Upload authenticates via **OIDC** (`use_oidc: true`, with `id-token: write` on the job), so no
 token secret is stored. The Codecov org is tokenless, but uploads targeting a protected branch
@@ -49,9 +52,10 @@ token secret is stored. The Codecov org is tokenless, but uploads targeting a pr
 
 ## Consequences
 
-- New code must come with its tests (the `patch` status), and the total cannot silently erode (the
+- ~~New code must come with its tests (the `patch` status), and the total cannot silently erode (the
   `project` status). Both are real, blocking PR checks — unlike the non-blocking Chromatic visual
-  check.
+  check.~~ Superseded by ADR 0031: neither status was required and `project` never posted; the
+  blocking gate is a coverage floor in the `test` job, plus `codecov/patch` as a required check.
 - The number is deterministic: it is always the Linux CI measurement, never a local Windows run.
   `pnpm coverage` stays available locally for authoring, but its exact percentage is not the gate.
 - **A global ratchet alone is gameable** and it penalises deleting covered code (removing a tested
@@ -62,5 +66,5 @@ token secret is stored. The Codecov org is tokenless, but uploads targeting a pr
   not how rigorously logic is asserted. A high number here means the catalogue exercises the
   components broadly; it is not a proof of correctness. Read it as a breadth signal.
 - Codecov is a third-party dependency in the PR path. The upload step is `fail_ci_if_error: false`,
-  so an upload hiccup does not red the test job — the Codecov project/patch status checks remain the
-  real coverage gate.
+  so an upload hiccup does not red the test job — ~~the Codecov project/patch status checks remain
+  the real coverage gate.~~ Superseded by ADR 0031: the floor in the `test` job is the gate.
