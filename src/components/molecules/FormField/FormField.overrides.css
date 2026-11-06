@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-form-field {
+    --omnia-form-field-label-color: var(--omnia-color-link);
+    --omnia-form-field-gap: var(--omnia-palette-space-3);
+  }
+}

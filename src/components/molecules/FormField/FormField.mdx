@@ -1,0 +1,386 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as FormFieldStories from './FormField.stories';
+
+<Meta of={FormFieldStories} />
+
+# FormField
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>FormField</strong> around any form control that needs a visible label,
+        a hint or an error message. It links them to the control for assistive technology,
+        so you never write an <code>id</code> or <code>aria-describedby</code> by hand.
+      </p>
+      <ul>
+        <li>
+          <strong>Four parts, in the order you write them.</strong>{' '}
+          <code>FormField.Label</code> names the control, <code>FormField.Control</code>{' '}
+          renders it, <code>FormField.Description</code> holds the hint and{' '}
+          <code>FormField.Error</code> the message. Use only the parts you need.
+        </li>
+        <li>
+          <strong>The control receives the wiring, it does not look for it.</strong>{' '}
+          <code>FormField.Control</code> calls its <code>render</code> function with the
+          attributes to spread on the control and the field state. Omnia's inputs stay
+          plain presentational components that know nothing about the field.
+        </li>
+        <li>
+          <strong>Pass the invalid state to the atom yourself.</strong> Spreading the
+          attributes marks the control invalid for assistive technology; the red border of
+          an Omnia atom comes from its own <code>invalid</code> prop, read from the state.
+        </li>
+        <li>
+          <strong>Any control works through the hook.</strong> Inside a field,{' '}
+          <code>useFormField()</code> returns the same attributes, so a native{' '}
+          <code>&lt;select&gt;</code> or a third-party control can be wired in a small
+          component of its own.
+        </li>
+        <li>
+          <strong>Your own props win when written after the spread.</strong> An{' '}
+          <code>id</code> or <code>aria-describedby</code> placed after{' '}
+          <code>{'{...props}'}</code> replaces the field's value; it is not merged with
+          it.
+        </li>
+        <li>
+          <strong>Required shows a star.</strong> With <code>required</code>, the label
+          gains a <code>*</code> hidden from screen readers and the control gets the
+          native <code>required</code> attribute, which screen readers announce.
+        </li>
+        <li>
+          <strong>The error appears only when the field is invalid.</strong> It also stays
+          hidden when it has no content, and only rendered parts are referenced by the
+          control.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>FormField</strong> autour de tout contrôle de formulaire qui a
+        besoin d'un libellé visible, d'une aide ou d'un message d'erreur. Il les relie au
+        contrôle pour les technologies d'assistance : vous n'écrivez jamais d'
+        <code>id</code> ni d'<code>aria-describedby</code> à la main.
+      </p>
+      <ul>
+        <li>
+          <strong>Quatre parties, dans l'ordre où vous les écrivez.</strong>{' '}
+          <code>FormField.Label</code> nomme le contrôle, <code>FormField.Control</code>{' '}
+          le rend, <code>FormField.Description</code> porte l'aide et{' '}
+          <code>FormField.Error</code> le message. N'utilisez que les parties utiles.
+        </li>
+        <li>
+          <strong>Le contrôle reçoit le câblage, il ne le cherche pas.</strong>{' '}
+          <code>FormField.Control</code> appelle sa fonction <code>render</code> avec les
+          attributs à étaler sur le contrôle et l'état du champ. Les champs d'Omnia
+          restent de simples composants de présentation qui ignorent tout du champ.
+        </li>
+        <li>
+          <strong>Transmettez vous-même l'état invalide à l'atome.</strong> Étaler les
+          attributs signale le contrôle invalide aux technologies d'assistance ; la
+          bordure rouge d'un atome Omnia vient de sa propre propriété <code>invalid</code>
+          , lue dans l'état.
+        </li>
+        <li>
+          <strong>Tout contrôle passe par le hook.</strong> Dans un champ,{' '}
+          <code>useFormField()</code> renvoie les mêmes attributs : un{' '}
+          <code>&lt;select&gt;</code> natif ou un contrôle tiers se câble dans un petit
+          composant à part.
+        </li>
+        <li>
+          <strong>Vos propriétés gagnent si elles suivent l'étalement.</strong> Un{' '}
+          <code>id</code> ou un <code>aria-describedby</code> écrit après{' '}
+          <code>{'{...props}'}</code> remplace la valeur du champ ; il ne s'y ajoute pas.
+        </li>
+        <li>
+          <strong>Obligatoire affiche une étoile.</strong> Avec <code>required</code>, le
+          libellé reçoit un <code>*</code> masqué aux lecteurs d'écran et le contrôle
+          l'attribut natif <code>required</code>, que les lecteurs d'écran annoncent.
+        </li>
+        <li>
+          <strong>L'erreur n'apparaît que si le champ est invalide.</strong> Elle reste
+          aussi masquée sans contenu, et le contrôle ne référence que les parties rendues.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+```tsx
+import { FormField, Input } from '@cdfarkas/omnia';
+
+<FormField invalid={Boolean(error)} required>
+  <FormField.Label>Email</FormField.Label>
+  <FormField.Control
+    render={(props, { invalid }) => <Input {...props} type="email" invalid={invalid} />}
+  />
+  <FormField.Description>We send the receipt to this address.</FormField.Description>
+  <FormField.Error>{error}</FormField.Error>
+</FormField>;
+```
+
+<Canvas of={FormFieldStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Invalid" fr="Invalide" />
+
+<Canvas of={FormFieldStories.Invalid} />
+
+### <Localized en="Required" fr="Obligatoire" />
+
+<Canvas of={FormFieldStories.Required} />
+
+### <Localized en="Checkbox and Switch" fr="Checkbox et Switch" />
+
+<Localized
+  en={
+    <p>
+      <strong>
+        No <code>FormField.Label</code> here.
+      </strong>{' '}
+      Checkbox and Switch already render their own label around the control: put the label
+      text in their children and let the field add the hint, the error and the state.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>
+        Pas de <code>FormField.Label</code> ici.
+      </strong>{' '}
+      Checkbox et Switch rendent déjà leur propre libellé autour du contrôle : placez le
+      texte dans leurs enfants et laissez le champ ajouter l'aide, l'erreur et l'état.
+    </p>
+  }
+/>
+
+<Canvas of={FormFieldStories.WithCheckbox} />
+
+<Canvas of={FormFieldStories.WithSwitch} />
+
+### <Localized en="Custom control" fr="Contrôle personnalisé" />
+
+<Canvas of={FormFieldStories.CustomControl} />
+
+### <Localized en="Validation is yours" fr="La validation vous appartient" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>FormField validates nothing.</strong> It shows the state you give it.
+        Rules, timing and message text come from your form layer: a form library, the
+        server or a React action.
+      </li>
+      <li>
+        <strong>The browser's own checks are not shown.</strong> FormField does not read
+        native constraint validation (<code>required</code>, <code>type="email"</code>) to
+        display an error in this version: turn it off with <code>noValidate</code> on the
+        form and report errors yourself.
+      </li>
+      <li>
+        <strong>The error is not announced by default.</strong> It is linked to the
+        control, so it is read when the control is focused. To announce it as it appears,
+        add <code>role="alert"</code> or <code>aria-live</code> to{' '}
+        <code>FormField.Error</code>, or show an error summary at the top of the form
+        after submit.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>FormField ne valide rien.</strong> Il affiche l'état que vous lui donnez.
+        Règles, moment de la vérification et texte des messages viennent de votre couche
+        formulaire : une bibliothèque, le serveur ou une action React.
+      </li>
+      <li>
+        <strong>Les vérifications du navigateur ne sont pas affichées.</strong> Dans cette
+        version, FormField ne lit pas la validation native (<code>required</code>,{' '}
+        <code>type="email"</code>) pour afficher une erreur : désactivez-la avec{' '}
+        <code>noValidate</code> sur le formulaire et signalez les erreurs vous-même.
+      </li>
+      <li>
+        <strong>L'erreur n'est pas annoncée par défaut.</strong> Elle est reliée au
+        contrôle et lue quand il reçoit le focus. Pour l'annoncer dès son apparition,
+        ajoutez <code>role="alert"</code> ou <code>aria-live</code> à{' '}
+        <code>FormField.Error</code>, ou affichez un récapitulatif des erreurs en haut du
+        formulaire après l'envoi.
+      </li>
+    </ul>
+  }
+/>
+
+### <Localized en="Server error" fr="Erreur du serveur" />
+
+<Localized
+  en={
+    <p>
+      <strong>Show what the server returns.</strong> With a React{' '}
+      <code>&lt;form action&gt;</code> and <code>useActionState</code>, the action returns
+      the error and the field turns <code>invalid</code> with it as the message. The input
+      stays uncontrolled and is read by its <code>name</code>; return the submitted value
+      and pass it as <code>defaultValue</code> so it survives the form reset.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Affichez ce que renvoie le serveur.</strong> Avec un{' '}
+      <code>&lt;form action&gt;</code> React et <code>useActionState</code>, l'action
+      renvoie l'erreur et le champ passe <code>invalid</code> avec elle pour message. Le
+      champ reste non contrôlé et lu par son <code>name</code> ; renvoyez la valeur saisie
+      et passez-la en <code>defaultValue</code> pour qu'elle survive à la réinitialisation
+      du formulaire.
+    </p>
+  }
+/>
+
+<Canvas of={FormFieldStories.ServerError} />
+
+### <Localized en="Validate on blur" fr="Valider à la perte du focus" />
+
+<Localized
+  en={
+    <p>
+      <strong>Check when the user leaves the field.</strong> Plain React state is enough:
+      an address typed then erased shows the error on blur, and typing again clears it on
+      change. A field the user never filled stays quiet.
+    </p>
+  }
+  fr={
+    <p>
+      <strong>Vérifiez quand l'utilisateur quitte le champ.</strong> Un simple état React
+      suffit : une adresse saisie puis effacée affiche l'erreur à la perte du focus, et la
+      saisie suivante l'efface. Un champ jamais rempli reste silencieux.
+    </p>
+  }
+/>
+
+<Canvas of={FormFieldStories.ValidateOnBlur} />
+
+### <Localized en="With a form library" fr="Avec une bibliothèque de formulaires" />
+
+```tsx
+import { useForm } from 'react-hook-form';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { z } from 'zod';
+import { FormField, Input } from '@cdfarkas/omnia';
+
+const schema = z.object({
+  email: z.email('Enter an email address like name@example.com.'),
+});
+
+function SignUp() {
+  const { register, handleSubmit, formState } = useForm({
+    resolver: zodResolver(schema),
+  });
+  const error = formState.errors.email?.message;
+  return (
+    <form onSubmit={handleSubmit(console.log)} noValidate>
+      <FormField invalid={Boolean(error)} required>
+        <FormField.Label>Email</FormField.Label>
+        <FormField.Control
+          render={(props, { invalid }) => (
+            <Input {...props} {...register('email')} type="email" invalid={invalid} />
+          )}
+        />
+        <FormField.Error>{error}</FormField.Error>
+      </FormField>
+    </form>
+  );
+}
+```
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        FormField follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-form-field-gap</code> (the
+          space between parts), <code>--omnia-form-field-label-color</code> (defaults to{' '}
+          <code>--omnia-color-text-primary</code>),{' '}
+          <code>--omnia-form-field-description-color</code> (defaults to{' '}
+          <code>--omnia-color-text-muted</code>) and{' '}
+          <code>--omnia-form-field-error-color</code> (defaults to{' '}
+          <code>--omnia-color-text-primary</code>; the bar beside the error uses{' '}
+          <code>--omnia-color-danger-border</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>form-field</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, <code>label</code>, <code>required-indicator</code>,{' '}
+          <code>description</code> and <code>error</code>; each part merges its own{' '}
+          <code>className</code>. <code>FormField.Control</code> renders no element of its
+          own.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-form-field-label-color</code>/<code>--omnia-form-field-gap</code>{' '}
+        from <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        FormField suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-form-field-gap</code>{' '}
+          (l'espace entre les parties), <code>--omnia-form-field-label-color</code> (par
+          défaut <code>--omnia-color-text-primary</code>),{' '}
+          <code>--omnia-form-field-description-color</code> (par défaut{' '}
+          <code>--omnia-color-text-muted</code>) et{' '}
+          <code>--omnia-form-field-error-color</code> (par défaut{' '}
+          <code>--omnia-color-text-primary</code> ; la barre à côté de l'erreur utilise{' '}
+          <code>--omnia-color-danger-border</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>form-field</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, <code>label</code>, <code>required-indicator</code>,{' '}
+          <code>description</code> et <code>error</code> ; chaque partie fusionne son
+          propre <code>className</code>. <code>FormField.Control</code> ne rend aucun
+          élément.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-form-field-label-color</code>/<code>--omnia-form-field-gap</code>{' '}
+        depuis <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={FormFieldStories.Overridden} />

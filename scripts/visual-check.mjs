@@ -137,6 +137,15 @@ const stories = [
   { id: 'molecules-descriptionlist--playground', name: 'description-list-playground' },
   { id: 'molecules-descriptionlist--narrow', name: 'description-list-narrow' },
   { id: 'molecules-descriptionlist--overridden', name: 'description-list-overridden' },
+  { id: 'molecules-formfield--playground', name: 'form-field-playground' },
+  { id: 'molecules-formfield--invalid', name: 'form-field-invalid' },
+  { id: 'molecules-formfield--required', name: 'form-field-required' },
+  { id: 'molecules-formfield--with-checkbox', name: 'form-field-with-checkbox' },
+  { id: 'molecules-formfield--with-switch', name: 'form-field-with-switch' },
+  { id: 'molecules-formfield--custom-control', name: 'form-field-custom-control' },
+  { id: 'molecules-formfield--server-error', name: 'form-field-server-error' },
+  { id: 'molecules-formfield--validate-on-blur', name: 'form-field-validate-on-blur' },
+  { id: 'molecules-formfield--overridden', name: 'form-field-overridden' },
   { id: 'molecules-list--playground', name: 'list-playground' },
   { id: 'molecules-list--ordered', name: 'list-ordered' },
   { id: 'molecules-list--nested', name: 'list-nested' },
@@ -331,6 +340,18 @@ if (!filter || filter.includes('navbar')) {
     await shoot(
       'molecules-navbar--playground',
       'navbar-playground',
+      m,
+      'en',
+      `focus-${m.key}`,
+      true,
+    );
+  }
+}
+if (!filter || filter.includes('formfield')) {
+  for (const m of modes) {
+    await shoot(
+      'molecules-formfield--invalid',
+      'form-field-invalid',
       m,
       'en',
       `focus-${m.key}`,

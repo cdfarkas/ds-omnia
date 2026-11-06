@@ -13,6 +13,7 @@ export * from './components/atoms/Text';
 export * from './components/atoms/LanguageSwitcher';
 export * from './components/molecules/Card';
 export * from './components/molecules/DescriptionList';
+export * from './components/molecules/FormField';
 export * from './components/molecules/List';
 export * from './components/molecules/NavBar';
 export * from './components/molecules/SectionHeading';

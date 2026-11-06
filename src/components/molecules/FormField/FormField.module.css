@@ -1,0 +1,49 @@
+@layer components {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--omnia-form-field-gap, var(--omnia-palette-space-2));
+    min-inline-size: 0;
+    font-family: var(--omnia-font-sans);
+    line-height: 1.5;
+  }
+
+  .label,
+  .description,
+  .error {
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  .label {
+    color: var(--omnia-form-field-label-color, var(--omnia-color-text-primary));
+    font-size: 1rem;
+    font-weight: 600;
+  }
+
+  .indicator {
+    margin-inline-start: var(--omnia-palette-space-1);
+  }
+
+  .description {
+    color: var(--omnia-form-field-description-color, var(--omnia-color-text-muted));
+    font-size: 0.875rem;
+  }
+
+  /* No danger token reaches 4.5:1 as text in every mode: the text stays primary, the bar is danger. */
+  .error {
+    padding-inline-start: var(--omnia-palette-space-2);
+    border-inline-start: var(--omnia-border-width-thick) solid
+      var(--omnia-color-danger-border);
+    color: var(--omnia-form-field-error-color, var(--omnia-color-text-primary));
+    font-size: 0.875rem;
+    font-weight: 600;
+  }
+
+  :global([data-skin='pixel']) .label {
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+    font-size: 0.72em;
+    line-height: 1.5;
+  }
+}
