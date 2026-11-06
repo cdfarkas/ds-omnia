@@ -44,7 +44,8 @@ the parts share state:
   The parent owns the state and exposes it through a context the sub-parts consume. Examples:
   `Dialog` (open state, focus trap), `FormField` (ids and invalid/required state shared by its
   label, description and error; the control gets them through `FormField.Control` or
-  `useFormField()`, so atoms never consume the context — ADR 0029).
+  `useFormField()`, so atoms never consume the context — ADR 0029; with `validateOn` it also shows
+  the control's native constraint validation with Omnia messages — ADR 0030).
 - **No shared state**, parts are just a documented slot layout → **plain dot-notation**, no context.
   The parent attaches sub-components as static properties. Example: `Card.Header`, `Card.Body`,
   `Card.Footer` — purely structural.

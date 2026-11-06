@@ -4,6 +4,7 @@
 
 Accepted (2026-11-06). Supersedes the `Input` line "Add when `FormField` lands: read the field
 context…" in the Consequences of ADR 0016, and settles its open `role="alert"` point.
+Its "Display only" bullet is superseded by ADR 0030.
 
 ## Context
 
@@ -45,7 +46,8 @@ wrappers) is recorded in the private vault, not here.
 - **No live region on the error by default.** `FormField.Error` has no `role` or `aria-live`; it
   forwards HTML attributes, so a consumer can add `role="alert"`, or show an error summary after
   submit.
-- **Display only**, as ADR 0016 decided: no validation and no generated message text.
+- ~~**Display only**, as ADR 0016 decided: no validation and no generated message text.~~
+  Superseded by ADR 0030: with `validateOn`, the field shows native validity with Omnia messages.
 - Checkbox and Switch render their own `<label>`: they take no `FormField.Label`, and their label
   text goes in the atom's children.
 

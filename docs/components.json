@@ -1286,7 +1286,7 @@
     },
     {
       "name": "FormField",
-      "description": "Field wrapper that links a label, a description and an error to one control. The control is rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the field. Display only: it shows the `invalid` state it is given and validates nothing.",
+      "description": "Field wrapper that links a label, a description and an error to one control. The control is rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the field. Display only by default; with `validateOn` it also shows the control's native constraint validation with an Omnia message, unless the form has `noValidate`.",
       "source": "src/components/molecules/FormField/FormField.tsx",
       "props": [
         {
@@ -1294,7 +1294,7 @@
           "type": "boolean",
           "required": false,
           "default": "false",
-          "description": "Shows `FormField.Error` and marks the control `aria-invalid`."
+          "description": "Shows `FormField.Error` and marks the control `aria-invalid`; `true` wins over native validity."
         },
         {
           "name": "required",
@@ -1304,12 +1304,32 @@
           "description": "Adds the `*` indicator to the label and native `required` to the control."
         },
         {
+          "name": "validateOn",
+          "type": "FormFieldValidateOn",
+          "required": false,
+          "options": [
+            "submit",
+            "blur",
+            "change",
+            "touched"
+          ],
+          "description": "Shows the control's native constraint validation: on a submit attempt, plus on blur, on every change, or on first blur then every change. Omitted, the field only displays `invalid`."
+        },
+        {
+          "name": "validationMessages",
+          "type": "Partial<Record<FormFieldValidityKey, ReactNode>>",
+          "required": false,
+          "description": "Replaces the Omnia message for a failing native validity key."
+        },
+        {
           "name": "ref",
           "type": "Ref<HTMLDivElement>",
           "required": false
         }
       ],
-      "variantAxes": [],
+      "variantAxes": [
+        "validateOn"
+      ],
       "parts": [
         {
           "name": "FormField.Label",
@@ -1389,6 +1409,10 @@
         {
           "name": "ValidateOnBlur",
           "id": "molecules-formfield--validate-on-blur"
+        },
+        {
+          "name": "NativeValidation",
+          "id": "molecules-formfield--native-validation"
         },
         {
           "name": "Overridden",

@@ -7,5 +7,7 @@ export type {
   FormFieldErrorProps,
   FormFieldControlAttributes,
   FormFieldState,
+  FormFieldValidateOn,
+  FormFieldValidityKey,
   UseFormFieldResult,
 } from './FormField';

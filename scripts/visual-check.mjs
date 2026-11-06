@@ -154,6 +154,7 @@ const stories = [
   { id: 'molecules-formfield--custom-control', name: 'form-field-custom-control' },
   { id: 'molecules-formfield--server-error', name: 'form-field-server-error' },
   { id: 'molecules-formfield--validate-on-blur', name: 'form-field-validate-on-blur' },
+  { id: 'molecules-formfield--native-validation', name: 'form-field-native-validation' },
   { id: 'molecules-formfield--overridden', name: 'form-field-overridden' },
   { id: 'molecules-list--playground', name: 'list-playground' },
   { id: 'molecules-list--ordered', name: 'list-ordered' },
