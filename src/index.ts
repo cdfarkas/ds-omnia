@@ -11,6 +11,7 @@ export * from './components/atoms/Indicator';
 export * from './components/atoms/Heading';
 export * from './components/atoms/Text';
 export * from './components/atoms/LanguageSwitcher';
+export * from './components/atoms/ThemeSwitcher';
 export * from './components/molecules/Card';
 export * from './components/molecules/DescriptionList';
 export * from './components/molecules/List';

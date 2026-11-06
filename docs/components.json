@@ -1045,6 +1045,42 @@
       ]
     },
     {
+      "name": "ThemeSwitcher",
+      "description": "Segmented toggle for the light/dark theme axis (not the skin). Reads `theme` and calls `setTheme` on the nearest `OmniaThemeProvider`, so it takes no value props — the provider is the single source of truth. One icon-only button per theme, each with a localized accessible name; the active one carries `aria-pressed`. The group root gets a localized accessible name; `className`, `style` and `ref` land on it, and any other native attribute spreads onto it.",
+      "source": "src/components/atoms/ThemeSwitcher/ThemeSwitcher.tsx",
+      "props": [
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false,
+          "description": "Reaches the group root."
+        }
+      ],
+      "variantAxes": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-theme-switcher--playground"
+        },
+        {
+          "name": "Default",
+          "id": "atoms-theme-switcher--default"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-theme-switcher--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-theme-switcher--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-theme-switcher--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "Card",
       "description": "Surface grouping related content, with optional `Card.Header`, `Card.Body` and `Card.Footer` parts composed in source order. Every part is a plain `<div>` with no role of its own: wrap the card in an `<article>` or a list item when its content stands alone. Consumes semantic tokens only, reskins across the theme and skin axes, and steps its padding up with its own width; footer actions wrap on a narrow card.",
       "source": "src/components/molecules/Card/Card.tsx",

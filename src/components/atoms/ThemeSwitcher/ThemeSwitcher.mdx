@@ -1,0 +1,181 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as ThemeSwitcherStories from './ThemeSwitcher.stories';
+
+<Meta of={ThemeSwitcherStories} />
+
+# Theme switcher
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Theme switcher</strong> to let someone choose between the light and
+        the dark theme. It reads and sets the theme on the surrounding Omnia provider, so
+        dropping one in is enough — there is nothing to wire up. It changes the theme
+        only, never the skin.
+      </p>
+      <ul>
+        <li>
+          <strong>Both themes, always visible.</strong> It shows the two choices side by
+          side, a sun for light and a moon for dark, with the current one filled in. One
+          glance tells you which theme is active and what the other option is.
+        </li>
+        <li>
+          <strong>Icons only, still named.</strong> The choices carry no visible text to
+          stay compact, but each button has a spoken name in the active language (“Light”,
+          “Dark”), so a screen reader announces it and the name never changes with the
+          state.
+        </li>
+        <li>
+          <strong>It drives the provider.</strong> Clicking a choice sets the theme for
+          everything inside the provider. The switcher takes no value prop — the provider
+          is the single source of truth — so the same control works whether the provider
+          is controlled or uncontrolled.
+        </li>
+        <li>
+          <strong>Named for assistive tech.</strong> The control is a labelled group
+          (“Theme” / “Thème”), and the active choice is announced as pressed. A
+          screen-reader user hears which theme is on and what they can switch to.
+        </li>
+        <li>
+          <strong>Keyboard and focus.</strong> Both choices are ordinary buttons: Tab
+          reaches them, Enter or Space activates, and the focused choice shows a focus
+          ring.
+        </li>
+        <li>
+          <strong>Every theme and skin.</strong> The fill, the icon and the border come
+          from semantic tokens, so the switcher meets contrast in light, dark and the
+          pixel skin, where it also shows the pixel-art sun and moon.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Theme switcher</strong> pour permettre de choisir entre le thème
+        clair et le thème sombre. Il lit et règle le thème sur le provider Omnia englobant
+        : il suffit d’en poser un, rien d’autre à brancher. Il change le thème uniquement,
+        jamais le skin.
+      </p>
+      <ul>
+        <li>
+          <strong>Les deux thèmes, toujours visibles.</strong> Il montre les deux choix
+          côte à côte, un soleil pour le clair et une lune pour le sombre, le choix
+          courant étant rempli. Un coup d’œil indique le thème actif et l’autre option.
+        </li>
+        <li>
+          <strong>Icônes seules, mais nommées.</strong> Les choix n’ont pas de texte
+          visible pour rester compacts, mais chaque bouton a un nom prononcé dans la
+          langue active (« Clair », « Sombre ») : un lecteur d’écran l’annonce, et ce nom
+          ne change jamais avec l’état.
+        </li>
+        <li>
+          <strong>Il pilote le provider.</strong> Cliquer un choix règle le thème de tout
+          ce qui est à l’intérieur du provider. Le switcher n’a pas de propriété de valeur
+          — le provider est la source unique de vérité — donc le même contrôle marche que
+          le provider soit contrôlé ou non.
+        </li>
+        <li>
+          <strong>Nommé pour les technologies d’assistance.</strong> Le contrôle est un
+          groupe étiqueté (« Theme » / « Thème »), et le choix actif est annoncé comme
+          pressé. Une personne au lecteur d’écran entend quel thème est actif et vers
+          lequel basculer.
+        </li>
+        <li>
+          <strong>Clavier et focus.</strong> Les deux choix sont de simples boutons : Tab
+          les atteint, Entrée ou Espace active, et le choix focalisé affiche un anneau de
+          focus.
+        </li>
+        <li>
+          <strong>Chaque thème et skin.</strong> Le remplissage, l’icône et la bordure
+          viennent de jetons sémantiques : le switcher respecte le contraste en clair, en
+          sombre et dans le skin pixel, où il montre aussi le soleil et la lune en pixel
+          art.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={ThemeSwitcherStories.Playground} />
+
+### <Localized en="Across themes and skins" fr="À travers les thèmes et skins" />
+
+<Canvas of={ThemeSwitcherStories.Default} />
+
+<Canvas of={ThemeSwitcherStories.DarkNeutral} />
+
+<Canvas of={ThemeSwitcherStories.PixelLight} />
+
+<Canvas of={ThemeSwitcherStories.PixelDark} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Restyle the switcher through its public surface — never the hashed CSS-Module
+        class names. Each component variable falls back to its semantic token.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-theme-switcher-bg</code>,{' '}
+          <code>--omnia-theme-switcher-border-color</code>,{' '}
+          <code>--omnia-theme-switcher-radius</code>,{' '}
+          <code>--omnia-theme-switcher-fg</code>,{' '}
+          <code>--omnia-theme-switcher-active-bg</code>,{' '}
+          <code>--omnia-theme-switcher-active-fg</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>theme-switcher</code>, on every part.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (the group, where your <code>className</code> and{' '}
+          <code>style</code> merge), <code>option</code> (each theme button). The active
+          option also carries <code>data-active</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Restylez le switcher via sa surface publique — jamais les noms de classes
+        CSS-Module hachés. Chaque variable de composant se rabat sur son jeton sémantique.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-theme-switcher-bg</code>
+          , <code>--omnia-theme-switcher-border-color</code>,{' '}
+          <code>--omnia-theme-switcher-radius</code>,{' '}
+          <code>--omnia-theme-switcher-fg</code>,{' '}
+          <code>--omnia-theme-switcher-active-bg</code>,{' '}
+          <code>--omnia-theme-switcher-active-fg</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>theme-switcher</code>, sur chaque partie.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (le groupe, où votre <code>className</code> et votre{' '}
+          <code>style</code> fusionnent), <code>option</code> (chaque bouton de thème). Le
+          choix actif porte aussi <code>data-active</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
