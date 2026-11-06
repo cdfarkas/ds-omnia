@@ -99,6 +99,7 @@
     --omnia-color-bg-disabled: var(--omnia-palette-cream-sunk);
     --omnia-color-text-primary: var(--omnia-palette-ink);
     --omnia-color-text-muted: var(--omnia-palette-ink-soft);
+    --omnia-color-text-placeholder: var(--omnia-palette-ink-soft);
     --omnia-color-text-on-accent: var(--omnia-palette-cream);
     --omnia-color-text-on-danger: var(--omnia-palette-ink);
     --omnia-color-text-on-success: var(--omnia-palette-ink);
@@ -156,6 +157,7 @@
     --omnia-color-bg-disabled: var(--omnia-palette-night-sunk);
     --omnia-color-text-primary: var(--omnia-palette-cream);
     --omnia-color-text-muted: var(--omnia-palette-lilac-muted);
+    --omnia-color-text-placeholder: var(--omnia-palette-lilac-muted);
     --omnia-color-text-on-accent: var(--omnia-palette-cream);
     --omnia-color-text-on-danger: var(--omnia-palette-ink);
     --omnia-color-text-on-success: var(--omnia-palette-ink);
