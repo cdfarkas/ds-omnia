@@ -264,6 +264,44 @@ Source: `src/components/molecules/DescriptionList/DescriptionList.tsx`
 
 Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--narrow`, `molecules-descriptionlist--overridden`, `molecules-descriptionlist--dark-neutral`, `molecules-descriptionlist--pixel-light`, `molecules-descriptionlist--pixel-dark`
 
+## FormField
+
+Field wrapper that links a label, a description and an error to one control. The control is rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the field. Display only: it shows the `invalid` state it is given and validates nothing.
+
+Source: `src/components/molecules/FormField/FormField.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `invalid` | `boolean` | no | `false` | — |
+| `required` | `boolean` | no | `false` | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### FormField.Label
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLLabelElement>` | no | — | — |
+
+### FormField.Control
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `render` | `(props: FormFieldControlAttributes, state: FormFieldState) => ReactNode` | yes | — | — |
+
+### FormField.Description
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### FormField.Error
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `molecules-formfield--playground`, `molecules-formfield--invalid`, `molecules-formfield--required`, `molecules-formfield--with-checkbox`, `molecules-formfield--with-switch`, `molecules-formfield--custom-control`, `molecules-formfield--server-error`, `molecules-formfield--validate-on-blur`, `molecules-formfield--overridden`, `molecules-formfield--dark-neutral`, `molecules-formfield--pixel-light`, `molecules-formfield--pixel-dark`
+
 ## List
 
 Semantic list of short related items. `as` picks `<ul>` (bullets) or `<ol>` (numbers); compose it with `List.Item` children, which may nest another List. Token-driven, so it reskins across the theme and skin axes.

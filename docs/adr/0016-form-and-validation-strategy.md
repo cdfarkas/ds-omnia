@@ -2,7 +2,7 @@
 
 ## Status
 
-Accepted (2026-10-31).
+Accepted (2026-10-31). Partly superseded by ADR 0029: atoms do not read a `FormField` context.
 
 ## Context
 
@@ -255,8 +255,9 @@ The owner accepted the recommendation (A, B deferred, C rejected):
 
 - Keep as is: stateless, `invalid` → `aria-invalid` + `data-invalid`, native props and `ref` through to
   `<input>`, usable controlled and uncontrolled.
-- Add when `FormField` lands: read the field context for `id`, `aria-describedby` (hint and error ids),
-  `aria-invalid` and `required`, with explicit props winning over context. Standalone use must still work.
+- ~~Add when `FormField` lands: read the field context for `id`, `aria-describedby` (hint and error ids),
+  `aria-invalid` and `required`, with explicit props winning over context.~~ Superseded by ADR 0029:
+  `Input` stays context-unaware and receives the wiring through `FormField.Control` or `useFormField()`.
 - Open: whether the root also styles native `:user-invalid` (S25).
 
 `Checkbox` / `Switch`:
@@ -275,9 +276,9 @@ The owner accepted the recommendation (A, B deferred, C rejected):
   (hint + error) and `aria-invalid` via context. Use `aria-describedby`, not `aria-errormessage` (S27).
 - `FormField.Error` renders caller-supplied content (string or node) and appears only when the field is
   invalid. It does not generate message text.
-- Open: whether `FormField.Error` carries `role="alert"` (Fluent does, S15; Roselli warns about clipped
-  announcements, S27). Needs a decision in the `FormField` PR, tested in both screen readers
-  available, and the summary-after-submit pattern (S17, S21) belongs in docs for consumers.
+- ~~Open: whether `FormField.Error` carries `role="alert"`.~~ Settled by ADR 0029: no `role` or
+  `aria-live` by default; the consumer may add one, and the docs describe the summary-after-submit
+  pattern (S17, S21).
 - Reserve the option to add native validity reading (B) without a breaking change.
 
 **Follow-ups this creates**

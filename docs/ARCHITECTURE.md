@@ -42,7 +42,9 @@ the parts share state:
 
 - **Shared state between parts** (open/close, selected value, validation status) → **React Context**.
   The parent owns the state and exposes it through a context the sub-parts consume. Examples:
-  `Dialog` (open state, focus trap), `FormField` (id wiring, error state shared by label/input/hint).
+  `Dialog` (open state, focus trap), `FormField` (ids and invalid/required state shared by its
+  label, description and error; the control gets them through `FormField.Control` or
+  `useFormField()`, so atoms never consume the context — ADR 0029).
 - **No shared state**, parts are just a documented slot layout → **plain dot-notation**, no context.
   The parent attaches sub-components as static properties. Example: `Card.Header`, `Card.Body`,
   `Card.Footer` — purely structural.
@@ -167,7 +169,7 @@ Mobile-first, three mechanisms, chosen by what the layout depends on (ADR 0014):
 - **Viewport `@media`** for Dialog and page templates, on one em scale only: `(width >= 30em)` sm,
   `48em` md, `64em` lg, `80em` xl, written in range notation. A stylelint
   `media-feature-name-value-allowed-list` rule rejects any other width value in a media query.
-- **`@container`** inside components whose layout follows their own width (FormField, Card, Tabs),
+- **`@container`** inside components whose layout follows their own width (Card, Tabs),
   with `rem` thresholds local to the component. The container needs a width given by its parent.
 - **Fluid CSS, no breakpoint** for atoms.
 

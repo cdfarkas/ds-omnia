@@ -26,13 +26,15 @@ pass — a real contrast failure is flagged, not hidden.
    (`input-with-adornments__focus-<mode>.png`); on Checkbox it captures the keyboard-focus
    state of `Checked` in all four modes (`checkbox-checked__focus-<mode>.png`); on Switch it captures the keyboard-focus
    state of `Checked` in all four modes (`switch-checked__focus-<mode>.png`); on NavBar it captures the keyboard-focus
-   state of `Playground` in all four modes (`navbar-playground__focus-<mode>.png`). A narrow pass then shoots every story again in all four modes
+   state of `Playground` in all four modes (`navbar-playground__focus-<mode>.png`); on FormField it captures the keyboard-focus
+   state of `Invalid` in all four modes (`form-field-invalid__focus-<mode>.png`). A narrow pass then shoots every story again in all four modes
    at 320 × 568 CSS px, the WCAG 1.4.10 reflow width (ADR 0014), as
    `<story>__<mode>__w320.png`. An optional argument filters by story id
    (`pnpm visual-check badge`); the Button-only shots run when it is absent or contains
    `button`, the Input focus shots when it is absent or contains `input`, the Checkbox focus shots when
    it is absent or contains `checkbox`, the Switch focus shots when it is absent or contains
-   `switch`, the NavBar focus shots when it is absent or contains `navbar`. Output and a `manifest.json`
+   `switch`, the NavBar focus shots when it is absent or contains `navbar`, the FormField focus shots when it is absent or
+   contains `formfield`. Output and a `manifest.json`
    (recording per shot the `data-theme` / `data-skin` actually applied, the viewport and the
    page `scrollWidth`) land in
    `visual-report/` (a local/CI artifact, gitignored and never committed).
