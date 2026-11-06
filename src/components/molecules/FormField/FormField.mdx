@@ -167,21 +167,16 @@ import { FormField, Input } from '@cdfarkas/omnia';
 
 <Canvas of={FormFieldStories.CustomControl} />
 
-### <Localized en="Validation is yours" fr="La validation vous appartient" />
+### <Localized en="Who validates" fr="Qui valide" />
 
 <Localized
   en={
     <ul>
       <li>
-        <strong>FormField validates nothing.</strong> It shows the state you give it.
-        Rules, timing and message text come from your form layer: a form library, the
-        server or a React action.
-      </li>
-      <li>
-        <strong>The browser's own checks are not shown.</strong> FormField does not read
-        native constraint validation (<code>required</code>, <code>type="email"</code>) to
-        display an error in this version: turn it off with <code>noValidate</code> on the
-        form and report errors yourself.
+        <strong>Your form layer, or the browser.</strong> By default FormField shows the
+        state you give it: rules, timing and message text come from your form layer, a
+        form library, the server or a React action. Set <code>validateOn</code> to show
+        the browser's own checks instead (see below).
       </li>
       <li>
         <strong>The error is not announced by default.</strong> It is linked to the
@@ -195,15 +190,11 @@ import { FormField, Input } from '@cdfarkas/omnia';
   fr={
     <ul>
       <li>
-        <strong>FormField ne valide rien.</strong> Il affiche l'état que vous lui donnez.
-        Règles, moment de la vérification et texte des messages viennent de votre couche
-        formulaire : une bibliothèque, le serveur ou une action React.
-      </li>
-      <li>
-        <strong>Les vérifications du navigateur ne sont pas affichées.</strong> Dans cette
-        version, FormField ne lit pas la validation native (<code>required</code>,{' '}
-        <code>type="email"</code>) pour afficher une erreur : désactivez-la avec{' '}
-        <code>noValidate</code> sur le formulaire et signalez les erreurs vous-même.
+        <strong>Votre couche formulaire, ou le navigateur.</strong> Par défaut, FormField
+        affiche l'état que vous lui donnez : règles, moment de la vérification et texte
+        des messages viennent de votre couche formulaire, d'une bibliothèque, du serveur
+        ou d'une action React. Passez <code>validateOn</code> pour afficher plutôt les
+        vérifications du navigateur (voir ci-dessous).
       </li>
       <li>
         <strong>L'erreur n'est pas annoncée par défaut.</strong> Elle est reliée au
@@ -215,6 +206,159 @@ import { FormField, Input } from '@cdfarkas/omnia';
     </ul>
   }
 />
+
+### <Localized en="Browser validation" fr="Validation du navigateur" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>
+          Turn it on with <code>validateOn</code>.
+        </strong>{' '}
+        The field reads the control's native constraints (<code>required</code>,{' '}
+        <code>type="email"</code>, <code>minLength</code>, <code>pattern</code>,{' '}
+        <code>min</code>, <code>max</code>, <code>step</code>) and shows Omnia's message
+        in place of the browser's popup. Keep an empty{' '}
+        <code>{'<FormField.Error />'}</code> in the field, and do not replace the
+        control's <code>id</code>: the field follows its control by that id.
+      </li>
+      <li>
+        <strong>Pick when the message first shows.</strong> <code>submit</code>: on a
+        submit attempt. <code>blur</code>: also when the user leaves the field.{' '}
+        <code>change</code>: on every change. <code>touched</code>: after the first blur,
+        then on every change. Once shown, a message is checked again on every change and
+        disappears as soon as the value is valid.
+      </li>
+      <li>
+        <strong>Submit focuses the first invalid field.</strong> The browser's popup is
+        suppressed, so the field moves focus itself. A <code>checkValidity()</code> call
+        moves it too.
+      </li>
+      <li>
+        <strong>Messages in English and French.</strong> Each kind of error has its own
+        wording, with the constraint filled in, such as{' '}
+        <em>Use at least 8 characters.</em> Checkboxes and switches get their own required
+        message.
+      </li>
+      <li>
+        <strong>
+          <code>type="email"</code> accepts <code>name@domain</code>.
+        </strong>{' '}
+        The HTML standard allows an address with no dot in the domain. Add a{' '}
+        <code>pattern</code> that requires one and give{' '}
+        <code>validationMessages.patternMismatch</code> a matching message, as the example
+        below does.
+      </li>
+      <li>
+        <strong>Replace any message.</strong>{' '}
+        <code>
+          {"validationMessages={{ patternMismatch: 'Use the format AB-1234.' }}"}
+        </code>{' '}
+        replaces one; always do it for <code>pattern</code>, whose meaning Omnia cannot
+        explain. Non-empty <code>FormField.Error</code> children win over both, and a text
+        set with <code>setCustomValidity</code> shows as is.
+      </li>
+      <li>
+        <strong>
+          <code>invalid</code> still wins.
+        </strong>{' '}
+        <code>invalid</code> set to true shows your own message; false or omitted lets the
+        browser's checks decide. <code>aria-invalid</code> appears only once a message
+        shows.
+      </li>
+      <li>
+        <strong>
+          Form libraries keep <code>noValidate</code>.
+        </strong>{' '}
+        On a form with <code>noValidate</code> the field ignores the browser's checks,
+        even with <code>validateOn</code>, so a React Hook Form setup needs no change.
+        Without <code>noValidate</code>, the library's errors and the browser's would both
+        show.
+      </li>
+      <li>
+        <strong>Reset clears the messages.</strong> A reset button,{' '}
+        <code>form.reset()</code> and the reset after a React form action all clear them.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>
+          Activez-la avec <code>validateOn</code>.
+        </strong>{' '}
+        Le champ lit les contraintes natives du contrôle (<code>required</code>,{' '}
+        <code>type="email"</code>, <code>minLength</code>, <code>pattern</code>,{' '}
+        <code>min</code>, <code>max</code>, <code>step</code>) et affiche le message
+        d'Omnia à la place de la bulle du navigateur. Gardez un{' '}
+        <code>{'<FormField.Error />'}</code> vide dans le champ et ne remplacez pas l'
+        <code>id</code> du contrôle : le champ suit son contrôle par cet id.
+      </li>
+      <li>
+        <strong>Choisissez quand le message apparaît.</strong> <code>submit</code> : à la
+        tentative d'envoi. <code>blur</code> : aussi quand l'utilisateur quitte le champ.{' '}
+        <code>change</code> : à chaque modification. <code>touched</code> : après la
+        première perte du focus, puis à chaque modification. Une fois affiché, le message
+        est revérifié à chaque modification et disparaît dès que la valeur est valide.
+      </li>
+      <li>
+        <strong>L'envoi place le focus sur le premier champ invalide.</strong> La bulle du
+        navigateur est supprimée, donc le champ déplace le focus lui-même. Un appel à{' '}
+        <code>checkValidity()</code> le déplace aussi.
+      </li>
+      <li>
+        <strong>Des messages en français et en anglais.</strong> Chaque type d'erreur a sa
+        formulation, contrainte comprise, par exemple{' '}
+        <em>Utilisez au moins 8 caractères.</em> Cases à cocher et interrupteurs ont leur
+        propre message d'obligation.
+      </li>
+      <li>
+        <strong>
+          <code>type="email"</code> accepte <code>nom@domaine</code>.
+        </strong>{' '}
+        Le standard HTML autorise une adresse sans point dans le domaine. Ajoutez un{' '}
+        <code>pattern</code> qui en exige un et donnez à{' '}
+        <code>validationMessages.patternMismatch</code> un message adapté, comme dans
+        l'exemple ci-dessous.
+      </li>
+      <li>
+        <strong>Remplacez n'importe quel message.</strong>{' '}
+        <code>
+          {"validationMessages={{ patternMismatch: 'Utilisez le format AB-1234.' }}"}
+        </code>{' '}
+        en remplace un ; faites-le toujours pour <code>pattern</code>, dont Omnia ne peut
+        pas expliquer le sens. Des enfants non vides de <code>FormField.Error</code>{' '}
+        l'emportent sur les deux, et un texte posé avec <code>setCustomValidity</code>{' '}
+        s'affiche tel quel.
+      </li>
+      <li>
+        <strong>
+          <code>invalid</code> l'emporte toujours.
+        </strong>{' '}
+        <code>invalid</code> à true affiche votre propre message ; à false ou absent, les
+        vérifications du navigateur décident. <code>aria-invalid</code> n'apparaît qu'une
+        fois un message affiché.
+      </li>
+      <li>
+        <strong>
+          Les bibliothèques de formulaires gardent <code>noValidate</code>.
+        </strong>{' '}
+        Sur un formulaire avec <code>noValidate</code>, le champ ignore les vérifications
+        du navigateur, même avec <code>validateOn</code> : une configuration React Hook
+        Form ne change pas. Sans <code>noValidate</code>, les erreurs de la bibliothèque
+        et celles du navigateur s'afficheraient toutes les deux.
+      </li>
+      <li>
+        <strong>La réinitialisation efface les messages.</strong> Un bouton de
+        réinitialisation, <code>form.reset()</code> et la réinitialisation après une
+        action de formulaire React les effacent tous.
+      </li>
+    </ul>
+  }
+/>
+
+<Canvas of={FormFieldStories.NativeValidation} />
 
 ### <Localized en="Server error" fr="Erreur du serveur" />
 

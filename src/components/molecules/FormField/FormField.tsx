@@ -7,18 +7,49 @@ import {
   useLayoutEffect,
   useMemo,
   useState,
+  type ChangeEvent,
+  type FocusEvent,
+  type FormEvent,
   type HTMLAttributes,
   type LabelHTMLAttributes,
   type ReactNode,
   type Ref,
+  type SyntheticEvent,
 } from 'react';
+import { t, type TranslationKey } from '../../../lib/i18n';
 import styles from './FormField.module.css';
 
+const validityKeys = [
+  'valueMissing',
+  'typeMismatch',
+  'patternMismatch',
+  'tooLong',
+  'tooShort',
+  'rangeUnderflow',
+  'rangeOverflow',
+  'stepMismatch',
+  'badInput',
+  'customError',
+] as const satisfies readonly (keyof ValidityState)[];
+
+/** A failing `ValidityState` key, in the order FormField picks the first one. */
+export type FormFieldValidityKey = (typeof validityKeys)[number];
+
+/** When the control's native validation message first shows. */
+export type FormFieldValidateOn = 'submit' | 'blur' | 'change' | 'touched';
+
 export interface FormFieldProps extends HTMLAttributes<HTMLDivElement> {
-  /** Shows `FormField.Error` and marks the control `aria-invalid`. */
+  /** Shows `FormField.Error` and marks the control `aria-invalid`; `true` wins over native validity. */
   invalid?: boolean;
   /** Adds the `*` indicator to the label and native `required` to the control. */
   required?: boolean;
+  /**
+   * Shows the control's native constraint validation: on a submit attempt, plus on blur, on every
+   * change, or on first blur then every change. Omitted, the field only displays `invalid`.
+   */
+  validateOn?: FormFieldValidateOn;
+  /** Replaces the Omnia message for a failing native validity key. */
+  validationMessages?: Partial<Record<FormFieldValidityKey, ReactNode>>;
   ref?: Ref<HTMLDivElement>;
 }
 
@@ -58,9 +89,18 @@ export interface FormFieldControlProps {
 
 type RegisteredPart = 'description' | 'error';
 
+type ValidatedControl = HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement;
+
+interface Failing {
+  control: ValidatedControl;
+  key: FormFieldValidityKey;
+}
+
 interface FormFieldContextValue extends UseFormFieldResult {
   ids: Record<'control' | RegisteredPart, string>;
   register: (part: RegisteredPart) => () => void;
+  failing: Failing | undefined;
+  validationMessages: FormFieldProps['validationMessages'];
 }
 
 const FormFieldContext = createContext<FormFieldContextValue | null>(null);
@@ -85,19 +125,113 @@ export function useFormField(): UseFormFieldResult {
 
 const join = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' ');
 
+const hasContent = (node: ReactNode) => node != null && node !== false && node !== '';
+
+const isInvalid = (element: Element) =>
+  'willValidate' in element &&
+  (element as ValidatedControl).willValidate &&
+  !(element as ValidatedControl).validity.valid;
+
+function nativeMessage({ control, key }: Failing): string {
+  if (key === 'customError') return control.validationMessage;
+  const type = control.getAttribute('type');
+  const variant =
+    key === 'valueMissing'
+      ? control.getAttribute('role') === 'switch'
+        ? '.switch'
+        : type === 'checkbox'
+          ? '.checkbox'
+          : ''
+      : key === 'typeMismatch' && (type === 'email' || type === 'url')
+        ? `.${type}`
+        : '';
+  return t(`formField.${key}${variant}` as TranslationKey).replace(
+    /\{(\w+)\}/g,
+    (_, name: string) => control.getAttribute(name) ?? '',
+  );
+}
+
+interface NativeState {
+  validateOn: FormFieldValidateOn | undefined;
+  touched: boolean;
+  failing?: Failing;
+}
+
 /**
  * Field wrapper that links a label, a description and an error to one control. The control is
  * rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the
- * field. Display only: it shows the `invalid` state it is given and validates nothing.
+ * field. Display only by default; with `validateOn` it also shows the control's native constraint
+ * validation with an Omnia message, unless the form has `noValidate`.
  */
 function FormFieldRoot({
   invalid = false,
   required = false,
+  validateOn,
+  validationMessages,
   className,
+  onBlur,
+  onChange,
+  onInvalid,
   ref,
   ...rest
 }: FormFieldProps) {
   const base = useId();
+  const controlId = `${base}control`;
+  const [native, setNative] = useState<NativeState>({ validateOn, touched: false });
+  if (native.validateOn !== validateOn) setNative({ validateOn, touched: false });
+  const { failing } = native;
+  const fieldInvalid = invalid || failing !== undefined;
+
+  useEffect(() => {
+    const form = (document.getElementById(controlId) as ValidatedControl | null)?.form;
+    if (!validateOn || !form) return;
+    const clear = () => setNative({ validateOn, touched: false });
+    form.addEventListener('reset', clear);
+    return () => form.removeEventListener('reset', clear);
+  }, [validateOn, controlId]);
+
+  const validated = (event: SyntheticEvent) => {
+    const target = event.target as ValidatedControl;
+    return validateOn &&
+      target.id === controlId &&
+      'validity' in target &&
+      !target.form?.noValidate
+      ? target
+      : undefined;
+  };
+  const check = (control: ValidatedControl, touch = false) => {
+    const key = validityKeys.find((name) => control.validity[name]);
+    setNative((current) => ({
+      ...current,
+      touched: current.touched || touch,
+      failing: key && { control, key },
+    }));
+  };
+
+  const handleInvalid = (event: FormEvent<HTMLDivElement>) => {
+    onInvalid?.(event);
+    const control = validated(event);
+    if (!control) return;
+    event.preventDefault();
+    check(control);
+    if (control.form && [...control.form.elements].find(isInvalid) === control)
+      control.focus();
+  };
+  const handleBlur = (event: FocusEvent<HTMLDivElement>) => {
+    onBlur?.(event);
+    const control = validated(event);
+    if (control && (validateOn === 'blur' || validateOn === 'touched'))
+      check(control, true);
+  };
+  const handleChange = (event: ChangeEvent<HTMLDivElement>) => {
+    onChange?.(event);
+    const control = validated(event);
+    if (
+      control &&
+      (validateOn === 'change' || (validateOn === 'touched' && native.touched) || failing)
+    )
+      check(control);
+  };
   const [rendered, setRendered] = useState<Record<RegisteredPart, boolean>>({
     description: false,
     error: false,
@@ -109,7 +243,7 @@ function FormFieldRoot({
 
   const value = useMemo<FormFieldContextValue>(() => {
     const ids = {
-      control: `${base}control`,
+      control: controlId,
       description: `${base}description`,
       error: `${base}error`,
     };
@@ -120,16 +254,27 @@ function FormFieldRoot({
     return {
       ids,
       register,
-      invalid,
+      invalid: fieldInvalid,
       required,
+      failing,
+      validationMessages,
       controlProps: {
         id: ids.control,
         'aria-describedby': describedBy.length > 0 ? describedBy.join(' ') : undefined,
-        'aria-invalid': invalid || undefined,
+        'aria-invalid': fieldInvalid || undefined,
         required: required || undefined,
       },
     };
-  }, [base, rendered, register, invalid, required]);
+  }, [
+    base,
+    controlId,
+    rendered,
+    register,
+    fieldInvalid,
+    required,
+    failing,
+    validationMessages,
+  ]);
 
   return (
     <FormFieldContext value={value}>
@@ -138,6 +283,9 @@ function FormFieldRoot({
         className={join(styles.root, className)}
         data-scope="form-field"
         data-part="root"
+        onBlur={handleBlur}
+        onChange={handleChange}
+        onInvalid={handleInvalid}
         {...rest}
       />
     </FormFieldContext>
@@ -201,8 +349,11 @@ function FormFieldDescription({ className, ref, ...rest }: FormFieldDescriptionP
 }
 
 function FormFieldError({ className, children, ref, ...rest }: FormFieldErrorProps) {
-  const { ids, invalid, register } = useFieldContext();
-  const shown = invalid && children != null && children !== false && children !== '';
+  const { ids, invalid, register, failing, validationMessages } = useFieldContext();
+  const content = hasContent(children)
+    ? children
+    : failing && (validationMessages?.[failing.key] ?? nativeMessage(failing));
+  const shown = invalid && hasContent(content);
   useLayoutEffect(() => (shown ? register('error') : undefined), [shown, register]);
 
   if (!shown) return null;
@@ -215,7 +366,7 @@ function FormFieldError({ className, children, ref, ...rest }: FormFieldErrorPro
       data-part="error"
       {...rest}
     >
-      {children}
+      {content}
     </div>
   );
 }

@@ -266,7 +266,7 @@ Stories: `molecules-descriptionlist--playground`, `molecules-descriptionlist--na
 
 ## FormField
 
-Field wrapper that links a label, a description and an error to one control. The control is rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the field. Display only: it shows the `invalid` state it is given and validates nothing.
+Field wrapper that links a label, a description and an error to one control. The control is rendered through `FormField.Control render` or wired with `useFormField()`: atoms never read the field. Display only by default; with `validateOn` it also shows the control's native constraint validation with an Omnia message, unless the form has `noValidate`.
 
 Source: `src/components/molecules/FormField/FormField.tsx`
 
@@ -274,6 +274,8 @@ Source: `src/components/molecules/FormField/FormField.tsx`
 | --- | --- | --- | --- | --- |
 | `invalid` | `boolean` | no | `false` | — |
 | `required` | `boolean` | no | `false` | — |
+| `validateOn` | `FormFieldValidateOn` | no | — | `submit`, `blur`, `change`, `touched` |
+| `validationMessages` | `Partial<Record<FormFieldValidityKey, ReactNode>>` | no | — | — |
 | `ref` | `Ref<HTMLDivElement>` | no | — | — |
 
 ### FormField.Label
@@ -300,7 +302,7 @@ Source: `src/components/molecules/FormField/FormField.tsx`
 | --- | --- | --- | --- | --- |
 | `ref` | `Ref<HTMLDivElement>` | no | — | — |
 
-Stories: `molecules-formfield--playground`, `molecules-formfield--invalid`, `molecules-formfield--required`, `molecules-formfield--with-checkbox`, `molecules-formfield--with-switch`, `molecules-formfield--custom-control`, `molecules-formfield--server-error`, `molecules-formfield--validate-on-blur`, `molecules-formfield--overridden`, `molecules-formfield--dark-neutral`, `molecules-formfield--pixel-light`, `molecules-formfield--pixel-dark`
+Stories: `molecules-formfield--playground`, `molecules-formfield--invalid`, `molecules-formfield--required`, `molecules-formfield--with-checkbox`, `molecules-formfield--with-switch`, `molecules-formfield--custom-control`, `molecules-formfield--server-error`, `molecules-formfield--validate-on-blur`, `molecules-formfield--native-validation`, `molecules-formfield--overridden`, `molecules-formfield--dark-neutral`, `molecules-formfield--pixel-light`, `molecules-formfield--pixel-dark`
 
 ## List
 
