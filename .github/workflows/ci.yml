@@ -3,8 +3,8 @@ name: CI
 # PR-only by design: the merge to main is the same tree these checks already
 # passed, and Release + Pages cover push-to-main. Each job below is its own PR
 # check. The one exception is `test`, which also runs on push to main so it
-# uploads a coverage report — that report is the base Codecov's project status
-# compares every PR against, which never exists if coverage only runs on PRs.
+# uploads a coverage report — that report is the base Codecov's statuses
+# compare every PR against, which never exists if coverage only runs on PRs.
 on:
   pull_request:
   push:

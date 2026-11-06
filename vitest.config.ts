@@ -33,6 +33,7 @@ export default defineConfig({
         'src/**/*.d.ts',
       ],
       reporter: ['text-summary', 'json-summary', 'lcov'],
+      thresholds: { statements: 98.62, branches: 96.19, functions: 95.09, lines: 99.23 },
     },
     projects: [
       ...modes.map(({ key, theme, skin }) => ({
