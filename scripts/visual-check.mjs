@@ -173,6 +173,11 @@ const stories = [
   { id: 'molecules-sectionheading--with-actions', name: 'section-heading-with-actions' },
   { id: 'molecules-sectionheading--narrow', name: 'section-heading-narrow' },
   { id: 'molecules-sectionheading--overridden', name: 'section-heading-overridden' },
+  { id: 'molecules-stat--playground', name: 'stat-playground' },
+  { id: 'molecules-stat--without-hint', name: 'stat-without-hint' },
+  { id: 'molecules-stat--several', name: 'stat-several' },
+  { id: 'molecules-stat--vertical', name: 'stat-vertical' },
+  { id: 'molecules-stat--overridden', name: 'stat-overridden' },
 ];
 
 const filter = process.argv[2];
@@ -382,6 +387,12 @@ if (!filter || filter.includes('sectionheading')) {
     );
   }
   await page.setViewportSize({ width: 440, height: 220 });
+}
+if (!filter || filter.includes('molecules-stat')) {
+  await page.setViewportSize({ width: 800, height: 220 });
+  for (const m of modes) {
+    await shoot('molecules-stat--several', 'stat-several', m, 'en', `${m.key}__w800`);
+  }
 }
 
 await page.setViewportSize({ width: 320, height: 568 });

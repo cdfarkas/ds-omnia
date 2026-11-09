@@ -1,0 +1,193 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as StatStories from './Stat.stories';
+
+<Meta of={StatStories} />
+
+# Stat
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Stat</strong> to put figures forward with their captions — the
+        headline numbers of a landing or portfolio page, such as "30+ components". For a
+        list of labelled facts about one thing, use DescriptionList instead.
+      </p>
+      <ul>
+        <li>
+          <strong>Build it from parts.</strong> <code>Stat</code> holds one{' '}
+          <code>Stat.Item</code> per figure, even when there is only one. In each item,
+          write a <code>Stat.Label</code> for the caption, a <code>Stat.Value</code> for
+          the figure and, if needed, a <code>Stat.Hint</code> for a supporting line such
+          as a change or a date range.
+        </li>
+        <li>
+          <strong>Write the label first; the figure shows first.</strong> The label comes
+          first in your code because a caption must precede what it describes. On screen
+          the figure is drawn above it, since a big number reads best on top.
+        </li>
+        <li>
+          <strong>Screen readers hear a real pair.</strong> It renders a native
+          description list, so the caption is announced as the term and the figure as its
+          description ("components, 30+"). Swapping their visual order does not change
+          that meaning.
+        </li>
+        <li>
+          <strong>The figure takes any content.</strong> A number, a price, a ratio like
+          "100 % / 36 %" — format it the way you want it read. Long values wrap instead of
+          overflowing.
+        </li>
+        <li>
+          <strong>One list, however many figures.</strong> Screen readers hear a single
+          list whether it holds one figure or ten. Several figures sit in a row that wraps
+          to fewer columns on narrow screens; set <code>orientation="vertical"</code> to
+          keep them in one column.
+        </li>
+        <li>
+          <strong>It reskins on its own.</strong> Colour and fonts come from tokens, so it
+          follows the light/dark theme and the neutral/pixel skin with no CSS changes.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Stat</strong> pour mettre en avant des chiffres avec leur légende
+        — les chiffres clés d'une page d'accueil ou d'un portfolio, comme « 30+ composants
+        ». Pour une liste d'informations étiquetées sur un même sujet, utilisez plutôt
+        DescriptionList.
+      </p>
+      <ul>
+        <li>
+          <strong>Composez-le par parties.</strong> <code>Stat</code> contient un{' '}
+          <code>Stat.Item</code> par chiffre, même s'il n'y en a qu'un. Dans chaque
+          élément, écrivez un <code>Stat.Label</code> pour la légende, un{' '}
+          <code>Stat.Value</code> pour le chiffre et, si besoin, un <code>Stat.Hint</code>{' '}
+          pour une ligne d'appoint comme une évolution ou une période.
+        </li>
+        <li>
+          <strong>
+            La légende s'écrit en premier ; le chiffre s'affiche en premier.
+          </strong>{' '}
+          La légende vient d'abord dans votre code, car un terme doit précéder ce qu'il
+          décrit. À l'écran, le chiffre est dessiné au-dessus, car un grand nombre se lit
+          mieux en haut.
+        </li>
+        <li>
+          <strong>Les lecteurs d'écran entendent une vraie paire.</strong> Il produit une
+          liste de descriptions native : la légende est annoncée comme le terme et le
+          chiffre comme sa description (« composants, 30+ »). Inverser leur ordre visuel
+          ne change pas ce sens.
+        </li>
+        <li>
+          <strong>Le chiffre accepte tout contenu.</strong> Un nombre, un prix, un rapport
+          comme « 100 % / 36 % » — formatez-le tel qu'il doit être lu. Les valeurs longues
+          passent à la ligne au lieu de déborder.
+        </li>
+        <li>
+          <strong>Une seule liste, quel que soit le nombre de chiffres.</strong> Les
+          lecteurs d'écran entendent une seule liste, qu'elle contienne un chiffre ou dix.
+          Plusieurs chiffres s'alignent sur une rangée qui passe à moins de colonnes sur
+          les écrans étroits ; indiquez <code>orientation="vertical"</code> pour les
+          garder sur une seule colonne.
+        </li>
+        <li>
+          <strong>Il s'adapte tout seul au thème.</strong> Couleurs et polices viennent
+          des jetons : il suit le thème clair/sombre et l'habillage neutre/pixel sans
+          retoucher son CSS.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={StatStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Several figures" fr="Plusieurs chiffres" />
+
+<Canvas of={StatStories.Several} />
+
+<Canvas of={StatStories.Vertical} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Stat follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-stat-gap</code> (between
+          items), <code>--omnia-stat-item-gap</code> (inside an item),{' '}
+          <code>--omnia-stat-min-column</code>, <code>--omnia-stat-value-font-size</code>,{' '}
+          <code>--omnia-stat-value-color</code>, <code>--omnia-stat-label-color</code>,{' '}
+          <code>--omnia-stat-hint-color</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>stat</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, <code>item</code>, <code>label</code>, <code>value</code>{' '}
+          and <code>hint</code> — each part merges your <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points the figure colour from{' '}
+        <code>@layer overrides</code>, with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Stat suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-stat-gap</code> (entre
+          les éléments), <code>--omnia-stat-item-gap</code> (dans un élément),{' '}
+          <code>--omnia-stat-min-column</code>, <code>--omnia-stat-value-font-size</code>,{' '}
+          <code>--omnia-stat-value-color</code>, <code>--omnia-stat-label-color</code>,{' '}
+          <code>--omnia-stat-hint-color</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>stat</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, <code>item</code>, <code>label</code>, <code>value</code>{' '}
+          et <code>hint</code> — chaque partie fusionne votre <code>className</code>.
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige la couleur du chiffre
+        depuis <code>@layer overrides</code>, sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={StatStories.Overridden} />

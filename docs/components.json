@@ -1629,6 +1629,72 @@
           "id": "molecules-sectionheading--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "Stat",
+      "description": "Headline figures on a native `<dl>` of one or more `Stat.Item` figures. In each item the `Stat.Label` (`<dt>`) is written first and the `Stat.Value` (`<dd>`) is drawn above it. `orientation` lays items in a wrapping row or one column. Consumes semantic tokens only.",
+      "source": "src/components/molecules/Stat/Stat.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "orientation",
+          "type": "'horizontal' | 'vertical'",
+          "required": false,
+          "default": "'horizontal'",
+          "options": [
+            "horizontal",
+            "vertical"
+          ],
+          "description": "`horizontal` lays items in a row that wraps; `vertical` keeps them in one column."
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDListElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "orientation"
+      ],
+      "parts": [],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "molecules-stat--playground"
+        },
+        {
+          "name": "WithoutHint",
+          "id": "molecules-stat--without-hint"
+        },
+        {
+          "name": "Several",
+          "id": "molecules-stat--several"
+        },
+        {
+          "name": "Vertical",
+          "id": "molecules-stat--vertical"
+        },
+        {
+          "name": "Overridden",
+          "id": "molecules-stat--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "molecules-stat--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "molecules-stat--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "molecules-stat--pixel-dark"
+        }
+      ]
     }
   ]
 }
