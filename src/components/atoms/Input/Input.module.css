@@ -29,7 +29,7 @@
   }
 
   .input::placeholder {
-    color: var(--omnia-color-text-muted);
+    color: var(--omnia-color-text-placeholder);
     opacity: 1;
   }
 

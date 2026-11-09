@@ -23,7 +23,7 @@ const modes = [
   { theme: 'dark', skin: 'pixel' },
 ];
 
-// SC 1.4.11 (3:1) for boundaries and indicators, SC 1.4.3 (4.5:1) for placeholder text.
+// SC 1.4.11 (3:1) for boundaries and indicators, SC 1.4.3 (4.5:1) for muted and placeholder text.
 const pairs = [
   { fg: 'border-strong', bg: 'bg-surface', min: 3 },
   { fg: 'border-default', bg: 'bg-surface', min: 3 },
@@ -34,6 +34,9 @@ const pairs = [
   { fg: 'text-muted', bg: 'bg-surface', min: 4.5 },
   { fg: 'text-muted', bg: 'bg-subtle', min: 4.5 },
   { fg: 'text-muted', bg: 'bg-disabled', min: 4.5 },
+  { fg: 'text-placeholder', bg: 'bg-surface', min: 4.5 },
+  { fg: 'text-placeholder', bg: 'bg-subtle', min: 4.5 },
+  { fg: 'text-placeholder', bg: 'bg-disabled', min: 4.5 },
 ];
 
 function resolveToken(name: string): Rgb {
@@ -59,5 +62,13 @@ describe.each(modes)('token contrast in theme=$theme skin=$skin', ({ theme, skin
       ratio,
       `theme=${theme} skin=${skin}: --omnia-color-${fg} on --omnia-color-${bg} is ${ratio.toFixed(2)}:1, needs >= ${min}:1`,
     ).toBeGreaterThanOrEqual(min);
+  });
+});
+
+describe.each(modes)('placeholder in theme=$theme skin=$skin', ({ theme, skin }) => {
+  test('text-placeholder differs from text-primary', () => {
+    root.dataset.theme = theme;
+    root.dataset.skin = skin;
+    expect(resolveToken('text-placeholder')).not.toEqual(resolveToken('text-primary'));
   });
 });

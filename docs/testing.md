@@ -63,7 +63,7 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
   semantic tokens (via `getComputedStyle`) in all four theme×skin modes and asserts boundaries and
   indicators (`border-strong`, `border-default`, `border-focus`, `danger-border`) reach 3:1 on
   `bg-surface`, `text-on-accent` (the Checkbox mark and the Switch thumb when on) reaches 3:1 on `accent` and `accent-hover`,
-  and `text-muted` (placeholder) reaches 4.5:1 on `bg-surface`, `bg-subtle` and
+  and `text-muted` and `text-placeholder` reach 4.5:1 on `bg-surface`, `bg-subtle` and
   `bg-disabled`. It renders no component, but unlike other `*.test.ts` it reads the DOM's computed
   CSS. A component that draws a boundary or indicator with a new token adds its pair there.
 - Enforced across **every theme and every skin — pixel included**. `vitest.config.ts` defines one
