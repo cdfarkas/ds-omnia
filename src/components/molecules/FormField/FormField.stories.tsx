@@ -10,34 +10,16 @@ import './FormField.overrides.css';
 
 const frame = { maxInlineSize: '24rem' } as const;
 
-const emailCode = `<FormField invalid={invalid} required={required}>
+const emailCode = (attributes = '') => `<FormField${attributes}>
   <FormField.Label>Email</FormField.Label>
   <FormField.Control
-    render={(props, { invalid }) => <Input {...props} type="email" invalid={invalid} />}
+    render={(props, { invalid }) => (
+      <Input {...props} type="email" placeholder="name@example.com" invalid={invalid} />
+    )}
   />
   <FormField.Description>We send the receipt to this address.</FormField.Description>
   <FormField.Error>Enter an email address like name@example.com.</FormField.Error>
 </FormField>`;
-
-const EmailField = (args: FormFieldProps) => (
-  <div style={frame}>
-    <FormField {...args}>
-      <FormField.Label>Email</FormField.Label>
-      <FormField.Control
-        render={(props, { invalid }) => (
-          <Input
-            {...props}
-            type="email"
-            placeholder="name@example.com"
-            invalid={invalid}
-          />
-        )}
-      />
-      <FormField.Description>We send the receipt to this address.</FormField.Description>
-      <FormField.Error>Enter an email address like name@example.com.</FormField.Error>
-    </FormField>
-  </div>
-);
 
 const meta = {
   title: 'Molecules/FormField',
@@ -54,8 +36,31 @@ const meta = {
     validationMessages: { control: false },
     ref: { control: false },
   },
-  parameters: { layout: 'padded', docs: { source: { code: emailCode } } },
-  render: (args) => <EmailField {...args} />,
+  parameters: { layout: 'padded', docs: { source: { type: 'dynamic' } } },
+  decorators: [
+    (Story) => (
+      <div style={frame}>
+        <Story />
+      </div>
+    ),
+  ],
+  render: (args) => (
+    <FormField {...args}>
+      <FormField.Label>Email</FormField.Label>
+      <FormField.Control
+        render={(props, { invalid }) => (
+          <Input
+            {...props}
+            type="email"
+            placeholder="name@example.com"
+            invalid={invalid}
+          />
+        )}
+      />
+      <FormField.Description>We send the receipt to this address.</FormField.Description>
+      <FormField.Error>Enter an email address like name@example.com.</FormField.Error>
+    </FormField>
+  ),
 } satisfies Meta<typeof FormField>;
 
 export default meta;
@@ -64,6 +69,7 @@ type Story = StoryObj<typeof meta>;
 /** Label, control, description and error wired to one `Input`; toggle `invalid` and `required`. */
 export const Playground: Story = {
   tags: ['interaction'],
+  parameters: { docs: { source: { code: emailCode() } } },
   play: async ({ args, canvas, canvasElement, step }) => {
     const input = canvas.getByLabelText('Email');
     await step(
@@ -89,11 +95,13 @@ export const Playground: Story = {
 /** The error shows, the input is marked `aria-invalid` and draws its danger border. */
 export const Invalid: Story = {
   args: { invalid: true },
+  parameters: { docs: { source: { code: emailCode(' invalid') } } },
 };
 
 /** The label gains a `*` hidden from assistive technology; the input gets native `required`. */
 export const Required: Story = {
   args: { required: true },
+  parameters: { docs: { source: { code: emailCode(' required') } } },
 };
 
 /** Checkbox renders its own label: no `FormField.Label`, the text goes in its children. */
@@ -114,18 +122,16 @@ export const WithCheckbox: Story = {
     },
   },
   render: (args) => (
-    <div style={frame}>
-      <FormField {...args}>
-        <FormField.Control
-          render={(props, { invalid }) => (
-            <Checkbox {...props} invalid={invalid}>
-              I accept the terms
-            </Checkbox>
-          )}
-        />
-        <FormField.Error>Accept the terms to continue.</FormField.Error>
-      </FormField>
-    </div>
+    <FormField {...args}>
+      <FormField.Control
+        render={(props, { invalid }) => (
+          <Checkbox {...props} invalid={invalid}>
+            I accept the terms
+          </Checkbox>
+        )}
+      />
+      <FormField.Error>Accept the terms to continue.</FormField.Error>
+    </FormField>
   ),
 };
 
@@ -146,18 +152,16 @@ export const WithSwitch: Story = {
     },
   },
   render: (args) => (
-    <div style={frame}>
-      <FormField {...args}>
-        <FormField.Control
-          render={(props, { invalid }) => (
-            <Switch {...props} invalid={invalid}>
-              Email notifications
-            </Switch>
-          )}
-        />
-        <FormField.Description>A weekly digest, never more.</FormField.Description>
-      </FormField>
-    </div>
+    <FormField {...args}>
+      <FormField.Control
+        render={(props, { invalid }) => (
+          <Switch {...props} invalid={invalid}>
+            Email notifications
+          </Switch>
+        )}
+      />
+      <FormField.Description>A weekly digest, never more.</FormField.Description>
+    </FormField>
   ),
 };
 
@@ -202,13 +206,11 @@ export const CustomControl: Story = {
     },
   },
   render: (args) => (
-    <div style={frame}>
-      <FormField {...args}>
-        <FormField.Label>Country</FormField.Label>
-        <CountrySelect />
-        <FormField.Description>Used for tax and shipping.</FormField.Description>
-      </FormField>
-    </div>
+    <FormField {...args}>
+      <FormField.Label>Country</FormField.Label>
+      <CountrySelect />
+      <FormField.Description>Used for tax and shipping.</FormField.Description>
+    </FormField>
   ),
 };
 
@@ -225,7 +227,7 @@ async function signUp(_: SignUpState, formData: FormData): Promise<SignUpState> 
 function SignUpForm() {
   const [state, action, pending] = useActionState(signUp, { email: '' });
   return (
-    <form action={action} noValidate style={{ ...frame, display: 'grid', gap: '1rem' }}>
+    <form action={action} noValidate style={{ display: 'grid', gap: '1rem' }}>
       <FormField invalid={Boolean(state.error)} required>
         <FormField.Label>Email</FormField.Label>
         <FormField.Control
@@ -269,12 +271,20 @@ export const ServerError: Story = {
     <FormField.Label>Email</FormField.Label>
     <FormField.Control
       render={(props, { invalid }) => (
-        <Input {...props} name="email" defaultValue={state.email} invalid={invalid} />
+        <Input
+          {...props}
+          name="email"
+          type="email"
+          defaultValue={state.email}
+          invalid={invalid}
+        />
       )}
     />
+    <FormField.Description>Try taken@example.com.</FormField.Description>
     <FormField.Error>{state.error}</FormField.Error>
   </FormField>
   <Button type="submit" pending={pending}>Sign up</Button>
+  <p role="status">{state.registered ? \`\${state.email} is registered.\` : null}</p>
 </form>`,
       },
     },
@@ -308,32 +318,30 @@ function NewsletterField() {
   const [filled, setFilled] = useState(false);
   const [error, setError] = useState<string>();
   return (
-    <div style={frame}>
-      <FormField invalid={Boolean(error)} required>
-        <FormField.Label>Email</FormField.Label>
-        <FormField.Control
-          render={(props, { invalid }) => (
-            <Input
-              {...props}
-              type="email"
-              value={value}
-              invalid={invalid}
-              onChange={(event) => {
-                setValue(event.target.value);
-                if (event.target.value) {
-                  setFilled(true);
-                  setError(undefined);
-                }
-              }}
-              onBlur={() => {
-                if (filled && !value) setError(emptyEmail);
-              }}
-            />
-          )}
-        />
-        <FormField.Error>{error}</FormField.Error>
-      </FormField>
-    </div>
+    <FormField invalid={Boolean(error)} required>
+      <FormField.Label>Email</FormField.Label>
+      <FormField.Control
+        render={(props, { invalid }) => (
+          <Input
+            {...props}
+            type="email"
+            value={value}
+            invalid={invalid}
+            onChange={(event) => {
+              setValue(event.target.value);
+              if (event.target.value) {
+                setFilled(true);
+                setError(undefined);
+              }
+            }}
+            onBlur={() => {
+              if (filled && !value) setError(emptyEmail);
+            }}
+          />
+        )}
+      />
+      <FormField.Error>{error}</FormField.Error>
+    </FormField>
   );
 }
 
@@ -347,7 +355,9 @@ export const ValidateOnBlur: Story = {
     controls: { disable: true },
     docs: {
       source: {
-        code: `const [error, setError] = useState<string>();
+        code: `const [value, setValue] = useState('');
+const [filled, setFilled] = useState(false);
+const [error, setError] = useState<string>();
 
 <FormField invalid={Boolean(error)} required>
   <FormField.Label>Email</FormField.Label>
@@ -355,6 +365,7 @@ export const ValidateOnBlur: Story = {
     render={(props, { invalid }) => (
       <Input
         {...props}
+        type="email"
         value={value}
         invalid={invalid}
         onChange={(event) => {
@@ -393,7 +404,7 @@ function AccountForm({ validateOn }: FormFieldProps) {
   return (
     <form
       onSubmit={(event) => event.preventDefault()}
-      style={{ ...frame, display: 'grid', gap: '1rem' }}
+      style={{ display: 'grid', gap: '1rem' }}
     >
       <FormField
         validateOn={validateOn}
@@ -460,7 +471,7 @@ export const NativeValidation: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<form onSubmit={save}>
+        code: `<form onSubmit={(event) => event.preventDefault()}>
   <FormField
     validateOn="submit"
     required
@@ -545,21 +556,31 @@ export const NativeValidation: Story = {
  * `!important`, no hashed class names. See docs/overrides.md.
  */
 export const Overridden: Story = {
-  parameters: { controls: { disable: true } },
+  parameters: {
+    controls: { disable: true },
+    docs: {
+      source: {
+        code: emailCode(' className="omnia-demo-override-form-field" invalid required'),
+      },
+    },
+  },
   args: { className: 'omnia-demo-override-form-field', invalid: true, required: true },
 };
 
 export const DarkNeutral: Story = {
   args: { invalid: true, required: true },
+  parameters: { docs: { source: { code: emailCode(' invalid required') } } },
   globals: { theme: 'dark' },
 };
 
 export const PixelLight: Story = {
   args: { invalid: true, required: true },
+  parameters: { docs: { source: { code: emailCode(' invalid required') } } },
   globals: { skin: 'pixel' },
 };
 
 export const PixelDark: Story = {
   args: { invalid: true, required: true },
+  parameters: { docs: { source: { code: emailCode(' invalid required') } } },
   globals: { theme: 'dark', skin: 'pixel' },
 };
