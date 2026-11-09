@@ -40,6 +40,12 @@ export default defineConfig({
         extends: true as const,
         plugins: [
           storybookTest({ configDir: '.storybook', initialGlobals: { theme, skin } }),
+          // storybookTest gives all four modes one optimizer cache; concurrent writes corrupt it on Windows.
+          {
+            name: 'omnia:mode-cache-dir',
+            enforce: 'post' as const,
+            config: () => ({ cacheDir: `node_modules/.cache/sb-vitest/${key}` }),
+          },
         ],
         test: {
           name: `storybook:${key}`,
