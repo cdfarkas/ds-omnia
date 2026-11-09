@@ -90,4 +90,9 @@ function Detail({ className, children, ref, ...rest }: DescriptionListDetailProp
   );
 }
 
+DescriptionListRoot.displayName = 'DescriptionList';
+Item.displayName = 'DescriptionList.Item';
+Term.displayName = 'DescriptionList.Term';
+Detail.displayName = 'DescriptionList.Detail';
+
 export const DescriptionList = Object.assign(DescriptionListRoot, { Item, Term, Detail });

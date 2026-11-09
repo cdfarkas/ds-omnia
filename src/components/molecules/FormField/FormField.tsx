@@ -372,6 +372,12 @@ function FormFieldError({ className, children, ref, ...rest }: FormFieldErrorPro
   );
 }
 
+FormFieldRoot.displayName = 'FormField';
+FormFieldLabel.displayName = 'FormField.Label';
+FormFieldControl.displayName = 'FormField.Control';
+FormFieldDescription.displayName = 'FormField.Description';
+FormFieldError.displayName = 'FormField.Error';
+
 export const FormField = Object.assign(FormFieldRoot, {
   Label: FormFieldLabel,
   Control: FormFieldControl,

@@ -5,48 +5,39 @@ import { Link } from '../../atoms/Link';
 import { DescriptionList } from './DescriptionList';
 import './DescriptionList.overrides.css';
 
-const usage = `<DescriptionList>
-  <DescriptionList.Item>
+const project = [
+  <DescriptionList.Item key="name">
     <DescriptionList.Term>Name</DescriptionList.Term>
     <DescriptionList.Detail>Omnia</DescriptionList.Detail>
-  </DescriptionList.Item>
-</DescriptionList>`;
-
-const project = (
-  <>
-    <DescriptionList.Item>
-      <DescriptionList.Term>Name</DescriptionList.Term>
-      <DescriptionList.Detail>Omnia</DescriptionList.Detail>
-    </DescriptionList.Item>
-    <DescriptionList.Item>
-      <DescriptionList.Term>Status</DescriptionList.Term>
-      <DescriptionList.Detail>
-        <Badge intent="success">Stable</Badge>
-      </DescriptionList.Detail>
-    </DescriptionList.Item>
-    <DescriptionList.Item>
-      <DescriptionList.Term>Repository</DescriptionList.Term>
-      <DescriptionList.Detail>
-        <Link href="https://github.com/cdfarkas/ds-omnia" variant="inline">
-          cdfarkas/ds-omnia
-        </Link>
-      </DescriptionList.Detail>
-    </DescriptionList.Item>
-    <DescriptionList.Item>
-      <DescriptionList.Term>Description</DescriptionList.Term>
-      <DescriptionList.Detail>
-        A bilingual, themeable React design system, catalogued in Storybook.
-      </DescriptionList.Detail>
-    </DescriptionList.Item>
-  </>
-);
+  </DescriptionList.Item>,
+  <DescriptionList.Item key="status">
+    <DescriptionList.Term>Status</DescriptionList.Term>
+    <DescriptionList.Detail>
+      <Badge intent="success">Stable</Badge>
+    </DescriptionList.Detail>
+  </DescriptionList.Item>,
+  <DescriptionList.Item key="repository">
+    <DescriptionList.Term>Repository</DescriptionList.Term>
+    <DescriptionList.Detail>
+      <Link href="https://github.com/cdfarkas/ds-omnia" variant="inline">
+        cdfarkas/ds-omnia
+      </Link>
+    </DescriptionList.Detail>
+  </DescriptionList.Item>,
+  <DescriptionList.Item key="description">
+    <DescriptionList.Term>Description</DescriptionList.Term>
+    <DescriptionList.Detail>
+      A bilingual, themeable React design system, catalogued in Storybook.
+    </DescriptionList.Detail>
+  </DescriptionList.Item>,
+];
 
 const meta = {
   title: 'Molecules/DescriptionList',
   component: DescriptionList,
   args: { children: project },
   argTypes: { children: { control: false } },
-  parameters: { layout: 'padded', docs: { source: { code: usage } } },
+  parameters: { layout: 'padded', docs: { source: { type: 'dynamic' } } },
 } satisfies Meta<typeof DescriptionList>;
 
 export default meta;
@@ -75,11 +66,13 @@ export const Playground: Story = {
 
 /** Below its width threshold the list stacks each term above its detail. */
 export const Narrow: Story = {
-  render: (args) => (
-    <div style={{ maxInlineSize: '18rem' }}>
-      <DescriptionList {...args} />
-    </div>
-  ),
+  decorators: [
+    (Story) => (
+      <div style={{ maxInlineSize: '18rem' }}>
+        <Story />
+      </div>
+    ),
+  ],
 };
 
 /**

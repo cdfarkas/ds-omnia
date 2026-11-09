@@ -33,7 +33,9 @@ is written args-only (or `render: (args) => <Component {...args} />`) so Storybo
 visual but sets `parameters.docs.source.code` to one concise, representative snippet (e.g.
 `'<Spinner variantSize="lg" />'`) — never the whole wrapper `<div>` with every instance. When a
 story wraps the component in a non-exported helper (such as `Input`'s labelled `Field`), the same
-`parameters.docs.source.code` overrides the `<Helper … />` output with the real usage.
+`parameters.docs.source.code` overrides the `<Helper … />` output with the real usage. A snippet is
+always per story, never on the default-export `meta` (every story on the page would show it);
+`scripts/story-source.test.ts` fails the `node` project on a meta-level snippet.
 
 ### Layer 2 — tests next to the story
 

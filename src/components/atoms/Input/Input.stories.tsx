@@ -53,14 +53,7 @@ const meta = {
     ref: { control: false },
   },
   render: (args) => <Field label="Email" {...args} />,
-  parameters: {
-    layout: 'padded',
-    docs: {
-      source: {
-        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" placeholder="name@example.com" />',
-      },
-    },
-  },
+  parameters: { layout: 'padded' },
 } satisfies Meta<typeof Input>;
 
 export default meta;
@@ -69,6 +62,13 @@ type Story = StoryObj<typeof meta>;
 /** Controllable surface: every arg is spread onto the input, inside a labelled field. */
 export const Playground: Story = {
   tags: ['interaction'],
+  parameters: {
+    docs: {
+      source: {
+        code: '<label htmlFor="email">Email</label>\n<Input id="email" type="email" placeholder="name@example.com" />',
+      },
+    },
+  },
   play: async ({ canvas, step }) => {
     const input = canvas.getByLabelText('Email');
     await step('typing fills the field', async () => {
