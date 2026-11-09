@@ -46,6 +46,12 @@ const meta = {
   argTypes: {
     invalid: { control: 'boolean' },
     required: { control: 'boolean' },
+    validateOn: {
+      control: 'select',
+      options: ['off', 'submit', 'blur', 'change', 'touched'],
+      mapping: { off: undefined },
+    },
+    validationMessages: { control: false },
     ref: { control: false },
   },
   parameters: { layout: 'padded', docs: { source: { code: emailCode } } },
@@ -379,6 +385,156 @@ export const ValidateOnBlur: Story = {
       await expect(canvas.queryByText(emptyEmail)).not.toBeInTheDocument();
       await expect(input).not.toHaveAttribute('aria-invalid');
       input.blur();
+    });
+  },
+};
+
+function AccountForm({ validateOn }: FormFieldProps) {
+  return (
+    <form
+      onSubmit={(event) => event.preventDefault()}
+      style={{ ...frame, display: 'grid', gap: '1rem' }}
+    >
+      <FormField
+        validateOn={validateOn}
+        required
+        validationMessages={{
+          patternMismatch: 'Enter an email address like name@example.com.',
+        }}
+      >
+        <FormField.Label>Email</FormField.Label>
+        <FormField.Control
+          render={(props, { invalid }) => (
+            <Input
+              {...props}
+              name="email"
+              type="email"
+              pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+              invalid={invalid}
+            />
+          )}
+        />
+        <FormField.Error />
+      </FormField>
+      <FormField validateOn={validateOn}>
+        <FormField.Label>Password</FormField.Label>
+        <FormField.Control
+          render={(props, { invalid }) => (
+            <Input
+              {...props}
+              name="password"
+              type="password"
+              minLength={8}
+              invalid={invalid}
+            />
+          )}
+        />
+        <FormField.Description>At least 8 characters.</FormField.Description>
+        <FormField.Error />
+      </FormField>
+      <FormField validateOn={validateOn} required>
+        <FormField.Control
+          render={(props, { invalid }) => (
+            <Checkbox {...props} name="terms" invalid={invalid}>
+              I accept the terms
+            </Checkbox>
+          )}
+        />
+        <FormField.Error />
+      </FormField>
+      <div>
+        <Button type="submit">Create account</Button>
+      </div>
+    </form>
+  );
+}
+
+/**
+ * Browser validation with Omnia messages: `validateOn` reads each control's native constraints
+ * (`required`, `type="email"`, `minLength`) and an empty `FormField.Error` shows the message.
+ */
+export const NativeValidation: Story = {
+  tags: ['interaction'],
+  args: { validateOn: 'submit' },
+  argTypes: { invalid: { control: false }, required: { control: false } },
+  parameters: {
+    docs: {
+      source: {
+        code: `<form onSubmit={save}>
+  <FormField
+    validateOn="submit"
+    required
+    validationMessages={{ patternMismatch: 'Enter an email address like name@example.com.' }}
+  >
+    <FormField.Label>Email</FormField.Label>
+    <FormField.Control
+      render={(props, { invalid }) => (
+        <Input
+          {...props}
+          name="email"
+          type="email"
+          pattern="[^@\\s]+@[^@\\s]+\\.[^@\\s]+"
+          invalid={invalid}
+        />
+      )}
+    />
+    <FormField.Error />
+  </FormField>
+  <FormField validateOn="submit">
+    <FormField.Label>Password</FormField.Label>
+    <FormField.Control
+      render={(props, { invalid }) => (
+        <Input {...props} name="password" type="password" minLength={8} invalid={invalid} />
+      )}
+    />
+    <FormField.Description>At least 8 characters.</FormField.Description>
+    <FormField.Error />
+  </FormField>
+  <FormField validateOn="submit" required>
+    <FormField.Control
+      render={(props, { invalid }) => (
+        <Checkbox {...props} name="terms" invalid={invalid}>I accept the terms</Checkbox>
+      )}
+    />
+    <FormField.Error />
+  </FormField>
+  <Button type="submit">Create account</Button>
+</form>`,
+      },
+    },
+  },
+  render: (args) => <AccountForm {...args} />,
+  play: async ({ canvas, step }) => {
+    const email = canvas.getByRole('textbox', { name: 'Email' });
+    await step('submitting empty shows a message on each failing field', async () => {
+      await userEvent.click(canvas.getByRole('button', { name: 'Create account' }));
+      await expect(
+        await canvas.findByText('Fill in this field to continue.'),
+      ).toBeInTheDocument();
+      await expect(canvas.getByText('Check this box to continue.')).toBeInTheDocument();
+    });
+    await step(
+      'the first invalid control takes focus and is marked invalid',
+      async () => {
+        await expect(email).toHaveFocus();
+        await expect(email).toHaveAttribute('aria-invalid', 'true');
+      },
+    );
+    await step('fixing the email re-checks it and clears its error', async () => {
+      await userEvent.type(email, 'ada');
+      await expect(
+        await canvas.findByText('Enter an email address like name@example.com.'),
+      ).toBeInTheDocument();
+      await userEvent.type(email, '@example');
+      await expect(
+        canvas.getByText('Enter an email address like name@example.com.'),
+      ).toBeInTheDocument();
+      await userEvent.type(email, '.com');
+      await waitFor(() => expect(email).not.toHaveAttribute('aria-invalid'));
+      await expect(
+        canvas.queryByText('Enter an email address like name@example.com.'),
+      ).not.toBeInTheDocument();
+      email.blur();
     });
   },
 };

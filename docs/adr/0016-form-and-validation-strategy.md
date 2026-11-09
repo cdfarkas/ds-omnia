@@ -3,6 +3,7 @@
 ## Status
 
 Accepted (2026-10-31). Partly superseded by ADR 0029: atoms do not read a `FormField` context.
+Option B is adopted by ADR 0030: `FormField` surfaces native constraint validation, opt-in.
 
 ## Context
 
@@ -225,7 +226,7 @@ cross-field rules (that would need an ADR superseding this one, with a benchmark
 
 Option A: form atoms (`Input`, `Checkbox`, `Switch`, …) and `FormField` v1 are display only. They render a state (`invalid` → `aria-invalid` + the danger border), pass native attributes and `ref` through, and generate no error text. Validation, its timing and the message text belong to the consumer's form layer (form library, server, React 19 actions).
 
-Option B (`FormField` surfacing native constraint validation) is deferred: it can be added later in `FormField` without touching an atom, and needs its own evidence.
+~~Option B (`FormField` surfacing native constraint validation) is deferred: it can be added later in `FormField` without touching an atom, and needs its own evidence.~~ Superseded by ADR 0030: option B is adopted, in `FormField`, opt-in through `validateOn`; atoms are unchanged.
 
 Option C (Omnia-owned validation) is rejected.
 
