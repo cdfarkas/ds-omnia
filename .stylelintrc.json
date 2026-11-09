@@ -19,6 +19,8 @@
       "plugins": ["stylelint-declaration-strict-value"],
       "rules": {
         "selector-class-pattern": null,
+        "color-no-hex": true,
+        "function-disallowed-list": ["rgb", "rgba", "hsl", "hsla"],
         "scale-unlimited/declaration-strict-value": [
           [
             "/color/",

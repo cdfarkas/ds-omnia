@@ -68,7 +68,7 @@ export default defineConfig({
         test: {
           name: 'node',
           environment: 'node',
-          include: ['scripts/**/*.test.ts'],
+          include: ['scripts/**/*.test.ts', '.storybook/**/*.test.ts'],
         },
       },
     ],
