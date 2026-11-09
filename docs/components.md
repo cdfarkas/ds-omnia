@@ -356,3 +356,17 @@ Source: `src/components/molecules/SectionHeading/SectionHeading.tsx`
 
 Stories: `molecules-sectionheading--playground`, `molecules-sectionheading--title-only`, `molecules-sectionheading--with-description`, `molecules-sectionheading--with-actions`, `molecules-sectionheading--narrow`, `molecules-sectionheading--overridden`, `molecules-sectionheading--dark-neutral`, `molecules-sectionheading--pixel-light`, `molecules-sectionheading--pixel-dark`
 
+## Stat
+
+Headline figures on a native `<dl>` of one or more `Stat.Item` figures. In each item the `Stat.Label` (`<dt>`) is written first and the `Stat.Value` (`<dd>`) is drawn above it. `orientation` lays items in a wrapping row or one column. Consumes semantic tokens only.
+
+Source: `src/components/molecules/Stat/Stat.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `orientation` | `'horizontal' \| 'vertical'` | no | `'horizontal'` | `horizontal`, `vertical` |
+| `ref` | `Ref<HTMLDListElement>` | no | — | — |
+
+Stories: `molecules-stat--playground`, `molecules-stat--without-hint`, `molecules-stat--several`, `molecules-stat--vertical`, `molecules-stat--overridden`, `molecules-stat--dark-neutral`, `molecules-stat--pixel-light`, `molecules-stat--pixel-dark`
+

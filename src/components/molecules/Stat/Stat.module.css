@@ -1,0 +1,62 @@
+@layer components {
+  .root {
+    display: grid;
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(min(100%, var(--omnia-stat-min-column, 10rem)), 1fr)
+    );
+    gap: var(--omnia-stat-gap, var(--omnia-palette-space-5));
+    margin: 0;
+  }
+
+  .root[data-orientation='vertical'] {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .item {
+    display: flex;
+    flex-direction: column;
+    gap: var(--omnia-stat-item-gap, var(--omnia-palette-space-1));
+  }
+
+  .label,
+  .value,
+  .hint {
+    margin: 0;
+    min-inline-size: 0;
+    overflow-wrap: anywhere;
+  }
+
+  /* The label comes first in the DOM for the dt/dd pairing; the figure is drawn on top. */
+  .value {
+    order: -1;
+    font-family: var(--omnia-font-display);
+    font-size: var(--omnia-stat-value-font-size, 3rem);
+    font-weight: 700;
+    line-height: 1.25;
+    font-variant-numeric: tabular-nums;
+    color: var(--omnia-stat-value-color, var(--omnia-color-text-primary));
+  }
+
+  .label {
+    font-family: var(--omnia-font-sans);
+    font-size: 1rem;
+    font-weight: 600;
+    line-height: 1.5;
+    color: var(--omnia-stat-label-color, var(--omnia-color-text-primary));
+  }
+
+  .hint {
+    font-family: var(--omnia-font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: var(--omnia-stat-hint-color, var(--omnia-color-text-muted));
+  }
+
+  :global([data-skin='pixel']) .value {
+    font-family: var(--omnia-font-pixel);
+    font-size: var(--omnia-stat-value-font-size, 1.5rem);
+    line-height: 1.4;
+    -webkit-font-smoothing: none;
+  }
+}
