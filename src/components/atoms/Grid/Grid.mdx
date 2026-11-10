@@ -83,6 +83,47 @@ import * as GridStories from './Grid.stories';
 
 <Canvas of={GridStories.Playground} />
 
+### <Localized en="Grid or Stack?" fr="Grid ou Stack ?" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>Grid</strong> spreads <strong>equal cells</strong> across up to{' '}
+        <code>columns</code> tracks and reflows to fewer as the space narrows — reach for
+        it for a set of like tiles that should wrap into a responsive grid.
+      </li>
+      <li>
+        <strong>Stack</strong> lays items along <strong>one axis</strong> and never wraps
+        — reach for it for a linear run: a toolbar, a form, a header with a title and an
+        action, a column of sections.
+      </li>
+      <li>
+        <strong>Rule of thumb</strong>: a set of cells that should wrap →{' '}
+        <code>Grid</code>; one row or column that stays put → <code>Stack</code>.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Grid</strong> répartit des <strong>cellules égales</strong> sur un maximum
+        de <code>columns</code> colonnes et en réduit le nombre quand la place manque —
+        pour un ensemble de tuiles semblables qui doivent se replacer en grille.
+      </li>
+      <li>
+        <strong>Stack</strong> dispose les éléments sur <strong>un seul axe</strong> et ne
+        passe jamais à la ligne — pour une suite linéaire : une barre d'actions, un
+        formulaire, un en-tête titre + action, une colonne de sections.
+      </li>
+      <li>
+        <strong>Règle</strong> : des cellules qui doivent se replacer → <code>Grid</code>{' '}
+        ; une ligne ou colonne qui reste en place → <code>Stack</code>.
+      </li>
+    </ul>
+  }
+/>
+
 ### <Localized en="Props" fr="Propriétés" />
 
 <Controls />

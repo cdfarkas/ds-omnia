@@ -1,0 +1,247 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as StackStories from './Stack.stories';
+
+<Meta of={StackStories} />
+
+# Stack
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Stack</strong> to lay a set of items out in one direction with an even
+        gap between them: pick <code>column</code> to stack top to bottom or{' '}
+        <code>row</code> to line up left to right, and one <code>gap</code> keeps the
+        spacing consistent.
+      </p>
+      <ul>
+        <li>
+          <strong>One direction.</strong> <code>direction</code> is <code>column</code>{' '}
+          (the default) or <code>row</code> — nothing wraps, so each item follows the last
+          along that one axis.
+        </li>
+        <li>
+          <strong>Four gaps.</strong> <code>gap</code> is <code>none</code>,{' '}
+          <code>sm</code>, <code>md</code> or <code>lg</code>; the default is{' '}
+          <code>md</code>, the same scale the other layout primitives use.
+        </li>
+        <li>
+          <strong>Align on both axes.</strong> <code>justify</code> spaces items along the
+          direction (<code>start</code>, <code>center</code>, <code>end</code>,{' '}
+          <code>between</code>); <code>alignItems</code> aligns them across it (
+          <code>start</code>, <code>center</code>, <code>end</code>, <code>stretch</code>
+          ). Leave either off to keep the flex default.
+        </li>
+        <li>
+          <strong>It nests.</strong> A Stack can hold Stacks, so a column of rows (or a
+          row of columns) composes a small two-dimensional layout with no extra component.
+        </li>
+        <li>
+          <strong>Layout only.</strong> It has no colour and no spacing above or below —
+          put those on what you place inside it.
+        </li>
+        <li>
+          <strong>It is a plain box.</strong> Stack renders a <code>div</code> and passes
+          your props through, so add <code>role</code>, <code>aria-*</code> or an{' '}
+          <code>id</code> when the set needs them.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Stack</strong> pour disposer des éléments dans une seule
+        direction avec un espacement régulier : choisissez <code>column</code> pour
+        empiler de haut en bas ou <code>row</code> pour aligner de gauche à droite, et un
+        seul <code>gap</code> garde l'espacement constant.
+      </p>
+      <ul>
+        <li>
+          <strong>Une seule direction.</strong> <code>direction</code> vaut{' '}
+          <code>column</code> (par défaut) ou <code>row</code> — rien ne passe à la ligne,
+          chaque élément suit le précédent sur cet axe.
+        </li>
+        <li>
+          <strong>Quatre espacements.</strong> <code>gap</code> vaut <code>none</code>,{' '}
+          <code>sm</code>, <code>md</code> ou <code>lg</code> ; la valeur par défaut est{' '}
+          <code>md</code>, la même échelle que les autres primitives de mise en page.
+        </li>
+        <li>
+          <strong>Alignement sur les deux axes.</strong> <code>justify</code> répartit les
+          éléments le long de la direction (<code>start</code>, <code>center</code>,{' '}
+          <code>end</code>, <code>between</code>) ; <code>alignItems</code> les aligne en
+          travers (<code>start</code>, <code>center</code>, <code>end</code>,{' '}
+          <code>stretch</code>). Laissez l'un ou l'autre de côté pour garder le défaut
+          flex.
+        </li>
+        <li>
+          <strong>Il s'imbrique.</strong> Un Stack peut contenir des Stacks : une colonne
+          de lignes (ou une ligne de colonnes) compose une petite mise en page à deux
+          dimensions sans composant supplémentaire.
+        </li>
+        <li>
+          <strong>Mise en page seulement.</strong> Il n'a ni couleur ni espacement
+          haut/bas — placez-les sur ce que vous mettez à l'intérieur.
+        </li>
+        <li>
+          <strong>C'est une simple boîte.</strong> Stack rend un <code>div</code> et
+          transmet vos propriétés : ajoutez <code>role</code>, <code>aria-*</code> ou un{' '}
+          <code>id</code> quand l'ensemble en a besoin.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={StackStories.Playground} />
+
+### <Localized en="Grid or Stack?" fr="Grid ou Stack ?" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>Stack</strong> lays items along <strong>one axis</strong> and never wraps
+        — reach for it for a linear run: a toolbar, a form, a header with a title and an
+        action, a column of sections. Nest stacks to compose.
+      </li>
+      <li>
+        <strong>Grid</strong> spreads <strong>equal cells</strong> across up to{' '}
+        <code>columns</code> tracks and reflows to fewer as the space narrows — reach for
+        it for a set of like tiles that should wrap into a responsive grid.
+      </li>
+      <li>
+        <strong>Rule of thumb</strong>: one row or column that stays put →{' '}
+        <code>Stack</code>; a set of cells that should wrap → <code>Grid</code>.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Stack</strong> dispose les éléments sur <strong>un seul axe</strong> et ne
+        passe jamais à la ligne — pour une suite linéaire : une barre d'actions, un
+        formulaire, un en-tête titre + action, une colonne de sections. Imbriquez des
+        stacks pour composer.
+      </li>
+      <li>
+        <strong>Grid</strong> répartit des <strong>cellules égales</strong> sur un maximum
+        de <code>columns</code> colonnes et en réduit le nombre quand la place manque —
+        pour un ensemble de tuiles semblables qui doivent se replacer en grille.
+      </li>
+      <li>
+        <strong>Règle</strong> : une ligne ou colonne qui reste en place →{' '}
+        <code>Stack</code>; des cellules qui doivent se replacer → <code>Grid</code>.
+      </li>
+    </ul>
+  }
+/>
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Directions" fr="Directions" />
+
+<Canvas of={StackStories.Directions} />
+
+### <Localized en="Alignment" fr="Alignement" />
+
+<Canvas of={StackStories.Alignment} />
+
+### <Localized en="Composition" fr="Composition" />
+
+<Localized
+  en={
+    <p>
+      Nest stacks to build a layout without a second component: a <code>column</code> for
+      the whole, a <code>row</code> inside it with <code>justify="between"</code> for a
+      header. For an even grid of equal cells, reach for <strong>Grid</strong> instead.
+    </p>
+  }
+  fr={
+    <p>
+      Imbriquez des stacks pour construire une mise en page sans deuxième composant : une{' '}
+      <code>column</code> pour l'ensemble, une <code>row</code> à l'intérieur avec{' '}
+      <code>justify="between"</code> pour un en-tête. Pour une grille régulière de
+      cellules égales, utilisez plutôt <strong>Grid</strong>.
+    </p>
+  }
+/>
+
+<Canvas of={StackStories.Nested} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Stack follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variable</strong>: <code>--omnia-stack-gap</code>, set by{' '}
+          <code>gap</code>. <code>direction</code>, <code>alignItems</code> and{' '}
+          <code>justify</code> come from props, not overrides.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>stack</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, where your <code>className</code> merges.
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-direction</code>, <code>data-gap</code>, and <code>data-align</code>{' '}
+          / <code>data-justify</code> when set.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Stack suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variable de composant</strong> : <code>--omnia-stack-gap</code>, définie
+          par <code>gap</code>. <code>direction</code>, <code>alignItems</code> et{' '}
+          <code>justify</code> viennent des propriétés, pas des surcharges.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>stack</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, où votre <code>className</code> fusionne.
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-direction</code>, <code>data-gap</code>, et <code>data-align</code> /{' '}
+          <code>data-justify</code> quand ils sont définis.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={StackStories.Overridden} />
