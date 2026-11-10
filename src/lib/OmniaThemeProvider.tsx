@@ -12,7 +12,7 @@ import { getLocale, locales, setLocale as setModuleLocale, type Locale } from '.
 export const themes = ['light', 'dark'] as const;
 export type Theme = (typeof themes)[number];
 
-export const skins = ['default', 'pixel'] as const;
+export const skins = ['default', 'pixel', 'brutalist'] as const;
 export type Skin = (typeof skins)[number];
 
 export interface ThemeState {

@@ -19,15 +19,16 @@ pass — a real contrast failure is flagged, not hidden.
 1. `pnpm build-storybook` — produce `storybook-static/`.
 2. `pnpm visual-check` — `scripts/visual-check.mjs` serves the static build and drives
    Playwright (the Chromium already installed for the test runner). For every story in
-   its `stories` list it screenshots the four theme×skin modes at 440 CSS px, full page so
+   its `stories` list it screenshots the six theme×skin modes at 440 CSS px — the four
+   default/pixel modes plus `light-brutalist` and `dark-brutalist` — full page so
    a tall story is not cut at the viewport; on Button it also captures hover/press, the
    keyboard-focus state, and both locales on one representative story; on Input it
-   captures the keyboard-focus state of `WithAdornments` in all four modes
+   captures the keyboard-focus state of `WithAdornments` in all six modes
    (`input-with-adornments__focus-<mode>.png`); on Checkbox it captures the keyboard-focus
-   state of `Checked` in all four modes (`checkbox-checked__focus-<mode>.png`); on Switch it captures the keyboard-focus
-   state of `Checked` in all four modes (`switch-checked__focus-<mode>.png`); on NavBar it captures the keyboard-focus
-   state of `Playground` in all four modes (`navbar-playground__focus-<mode>.png`); on FormField it captures the keyboard-focus
-   state of `Invalid` in all four modes (`form-field-invalid__focus-<mode>.png`). A narrow pass then shoots every story again in all four modes
+   state of `Checked` in all six modes (`checkbox-checked__focus-<mode>.png`); on Switch it captures the keyboard-focus
+   state of `Checked` in all six modes (`switch-checked__focus-<mode>.png`); on NavBar it captures the keyboard-focus
+   state of `Playground` in all six modes (`navbar-playground__focus-<mode>.png`); on FormField it captures the keyboard-focus
+   state of `Invalid` in all six modes (`form-field-invalid__focus-<mode>.png`). A narrow pass then shoots every story again in all six modes
    at 320 × 568 CSS px, the WCAG 1.4.10 reflow width (ADR 0014), as
    `<story>__<mode>__w320.png`. An optional argument filters by story id
    (`pnpm visual-check badge`); the Button-only shots run when it is absent or contains
