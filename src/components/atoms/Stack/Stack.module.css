@@ -1,0 +1,32 @@
+@layer components {
+  .root {
+    display: flex;
+    gap: var(--omnia-stack-gap);
+    align-items: var(--omnia-stack-align, normal);
+    justify-content: var(--omnia-stack-justify, normal);
+  }
+
+  .row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex-direction: column;
+  }
+
+  .gapNone {
+    --omnia-stack-gap: 0;
+  }
+
+  .gapSm {
+    --omnia-stack-gap: var(--omnia-palette-space-3);
+  }
+
+  .gapMd {
+    --omnia-stack-gap: var(--omnia-palette-space-4);
+  }
+
+  .gapLg {
+    --omnia-stack-gap: var(--omnia-palette-space-6);
+  }
+}

@@ -1022,6 +1022,90 @@
       ]
     },
     {
+      "name": "Stack",
+      "description": "Generic one-direction stack: lays children in a `row` or `column` with a consistent `gap`, and optionally aligns them along each axis (`alignItems` cross-axis, `justify` main-axis). Layout only — no colour, no spacing above or below. Renders a `<div>`; pass element semantics through.",
+      "source": "src/components/atoms/Stack/Stack.tsx",
+      "props": [
+        {
+          "name": "direction",
+          "type": "StackDirection",
+          "required": false,
+          "default": "'column'",
+          "options": [
+            "row",
+            "column"
+          ]
+        },
+        {
+          "name": "gap",
+          "type": "StackGap",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md",
+            "lg",
+            "none"
+          ]
+        },
+        {
+          "name": "alignItems",
+          "type": "StackAlign",
+          "required": false,
+          "options": [
+            "start",
+            "center",
+            "end",
+            "stretch"
+          ]
+        },
+        {
+          "name": "justify",
+          "type": "StackJustify",
+          "required": false,
+          "options": [
+            "start",
+            "center",
+            "end",
+            "between"
+          ]
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "direction",
+        "gap",
+        "alignItems",
+        "justify"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-stack--playground"
+        },
+        {
+          "name": "Directions",
+          "id": "atoms-stack--directions"
+        },
+        {
+          "name": "Alignment",
+          "id": "atoms-stack--alignment"
+        },
+        {
+          "name": "Nested",
+          "id": "atoms-stack--nested"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-stack--overridden"
+        }
+      ]
+    },
+    {
       "name": "Heading",
       "description": "Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).",
       "source": "src/components/atoms/Heading/Heading.tsx",

@@ -193,6 +193,22 @@ Source: `src/components/atoms/Grid/Grid.tsx`
 
 Stories: `atoms-grid--playground`, `atoms-grid--columns`, `atoms-grid--overridden`
 
+## Stack
+
+Generic one-direction stack: lays children in a `row` or `column` with a consistent `gap`, and optionally aligns them along each axis (`alignItems` cross-axis, `justify` main-axis). Layout only — no colour, no spacing above or below. Renders a `<div>`; pass element semantics through.
+
+Source: `src/components/atoms/Stack/Stack.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `direction` | `StackDirection` | no | `'column'` | `row`, `column` |
+| `gap` | `StackGap` | no | `'md'` | `sm`, `md`, `lg`, `none` |
+| `alignItems` | `StackAlign` | no | — | `start`, `center`, `end`, `stretch` |
+| `justify` | `StackJustify` | no | — | `start`, `center`, `end`, `between` |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `atoms-stack--playground`, `atoms-stack--directions`, `atoms-stack--alignment`, `atoms-stack--nested`, `atoms-stack--overridden`
+
 ## Heading
 
 Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).
