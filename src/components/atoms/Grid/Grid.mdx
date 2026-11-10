@@ -1,0 +1,166 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as GridStories from './Grid.stories';
+
+<Meta of={GridStories} />
+
+# Grid
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Grid</strong> to lay a set of items out in even columns: it spreads
+        them across up to <code>columns</code> equal tracks with a <code>gap</code>{' '}
+        between, and reflows to fewer columns as the space narrows.
+      </p>
+      <ul>
+        <li>
+          <strong>A column cap, not a fixed count.</strong> <code>columns</code> is the
+          most it will show (default <code>3</code>); on a narrow screen it drops to
+          fewer, down to a single column, so it never crowds.
+        </li>
+        <li>
+          <strong>Four gaps.</strong> <code>gap</code> is <code>none</code>,{' '}
+          <code>sm</code>, <code>md</code> or <code>lg</code>; the default is{' '}
+          <code>md</code>.
+        </li>
+        <li>
+          <strong>It follows its own width.</strong> The reflow watches the grid's own
+          box, so it works the same in a sidebar as across a full page — no breakpoints to
+          set.
+        </li>
+        <li>
+          <strong>Layout only.</strong> It has no colour and no spacing above or below —
+          put those on what you place inside it.
+        </li>
+        <li>
+          <strong>It is a plain box.</strong> Grid renders a <code>div</code> and passes
+          your props through, so add <code>role</code>, <code>aria-*</code> or an{' '}
+          <code>id</code> when the set needs them.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Grid</strong> pour disposer des éléments en colonnes régulières :
+        il les répartit sur un maximum de <code>columns</code> colonnes égales avec un{' '}
+        <code>gap</code> entre elles, et repasse à moins de colonnes quand la place se
+        réduit.
+      </p>
+      <ul>
+        <li>
+          <strong>Un plafond de colonnes, pas un nombre fixe.</strong>{' '}
+          <code>columns</code> est le maximum affiché (par défaut <code>3</code>) ; sur un
+          écran étroit il descend à moins, jusqu'à une seule colonne, pour ne jamais
+          tasser.
+        </li>
+        <li>
+          <strong>Quatre espacements.</strong> <code>gap</code> vaut <code>none</code>,{' '}
+          <code>sm</code>, <code>md</code> ou <code>lg</code> ; la valeur par défaut est{' '}
+          <code>md</code>.
+        </li>
+        <li>
+          <strong>Il suit sa propre largeur.</strong> Le repli observe la boîte de la
+          grille elle-même : il fonctionne pareil dans une barre latérale ou sur toute une
+          page — aucun point de rupture à régler.
+        </li>
+        <li>
+          <strong>Mise en page seulement.</strong> Il n'a ni couleur ni espacement
+          haut/bas — placez-les sur ce que vous mettez à l'intérieur.
+        </li>
+        <li>
+          <strong>C'est une simple boîte.</strong> Grid rend un <code>div</code> et
+          transmet vos propriétés : ajoutez <code>role</code>, <code>aria-*</code> ou un{' '}
+          <code>id</code> quand l'ensemble en a besoin.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={GridStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Column cap" fr="Plafond de colonnes" />
+
+<Canvas of={GridStories.Columns} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Grid follows the system override contract (see <code>docs/overrides.md</code>).
+        Restyle it through this public surface — never through the hashed CSS-Module class
+        names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-grid-gap</code> (set by{' '}
+          <code>gap</code>) and <code>--omnia-grid-min</code>, the smallest a column may
+          get before the grid reflows (default <code>12rem</code>). <code>columns</code>{' '}
+          sets <code>--omnia-grid-columns</code> and is driven by the prop, not overrides.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>grid</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, where your <code>className</code> merges.
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-columns</code>, <code>data-gap</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Grid suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-grid-gap</code> (défini
+          par <code>gap</code>) et <code>--omnia-grid-min</code>, la largeur minimale
+          d'une colonne avant repli (par défaut <code>12rem</code>). <code>columns</code>{' '}
+          définit <code>--omnia-grid-columns</code> et vient de la propriété, pas des
+          surcharges.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>grid</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, où votre <code>className</code> fusionne.
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-columns</code>, <code>data-gap</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={GridStories.Overridden} />

@@ -131,6 +131,9 @@ const stories = [
   { id: 'atoms-container--playground', name: 'container-playground' },
   { id: 'atoms-container--scale', name: 'container-scale' },
   { id: 'atoms-container--overridden', name: 'container-overridden' },
+  { id: 'atoms-grid--playground', name: 'grid-playground' },
+  { id: 'atoms-grid--columns', name: 'grid-columns' },
+  { id: 'atoms-grid--overridden', name: 'grid-overridden' },
   { id: 'atoms-heading--levels', name: 'heading-levels' },
   { id: 'atoms-heading--scale', name: 'heading-scale' },
   { id: 'atoms-heading--overridden', name: 'heading-overridden' },
@@ -403,6 +406,13 @@ if (!filter || filter.includes('container')) {
   await page.setViewportSize({ width: 1280, height: 400 });
   for (const m of modes) {
     await shoot('atoms-container--scale', 'container-scale', m, 'en', `${m.key}__w1280`);
+  }
+  await page.setViewportSize({ width: 440, height: 220 });
+}
+if (!filter || filter.includes('grid')) {
+  await page.setViewportSize({ width: 1000, height: 600 });
+  for (const m of modes) {
+    await shoot('atoms-grid--columns', 'grid-columns', m, 'en', `${m.key}__w1000`);
   }
   await page.setViewportSize({ width: 440, height: 220 });
 }

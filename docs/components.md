@@ -179,6 +179,20 @@ Source: `src/components/atoms/Container/Container.tsx`
 
 Stories: `atoms-container--playground`, `atoms-container--scale`, `atoms-container--overridden`
 
+## Grid
+
+Generic responsive grid: lays children in up to `columns` equal columns with a `gap`, reflowing to fewer columns (down to one) as its own width shrinks. Layout only — no colour, no spacing above or below. Renders a `<div>`; pass element semantics (`role`, `aria-*`) through props.
+
+Source: `src/components/atoms/Grid/Grid.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `columns` | `number` | no | `3` | — |
+| `gap` | `GridGap` | no | `'md'` | `sm`, `md`, `lg`, `none` |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `atoms-grid--playground`, `atoms-grid--columns`, `atoms-grid--overridden`
+
 ## Heading
 
 Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).
