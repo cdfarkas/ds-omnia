@@ -933,6 +933,48 @@
       ]
     },
     {
+      "name": "Container",
+      "description": "Generic page-width wrapper: caps its content at a `variantSize` max-width, centers it and adds horizontal gutters that widen on larger viewports. Layout only — no colour, no vertical spacing. `variantSize=\"full\"` removes the cap. Renders a `<div>`; pass element semantics (`role`, `aria-*`) through props.",
+      "source": "src/components/atoms/Container/Container.tsx",
+      "props": [
+        {
+          "name": "variantSize",
+          "type": "ContainerSize",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md",
+            "lg",
+            "xl",
+            "full"
+          ]
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "variantSize"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-container--playground"
+        },
+        {
+          "name": "Scale",
+          "id": "atoms-container--scale"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-container--overridden"
+        }
+      ]
+    },
+    {
       "name": "Heading",
       "description": "Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).",
       "source": "src/components/atoms/Heading/Heading.tsx",
