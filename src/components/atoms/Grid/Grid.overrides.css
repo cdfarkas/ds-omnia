@@ -1,0 +1,8 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-grid {
+    --omnia-grid-min: 8rem;
+    --omnia-grid-gap: var(--omnia-palette-space-6);
+  }
+}

@@ -1,0 +1,38 @@
+@layer components {
+  .root {
+    display: grid;
+    gap: var(--omnia-grid-gap);
+
+    /* Cap at --omnia-grid-columns equal columns, reflowing to fewer (down to one) as the grid's
+       own width drops below --omnia-grid-min per track — no breakpoints, works at 320px. */
+    grid-template-columns: repeat(
+      auto-fit,
+      minmax(
+        max(
+          var(--omnia-grid-min, 12rem),
+          calc(
+            (100% - (var(--omnia-grid-columns) - 1) * var(--omnia-grid-gap)) /
+              var(--omnia-grid-columns)
+          )
+        ),
+        1fr
+      )
+    );
+  }
+
+  .gapNone {
+    --omnia-grid-gap: 0;
+  }
+
+  .gapSm {
+    --omnia-grid-gap: var(--omnia-palette-space-3);
+  }
+
+  .gapMd {
+    --omnia-grid-gap: var(--omnia-palette-space-4);
+  }
+
+  .gapLg {
+    --omnia-grid-gap: var(--omnia-palette-space-6);
+  }
+}
