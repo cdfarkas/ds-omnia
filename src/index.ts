@@ -9,6 +9,7 @@ export * from './components/atoms/Icon';
 export * from './components/atoms/Divider';
 export * from './components/atoms/Indicator';
 export * from './components/atoms/Avatar';
+export * from './components/atoms/Container';
 export * from './components/atoms/Heading';
 export * from './components/atoms/Text';
 export * from './components/atoms/LanguageSwitcher';

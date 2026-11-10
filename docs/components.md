@@ -166,6 +166,19 @@ Source: `src/components/atoms/Avatar/Avatar.tsx`
 
 Stories: `atoms-avatar--playground`, `atoms-avatar--image`, `atoms-avatar--initials`, `atoms-avatar--placeholder`, `atoms-avatar--sizes`, `atoms-avatar--broken-image`, `atoms-avatar--decorative`, `atoms-avatar--overridden`
 
+## Container
+
+Generic page-width wrapper: caps its content at a `variantSize` max-width, centers it and adds horizontal gutters that widen on larger viewports. Layout only — no colour, no vertical spacing. `variantSize="full"` removes the cap. Renders a `<div>`; pass element semantics (`role`, `aria-*`) through props.
+
+Source: `src/components/atoms/Container/Container.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `variantSize` | `ContainerSize` | no | `'md'` | `sm`, `md`, `lg`, `xl`, `full` |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `atoms-container--playground`, `atoms-container--scale`, `atoms-container--overridden`
+
 ## Heading
 
 Section heading. `level` picks the real `<h1>`–`<h6>` for the document outline; `variantSize` sets the visual size independently, so semantic level and appearance are decoupled. Type is token-driven and reskins across the theme and skin axes (the display serif in neutral, the pixel font in the pixel skin).
