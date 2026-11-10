@@ -1,0 +1,152 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as ContainerStories from './Container.stories';
+
+<Meta of={ContainerStories} />
+
+# Container
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Container</strong> to hold a page section at a comfortable reading
+        width: it caps how wide the content gets, centres it, and keeps even gutters down
+        the sides.
+      </p>
+      <ul>
+        <li>
+          <strong>Five widths.</strong> <code>variantSize</code> goes <code>sm</code>,{' '}
+          <code>md</code>, <code>lg</code>, <code>xl</code>; the default is{' '}
+          <code>md</code>. <code>full</code> removes the cap and spans the whole area.
+        </li>
+        <li>
+          <strong>Gutters that breathe.</strong> The side padding is small on phones and
+          widens on larger screens, so content never touches the edge.
+        </li>
+        <li>
+          <strong>Layout only.</strong> It has no colour and no top or bottom spacing —
+          put those on what you place inside it.
+        </li>
+        <li>
+          <strong>It is a plain box.</strong> Container renders a <code>div</code> and
+          passes your props through, so add <code>role</code>, <code>aria-*</code> or an{' '}
+          <code>id</code> when the section needs them.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Container</strong> pour tenir une section de page à une largeur
+        de lecture confortable : il limite la largeur du contenu, le centre et garde des
+        marges latérales régulières.
+      </p>
+      <ul>
+        <li>
+          <strong>Cinq largeurs.</strong> <code>variantSize</code> va de <code>sm</code> à{' '}
+          <code>md</code>, <code>lg</code>, <code>xl</code> ; la valeur par défaut est{' '}
+          <code>md</code>. <code>full</code> retire la limite et occupe toute la zone.
+        </li>
+        <li>
+          <strong>Des marges qui respirent.</strong> Le rembourrage latéral est réduit sur
+          téléphone et s'élargit sur grand écran, pour que le contenu ne touche jamais le
+          bord.
+        </li>
+        <li>
+          <strong>Mise en page seulement.</strong> Il n'a ni couleur ni espacement
+          haut/bas — placez-les sur ce que vous mettez à l'intérieur.
+        </li>
+        <li>
+          <strong>C'est une simple boîte.</strong> Container rend un <code>div</code> et
+          transmet vos propriétés : ajoutez <code>role</code>, <code>aria-*</code> ou un{' '}
+          <code>id</code> quand la section en a besoin.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={ContainerStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Width scale" fr="Échelle de largeurs" />
+
+<Canvas of={ContainerStories.Scale} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Container follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-container-max</code> and{' '}
+          <code>--omnia-container-gutter</code>. <code>variantSize</code> sets the first;
+          the width scale lives in <code>--omnia-container-max-sm</code> …{' '}
+          <code>--omnia-container-max-xl</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>container</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, where your <code>className</code> merges.
+        </li>
+        <li>
+          <strong>State attributes</strong> on <code>data-part="root"</code>:{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Container suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-container-max</code> et{' '}
+          <code>--omnia-container-gutter</code>. <code>variantSize</code> définit la
+          première ; l'échelle de largeurs vit dans <code>--omnia-container-max-sm</code>{' '}
+          … <code>--omnia-container-max-xl</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>container</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, où votre <code>className</code> fusionne.
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> sur <code>data-part="root"</code> :{' '}
+          <code>data-variant-size</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={ContainerStories.Overridden} />

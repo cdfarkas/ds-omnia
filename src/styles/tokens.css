@@ -100,6 +100,12 @@
     --omnia-palette-space-3: 0.75rem;
     --omnia-palette-space-4: 1rem;
     --omnia-palette-space-5: 1.25rem;
+    --omnia-palette-space-6: 1.5rem;
+
+    --omnia-palette-measure-sm: 30rem;
+    --omnia-palette-measure-md: 48rem;
+    --omnia-palette-measure-lg: 64rem;
+    --omnia-palette-measure-xl: 80rem;
 
     --omnia-palette-radius-none: 0;
     --omnia-palette-radius-sm: 0.375rem;
@@ -161,6 +167,13 @@
 
     --omnia-border-width-regular: var(--omnia-palette-border-thin);
     --omnia-border-width-thick: var(--omnia-palette-border-thick);
+
+    --omnia-container-max-sm: var(--omnia-palette-measure-sm);
+    --omnia-container-max-md: var(--omnia-palette-measure-md);
+    --omnia-container-max-lg: var(--omnia-palette-measure-lg);
+    --omnia-container-max-xl: var(--omnia-palette-measure-xl);
+    --omnia-container-gutter: var(--omnia-palette-space-4);
+    --omnia-container-gutter-wide: var(--omnia-palette-space-6);
 
     /* Flat, blur-free offset shadow — recolours per theme via border-strong. */
     --omnia-shadow-raised: 4px 4px 0 var(--omnia-color-border-strong);
