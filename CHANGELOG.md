@@ -1,5 +1,12 @@
 # @cdfarkas/omnia
 
+## 0.2.1
+
+### Patch Changes
+
+- 15e2215: Declare `color-scheme` per theme (`light` on `:root`, `dark` on `:root[data-theme='dark']`) so
+  scrollbars, native form controls and autofill follow the active Omnia theme instead of the OS.
+
 ## 0.2.0
 
 ### Minor Changes
