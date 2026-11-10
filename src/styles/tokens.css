@@ -1,6 +1,9 @@
 @layer tokens {
   /* Tier 1 — primitive palette. Raw values live here and nowhere else. */
   :root {
+    /* One scheme per theme, never `light dark`: it would darken native UI on the light theme. */
+    color-scheme: light;
+
     --omnia-palette-white: #fff;
     --omnia-palette-black: #000;
 
@@ -177,6 +180,7 @@
   }
 
   :root[data-theme='dark'] {
+    color-scheme: dark;
     --omnia-color-bg-surface: var(--omnia-palette-night);
     --omnia-color-bg-subtle: var(--omnia-palette-night-raised);
     --omnia-color-bg-disabled: var(--omnia-palette-night-sunk);

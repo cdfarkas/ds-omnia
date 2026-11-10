@@ -122,6 +122,13 @@ selectors combine the two visual axes (`:root[data-theme][data-skin]`) to resolv
 Theming is document-wide — one active theme per document; nested, differently-themed subtrees are not
 supported (ADR 0025).
 
+Each theme also declares `color-scheme`, so the browser draws its own UI (scrollbars, native form
+controls, autofill, the default canvas) to match: `light` on `:root`, `dark` on
+`:root[data-theme='dark']`. Never `light dark`, which would darken native UI on the light theme for
+every dark-OS user, and never the `only` keyword, which Safari 27.3 beta 1 does not support
+([WebKit](https://webkit.org/blog/18541/introducing-adaptive-dark-mode/)).
+`src/styles/color-scheme.test.ts` asserts it in every theme×skin mode (light and dark × each skin).
+
 ### Structural carve-out for the pixel skin
 
 The pixel-art skin needs things that are **not colour/space tokens** and legitimately live in CSS,
