@@ -21,6 +21,8 @@ const modes = [
   { theme: 'dark', skin: 'default' },
   { theme: 'light', skin: 'pixel' },
   { theme: 'dark', skin: 'pixel' },
+  { theme: 'light', skin: 'brutalist' },
+  { theme: 'dark', skin: 'brutalist' },
 ];
 
 // SC 1.4.11 (3:1) for boundaries and indicators, SC 1.4.3 (4.5:1) for muted and placeholder text.

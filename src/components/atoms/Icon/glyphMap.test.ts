@@ -9,7 +9,7 @@ describe('glyph map', () => {
     expect(new Set(ICON_GLYPHS).size).toBe(33);
   });
 
-  test('resolves every glyph in both styles for both skins (132 raw SVGs)', () => {
+  test('resolves every glyph in both styles for every skin', () => {
     const missing: string[] = [];
     let resolved = 0;
     for (const skin of skins) {
@@ -22,6 +22,6 @@ describe('glyph map', () => {
       }
     }
     expect(missing).toEqual([]);
-    expect(resolved).toBe(132);
+    expect(resolved).toBe(skins.length * styles.length * ICON_GLYPHS.length);
   });
 });

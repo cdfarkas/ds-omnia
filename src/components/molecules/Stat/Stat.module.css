@@ -59,4 +59,9 @@
     line-height: 1.4;
     -webkit-font-smoothing: none;
   }
+
+  /* Archivo Black sits taller than its em box; give the figure room so it does not overlap the label. */
+  :global([data-skin='brutalist']) .value {
+    line-height: 1.4;
+  }
 }

@@ -1,6 +1,6 @@
 import type { ReactNode } from 'react';
 import { useGlobal } from './Localized';
-import { OmniaThemeProvider } from './OmniaThemeProvider';
+import { OmniaThemeProvider, skins, type Skin } from './OmniaThemeProvider';
 
 /**
  * Apply the live `theme`/`skin`/`locale` toolbar globals from a story-less Docs/MDX page, where the
@@ -13,7 +13,9 @@ export function ThemeSync(): ReactNode {
   return (
     <OmniaThemeProvider
       theme={theme === 'dark' ? 'dark' : 'light'}
-      skin={skin === 'pixel' ? 'pixel' : 'default'}
+      skin={
+        (skins as readonly string[]).includes(skin as string) ? (skin as Skin) : 'default'
+      }
       locale={locale === 'fr' ? 'fr' : 'en'}
     />
   );

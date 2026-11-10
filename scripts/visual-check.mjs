@@ -187,6 +187,8 @@ const modes = [
   { key: 'dark-neutral', theme: 'dark', skin: 'default' },
   { key: 'light-pixel', theme: 'light', skin: 'pixel' },
   { key: 'dark-pixel', theme: 'dark', skin: 'pixel' },
+  { key: 'light-brutalist', theme: 'light', skin: 'brutalist' },
+  { key: 'dark-brutalist', theme: 'dark', skin: 'brutalist' },
 ];
 
 const server = await serve();

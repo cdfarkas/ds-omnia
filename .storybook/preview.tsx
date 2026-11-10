@@ -5,6 +5,7 @@ import { OmniaThemeProvider, type Theme, type Skin } from '../src/lib/OmniaTheme
 import '@fontsource-variable/fraunces';
 import '@fontsource-variable/space-grotesk';
 import '@fontsource/press-start-2p';
+import '@fontsource/archivo-black';
 import '../src/styles/layers.css';
 import '../src/styles/reset.css';
 import '../src/styles/tokens.css';
@@ -85,6 +86,7 @@ const preview: Preview = {
         items: [
           { value: 'default', title: 'Neutral' },
           { value: 'pixel', title: 'Pixel' },
+          { value: 'brutalist', title: 'Brutalist' },
         ],
         dynamicTitle: true,
       },

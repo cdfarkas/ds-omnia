@@ -67,4 +67,7 @@ for (const [path, svg] of Object.entries(files)) {
   map[skin as Skin][style as IconStyle][glyph as IconGlyph] = svg;
 }
 
+// Brutalist ships no glyphs of its own; it reuses the default (MingCute) set.
+map.brutalist = map.default;
+
 export const glyphMap = map;

@@ -71,6 +71,30 @@
     --omnia-palette-pixel-night: #140f1c;
     --omnia-palette-pixel-night-raised: #281c38;
 
+    /* Brutalist-skin palette — lavender paper, ink, electric violet. */
+    --omnia-palette-brutalist-bg: #ece7f6;
+    --omnia-palette-brutalist-paper: #fbfaf7;
+    --omnia-palette-brutalist-sunk: #d9d1ec;
+    --omnia-palette-brutalist-ink: #140d20;
+    --omnia-palette-brutalist-ink-soft: #352a4d;
+    --omnia-palette-brutalist-ink-muted: #4a3d66;
+    --omnia-palette-brutalist-violet: #6a2bd9;
+    --omnia-palette-brutalist-violet-hover: #571fb5;
+    --omnia-palette-brutalist-violet-active: #45198f;
+    --omnia-palette-brutalist-red: #d42424;
+    --omnia-palette-brutalist-red-hover: #be1f1f;
+    --omnia-palette-brutalist-red-active: #a81b1b;
+    --omnia-palette-brutalist-night-raised: #231838;
+    --omnia-palette-brutalist-night-sunk: #2e2147;
+    --omnia-palette-brutalist-lilac: #c9bfe0;
+    --omnia-palette-brutalist-lilac-dim: #b4a8d4;
+    --omnia-palette-brutalist-violet-bright: #7340e8;
+    --omnia-palette-brutalist-violet-bright-hover: #6330cc;
+    --omnia-palette-brutalist-violet-bright-active: #5526b0;
+    --omnia-palette-brutalist-violet-focus: #a98cff;
+    --omnia-palette-brutalist-link: #b79bff;
+    --omnia-palette-brutalist-link-hover: #c9b5ff;
+
     --omnia-palette-space-1: 0.25rem;
     --omnia-palette-space-2: 0.5rem;
     --omnia-palette-space-3: 0.75rem;
@@ -92,6 +116,7 @@
     --omnia-palette-font-sans:
       'Space Grotesk Variable', 'Space Grotesk', system-ui, -apple-system, 'Segoe UI',
       roboto, sans-serif;
+    --omnia-palette-font-brutalist: 'Archivo Black', 'Archivo', system-ui, sans-serif;
 
     /* Tier 2 — semantic aliases. Themes and skins reassign only this layer. */
     --omnia-color-bg-surface: var(--omnia-palette-cream);
@@ -246,6 +271,84 @@
     --omnia-color-border-focus: var(--omnia-palette-violet-bright);
     --omnia-color-link: var(--omnia-palette-violet-bright);
     --omnia-color-link-hover: var(--omnia-palette-pixel-violet-light);
+  }
+
+  :root[data-skin='brutalist'] {
+    --omnia-color-bg-surface: var(--omnia-palette-brutalist-bg);
+    --omnia-color-bg-subtle: var(--omnia-palette-brutalist-paper);
+    --omnia-color-bg-disabled: var(--omnia-palette-brutalist-sunk);
+    --omnia-color-text-primary: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-muted: var(--omnia-palette-brutalist-ink-soft);
+    --omnia-color-text-placeholder: var(--omnia-palette-brutalist-ink-muted);
+    --omnia-color-text-on-accent: var(--omnia-palette-brutalist-paper);
+    --omnia-color-text-on-danger: var(--omnia-palette-brutalist-paper);
+    --omnia-color-text-on-success: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-on-warning: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-on-info: var(--omnia-palette-brutalist-ink);
+    --omnia-color-accent: var(--omnia-palette-brutalist-violet);
+    --omnia-color-accent-hover: var(--omnia-palette-brutalist-violet-hover);
+    --omnia-color-accent-active: var(--omnia-palette-brutalist-violet-active);
+    --omnia-color-danger: var(--omnia-palette-brutalist-red);
+    --omnia-color-danger-hover: var(--omnia-palette-brutalist-red-hover);
+    --omnia-color-danger-active: var(--omnia-palette-brutalist-red-active);
+    --omnia-color-danger-border: var(--omnia-color-danger);
+    --omnia-color-success: var(--omnia-palette-mint);
+    --omnia-color-success-hover: var(--omnia-palette-mint-hover);
+    --omnia-color-success-active: var(--omnia-palette-mint-active);
+    --omnia-color-warning: var(--omnia-palette-amber);
+    --omnia-color-warning-hover: var(--omnia-palette-amber-hover);
+    --omnia-color-warning-active: var(--omnia-palette-amber-active);
+    --omnia-color-info: var(--omnia-palette-cyan);
+    --omnia-color-info-hover: var(--omnia-palette-cyan-hover);
+    --omnia-color-info-active: var(--omnia-palette-cyan-active);
+    --omnia-color-border-default: var(--omnia-palette-brutalist-ink);
+    --omnia-color-border-strong: var(--omnia-palette-brutalist-ink);
+    --omnia-color-border-focus: var(--omnia-palette-brutalist-violet);
+    --omnia-color-link: var(--omnia-palette-brutalist-violet);
+    --omnia-color-link-hover: var(--omnia-palette-brutalist-violet-active);
+
+    --omnia-font-display: var(--omnia-palette-font-brutalist);
+
+    --omnia-radius-sm: var(--omnia-palette-radius-none);
+    --omnia-radius-md: var(--omnia-palette-radius-none);
+    --omnia-radius-lg: var(--omnia-palette-radius-none);
+
+    --omnia-border-width-regular: var(--omnia-palette-border-med);
+  }
+
+  :root[data-theme='dark'][data-skin='brutalist'] {
+    --omnia-color-bg-surface: var(--omnia-palette-brutalist-ink);
+    --omnia-color-bg-subtle: var(--omnia-palette-brutalist-night-raised);
+    --omnia-color-bg-disabled: var(--omnia-palette-brutalist-night-sunk);
+    --omnia-color-text-primary: var(--omnia-palette-brutalist-paper);
+    --omnia-color-text-muted: var(--omnia-palette-brutalist-lilac);
+    --omnia-color-text-placeholder: var(--omnia-palette-brutalist-lilac-dim);
+    --omnia-color-text-on-accent: var(--omnia-palette-brutalist-paper);
+    --omnia-color-text-on-danger: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-on-success: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-on-warning: var(--omnia-palette-brutalist-ink);
+    --omnia-color-text-on-info: var(--omnia-palette-brutalist-ink);
+    --omnia-color-accent: var(--omnia-palette-brutalist-violet-bright);
+    --omnia-color-accent-hover: var(--omnia-palette-brutalist-violet-bright-hover);
+    --omnia-color-accent-active: var(--omnia-palette-brutalist-violet-bright-active);
+    --omnia-color-danger: var(--omnia-palette-red-bright);
+    --omnia-color-danger-hover: var(--omnia-palette-red-bright-hover);
+    --omnia-color-danger-active: var(--omnia-palette-red-bright-active);
+    --omnia-color-danger-border: var(--omnia-color-danger);
+    --omnia-color-success: var(--omnia-palette-mint);
+    --omnia-color-success-hover: var(--omnia-palette-mint-hover);
+    --omnia-color-success-active: var(--omnia-palette-mint-active);
+    --omnia-color-warning: var(--omnia-palette-amber);
+    --omnia-color-warning-hover: var(--omnia-palette-amber-hover);
+    --omnia-color-warning-active: var(--omnia-palette-amber-active);
+    --omnia-color-info: var(--omnia-palette-cyan);
+    --omnia-color-info-hover: var(--omnia-palette-cyan-hover);
+    --omnia-color-info-active: var(--omnia-palette-cyan-active);
+    --omnia-color-border-default: var(--omnia-palette-brutalist-paper);
+    --omnia-color-border-strong: var(--omnia-palette-brutalist-paper);
+    --omnia-color-border-focus: var(--omnia-palette-brutalist-violet-focus);
+    --omnia-color-link: var(--omnia-palette-brutalist-link);
+    --omnia-color-link-hover: var(--omnia-palette-brutalist-link-hover);
   }
 
   /* Intent map — the single source of rest/hover/press colours per data-intent (ADR 0012). */
