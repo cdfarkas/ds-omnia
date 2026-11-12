@@ -1,2 +1,3 @@
 export { AppShell } from './AppShell';
-export type { AppShellProps, AppShellRegionProps } from './AppShell';
+export type { AppShellProps } from './AppShell';
+export type { AppShellRegionProps } from './internal';

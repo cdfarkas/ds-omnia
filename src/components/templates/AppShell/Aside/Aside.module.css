@@ -1,0 +1,5 @@
+@layer components {
+  .aside {
+    grid-area: aside;
+  }
+}

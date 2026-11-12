@@ -35,6 +35,10 @@ Everything a component needs sits in one folder, `components/<layer>/<Name>/`:
 - `<Name>.test.ts` — pure-logic tests (only when there is pure logic)
 - `index.ts` — the public surface of the component
 
+A **compound** component splits each subcomponent into its own subfolder (`<Name>/<Part>/` with the
+part's `.tsx`, `.module.css` and tests); the root, the shared frame CSS, the stories and the MDX stay
+at the parent. See ADR 0034.
+
 ## Compound components — decision tree
 
 Compound components are the default shape for anything with parts. Choose the mechanism by whether
@@ -52,6 +56,8 @@ the parts share state:
 
 Reach for Context only when there is genuinely shared state to carry. A context with nothing to share
 is ceremony; use dot-notation instead.
+
+Whichever mechanism, each subcomponent lives in its own subfolder under the parent (ADR 0034).
 
 ## Token contract — two tiers
 

@@ -1,0 +1,1 @@
+export { AppShellFooter } from './Footer';

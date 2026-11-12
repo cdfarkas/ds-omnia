@@ -41,7 +41,7 @@ const parts = () =>
 const skipLink = () =>
   container.querySelector('[data-part="skip-link"]') as HTMLAnchorElement;
 
-describe('AppShell edge cases', () => {
+describe('AppShell composition', () => {
   test('the namespace exposes every region', () => {
     for (const name of ['Header', 'Navbar', 'Main', 'Aside', 'Footer'] as const)
       expect(typeof AppShell[name]).toBe('function');
@@ -75,42 +75,12 @@ describe('AppShell edge cases', () => {
     for (const [name, tag] of Object.entries(tags)) expect(part(name).tagName).toBe(tag);
   });
 
-  test('main is a focusable skip target and the skip link points at it', async () => {
+  test('the root wires the skip link to the generated main id', async () => {
     await mount(<WithAside />);
     expect(part('main').getAttribute('tabindex')).toBe('-1');
     expect(part('main').id).toBeTruthy();
     expect(skipLink().getAttribute('href')).toBe(`#${part('main').id}`);
     expect(skipLink().textContent).toBe(t('appShell.skipToContent'));
-  });
-
-  test('navbar gets a default accessible label', async () => {
-    await mount(
-      <AppShell>
-        <AppShell.Navbar />
-        <AppShell.Main />
-      </AppShell>,
-    );
-    expect(part('navbar').getAttribute('aria-label')).toBe(t('appShell.navbarLabel'));
-  });
-
-  test('a caller aria-label overrides the navbar default', async () => {
-    await mount(
-      <AppShell>
-        <AppShell.Navbar aria-label="Sections" />
-        <AppShell.Main />
-      </AppShell>,
-    );
-    expect(part('navbar').getAttribute('aria-label')).toBe('Sections');
-  });
-
-  test('a caller id and tabIndex override the skip-target defaults on main', async () => {
-    await mount(
-      <AppShell>
-        <AppShell.Main id="content" tabIndex={0} />
-      </AppShell>,
-    );
-    expect(part('main').id).toBe('content');
-    expect(part('main').getAttribute('tabindex')).toBe('0');
   });
 
   test('ref reaches each region element', async () => {

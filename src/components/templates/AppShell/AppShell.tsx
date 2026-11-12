@@ -1,18 +1,16 @@
-import { createContext, useContext, useId, type HTMLAttributes, type Ref } from 'react';
+import { useId, type HTMLAttributes, type Ref } from 'react';
 import { t } from '../../../lib/i18n';
+import { join, MainIdContext } from './internal';
+import { AppShellHeader } from './Header';
+import { AppShellNavbar } from './Navbar';
+import { AppShellMain } from './Main';
+import { AppShellAside } from './Aside';
+import { AppShellFooter } from './Footer';
 import styles from './AppShell.module.css';
 
 export interface AppShellProps extends HTMLAttributes<HTMLDivElement> {
   ref?: Ref<HTMLDivElement>;
 }
-
-export interface AppShellRegionProps extends HTMLAttributes<HTMLElement> {
-  ref?: Ref<HTMLElement>;
-}
-
-const join = (...classes: (string | undefined)[]) => classes.filter(Boolean).join(' ');
-
-const MainIdContext = createContext<string | undefined>(undefined);
 
 /**
  * Generic slot-based page scaffold: a CSS-grid frame whose regions — `AppShell.Header`,
@@ -38,70 +36,6 @@ function AppShellRoot({ className, children, ref, ...rest }: AppShellProps) {
         {children}
       </div>
     </MainIdContext.Provider>
-  );
-}
-
-function AppShellHeader({ className, ref, ...rest }: AppShellRegionProps) {
-  return (
-    <header
-      ref={ref}
-      className={join(styles.header, className)}
-      data-scope="appshell"
-      data-part="header"
-      {...rest}
-    />
-  );
-}
-
-function AppShellNavbar({ className, ref, ...rest }: AppShellRegionProps) {
-  return (
-    <nav
-      ref={ref}
-      aria-label={t('appShell.navbarLabel')}
-      className={join(styles.navbar, className)}
-      data-scope="appshell"
-      data-part="navbar"
-      {...rest}
-    />
-  );
-}
-
-function AppShellMain({ className, id, tabIndex, ref, ...rest }: AppShellRegionProps) {
-  const mainId = useContext(MainIdContext);
-  return (
-    <main
-      ref={ref}
-      id={id ?? mainId}
-      tabIndex={tabIndex ?? -1}
-      className={join(styles.main, className)}
-      data-scope="appshell"
-      data-part="main"
-      {...rest}
-    />
-  );
-}
-
-function AppShellAside({ className, ref, ...rest }: AppShellRegionProps) {
-  return (
-    <aside
-      ref={ref}
-      className={join(styles.aside, className)}
-      data-scope="appshell"
-      data-part="aside"
-      {...rest}
-    />
-  );
-}
-
-function AppShellFooter({ className, ref, ...rest }: AppShellRegionProps) {
-  return (
-    <footer
-      ref={ref}
-      className={join(styles.footer, className)}
-      data-scope="appshell"
-      data-part="footer"
-      {...rest}
-    />
   );
 }
 
