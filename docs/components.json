@@ -1868,6 +1868,64 @@
           "id": "molecules-stat--pixel-dark"
         }
       ]
+    },
+    {
+      "name": "AppShell",
+      "description": "Generic slot-based page scaffold: a CSS-grid frame whose regions — `AppShell.Header`, `AppShell.Navbar`, `AppShell.Main`, `AppShell.Aside`, `AppShell.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.",
+      "source": "src/components/templates/AppShell/AppShell.tsx",
+      "props": [
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "parts": [
+        {
+          "name": "AppShell.Header",
+          "props": [],
+          "variantAxes": []
+        },
+        {
+          "name": "AppShell.Navbar",
+          "props": [],
+          "variantAxes": []
+        },
+        {
+          "name": "AppShell.Main",
+          "props": [],
+          "variantAxes": []
+        },
+        {
+          "name": "AppShell.Aside",
+          "props": [],
+          "variantAxes": []
+        },
+        {
+          "name": "AppShell.Footer",
+          "props": [],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "templates-appshell--playground"
+        },
+        {
+          "name": "MinimalShell",
+          "id": "templates-appshell--minimal-shell"
+        },
+        {
+          "name": "WithAside",
+          "id": "templates-appshell--with-aside"
+        },
+        {
+          "name": "Overridden",
+          "id": "templates-appshell--overridden"
+        }
+      ]
     }
   ]
 }

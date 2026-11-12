@@ -23,6 +23,7 @@ export * from './components/molecules/List';
 export * from './components/molecules/NavBar';
 export * from './components/molecules/SectionHeading';
 export * from './components/molecules/Stat';
+export * from './components/templates/AppShell';
 export { locales, localeNames, setLocale, getLocale, t, translations } from './lib/i18n';
 export type { Locale, TranslationKey } from './lib/i18n';
 export { intents } from './lib/intents';

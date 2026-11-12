@@ -58,3 +58,11 @@ Explicitly out of Omnia: a fixed `PageShell`, and `Hero` / `ProjectSection` / `C
   site-specific composition does not belong in Omnia.
 - Reversible: dropping or renaming a block touches only Omnia and its consumers, never the token
   or theming contracts.
+
+## Update 2026-11-10
+
+By the owner's decision, `CallToAction` is dropped from the Omnia layout set: a title + pitch +
+actions block composes directly from existing primitives (Stack, Heading, Text, Button), so it
+belongs in the consuming app, consistent with the generic-components / no-fixed-templates principle
+above. `Masthead` is kept as the one generic hero organism. `AppShell` ships first, as the template
+tier's first component; `Masthead` follows in its own PR.

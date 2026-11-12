@@ -413,3 +413,40 @@ Source: `src/components/molecules/Stat/Stat.tsx`
 
 Stories: `molecules-stat--playground`, `molecules-stat--without-hint`, `molecules-stat--several`, `molecules-stat--vertical`, `molecules-stat--overridden`, `molecules-stat--dark-neutral`, `molecules-stat--pixel-light`, `molecules-stat--pixel-dark`
 
+## AppShell
+
+Generic slot-based page scaffold: a CSS-grid frame whose regions — `AppShell.Header`, `AppShell.Navbar`, `AppShell.Main`, `AppShell.Aside`, `AppShell.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.
+
+Source: `src/components/templates/AppShell/AppShell.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### AppShell.Header
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+### AppShell.Navbar
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+### AppShell.Main
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+### AppShell.Aside
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+### AppShell.Footer
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+Stories: `templates-appshell--playground`, `templates-appshell--minimal-shell`, `templates-appshell--with-aside`, `templates-appshell--overridden`
+

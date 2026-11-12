@@ -1,0 +1,78 @@
+@layer components {
+  .root {
+    position: relative;
+    display: grid;
+    min-block-size: 100dvh;
+    grid-template:
+      'header' auto
+      'navbar' auto
+      'main' 1fr
+      'aside' auto
+      'footer' auto
+      / 1fr;
+    background-color: var(--omnia-appshell-bg, var(--omnia-color-bg-surface));
+    color: var(--omnia-color-text-primary);
+  }
+
+  .header {
+    grid-area: header;
+  }
+
+  .navbar {
+    grid-area: navbar;
+  }
+
+  .main {
+    grid-area: main;
+  }
+
+  .aside {
+    grid-area: aside;
+  }
+
+  .footer {
+    grid-area: footer;
+  }
+
+  /* Main is a skip-link target (tabindex -1); never show a focus ring on programmatic focus. */
+  .main:focus {
+    outline: none;
+  }
+
+  .skipLink {
+    position: absolute;
+    inset-block-start: var(--omnia-palette-space-2);
+    inset-inline-start: var(--omnia-palette-space-2);
+    z-index: 1;
+    padding: var(--omnia-palette-space-2) var(--omnia-palette-space-3);
+    border: var(--omnia-border-width-thick) solid var(--omnia-color-border-strong);
+    border-radius: var(--omnia-radius-sm);
+    background-color: var(--omnia-color-bg-surface);
+    color: var(--omnia-color-link);
+    font-family: var(--omnia-font-sans);
+    text-decoration: underline;
+    transform: translateY(calc(-100% - var(--omnia-palette-space-4)));
+    transition: transform var(--omnia-dur-fast) var(--omnia-ease-out);
+  }
+
+  .skipLink:focus {
+    transform: translateY(0);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .skipLink {
+      transition: none;
+    }
+  }
+
+  @media (width >= 48em) {
+    .root {
+      grid-template:
+        'header header header' auto
+        'navbar main   aside' minmax(0, 1fr)
+        'footer footer footer' auto
+        / var(--omnia-appshell-navbar-width, auto) minmax(0, 1fr)
+        var(--omnia-appshell-aside-width, auto);
+    }
+  }
+}
