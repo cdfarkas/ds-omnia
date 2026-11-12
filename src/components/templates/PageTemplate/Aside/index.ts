@@ -1,0 +1,1 @@
+export { PageTemplateAside } from './Aside';

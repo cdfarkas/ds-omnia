@@ -1,0 +1,1 @@
+export { PageTemplateHeader } from './Header';

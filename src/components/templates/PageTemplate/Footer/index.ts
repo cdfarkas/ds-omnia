@@ -1,0 +1,1 @@
+export { PageTemplateFooter } from './Footer';

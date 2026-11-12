@@ -1,8 +1,8 @@
 import type { CSSProperties } from 'react';
 import type { Meta, StoryObj } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
-import { AppShell } from './AppShell';
-import './AppShell.overrides.css';
+import { PageTemplate } from './PageTemplate';
+import './PageTemplate.overrides.css';
 
 const region: CSSProperties = {
   padding: 'var(--omnia-palette-space-4)',
@@ -61,41 +61,41 @@ function Body() {
   );
 }
 
-const headerSlot = `  <AppShell.Header>
+const headerSlot = `  <PageTemplate.Header>
     <strong>Omnia</strong>
-  </AppShell.Header>`;
+  </PageTemplate.Header>`;
 
-const navSlot = `  <AppShell.Navbar>
+const navSlot = `  <PageTemplate.Navbar>
     <ul>
       <li><a href="#main">Overview</a></li>
       <li><a href="#main">Projects</a></li>
       <li><a href="#main">About</a></li>
     </ul>
-  </AppShell.Navbar>`;
+  </PageTemplate.Navbar>`;
 
-const mainSlot = `  <AppShell.Main>
+const mainSlot = `  <PageTemplate.Main>
     <h1>Main content</h1>
     <p>The shell is a frame only: drop a Container, a Grid or any content in here.</p>
-  </AppShell.Main>`;
+  </PageTemplate.Main>`;
 
-const asideSlot = `  <AppShell.Aside>
+const asideSlot = `  <PageTemplate.Aside>
     <p>Aside: a complementary region.</p>
-  </AppShell.Aside>`;
+  </PageTemplate.Aside>`;
 
-const footerSlot = `  <AppShell.Footer>
+const footerSlot = `  <PageTemplate.Footer>
     <small>© 2026 Omnia</small>
-  </AppShell.Footer>`;
+  </PageTemplate.Footer>`;
 
-const playgroundCode = `<AppShell>\n${headerSlot}\n${navSlot}\n${mainSlot}\n${footerSlot}\n</AppShell>`;
-const minimalCode = `<AppShell>\n${headerSlot}\n${mainSlot}\n</AppShell>`;
-const asideCode = `<AppShell>\n${headerSlot}\n${navSlot}\n${mainSlot}\n${asideSlot}\n${footerSlot}\n</AppShell>`;
-const overriddenCode = `<AppShell className="omnia-demo-override-app-shell">\n${headerSlot}\n${navSlot}\n${mainSlot}\n${footerSlot}\n</AppShell>`;
+const playgroundCode = `<PageTemplate>\n${headerSlot}\n${navSlot}\n${mainSlot}\n${footerSlot}\n</PageTemplate>`;
+const minimalCode = `<PageTemplate>\n${headerSlot}\n${mainSlot}\n</PageTemplate>`;
+const asideCode = `<PageTemplate>\n${headerSlot}\n${navSlot}\n${mainSlot}\n${asideSlot}\n${footerSlot}\n</PageTemplate>`;
+const overriddenCode = `<PageTemplate className="omnia-demo-override-page-template">\n${headerSlot}\n${navSlot}\n${mainSlot}\n${footerSlot}\n</PageTemplate>`;
 
 const meta = {
-  title: 'Templates/AppShell',
-  component: AppShell,
+  title: 'Templates/PageTemplate',
+  component: PageTemplate,
   parameters: { layout: 'fullscreen' },
-} satisfies Meta<typeof AppShell>;
+} satisfies Meta<typeof PageTemplate>;
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -108,20 +108,20 @@ export const Playground: Story = {
   tags: ['interaction'],
   parameters: { docs: { source: { code: playgroundCode } } },
   render: () => (
-    <AppShell>
-      <AppShell.Header style={banded}>
+    <PageTemplate>
+      <PageTemplate.Header style={banded}>
         <strong>Omnia</strong>
-      </AppShell.Header>
-      <AppShell.Navbar style={region}>
+      </PageTemplate.Header>
+      <PageTemplate.Navbar style={region}>
         <Nav />
-      </AppShell.Navbar>
-      <AppShell.Main style={region}>
+      </PageTemplate.Navbar>
+      <PageTemplate.Main style={region}>
         <Body />
-      </AppShell.Main>
-      <AppShell.Footer style={banded}>
+      </PageTemplate.Main>
+      <PageTemplate.Footer style={banded}>
         <small style={muted}>© 2026 Omnia</small>
-      </AppShell.Footer>
-    </AppShell>
+      </PageTemplate.Footer>
+    </PageTemplate>
   ),
   play: async ({ canvasElement }) => {
     const skip = canvasElement.querySelector(
@@ -144,14 +144,14 @@ export const MinimalShell: Story = {
     docs: { source: { code: minimalCode } },
   },
   render: () => (
-    <AppShell>
-      <AppShell.Header style={banded}>
+    <PageTemplate>
+      <PageTemplate.Header style={banded}>
         <strong>Omnia</strong>
-      </AppShell.Header>
-      <AppShell.Main style={region}>
+      </PageTemplate.Header>
+      <PageTemplate.Main style={region}>
         <Body />
-      </AppShell.Main>
-    </AppShell>
+      </PageTemplate.Main>
+    </PageTemplate>
   ),
 };
 
@@ -165,29 +165,29 @@ export const WithAside: Story = {
     docs: { source: { code: asideCode } },
   },
   render: () => (
-    <AppShell>
-      <AppShell.Header style={banded}>
+    <PageTemplate>
+      <PageTemplate.Header style={banded}>
         <strong>Omnia</strong>
-      </AppShell.Header>
-      <AppShell.Navbar style={side}>
+      </PageTemplate.Header>
+      <PageTemplate.Navbar style={side}>
         <Nav />
-      </AppShell.Navbar>
-      <AppShell.Main style={region}>
+      </PageTemplate.Navbar>
+      <PageTemplate.Main style={region}>
         <Body />
-      </AppShell.Main>
-      <AppShell.Aside style={side}>
+      </PageTemplate.Main>
+      <PageTemplate.Aside style={side}>
         <p style={muted}>Aside: a complementary region.</p>
-      </AppShell.Aside>
-      <AppShell.Footer style={banded}>
+      </PageTemplate.Aside>
+      <PageTemplate.Footer style={banded}>
         <small style={muted}>© 2026 Omnia</small>
-      </AppShell.Footer>
-    </AppShell>
+      </PageTemplate.Footer>
+    </PageTemplate>
   ),
 };
 
 /**
- * Consumer override through the public contract: a `.omnia-demo-override-app-shell` class in
- * `@layer overrides` re-points `--omnia-appshell-navbar-width` — no `!important`.
+ * Consumer override through the public contract: a `.omnia-demo-override-page-template` class in
+ * `@layer overrides` re-points `--omnia-page-template-navbar-width` — no `!important`.
  */
 export const Overridden: Story = {
   parameters: {
@@ -195,19 +195,19 @@ export const Overridden: Story = {
     docs: { source: { code: overriddenCode } },
   },
   render: () => (
-    <AppShell className="omnia-demo-override-app-shell">
-      <AppShell.Header style={banded}>
+    <PageTemplate className="omnia-demo-override-page-template">
+      <PageTemplate.Header style={banded}>
         <strong>Omnia</strong>
-      </AppShell.Header>
-      <AppShell.Navbar style={side}>
+      </PageTemplate.Header>
+      <PageTemplate.Navbar style={side}>
         <Nav />
-      </AppShell.Navbar>
-      <AppShell.Main style={region}>
+      </PageTemplate.Navbar>
+      <PageTemplate.Main style={region}>
         <Body />
-      </AppShell.Main>
-      <AppShell.Footer style={banded}>
+      </PageTemplate.Main>
+      <PageTemplate.Footer style={banded}>
         <small style={muted}>© 2026 Omnia</small>
-      </AppShell.Footer>
-    </AppShell>
+      </PageTemplate.Footer>
+    </PageTemplate>
   ),
 };

@@ -1,1 +1,0 @@
-export { AppShellAside } from './Aside';

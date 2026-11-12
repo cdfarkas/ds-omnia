@@ -1,8 +1,8 @@
 import type { en } from './en';
 
 export const fr: Record<keyof typeof en, string> = {
-  'appShell.navbarLabel': 'Principale',
-  'appShell.skipToContent': 'Aller au contenu principal',
+  'pageTemplate.navbarLabel': 'Principale',
+  'pageTemplate.skipToContent': 'Aller au contenu principal',
   'button.loading': 'Chargement',
   'formField.badInput': 'Saisissez une valeur complète et valide.',
   'formField.patternMismatch': 'Saisissez une valeur au format demandé.',

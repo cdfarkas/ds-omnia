@@ -1870,9 +1870,9 @@
       ]
     },
     {
-      "name": "AppShell",
-      "description": "Generic slot-based page scaffold: a CSS-grid frame whose regions — `AppShell.Header`, `AppShell.Navbar`, `AppShell.Main`, `AppShell.Aside`, `AppShell.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.",
-      "source": "src/components/templates/AppShell/AppShell.tsx",
+      "name": "PageTemplate",
+      "description": "Generic slot-based page scaffold: a CSS-grid frame whose regions — `PageTemplate.Header`, `PageTemplate.Navbar`, `PageTemplate.Main`, `PageTemplate.Aside`, `PageTemplate.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.",
+      "source": "src/components/templates/PageTemplate/PageTemplate.tsx",
       "props": [
         {
           "name": "ref",
@@ -1883,27 +1883,27 @@
       "variantAxes": [],
       "parts": [
         {
-          "name": "AppShell.Header",
+          "name": "PageTemplate.Header",
           "props": [],
           "variantAxes": []
         },
         {
-          "name": "AppShell.Navbar",
+          "name": "PageTemplate.Navbar",
           "props": [],
           "variantAxes": []
         },
         {
-          "name": "AppShell.Main",
+          "name": "PageTemplate.Main",
           "props": [],
           "variantAxes": []
         },
         {
-          "name": "AppShell.Aside",
+          "name": "PageTemplate.Aside",
           "props": [],
           "variantAxes": []
         },
         {
-          "name": "AppShell.Footer",
+          "name": "PageTemplate.Footer",
           "props": [],
           "variantAxes": []
         }
@@ -1911,19 +1911,19 @@
       "stories": [
         {
           "name": "Playground",
-          "id": "templates-appshell--playground"
+          "id": "templates-pagetemplate--playground"
         },
         {
           "name": "MinimalShell",
-          "id": "templates-appshell--minimal-shell"
+          "id": "templates-pagetemplate--minimal-shell"
         },
         {
           "name": "WithAside",
-          "id": "templates-appshell--with-aside"
+          "id": "templates-pagetemplate--with-aside"
         },
         {
           "name": "Overridden",
-          "id": "templates-appshell--overridden"
+          "id": "templates-pagetemplate--overridden"
         }
       ]
     }

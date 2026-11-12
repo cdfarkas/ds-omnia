@@ -413,40 +413,40 @@ Source: `src/components/molecules/Stat/Stat.tsx`
 
 Stories: `molecules-stat--playground`, `molecules-stat--without-hint`, `molecules-stat--several`, `molecules-stat--vertical`, `molecules-stat--overridden`, `molecules-stat--dark-neutral`, `molecules-stat--pixel-light`, `molecules-stat--pixel-dark`
 
-## AppShell
+## PageTemplate
 
-Generic slot-based page scaffold: a CSS-grid frame whose regions — `AppShell.Header`, `AppShell.Navbar`, `AppShell.Main`, `AppShell.Aside`, `AppShell.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.
+Generic slot-based page scaffold: a CSS-grid frame whose regions — `PageTemplate.Header`, `PageTemplate.Navbar`, `PageTemplate.Main`, `PageTemplate.Aside`, `PageTemplate.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.
 
-Source: `src/components/templates/AppShell/AppShell.tsx`
+Source: `src/components/templates/PageTemplate/PageTemplate.tsx`
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 | `ref` | `Ref<HTMLDivElement>` | no | — | — |
 
-### AppShell.Header
+### PageTemplate.Header
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 
-### AppShell.Navbar
+### PageTemplate.Navbar
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 
-### AppShell.Main
+### PageTemplate.Main
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 
-### AppShell.Aside
+### PageTemplate.Aside
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 
-### AppShell.Footer
+### PageTemplate.Footer
 
 | Prop | Type | Required | Default | Options |
 | --- | --- | --- | --- | --- |
 
-Stories: `templates-appshell--playground`, `templates-appshell--minimal-shell`, `templates-appshell--with-aside`, `templates-appshell--overridden`
+Stories: `templates-pagetemplate--playground`, `templates-pagetemplate--minimal-shell`, `templates-pagetemplate--with-aside`, `templates-pagetemplate--overridden`
 

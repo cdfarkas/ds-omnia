@@ -1,6 +1,6 @@
 export const en = {
-  'appShell.navbarLabel': 'Primary',
-  'appShell.skipToContent': 'Skip to main content',
+  'pageTemplate.navbarLabel': 'Primary',
+  'pageTemplate.skipToContent': 'Skip to main content',
   'button.loading': 'Loading',
   'formField.badInput': 'Enter a complete, valid value.',
   'formField.patternMismatch': 'Enter a value in the requested format.',

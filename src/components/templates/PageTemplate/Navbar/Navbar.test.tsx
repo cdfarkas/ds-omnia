@@ -2,7 +2,7 @@ import { act } from 'react';
 import { createRoot } from 'react-dom/client';
 import { test } from 'vitest';
 import { expect } from 'storybook/test';
-import { AppShellNavbar } from './Navbar';
+import { PageTemplateNavbar } from './Navbar';
 import { t } from '../../../../lib/i18n';
 
 test('renders a <nav> with a default accessible label a caller can override', async () => {
@@ -11,12 +11,12 @@ test('renders a <nav> with a default accessible label a caller can override', as
   const root = createRoot(container);
   const nav = () => container.querySelector('[data-part="navbar"]') as HTMLElement;
   await act(async () => {
-    root.render(<AppShellNavbar />);
+    root.render(<PageTemplateNavbar />);
   });
   expect(nav().tagName).toBe('NAV');
-  expect(nav().getAttribute('aria-label')).toBe(t('appShell.navbarLabel'));
+  expect(nav().getAttribute('aria-label')).toBe(t('pageTemplate.navbarLabel'));
   await act(async () => {
-    root.render(<AppShellNavbar aria-label="Sections" />);
+    root.render(<PageTemplateNavbar aria-label="Sections" />);
   });
   expect(nav().getAttribute('aria-label')).toBe('Sections');
   await act(async () => root.unmount());

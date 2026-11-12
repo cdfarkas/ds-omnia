@@ -4,9 +4,9 @@ import { createRoot, type Root } from 'react-dom/client';
 import { afterEach, beforeEach, describe, test } from 'vitest';
 import { composeStories } from '@storybook/react-vite';
 import { expect } from 'storybook/test';
-import { AppShell } from './AppShell';
+import { PageTemplate } from './PageTemplate';
 import { t } from '../../../lib/i18n';
-import * as stories from './AppShell.stories';
+import * as stories from './PageTemplate.stories';
 
 const { MinimalShell, WithAside } = composeStories(stories);
 
@@ -31,20 +31,22 @@ async function mount(ui: ReactElement) {
 }
 
 const part = (name: string) =>
-  container.querySelector(`[data-scope="appshell"][data-part="${name}"]`) as HTMLElement;
+  container.querySelector(
+    `[data-scope="page-template"][data-part="${name}"]`,
+  ) as HTMLElement;
 
 const parts = () =>
-  [...container.querySelectorAll('[data-scope="appshell"]')].map((el) =>
+  [...container.querySelectorAll('[data-scope="page-template"]')].map((el) =>
     el.getAttribute('data-part'),
   );
 
 const skipLink = () =>
   container.querySelector('[data-part="skip-link"]') as HTMLAnchorElement;
 
-describe('AppShell composition', () => {
+describe('PageTemplate composition', () => {
   test('the namespace exposes every region', () => {
     for (const name of ['Header', 'Navbar', 'Main', 'Aside', 'Footer'] as const)
-      expect(typeof AppShell[name]).toBe('function');
+      expect(typeof PageTemplate[name]).toBe('function');
   });
 
   test('a minimal shell renders only header and main regions', async () => {
@@ -54,9 +56,9 @@ describe('AppShell composition', () => {
 
   test('a main-only shell still renders, with the skip link targeting it', async () => {
     await mount(
-      <AppShell>
-        <AppShell.Main>content</AppShell.Main>
-      </AppShell>,
+      <PageTemplate>
+        <PageTemplate.Main>content</PageTemplate.Main>
+      </PageTemplate>,
     );
     expect(parts()).toEqual(['root', 'main']);
     expect(skipLink().getAttribute('href')).toBe(`#${part('main').id}`);
@@ -80,7 +82,7 @@ describe('AppShell composition', () => {
     expect(part('main').getAttribute('tabindex')).toBe('-1');
     expect(part('main').id).toBeTruthy();
     expect(skipLink().getAttribute('href')).toBe(`#${part('main').id}`);
-    expect(skipLink().textContent).toBe(t('appShell.skipToContent'));
+    expect(skipLink().textContent).toBe(t('pageTemplate.skipToContent'));
   });
 
   test('ref reaches each region element', async () => {
@@ -93,24 +95,24 @@ describe('AppShell composition', () => {
       footer: createRef<HTMLElement>(),
     };
     await mount(
-      <AppShell ref={refs.root}>
-        <AppShell.Header ref={refs.header} />
-        <AppShell.Navbar ref={refs.navbar} />
-        <AppShell.Main ref={refs.main} />
-        <AppShell.Aside ref={refs.aside} />
-        <AppShell.Footer ref={refs.footer} />
-      </AppShell>,
+      <PageTemplate ref={refs.root}>
+        <PageTemplate.Header ref={refs.header} />
+        <PageTemplate.Navbar ref={refs.navbar} />
+        <PageTemplate.Main ref={refs.main} />
+        <PageTemplate.Aside ref={refs.aside} />
+        <PageTemplate.Footer ref={refs.footer} />
+      </PageTemplate>,
     );
     for (const [name, ref] of Object.entries(refs)) expect(ref.current).toBe(part(name));
   });
 
   test('native props pass through and className merges with the module class', async () => {
     await mount(
-      <AppShell id="shell" className="custom" data-testid="s">
-        <AppShell.Header className="custom" id="head" />
-        <AppShell.Main className="custom" id="body" aria-label="Page" />
-        <AppShell.Footer className="custom" id="foot" />
-      </AppShell>,
+      <PageTemplate id="shell" className="custom" data-testid="s">
+        <PageTemplate.Header className="custom" id="head" />
+        <PageTemplate.Main className="custom" id="body" aria-label="Page" />
+        <PageTemplate.Footer className="custom" id="foot" />
+      </PageTemplate>,
     );
     expect(part('root').id).toBe('shell');
     expect(part('root').getAttribute('data-testid')).toBe('s');
