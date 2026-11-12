@@ -1,0 +1,10 @@
+@layer components {
+  .main {
+    grid-area: main;
+  }
+
+  /* Main is a skip-link target (tabindex -1); never show a focus ring on programmatic focus. */
+  .main:focus {
+    outline: none;
+  }
+}

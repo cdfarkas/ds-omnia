@@ -1,0 +1,187 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as AppShellStories from './AppShell.stories';
+
+<Meta of={AppShellStories} />
+
+# AppShell
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>AppShell</strong> to frame a page: it lays out a header, a primary
+        navbar, the main content, a complementary aside and a footer, each rendered as its
+        own landmark element. It carries no content of its own — drop a Container, a Grid
+        or anything else inside each region.
+      </p>
+      <ul>
+        <li>
+          <strong>Opt-in regions.</strong> Compose only the parts you need:{' '}
+          <code>AppShell.Header</code>, <code>AppShell.Navbar</code>,{' '}
+          <code>AppShell.Main</code>, <code>AppShell.Aside</code> and{' '}
+          <code>AppShell.Footer</code>. A header-and-main shell works on its own; only{' '}
+          <code>Main</code> is expected in every shell.
+        </li>
+        <li>
+          <strong>Real landmarks.</strong> Each region renders the matching element —{' '}
+          <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>
+          , <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code> — so assistive tech
+          gets a banner, navigation, main, complementary and contentinfo for free.
+        </li>
+        <li>
+          <strong>Responsive frame.</strong> Regions stack on a narrow screen; from{' '}
+          <code>48em</code> the navbar and aside flank the main column, with the header
+          and footer spanning full width.
+        </li>
+        <li>
+          <strong>Skip link built in.</strong> The first focusable element jumps straight
+          to the main region, so keyboard users can bypass the header and nav.
+        </li>
+        <li>
+          <strong>Bring your own content.</strong> Every region is a plain landmark that
+          passes your props through, so add an <code>id</code>, <code>aria-*</code> or a{' '}
+          <code>className</code> wherever you need one.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>AppShell</strong> pour encadrer une page : il dispose un en-tête,
+        une navigation principale, le contenu principal, un aside complémentaire et un
+        pied de page, chacun rendu dans son propre élément de repère. Il n'a pas de
+        contenu propre — placez un Container, un Grid ou autre chose dans chaque région.
+      </p>
+      <ul>
+        <li>
+          <strong>Régions optionnelles.</strong> Composez seulement les parties voulues :{' '}
+          <code>AppShell.Header</code>, <code>AppShell.Navbar</code>,{' '}
+          <code>AppShell.Main</code>, <code>AppShell.Aside</code> et{' '}
+          <code>AppShell.Footer</code>. Un shell en-tête + contenu suffit ; seul{' '}
+          <code>Main</code> est attendu dans chaque shell.
+        </li>
+        <li>
+          <strong>De vrais repères.</strong> Chaque région rend l'élément correspondant —{' '}
+          <code>&lt;header&gt;</code>, <code>&lt;nav&gt;</code>, <code>&lt;main&gt;</code>
+          , <code>&lt;aside&gt;</code>, <code>&lt;footer&gt;</code> — donnant banner,
+          navigation, main, complementary et contentinfo sans effort.
+        </li>
+        <li>
+          <strong>Cadre adaptatif.</strong> Les régions s'empilent sur petit écran ; à
+          partir de <code>48em</code>, le navbar et l'aside encadrent la colonne
+          principale, l'en-tête et le pied de page occupant toute la largeur.
+        </li>
+        <li>
+          <strong>Lien d'évitement intégré.</strong> Le premier élément focusable saute
+          directement au contenu principal, pour que le clavier contourne l'en-tête et la
+          navigation.
+        </li>
+        <li>
+          <strong>Votre contenu.</strong> Chaque région est un repère simple qui transmet
+          vos propriétés : ajoutez un <code>id</code>, des <code>aria-*</code> ou une{' '}
+          <code>className</code> au besoin.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={AppShellStories.Playground} />
+
+### <Localized en="Minimal shell" fr="Shell minimal" />
+
+<Localized
+  en={
+    <p>
+      The smallest useful shell is a header and the main region. Add a navbar, an aside or
+      a footer only when the page needs one.
+    </p>
+  }
+  fr={
+    <p>
+      Le plus petit shell utile est un en-tête et la région principale. Ajoutez un navbar,
+      un aside ou un pied de page seulement quand la page en a besoin.
+    </p>
+  }
+/>
+
+<Canvas of={AppShellStories.MinimalShell} />
+
+### <Localized en="Every region" fr="Toutes les régions" />
+
+<Canvas of={AppShellStories.WithAside} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        AppShell follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-appshell-bg</code> (frame
+          background), <code>--omnia-appshell-navbar-width</code> and{' '}
+          <code>--omnia-appshell-aside-width</code> (the side-column widths from{' '}
+          <code>48em</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>appshell</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (where your <code>className</code> merges),{' '}
+          <code>header</code>, <code>navbar</code>, <code>main</code>, <code>aside</code>,{' '}
+          <code>footer</code>, and <code>skip-link</code>.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        AppShell suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-appshell-bg</code> (fond
+          du cadre), <code>--omnia-appshell-navbar-width</code> et{' '}
+          <code>--omnia-appshell-aside-width</code> (largeurs des colonnes latérales à
+          partir de <code>48em</code>).
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>appshell</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (où votre <code>className</code> fusionne),{' '}
+          <code>header</code>, <code>navbar</code>, <code>main</code>, <code>aside</code>,{' '}
+          <code>footer</code> et <code>skip-link</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={AppShellStories.Overridden} />
