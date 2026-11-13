@@ -7,7 +7,8 @@ const stack = {
   display: 'flex',
   flexDirection: 'column',
   gap: '1rem',
-  inlineSize: '20rem',
+  // The centered layout shrink-wraps its root, so a % cap never applies; 2rem is its padding.
+  inlineSize: 'min(20rem, 100vw - 2rem)',
 } as const;
 
 const row = {

@@ -3,11 +3,18 @@
   .list {
     display: flex;
     flex-wrap: wrap;
-    gap: var(--omnia-navbar-gap-y, var(--omnia-palette-space-2))
+    align-items: center;
+    gap: var(--omnia-navbar-gap-y, var(--omnia-palette-space-3))
       var(--omnia-navbar-gap-x, var(--omnia-palette-space-4));
     margin: 0;
     padding: 0;
     list-style: none;
+  }
+
+  /* A 24px-tall tap target (WCAG 2.5.8) without moving the text or its underline. */
+  .item > a {
+    display: inline-block;
+    padding-block: max(0px, (24px - 1lh) / 2);
   }
 
   /* The current link differs by weight of underline, not colour alone (SC 1.4.1). */

@@ -139,4 +139,18 @@ describe('Switch edge cases', () => {
     expect(control()).toBeChecked();
     expect(control().hasAttribute('aria-checked')).toBe(false);
   });
+
+  test.each(['sm', 'md', 'lg'] as const)(
+    'a bare %s switch has a hit area at least 24px tall around an unchanged 1.375em track',
+    async (size) => {
+      await mount(<Switch variantSize={size} aria-label="Notifications" />);
+      const { width, height } = track().getBoundingClientRect();
+      expect(width).toBeGreaterThanOrEqual(24);
+      expect(height).toBeGreaterThanOrEqual(24);
+      const fontSize = parseFloat(getComputedStyle(track()).fontSize);
+      expect(getComputedStyle(track(), '::after').blockSize).toBe(
+        `${1.375 * fontSize}px`,
+      );
+    },
+  );
 });

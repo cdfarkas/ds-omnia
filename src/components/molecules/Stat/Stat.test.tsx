@@ -83,6 +83,17 @@ describe('Stat edge cases', () => {
     expect(columnCount(parts('root')[0])).toBe(1);
   });
 
+  test('the figure is 2rem in a narrow list and 3rem from 24rem wide', async () => {
+    const fontSize = () => getComputedStyle(parts('value')[0]).fontSize;
+    container.style.inlineSize = '18rem';
+    await mount(<Playground />);
+    expect(fontSize()).toBe('32px');
+
+    container.style.inlineSize = '24rem';
+    await mount(<Playground />);
+    expect(fontSize()).toBe('48px');
+  });
+
   test('ref forwards on every part', async () => {
     const refs = {
       root: createRef<HTMLDListElement>(),
