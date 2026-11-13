@@ -34,7 +34,8 @@ import { Localized } from '../lib/Localized';
       </li>
       <li>
         A component whose layout follows its own width uses <code>@container</code> with
-        local <code>rem</code> thresholds; atoms stay fluid.
+        local <code>rem</code> thresholds; atoms stay fluid, except Heading, whose type
+        scale steps on the viewport breakpoints (ADR 0036).
       </li>
       <li>
         No responsive prop, no utility class, no hook until one is genuinely needed.
@@ -53,7 +54,8 @@ import { Localized } from '../lib/Localized';
       <li>
         Un composant dont la mise en page suit sa propre largeur utilise{' '}
         <code>@container</code> avec des seuils <code>rem</code> locaux ; les atomes
-        restent fluides.
+        restent fluides, sauf Heading, dont l'échelle typographique suit les points de
+        rupture du viewport (ADR 0036).
       </li>
       <li>
         Pas de prop responsive, pas de classe utilitaire, pas de hook tant qu'il n'est pas

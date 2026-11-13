@@ -1,4 +1,5 @@
 import type { Decorator, Meta, StoryObj } from '@storybook/react-vite';
+import { useEffect, useRef, useState } from 'react';
 import { expect } from 'storybook/test';
 import { Heading, type HeadingLevel, type HeadingSize } from './Heading';
 import './Heading.overrides.css';
@@ -88,6 +89,62 @@ export const Scale: Story = {
           </Heading>
         </div>
       ))}
+    </div>
+  ),
+};
+
+const levelForSize: Record<HeadingSize, HeadingLevel> = {
+  '2xl': 1,
+  xl: 2,
+  lg: 3,
+  md: 4,
+  sm: 5,
+  xs: 6,
+};
+
+function SpecimenRow({
+  size,
+  title = 'Quarterly accessibility review for every component',
+}: {
+  size: HeadingSize;
+  title?: string;
+}) {
+  const ref = useRef<HTMLHeadingElement>(null);
+  const [px, setPx] = useState('');
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    // The box resizes on every viewport or skin change that moves the size, so re-read then.
+    const observer = new ResizeObserver(() => setPx(getComputedStyle(el).fontSize));
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+  return (
+    <div>
+      <span style={label}>{`${size} · h${levelForSize[size]} · ${px}`}</span>
+      <Heading ref={ref} level={levelForSize[size]}>
+        {title}
+      </Heading>
+    </div>
+  );
+}
+
+/**
+ * Type scale specimen (ADR 0036): every size step at the current skin and viewport, with its
+ * default level and computed size. Switch skin and viewport in the toolbar to review each cell.
+ */
+export const TypeScale: Story = {
+  parameters: {
+    layout: 'padded',
+    controls: { disable: true },
+    docs: { source: { code: '<Heading level={1}>Quarterly review</Heading>' } },
+  },
+  render: () => (
+    <div style={column}>
+      {[...sizes].reverse().map((size) => (
+        <SpecimenRow key={size} size={size} />
+      ))}
+      <SpecimenRow size="2xl" title="Internationalization Internationalisation" />
     </div>
   ),
 };
