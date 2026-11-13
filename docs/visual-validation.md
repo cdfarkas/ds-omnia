@@ -59,6 +59,21 @@ Modes are driven through the Storybook iframe globals query parameter, e.g.
 - The focus ring is visible on keyboard focus — in **every** skin, including pixel
   where a clip-path would otherwise clip an outer outline.
 
+## PR screenshots and videos
+
+Visual proof for a PR lives on the orphan `pr-assets` branch, never in `main`'s history.
+`scripts/pr-assets.sh <pr-number> <file>...` uploads files (10 MB max each) to `pr-<N>/` through
+a throwaway clone in the OS temp dir, so the caller's working tree is untouched. It creates the
+branch if missing, retries a rejected push up to three times after `git pull --rebase`, never
+force-pushes, and prints the lines to paste in the PR body: a markdown image for png/gif/jpg/webp,
+a plain link otherwise (videos), pointing at
+`https://raw.githubusercontent.com/cdfarkas/ds-omnia/pr-assets/pr-<N>/<file>`.
+
+`.github/workflows/pr-assets-cleanup.yml` runs daily (and on demand): every `pr-<N>/` whose PR has
+been closed or merged for `RETENTION_DAYS` (14) is deleted — `scripts/pr-assets-expired.sh` makes
+that decision — and the branch is rewritten as one orphan commit with `--force-with-lease`. Links in
+older PR bodies break after that window, by design.
+
 ## No pixel-diff service
 
 There is no hosted visual-regression tool (no Chromatic). This agent gate is the only
