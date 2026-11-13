@@ -1,4 +1,6 @@
 import type { Preview, Decorator } from '@storybook/react-vite';
+import { addons } from 'storybook/preview-api';
+import { GLOBALS_UPDATED, SET_GLOBALS } from 'storybook/internal/core-events';
 import { type Locale } from '../src/lib/i18n';
 import { OmniaThemeProvider, type Theme, type Skin } from '../src/lib/OmniaThemeProvider';
 
@@ -104,6 +106,15 @@ const preview: Preview = {
         dynamicTitle: true,
       },
     },
+  },
+  // Story-less MDX pages never run the decorator, so mirror the locale global onto <html lang> here.
+  beforeAll: () => {
+    if (!addons.hasChannel()) return;
+    const syncLang = ({ globals }: { globals: Record<string, unknown> }) => {
+      document.documentElement.lang = globals.locale === 'fr' ? 'fr' : 'en';
+    };
+    addons.getChannel().on(SET_GLOBALS, syncLang);
+    addons.getChannel().on(GLOBALS_UPDATED, syncLang);
   },
   decorators: [withTheme],
   tags: ['autodocs'],

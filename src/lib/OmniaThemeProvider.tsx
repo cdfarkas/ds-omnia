@@ -100,7 +100,7 @@ const ThemeContext = createContext<ThemeContextValue>({
 
 /**
  * Omnia's single theming mechanism, now stateful (ADR 0025, supersedes ADR 0017). Sets
- * `data-theme`/`data-skin` on the document root — the single source of truth the token layer reads —
+ * `data-theme`/`data-skin` and `lang` on the document root — the single source of truth the token layer reads —
  * and exposes `{ theme, skin, locale }` plus setters through `useTheme()`. Controlled when a
  * `theme`/`skin`/`locale` prop is passed (props win, setters fire `onThemeChange`/`onSkinChange`/
  * `onLocaleChange`); otherwise the provider owns the state and persists it to `localStorage`.
@@ -144,7 +144,8 @@ export function OmniaThemeProvider({
     const { documentElement } = document;
     documentElement.setAttribute('data-theme', theme);
     documentElement.setAttribute('data-skin', skin);
-  }, [theme, skin]);
+    documentElement.lang = locale;
+  }, [theme, skin, locale]);
 
   useEffect(() => {
     const next: Partial<ThemeState> = {};

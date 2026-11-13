@@ -59,3 +59,14 @@ unchanged; they remain the MDX-prose mechanism and are out of the provider's sco
   changed — Storybook drives the provider from the same toolbar globals — so `visual-check` is N/A.
   Per governance, this PR supersedes ADR 0017, which is marked superseded; its document-root contract
   stays in force.
+
+## Update 2026-11-13
+
+The provider now also writes the active locale to `lang` on the document root, in the same effect
+as `data-theme`/`data-skin`, so screen readers pronounce French text as French (WCAG 3.1.1 Language
+of Page). This overrides a consuming app's server-rendered `<html lang>`; an app that manages its
+language separately should pass the `locale` prop in controlled mode. `getThemeInitScript()` is
+unchanged: it handles no locale state.
+
+Story-less MDX pages never run the Storybook decorator, so `.storybook/preview.tsx` also mirrors the
+`locale` toolbar global onto `<html lang>` from a channel listener registered in `beforeAll`.
