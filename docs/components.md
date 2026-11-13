@@ -443,6 +443,42 @@ Source: `src/components/organisms/AppHeader/AppHeader.tsx`
 
 Stories: `organisms-appheader--default`, `organisms-appheader--in-page-template`, `organisms-appheader--brand-only`, `organisms-appheader--narrow`, `organisms-appheader--overridden`
 
+## PageHeader
+
+Title block at the top of a page's content, placed once inside `PageTemplate.Main`. Renders no landmark. `PageHeader.Breadcrumb` (a direct child, any node) sits above a `SectionHeading` that holds `PageHeader.Title` (an `<h1>` by default), `PageHeader.Description` and `PageHeader.Actions`.
+
+Source: `src/components/organisms/PageHeader/PageHeader.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### PageHeader.Breadcrumb
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `children` | `ReactNode` | yes | — | — |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### PageHeader.Title
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `level` | `HeadingProps['level']` | no | — | — |
+
+### PageHeader.Description
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+### PageHeader.Actions
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+
+Stories: `organisms-pageheader--default`, `organisms-pageheader--title-only`, `organisms-pageheader--without-breadcrumb`, `organisms-pageheader--in-page-template`, `organisms-pageheader--long-title-narrow`
+
 ## PageTemplate
 
 Generic slot-based page scaffold: a CSS-grid frame whose regions — `PageTemplate.Header`, `PageTemplate.Navbar`, `PageTemplate.Main`, `PageTemplate.Aside`, `PageTemplate.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.

@@ -1,0 +1,92 @@
+import { Meta, Canvas } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as PageHeaderStories from './PageHeader.stories';
+
+<Meta of={PageHeaderStories} />
+
+# PageHeader
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>PageHeader</strong> once per page, as the first block inside{' '}
+        <code>PageTemplate.Main</code>; unlike <code>SectionHeading</code>, which titles
+        any section, it titles the whole page with an <code>h1</code> and can carry a
+        breadcrumb.
+      </p>
+      <ul>
+        <li>
+          <strong>Four parts, one required.</strong> <code>PageHeader.Breadcrumb</code>{' '}
+          (any node, written as a direct child), <code>PageHeader.Title</code>,{' '}
+          <code>PageHeader.Description</code> and <code>PageHeader.Actions</code>; only
+          the title is required.
+        </li>
+        <li>
+          <strong>An h1 by default.</strong> Pass <code>level</code> to the title only
+          when the page outline needs another level.
+        </li>
+        <li>
+          <strong>No landmark.</strong> It is page content:{' '}
+          <code>PageTemplate.Header</code> stays the banner. A breadcrumb trail you put in
+          the slot brings its own <code>&lt;nav&gt;</code> and label.
+        </li>
+        <li>
+          <strong>Built on SectionHeading.</strong> Title, description and actions behave
+          and reskin exactly like SectionHeading's: the actions drop under the text when
+          the block itself is narrow.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>PageHeader</strong> une seule fois par page, en premier bloc de{' '}
+        <code>PageTemplate.Main</code> ; contrairement à <code>SectionHeading</code>, qui
+        titre n'importe quelle section, il titre la page entière avec un <code>h1</code>{' '}
+        et peut porter un fil d'Ariane.
+      </p>
+      <ul>
+        <li>
+          <strong>Quatre parties, une seule obligatoire.</strong>{' '}
+          <code>PageHeader.Breadcrumb</code> (n'importe quel nœud, en enfant direct),{' '}
+          <code>PageHeader.Title</code>, <code>PageHeader.Description</code> et{' '}
+          <code>PageHeader.Actions</code> ; seul le titre est obligatoire.
+        </li>
+        <li>
+          <strong>Un h1 par défaut.</strong> Passez <code>level</code> au titre seulement
+          si le plan de la page demande un autre niveau.
+        </li>
+        <li>
+          <strong>Aucun repère.</strong> C'est du contenu de page :{' '}
+          <code>PageTemplate.Header</code> reste la bannière. Le fil d'Ariane placé dans
+          l'emplacement apporte son propre <code>&lt;nav&gt;</code> et son libellé.
+        </li>
+        <li>
+          <strong>Bâti sur SectionHeading.</strong> Le titre, la description et les
+          actions se comportent et s'adaptent comme ceux de SectionHeading : les actions
+          passent sous le texte quand le bloc lui-même est étroit.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={PageHeaderStories.Default} />
+
+### <Localized en="Inside PageTemplate" fr="Dans PageTemplate" />
+
+<Canvas of={PageHeaderStories.InPageTemplate} />
+
+### <Localized en="Without breadcrumb" fr="Sans fil d'Ariane" />
+
+<Canvas of={PageHeaderStories.WithoutBreadcrumb} />
+
+### <Localized en="Title only" fr="Titre seul" />
+
+<Canvas of={PageHeaderStories.TitleOnly} />
+
+### <Localized en="Long title, narrow block" fr="Titre long, bloc étroit" />
+
+<Canvas of={PageHeaderStories.LongTitleNarrow} />

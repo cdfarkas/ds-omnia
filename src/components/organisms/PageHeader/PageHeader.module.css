@@ -1,0 +1,8 @@
+@layer components {
+  .root {
+    display: flex;
+    flex-direction: column;
+    gap: var(--omnia-palette-space-3);
+    overflow-wrap: anywhere;
+  }
+}
