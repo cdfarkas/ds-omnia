@@ -9,21 +9,36 @@
     cursor: pointer;
   }
 
+  /* The input is a transparent 24px hit area (WCAG 2.5.8); the visible box is ::after. */
   .input {
+    position: relative;
+    isolation: isolate;
     display: grid;
     flex: none;
     place-content: center;
+    inline-size: max(24px, 1.25em);
+    block-size: max(24px, 1.25em);
+    margin: calc((1lh - 1.25em) / 2 + min(0px, (1.25em - 24px) / 2))
+      min(0px, (1.25em - 24px) / 2) min(0px, (1.25em - 24px) / 2);
+    cursor: inherit;
+    appearance: none;
+    transition: transform var(--omnia-dur-fast) var(--omnia-ease-out);
+  }
+
+  .input::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    box-sizing: border-box;
     inline-size: 1.25em;
     block-size: 1.25em;
-    margin: calc((1lh - 1.25em) / 2) 0 0;
+    margin: auto;
     border: var(--omnia-border-width-thick) solid
       var(--omnia-checkbox-border-color, var(--omnia-color-border-strong));
     border-radius: var(--omnia-checkbox-radius, var(--omnia-radius-sm));
     background-color: var(--omnia-checkbox-bg, var(--omnia-color-bg-surface));
-    cursor: inherit;
-    appearance: none;
     transition:
-      transform var(--omnia-dur-fast) var(--omnia-ease-out),
       background-color var(--omnia-dur-fast) var(--omnia-ease-out),
       border-color var(--omnia-dur-fast) var(--omnia-ease-out);
   }
@@ -38,7 +53,7 @@
     transition: transform var(--omnia-dur-fast) var(--omnia-ease-out);
   }
 
-  .input:is(:checked, :indeterminate) {
+  .input:is(:checked, :indeterminate)::after {
     background-color: var(--omnia-checkbox-checked-bg, var(--omnia-color-accent));
   }
 
@@ -66,7 +81,7 @@
     font-size: 1.125rem;
   }
 
-  .input:disabled {
+  .input:disabled::after {
     border-style: dashed;
     border-color: var(--omnia-color-border-default);
     background-color: var(--omnia-color-bg-disabled);
@@ -81,7 +96,7 @@
     cursor: not-allowed;
   }
 
-  :global([data-skin='pixel']) .input {
+  :global([data-skin='pixel']) .input::after {
     border-width: var(--omnia-palette-border-med);
     border-radius: 0;
   }
@@ -100,6 +115,10 @@
   }
 
   .input:focus-visible {
+    outline: none;
+  }
+
+  .input:focus-visible::after {
     outline: 2px solid var(--omnia-color-border-focus);
     outline-offset: 2px;
   }
@@ -113,17 +132,18 @@
     transition-duration: var(--omnia-dur-press);
   }
 
-  .root[data-invalid] .input:where(:not(:disabled)) {
+  .root[data-invalid] .input:where(:not(:disabled))::after {
     border-color: var(--omnia-color-danger-border);
   }
 
-  .root:where(:hover) .input:is(:checked, :indeterminate):where(:not(:disabled)) {
+  .root:where(:hover) .input:is(:checked, :indeterminate):where(:not(:disabled))::after {
     background-color: var(--omnia-color-accent-hover);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .input,
-    .input::before {
+    .input::before,
+    .input::after {
       transition: none;
     }
 

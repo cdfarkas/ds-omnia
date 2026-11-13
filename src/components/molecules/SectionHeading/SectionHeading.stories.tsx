@@ -136,7 +136,7 @@ export const WithActions: Story = {
 export const Narrow: Story = {
   parameters: { controls: { disable: true }, docs: { source: { code: fullCode } } },
   render: () => (
-    <div style={{ inlineSize: '18rem' }}>
+    <div style={{ inlineSize: '18rem', maxInlineSize: '100%' }}>
       <SectionHeading>{full}</SectionHeading>
     </div>
   ),

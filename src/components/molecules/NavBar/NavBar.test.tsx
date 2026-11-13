@@ -111,4 +111,11 @@ describe('NavBar override contract', () => {
       container.querySelectorAll('[data-scope="navbar"][data-part="item"]'),
     ).toHaveLength(4);
   });
+
+  test('every link is a tap target at least 24px tall', async () => {
+    await mount(<Narrow />);
+    for (const link of container.querySelectorAll('a')) {
+      expect(link.getBoundingClientRect().height).toBeGreaterThanOrEqual(24);
+    }
+  });
 });

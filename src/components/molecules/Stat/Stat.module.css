@@ -1,5 +1,6 @@
 @layer components {
   .root {
+    container-type: inline-size;
     display: grid;
     grid-template-columns: repeat(
       auto-fit,
@@ -31,11 +32,17 @@
   .value {
     order: -1;
     font-family: var(--omnia-font-display);
-    font-size: var(--omnia-stat-value-font-size, 3rem);
+    font-size: var(--omnia-stat-value-font-size, 2rem);
     font-weight: 700;
     line-height: 1.25;
     font-variant-numeric: tabular-nums;
     color: var(--omnia-stat-value-color, var(--omnia-color-text-primary));
+  }
+
+  @container (width >= 24rem) {
+    .value {
+      font-size: var(--omnia-stat-value-font-size, 3rem);
+    }
   }
 
   .label {

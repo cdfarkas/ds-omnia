@@ -147,4 +147,16 @@ describe('Checkbox edge cases', () => {
     expect(checked).toBeChecked();
     expect(part('root')?.hasAttribute('data-disabled')).toBe(true);
   });
+
+  test.each(['sm', 'md', 'lg'] as const)(
+    'a bare %s box has a 24px hit area around an unchanged 1.25em visible box',
+    async (size) => {
+      await mount(<Checkbox variantSize={size} aria-label="Select row 1" />);
+      const { width, height } = box().getBoundingClientRect();
+      expect(width).toBeGreaterThanOrEqual(24);
+      expect(height).toBeGreaterThanOrEqual(24);
+      const fontSize = parseFloat(getComputedStyle(box()).fontSize);
+      expect(getComputedStyle(box(), '::after').inlineSize).toBe(`${1.25 * fontSize}px`);
+    },
+  );
 });

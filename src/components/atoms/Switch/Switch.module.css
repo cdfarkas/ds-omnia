@@ -9,22 +9,36 @@
     cursor: pointer;
   }
 
+  /* Transparent hit area at least 24px tall (WCAG 2.5.8); the visible track is ::after. */
   .track {
+    position: relative;
+    isolation: isolate;
     display: flex;
     flex: none;
     align-items: center;
     inline-size: 2.5em;
+    block-size: max(24px, 1.375em);
+    margin: calc((1lh - 1.375em) / 2 + min(0px, (1.375em - 24px) / 2)) 0
+      min(0px, (1.375em - 24px) / 2);
+    padding-inline: calc(0.125em + var(--omnia-border-width-thick));
+    cursor: inherit;
+    appearance: none;
+    transition: transform var(--omnia-dur-fast) var(--omnia-ease-out);
+  }
+
+  .track::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    box-sizing: border-box;
     block-size: 1.375em;
-    margin: calc((1lh - 1.375em) / 2) 0 0;
-    padding-inline: 0.125em;
+    margin: auto;
     border: var(--omnia-border-width-thick) solid
       var(--omnia-switch-border-color, var(--omnia-color-border-strong));
     border-radius: var(--omnia-switch-radius, var(--omnia-radius-lg));
     background-color: var(--omnia-switch-bg, var(--omnia-color-bg-surface));
-    cursor: inherit;
-    appearance: none;
     transition:
-      transform var(--omnia-dur-fast) var(--omnia-ease-out),
       background-color var(--omnia-dur-fast) var(--omnia-ease-out),
       border-color var(--omnia-dur-fast) var(--omnia-ease-out);
   }
@@ -41,7 +55,7 @@
       background-color var(--omnia-dur-fast) var(--omnia-ease-out);
   }
 
-  .track:checked {
+  .track:checked::after {
     background-color: var(--omnia-switch-checked-bg, var(--omnia-color-accent));
   }
 
@@ -69,7 +83,7 @@
     font-size: 1.125rem;
   }
 
-  .track:disabled {
+  .track:disabled::after {
     border-style: dashed;
     border-color: var(--omnia-color-border-default);
     background-color: var(--omnia-color-bg-disabled);
@@ -85,12 +99,16 @@
   }
 
   /* Square thumb jumps off->on in steps via the --omnia-ease-out reassignment. */
-  :global([data-skin='pixel']) .track,
+  :global([data-skin='pixel']) .track::after,
   :global([data-skin='pixel']) .track::before {
     border-radius: 0;
   }
 
   :global([data-skin='pixel']) .track {
+    padding-inline: calc(0.125em + var(--omnia-palette-border-med));
+  }
+
+  :global([data-skin='pixel']) .track::after {
     border-width: var(--omnia-palette-border-med);
   }
 
@@ -102,6 +120,10 @@
   }
 
   .track:focus-visible {
+    outline: none;
+  }
+
+  .track:focus-visible::after {
     outline: 2px solid var(--omnia-color-border-focus);
     outline-offset: 2px;
   }
@@ -115,17 +137,18 @@
     transition-duration: var(--omnia-dur-press);
   }
 
-  .root[data-invalid] .track:where(:not(:disabled)) {
+  .root[data-invalid] .track:where(:not(:disabled))::after {
     border-color: var(--omnia-color-danger-border);
   }
 
-  .root:where(:hover) .track:checked:where(:not(:disabled)) {
+  .root:where(:hover) .track:checked:where(:not(:disabled))::after {
     background-color: var(--omnia-color-accent-hover);
   }
 
   @media (prefers-reduced-motion: reduce) {
     .track,
-    .track::before {
+    .track::before,
+    .track::after {
       transition: none;
     }
 
