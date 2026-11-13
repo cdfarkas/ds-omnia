@@ -35,6 +35,7 @@ afterEach(() => {
   localStorage.clear();
   document.documentElement.removeAttribute('data-theme');
   document.documentElement.removeAttribute('data-skin');
+  document.documentElement.removeAttribute('lang');
 });
 
 async function mount(ui: ReactElement) {
@@ -117,5 +118,27 @@ describe('OmniaThemeProvider — locale', () => {
     expect(api.locale).toBe('fr');
     expect(getLocale()).toBe('fr');
     expect(t('button.loading')).toBe('Chargement');
+  });
+
+  test('sets the document lang to "fr" for the French locale', async () => {
+    await mount(<OmniaThemeProvider locale="fr" />);
+    expect(document.documentElement.lang).toBe('fr');
+  });
+
+  test('sets the document lang to "en" for the English locale', async () => {
+    await mount(<OmniaThemeProvider locale="en" />);
+    expect(document.documentElement.lang).toBe('en');
+  });
+
+  test('switching locale updates the document lang', async () => {
+    await mount(
+      <OmniaThemeProvider defaultLocale="en">
+        <Capture />
+      </OmniaThemeProvider>,
+    );
+    expect(document.documentElement.lang).toBe('en');
+
+    await act(async () => api.setLocale('fr'));
+    expect(document.documentElement.lang).toBe('fr');
   });
 });

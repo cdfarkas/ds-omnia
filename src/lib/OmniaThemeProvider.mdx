@@ -11,9 +11,10 @@ import * as ThemeProviderStories from './OmniaThemeProvider.stories';
     <p>
       <strong>OmniaThemeProvider</strong> is Omnia's single theming mechanism. Wrap your
       app in it once: it sets <code>data-theme</code> and <code>data-skin</code> on the
-      document root — where the semantic token layer resolves — and exposes the active
-      theme, skin and locale, with their setters, through <code>useTheme()</code>. See ADR
-      0025.
+      document root — where the semantic token layer resolves — plus <code>lang</code>{' '}
+      from the active locale, so screen readers pronounce the page in the right language.
+      It exposes the active theme, skin and locale, with their setters, through{' '}
+      <code>useTheme()</code>. See ADR 0025.
     </p>
   }
   fr={
@@ -21,8 +22,10 @@ import * as ThemeProviderStories from './OmniaThemeProvider.stories';
       <strong>OmniaThemeProvider</strong> est l'unique mécanisme de thème d'Omnia.
       Englobez votre application une fois : il pose <code>data-theme</code> et{' '}
       <code>data-skin</code> sur la racine du document — là où la couche de jetons
-      sémantiques se résout — et expose le thème, l'habillage et la langue actifs, avec
-      leurs setters, via <code>useTheme()</code>. Voir l'ADR 0025.
+      sémantiques se résout — ainsi que <code>lang</code> d'après la langue active, pour
+      que les lecteurs d'écran prononcent la page dans la bonne langue. Il expose le
+      thème, l'habillage et la langue actifs, avec leurs setters, via{' '}
+      <code>useTheme()</code>. Voir l'ADR 0025.
     </p>
   }
 />
