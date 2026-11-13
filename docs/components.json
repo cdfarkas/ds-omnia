@@ -1158,6 +1158,10 @@
           "id": "atoms-heading--scale"
         },
         {
+          "name": "TypeScale",
+          "id": "atoms-heading--type-scale"
+        },
+        {
           "name": "Overridden",
           "id": "atoms-heading--overridden"
         },

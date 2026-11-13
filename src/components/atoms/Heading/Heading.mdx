@@ -77,6 +77,32 @@ import * as HeadingStories from './Heading.stories';
 
 <Canvas of={HeadingStories.Scale} />
 
+### <Localized en="Responsive type scale" fr="Échelle typographique responsive" />
+
+<Localized
+  en={
+    <p>
+      Each size step has one value per viewport breakpoint (base, <code>30em</code>,{' '}
+      <code>48em</code>, <code>64em</code>, <code>80em</code>) and per skin, so a long
+      title fits whole at 320 px. The tables live in ADR 0036. The specimen shows every
+      step at its default level with its computed size: switch the skin and the viewport
+      in the toolbar to review each cell.
+    </p>
+  }
+  fr={
+    <p>
+      Chaque palier a une valeur par point de rupture du viewport (base, <code>30em</code>
+      , <code>48em</code>, <code>64em</code>, <code>80em</code>) et par habillage, pour
+      qu'un long titre tienne sans couper de mot à 320 px. Les tableaux sont dans l'ADR
+      0036. Le spécimen affiche chaque palier à son niveau par défaut avec sa taille
+      calculée : changez l'habillage et le viewport dans la barre d'outils pour vérifier
+      chaque cellule.
+    </p>
+  }
+/>
+
+<Canvas of={HeadingStories.TypeScale} />
+
 <Localized
   en={
     <>

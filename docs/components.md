@@ -222,7 +222,7 @@ Source: `src/components/atoms/Heading/Heading.tsx`
 | `children` | `ReactNode` | yes | — | — |
 | `ref` | `Ref<HTMLHeadingElement>` | no | — | — |
 
-Stories: `atoms-heading--playground`, `atoms-heading--levels`, `atoms-heading--scale`, `atoms-heading--overridden`, `atoms-heading--dark-neutral`, `atoms-heading--pixel-light`, `atoms-heading--pixel-dark`
+Stories: `atoms-heading--playground`, `atoms-heading--levels`, `atoms-heading--scale`, `atoms-heading--type-scale`, `atoms-heading--overridden`, `atoms-heading--dark-neutral`, `atoms-heading--pixel-light`, `atoms-heading--pixel-dark`
 
 ## Text
 
