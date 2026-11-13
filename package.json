@@ -1,6 +1,6 @@
 {
   "name": "@cdfarkas/omnia",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "description": "Omnia — a themeable, bilingual React 19 design system with light/dark and neutral, pixel-art and brutalist skins.",
   "license": "MIT",
   "private": true,
