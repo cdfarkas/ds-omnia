@@ -45,6 +45,7 @@
 
     .panel [data-scope='navbar'][data-part='list'] {
       flex-flow: column nowrap;
+      align-items: stretch;
       gap: 0;
     }
 
