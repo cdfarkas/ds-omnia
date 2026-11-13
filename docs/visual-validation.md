@@ -30,7 +30,8 @@ pass — a real contrast failure is flagged, not hidden.
    state of `Playground` in all six modes (`navbar-playground__focus-<mode>.png`); on FormField it captures the keyboard-focus
    state of `Invalid` in all six modes (`form-field-invalid__focus-<mode>.png`); on AppHeader it captures
    `Default` at 1000 CSS px (`app-header-default__<mode>__w1000.png`) and its keyboard-focus state
-   (`app-header-default__focus-<mode>.png`) in all six modes. A narrow pass then shoots every story again in all six modes
+   (`app-header-default__focus-<mode>.png`) in all six modes; its `MenuOpen`
+   story opens the mobile menu in its `play`, so its shots show the open panel. A narrow pass then shoots every story again in all six modes
    at 320 × 568 CSS px, the WCAG 1.4.10 reflow width (ADR 0014), as
    `<story>__<mode>__w320.png`. An optional argument filters by story id
    (`pnpm visual-check badge`); the Button-only shots run when it is absent or contains

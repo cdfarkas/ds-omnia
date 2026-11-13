@@ -92,3 +92,9 @@ Explicitly not done:
   drop `sm` if no component needs it.
 
 Study and sources: [`docs/research/responsive.md`](../research/responsive.md).
+
+## Update 2026-11-13
+
+AppHeader's panel-stacking rules (`AppHeader.module.css`) use `@media not (width >= 48em)`, an
+accepted exception to the mobile-first rule above. Desktop keeps NavBar's own CSS untouched, because
+copying NavBar's desktop styles into AppHeader would couple the two components.

@@ -115,9 +115,9 @@ organisms). The consumer composes:
 </PageTemplate.Header>
 ```
 
-Deferred, not in this study: a collapsing mobile menu (a disclosure button + the nav in a panel). It
-is the biggest unknown; a later `open` prop would be native-typed (`boolean`, as on `<details>`), but
-that is for its own plan.
+Mobile menu (added 2026-11-13): below `48em` an internal "Menu" disclosure button (`aria-expanded`,
+`aria-controls`) shows or hides a `data-part="panel"` holding every part except `Brand`. It adds no
+prop and no sub-part, so no name entered the public API; the label is the `appHeader.menu` string.
 
 ## Props vs the prop naming rule (ADR 0015)
 

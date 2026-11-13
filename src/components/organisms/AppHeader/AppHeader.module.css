@@ -1,5 +1,5 @@
 @layer components {
-  /* Wrapping is the narrow layout: parts flow onto new lines, no breakpoint needed. */
+  /* Mobile-first: brand and menu button on one row, the open panel on its own row below. */
   .root {
     display: flex;
     flex-wrap: wrap;
@@ -13,5 +13,57 @@
       var(--omnia-app-header-border-color, var(--omnia-color-border-default));
     background-color: var(--omnia-app-header-bg, var(--omnia-color-bg-surface));
     color: var(--omnia-color-text-primary);
+  }
+
+  .toggle {
+    margin-inline-start: auto;
+  }
+
+  .toggle [data-scope='button'][data-part='label'] {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--omnia-palette-space-2);
+  }
+
+  .panel {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--omnia-palette-space-4);
+    flex-basis: 100%;
+  }
+
+  .panel[data-state='closed'] {
+    display: none;
+  }
+
+  /* Below md only, so desktop keeps NavBar's own styles: one link per line, 44px targets. */
+  @media not (width >= 48em) {
+    .panel > [data-part='nav'] {
+      align-self: stretch;
+    }
+
+    .panel [data-scope='navbar'][data-part='list'] {
+      flex-flow: column nowrap;
+      gap: 0;
+    }
+
+    .panel [data-scope='navbar'][data-part='item'] > a {
+      display: flex;
+      align-items: center;
+      min-block-size: 2.75rem;
+    }
+  }
+
+  /* Desktop never depends on the menu state: the panel dissolves into the row. */
+  @media (width >= 48em) {
+    .toggle {
+      display: none;
+    }
+
+    .panel,
+    .panel[data-state='closed'] {
+      display: contents;
+    }
   }
 }

@@ -193,6 +193,7 @@ const stories = [
   { id: 'organisms-appheader--in-page-template', name: 'app-header-in-page-template' },
   { id: 'organisms-appheader--brand-only', name: 'app-header-brand-only' },
   { id: 'organisms-appheader--narrow', name: 'app-header-narrow' },
+  { id: 'organisms-appheader--menu-open', name: 'app-header-menu-open' },
   { id: 'organisms-appheader--overridden', name: 'app-header-overridden' },
   { id: 'templates-pagetemplate--playground', name: 'page-template-playground' },
   { id: 'templates-pagetemplate--minimal-shell', name: 'page-template-minimal-shell' },
