@@ -1,16 +1,16 @@
 import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
 import { Localized } from '../../../lib/Localized';
-import * as AppShellStories from './AppShell.stories';
+import * as PageTemplateStories from './PageTemplate.stories';
 
-<Meta of={AppShellStories} />
+<Meta of={PageTemplateStories} />
 
-# AppShell
+# PageTemplate
 
 <Localized
   en={
     <>
       <p>
-        Use <strong>AppShell</strong> to frame a page: it lays out a header, a primary
+        Use <strong>PageTemplate</strong> to frame a page: it lays out a header, a primary
         navbar, the main content, a complementary aside and a footer, each rendered as its
         own landmark element. It carries no content of its own — drop a Container, a Grid
         or anything else inside each region.
@@ -18,9 +18,9 @@ import * as AppShellStories from './AppShell.stories';
       <ul>
         <li>
           <strong>Opt-in regions.</strong> Compose only the parts you need:{' '}
-          <code>AppShell.Header</code>, <code>AppShell.Navbar</code>,{' '}
-          <code>AppShell.Main</code>, <code>AppShell.Aside</code> and{' '}
-          <code>AppShell.Footer</code>. A header-and-main shell works on its own; only{' '}
+          <code>PageTemplate.Header</code>, <code>PageTemplate.Navbar</code>,{' '}
+          <code>PageTemplate.Main</code>, <code>PageTemplate.Aside</code> and{' '}
+          <code>PageTemplate.Footer</code>. A header-and-main shell works on its own; only{' '}
           <code>Main</code> is expected in every shell.
         </li>
         <li>
@@ -49,17 +49,17 @@ import * as AppShellStories from './AppShell.stories';
   fr={
     <>
       <p>
-        Utilisez <strong>AppShell</strong> pour encadrer une page : il dispose un en-tête,
-        une navigation principale, le contenu principal, un aside complémentaire et un
-        pied de page, chacun rendu dans son propre élément de repère. Il n'a pas de
+        Utilisez <strong>PageTemplate</strong> pour encadrer une page : il dispose un
+        en-tête, une navigation principale, le contenu principal, un aside complémentaire
+        et un pied de page, chacun rendu dans son propre élément de repère. Il n'a pas de
         contenu propre — placez un Container, un Grid ou autre chose dans chaque région.
       </p>
       <ul>
         <li>
           <strong>Régions optionnelles.</strong> Composez seulement les parties voulues :{' '}
-          <code>AppShell.Header</code>, <code>AppShell.Navbar</code>,{' '}
-          <code>AppShell.Main</code>, <code>AppShell.Aside</code> et{' '}
-          <code>AppShell.Footer</code>. Un shell en-tête + contenu suffit ; seul{' '}
+          <code>PageTemplate.Header</code>, <code>PageTemplate.Navbar</code>,{' '}
+          <code>PageTemplate.Main</code>, <code>PageTemplate.Aside</code> et{' '}
+          <code>PageTemplate.Footer</code>. Un shell en-tête + contenu suffit ; seul{' '}
           <code>Main</code> est attendu dans chaque shell.
         </li>
         <li>
@@ -88,7 +88,7 @@ import * as AppShellStories from './AppShell.stories';
   }
 />
 
-<Canvas of={AppShellStories.Playground} />
+<Canvas of={PageTemplateStories.Playground} />
 
 ### <Localized en="Minimal shell" fr="Shell minimal" />
 
@@ -107,11 +107,11 @@ import * as AppShellStories from './AppShell.stories';
   }
 />
 
-<Canvas of={AppShellStories.MinimalShell} />
+<Canvas of={PageTemplateStories.MinimalShell} />
 
 ### <Localized en="Every region" fr="Toutes les régions" />
 
-<Canvas of={AppShellStories.WithAside} />
+<Canvas of={PageTemplateStories.WithAside} />
 
 ### <Localized en="Props" fr="Propriétés" />
 
@@ -122,22 +122,23 @@ import * as AppShellStories from './AppShell.stories';
     <>
       <h3>Overriding</h3>
       <p>
-        AppShell follows the system override contract (see <code>docs/overrides.md</code>
+        PageTemplate follows the system override contract (see{' '}
+        <code>docs/overrides.md</code>
         ). Restyle it through this public surface — never through the hashed CSS-Module
         class names.
       </p>
       <ul>
         <li>
-          <strong>Component variables</strong>: <code>--omnia-appshell-bg</code> (frame
-          background), <code>--omnia-appshell-navbar-width</code> and{' '}
-          <code>--omnia-appshell-aside-width</code> (the side-column widths from{' '}
+          <strong>Component variables</strong>: <code>--omnia-page-template-bg</code>{' '}
+          (frame background), <code>--omnia-page-template-navbar-width</code> and{' '}
+          <code>--omnia-page-template-aside-width</code> (the side-column widths from{' '}
           <code>48em</code>).
         </li>
         <li>
           <strong>
             <code>data-scope</code>
           </strong>
-          : <code>appshell</code>.
+          : <code>page-template</code>.
         </li>
         <li>
           <strong>
@@ -154,22 +155,22 @@ import * as AppShellStories from './AppShell.stories';
     <>
       <h3>Personnalisation</h3>
       <p>
-        AppShell suit le contrat de personnalisation du système (voir{' '}
+        PageTemplate suit le contrat de personnalisation du système (voir{' '}
         <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
         via les noms de classes CSS-Module hachés.
       </p>
       <ul>
         <li>
-          <strong>Variables de composant</strong> : <code>--omnia-appshell-bg</code> (fond
-          du cadre), <code>--omnia-appshell-navbar-width</code> et{' '}
-          <code>--omnia-appshell-aside-width</code> (largeurs des colonnes latérales à
-          partir de <code>48em</code>).
+          <strong>Variables de composant</strong> : <code>--omnia-page-template-bg</code>{' '}
+          (fond du cadre), <code>--omnia-page-template-navbar-width</code> et{' '}
+          <code>--omnia-page-template-aside-width</code> (largeurs des colonnes latérales
+          à partir de <code>48em</code>).
         </li>
         <li>
           <strong>
             <code>data-scope</code>
           </strong>{' '}
-          : <code>appshell</code>.
+          : <code>page-template</code>.
         </li>
         <li>
           <strong>
@@ -184,4 +185,4 @@ import * as AppShellStories from './AppShell.stories';
   }
 />
 
-<Canvas of={AppShellStories.Overridden} />
+<Canvas of={PageTemplateStories.Overridden} />

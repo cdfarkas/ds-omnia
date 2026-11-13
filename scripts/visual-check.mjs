@@ -189,10 +189,10 @@ const stories = [
   { id: 'molecules-stat--several', name: 'stat-several' },
   { id: 'molecules-stat--vertical', name: 'stat-vertical' },
   { id: 'molecules-stat--overridden', name: 'stat-overridden' },
-  { id: 'templates-appshell--playground', name: 'app-shell-playground' },
-  { id: 'templates-appshell--minimal-shell', name: 'app-shell-minimal-shell' },
-  { id: 'templates-appshell--with-aside', name: 'app-shell-with-aside' },
-  { id: 'templates-appshell--overridden', name: 'app-shell-overridden' },
+  { id: 'templates-pagetemplate--playground', name: 'page-template-playground' },
+  { id: 'templates-pagetemplate--minimal-shell', name: 'page-template-minimal-shell' },
+  { id: 'templates-pagetemplate--with-aside', name: 'page-template-with-aside' },
+  { id: 'templates-pagetemplate--overridden', name: 'page-template-overridden' },
 ];
 
 const filter = process.argv[2];
@@ -439,26 +439,26 @@ if (!filter || filter.includes('stack')) {
   }
   await page.setViewportSize({ width: 440, height: 220 });
 }
-if (!filter || filter.includes('appshell')) {
+if (!filter || filter.includes('pagetemplate')) {
   await page.setViewportSize({ width: 1000, height: 600 });
   for (const m of modes) {
     await shoot(
-      'templates-appshell--with-aside',
-      'app-shell-with-aside',
+      'templates-pagetemplate--with-aside',
+      'page-template-with-aside',
       m,
       'en',
       `${m.key}__w1000`,
     );
     await shoot(
-      'templates-appshell--playground',
-      'app-shell-playground',
+      'templates-pagetemplate--playground',
+      'page-template-playground',
       m,
       'en',
       `${m.key}__w1000`,
     );
     await shoot(
-      'templates-appshell--overridden',
-      'app-shell-overridden',
+      'templates-pagetemplate--overridden',
+      'page-template-overridden',
       m,
       'en',
       `${m.key}__w1000`,

@@ -23,6 +23,10 @@ A component only ever imports from its own layer or a **lower** one: molecules u
 use molecules and atoms, templates use everything. Never upward, never sideways within a layer
 without a deliberate reason.
 
+Template-tier components carry a `Template` suffix (`PageTemplate`, `DashboardTemplate`) so a page
+scaffold is self-describing at the call site; atoms, molecules and organisms stay unsuffixed. See
+ADR 0035 (extends the naming convention, ADR 0024).
+
 ### Co-location
 
 Everything a component needs sits in one folder, `components/<layer>/<Name>/`:

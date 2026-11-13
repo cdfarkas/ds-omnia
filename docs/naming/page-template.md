@@ -1,7 +1,11 @@
-# Naming study — page scaffold / app shell
+# Naming study — page scaffold (PageTemplate)
 
 Date: 2026-11-10. Method: official docs fetched during this study. "Not confirmed" means the page
 did not load or did not mention it, not that the system lacks it.
+
+> **Final name: `PageTemplate`.** The 2026-11-10 study below chose `AppShell`; the owner later
+> settled the template-tier naming convention and renamed it. See **Decision 2026-11-12** at the
+> foot of this file and ADR 0035. The survey is kept as prior art.
 
 ## Question
 
@@ -104,13 +108,28 @@ reach for `Sider` / `Content` / `Pane` first. That is a discoverability cost, no
 the landmark mapping is the stronger signal, and the compound API makes the available regions visible
 on the `AppShell` namespace.
 
-## Decision
+## Decision 2026-11-10 (superseded by Decision 2026-11-12)
 
 Option A, chosen by the owner for Omnia: container `AppShell` (template tier), with compound regions
 `AppShell.Header` (`<header>`), `AppShell.Navbar` (`<nav>`), `AppShell.Main` (`<main>`),
 `AppShell.Aside` (`<aside>`) and `AppShell.Footer` (`<footer>`). Regions are opt-in; only `Main` is
 expected in every shell, and a skip link to `Main` is rendered first. No custom props are added, so
 ADR 0015 is satisfied with no renames.
+
+## Decision 2026-11-12
+
+The owner renamed the component from `AppShell` to **`PageTemplate`**. This supersedes the
+2026-11-10 decision on the container name only; everything else it settled stands — the five compound
+regions (`PageTemplate.Header` `<header>`, `.Navbar` `<nav>`, `.Main` `<main>`, `.Aside` `<aside>`,
+`.Footer` `<footer>`), the opt-in regions with `Main` always expected, the skip link to `Main`, and
+the no-custom-props surface that satisfies ADR 0015.
+
+Reason: template-tier components now carry an explicit `XxxxTemplate` suffix, so the page-scaffold
+nature is visible at the consumer call site. Under that convention the base name is `Page`, which
+gives `PageTemplate`. `AppShellTemplate` was rejected as redundant — "app shell" and "template" name
+the same thing twice. The suffix convention and this rename are recorded in ADR 0035. The region
+names are unchanged, so Mantine's `AppShell` vocabulary (`Navbar`, `Aside`) still maps one-to-one
+onto the HTML landmarks, exactly as the survey found.
 
 ## Sources
 

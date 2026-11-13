@@ -1,13 +1,13 @@
-import { join, type AppShellRegionProps } from '../internal';
+import { join, type PageTemplateRegionProps } from '../internal';
 import styles from './Header.module.css';
 
 /** The shell's banner region — renders a `<header>`. */
-export function AppShellHeader({ className, ref, ...rest }: AppShellRegionProps) {
+export function PageTemplateHeader({ className, ref, ...rest }: PageTemplateRegionProps) {
   return (
     <header
       ref={ref}
       className={join(styles.header, className)}
-      data-scope="appshell"
+      data-scope="page-template"
       data-part="header"
       {...rest}
     />

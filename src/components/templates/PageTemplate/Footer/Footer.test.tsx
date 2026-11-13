@@ -2,7 +2,7 @@ import { act, createRef } from 'react';
 import { createRoot } from 'react-dom/client';
 import { test } from 'vitest';
 import { expect } from 'storybook/test';
-import { AppShellFooter } from './Footer';
+import { PageTemplateFooter } from './Footer';
 
 test('renders a <footer> landmark, merges className and forwards ref', async () => {
   const container = document.createElement('div');
@@ -10,10 +10,10 @@ test('renders a <footer> landmark, merges className and forwards ref', async () 
   const root = createRoot(container);
   const ref = createRef<HTMLElement>();
   await act(async () => {
-    root.render(<AppShellFooter ref={ref} className="custom" data-testid="f" />);
+    root.render(<PageTemplateFooter ref={ref} className="custom" data-testid="f" />);
   });
   const el = container.querySelector(
-    '[data-scope="appshell"][data-part="footer"]',
+    '[data-scope="page-template"][data-part="footer"]',
   ) as HTMLElement;
   expect(el.tagName).toBe('FOOTER');
   expect(el).toBe(ref.current);

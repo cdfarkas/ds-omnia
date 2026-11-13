@@ -10,7 +10,7 @@
       'aside' auto
       'footer' auto
       / 1fr;
-    background-color: var(--omnia-appshell-bg, var(--omnia-color-bg-surface));
+    background-color: var(--omnia-page-template-bg, var(--omnia-color-bg-surface));
     color: var(--omnia-color-text-primary);
   }
 
@@ -46,8 +46,8 @@
         'header header header' auto
         'navbar main   aside' minmax(0, 1fr)
         'footer footer footer' auto
-        / var(--omnia-appshell-navbar-width, auto) minmax(0, 1fr)
-        var(--omnia-appshell-aside-width, auto);
+        / var(--omnia-page-template-navbar-width, auto) minmax(0, 1fr)
+        var(--omnia-page-template-aside-width, auto);
     }
   }
 }
