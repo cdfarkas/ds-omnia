@@ -195,6 +195,17 @@ const stories = [
   { id: 'organisms-appheader--brand-only', name: 'app-header-brand-only' },
   { id: 'organisms-appheader--narrow', name: 'app-header-narrow' },
   { id: 'organisms-appheader--overridden', name: 'app-header-overridden' },
+  { id: 'organisms-pageheader--default', name: 'page-header-default' },
+  { id: 'organisms-pageheader--title-only', name: 'page-header-title-only' },
+  {
+    id: 'organisms-pageheader--without-breadcrumb',
+    name: 'page-header-without-breadcrumb',
+  },
+  { id: 'organisms-pageheader--in-page-template', name: 'page-header-in-page-template' },
+  {
+    id: 'organisms-pageheader--long-title-narrow',
+    name: 'page-header-long-title-narrow',
+  },
   { id: 'templates-pagetemplate--playground', name: 'page-template-playground' },
   { id: 'templates-pagetemplate--minimal-shell', name: 'page-template-minimal-shell' },
   { id: 'templates-pagetemplate--with-aside', name: 'page-template-with-aside' },
@@ -475,6 +486,26 @@ if (!filter || filter.includes('appheader')) {
       'en',
       `focus-${m.key}`,
       true,
+    );
+  }
+  await page.setViewportSize({ width: 440, height: 220 });
+}
+if (!filter || filter.includes('pageheader')) {
+  await page.setViewportSize({ width: 1000, height: 400 });
+  for (const m of modes) {
+    await shoot(
+      'organisms-pageheader--default',
+      'page-header-default',
+      m,
+      'en',
+      `${m.key}__w1000`,
+    );
+    await shoot(
+      'organisms-pageheader--in-page-template',
+      'page-header-in-page-template',
+      m,
+      'en',
+      `${m.key}__w1000`,
     );
   }
   await page.setViewportSize({ width: 440, height: 220 });

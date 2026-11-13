@@ -1944,6 +1944,86 @@
       ]
     },
     {
+      "name": "PageHeader",
+      "description": "Title block at the top of a page's content, placed once inside `PageTemplate.Main`. Renders no landmark. `PageHeader.Breadcrumb` (a direct child, any node) sits above a `SectionHeading` that holds `PageHeader.Title` (an `<h1>` by default), `PageHeader.Description` and `PageHeader.Actions`.",
+      "source": "src/components/organisms/PageHeader/PageHeader.tsx",
+      "props": [
+        {
+          "name": "children",
+          "type": "ReactNode",
+          "required": true
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLDivElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [],
+      "parts": [
+        {
+          "name": "PageHeader.Breadcrumb",
+          "props": [
+            {
+              "name": "children",
+              "type": "ReactNode",
+              "required": true
+            },
+            {
+              "name": "ref",
+              "type": "Ref<HTMLDivElement>",
+              "required": false
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "PageHeader.Title",
+          "props": [
+            {
+              "name": "level",
+              "type": "HeadingProps['level']",
+              "required": false,
+              "description": "The document level of the title; a page title is an `<h1>` unless you say otherwise."
+            }
+          ],
+          "variantAxes": []
+        },
+        {
+          "name": "PageHeader.Description",
+          "props": [],
+          "variantAxes": []
+        },
+        {
+          "name": "PageHeader.Actions",
+          "props": [],
+          "variantAxes": []
+        }
+      ],
+      "stories": [
+        {
+          "name": "Default",
+          "id": "organisms-pageheader--default"
+        },
+        {
+          "name": "TitleOnly",
+          "id": "organisms-pageheader--title-only"
+        },
+        {
+          "name": "WithoutBreadcrumb",
+          "id": "organisms-pageheader--without-breadcrumb"
+        },
+        {
+          "name": "InPageTemplate",
+          "id": "organisms-pageheader--in-page-template"
+        },
+        {
+          "name": "LongTitleNarrow",
+          "id": "organisms-pageheader--long-title-narrow"
+        }
+      ]
+    },
+    {
       "name": "PageTemplate",
       "description": "Generic slot-based page scaffold: a CSS-grid frame whose regions — `PageTemplate.Header`, `PageTemplate.Navbar`, `PageTemplate.Main`, `PageTemplate.Aside`, `PageTemplate.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.",
       "source": "src/components/templates/PageTemplate/PageTemplate.tsx",
