@@ -1,0 +1,1 @@
+export { AppHeaderBrand } from './Brand';

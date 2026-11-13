@@ -413,6 +413,36 @@ Source: `src/components/molecules/Stat/Stat.tsx`
 
 Stories: `molecules-stat--playground`, `molecules-stat--without-hint`, `molecules-stat--several`, `molecules-stat--vertical`, `molecules-stat--overridden`, `molecules-stat--dark-neutral`, `molecules-stat--pixel-light`, `molecules-stat--pixel-dark`
 
+## AppHeader
+
+Global app header: `AppHeader.Brand` at the start, `AppHeader.Nav` (holding a `NavBar`) and `AppHeader.Actions` (switchers, buttons) at the end, wrapping onto new lines when the row runs out of width. Every part is a plain `<div>`: mount it inside `PageTemplate.Header`, which renders the one `<header>` banner landmark. Consumes semantic tokens only.
+
+Source: `src/components/organisms/AppHeader/AppHeader.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### AppHeader.Brand
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### AppHeader.Nav
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+### AppHeader.Actions
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `ref` | `Ref<HTMLDivElement>` | no | — | — |
+
+Stories: `organisms-appheader--default`, `organisms-appheader--in-page-template`, `organisms-appheader--brand-only`, `organisms-appheader--narrow`, `organisms-appheader--overridden`
+
 ## PageTemplate
 
 Generic slot-based page scaffold: a CSS-grid frame whose regions — `PageTemplate.Header`, `PageTemplate.Navbar`, `PageTemplate.Main`, `PageTemplate.Aside`, `PageTemplate.Footer` — render the matching landmark element and are all opt-in except `Main`. Regions stack on a narrow viewport and lay `Navbar | Main | Aside` side by side from `48em`. Carries no content of its own; a skip link to `Main` is rendered first. Consumes semantic tokens only and reskins across the theme and skin axes.

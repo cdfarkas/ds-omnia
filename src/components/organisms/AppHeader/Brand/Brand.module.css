@@ -1,0 +1,16 @@
+@layer components {
+  .brand {
+    font-family: var(--omnia-font-display);
+    font-size: 1.25rem;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  /* The brand is display type, so the pixel skin sets it in the pixel face like headings. */
+  :global([data-skin='pixel']) .brand {
+    font-family: var(--omnia-font-pixel);
+    font-size: 1rem;
+    line-height: 1.4;
+    -webkit-font-smoothing: none;
+  }
+}
