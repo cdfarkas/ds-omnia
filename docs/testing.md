@@ -64,16 +64,16 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
   theme/skin. `.storybook/axe-incomplete.test.ts` (Vitest `node` project) fails if it stops
   throwing. Fix the markup or styles so axe can decide; never disable the rule.
 - axe does not check **SC 1.4.11 non-text contrast**, so `src/styles/contrast.test.ts` resolves the
-  semantic tokens (via `getComputedStyle`) in all four theme×skin modes and asserts boundaries and
+  semantic tokens (via `getComputedStyle`) in all six theme×skin modes and asserts boundaries and
   indicators (`border-strong`, `border-default`, `border-focus`, `danger-border`) reach 3:1 on
   `bg-surface`, `text-on-accent` (the Checkbox mark and the Switch thumb when on) reaches 3:1 on `accent` and `accent-hover`,
   and `text-muted` and `text-placeholder` reach 4.5:1 on `bg-surface`, `bg-subtle` and
   `bg-disabled`. It renders no component, but unlike other `*.test.ts` it reads the DOM's computed
   CSS. A component that draws a boundary or indicator with a new token adds its pair there.
 - Enforced across **every theme and every skin — pixel included**. `vitest.config.ts` defines one
-  Vitest project per theme×skin mode (`storybook:light-neutral`, `storybook:dark-neutral`,
-  `storybook:light-pixel`, `storybook:dark-pixel`) through `storybookTest({ initialGlobals })`, so
-  every story — render, `play`, axe and the incomplete check — runs in all four modes; a story's own
+  Vitest project per theme×skin mode (`storybook:light-neutral`, `storybook:dark-neutral`, `storybook:light-pixel`, `storybook:dark-pixel`,
+  `storybook:light-brutalist`, `storybook:dark-brutalist`) through `storybookTest({ initialGlobals })`, so
+  every story — render, `play`, axe and the incomplete check — runs in all six modes; a story's own
   `globals` still override the project's (ADR 0028). A `play` must therefore pass in every mode. Run
   one mode with `pnpm vitest run --project storybook:dark-pixel`. The pixel palette is chosen to
   meet the 4.5:1 contrast ratio so it passes the same gate as the neutral skin; it is not exempt.
@@ -87,7 +87,7 @@ same `theme` / `skin` / `locale` setup the Storybook preview applies.
 Automated tests prove behaviour and derive contrast from CSS, but they do not prove the
 design *looks* right, and axe does not cover WCAG 2.4.7 (focus visible). So a fourth,
 **agent-run** gate sits before human review: `pnpm build-storybook` then
-`pnpm visual-check` screenshots every state in all four theme×skin modes, and the agent
+`pnpm visual-check` screenshots every state in all six theme×skin modes, and the agent
 reads the images and records a per-mode PASS / CONCERNS verdict. It never loosens a WCAG
 threshold to pass. See `docs/visual-validation.md`.
 
