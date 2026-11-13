@@ -1,0 +1,52 @@
+# Deletes pr-<N>/ folders from the orphan `pr-assets` branch once their PR has been closed for
+# RETENTION_DAYS, then squashes the branch to one orphan commit — the repo's only force-push.
+name: Clean up PR assets
+
+on:
+  schedule:
+    - cron: '17 3 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: read
+
+concurrency:
+  group: pr-assets
+  cancel-in-progress: false
+
+env:
+  RETENTION_DAYS: 14
+
+jobs:
+  cleanup:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Prune expired PR folders
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+        run: |
+          if ! git ls-remote --exit-code --heads origin pr-assets; then
+            echo "No pr-assets branch, nothing to clean."
+            exit 0
+          fi
+          git fetch --no-tags origin pr-assets
+          sha=$(git rev-parse FETCH_HEAD)
+          git worktree add --detach "$RUNNER_TEMP/assets" "$sha"
+          cd "$RUNNER_TEMP/assets"
+
+          expired=$("$GITHUB_WORKSPACE/scripts/pr-assets-expired.sh")
+          if [ -z "$expired" ]; then
+            echo "Nothing older than $RETENTION_DAYS days."
+            exit 0
+          fi
+          echo "Deleting: $expired"
+          xargs git rm -r --quiet <<<"$expired"
+
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          commit=$(git commit-tree "$(git write-tree)" -m "pr-assets: prune PRs closed over $RETENTION_DAYS days ago")
+          git push --force-with-lease="refs/heads/pr-assets:$sha" origin "$commit:refs/heads/pr-assets"
