@@ -113,11 +113,12 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 /**
- * Brand, primary navigation and the theme and language switchers. Keyboard focus runs brand →
- * links → switchers; the theme switcher repaints the page.
+ * Brand, primary navigation and the theme and language switchers. From `48em` keyboard focus runs
+ * brand → links → switchers; the theme switcher repaints the page.
  */
 export const Default: Story = {
   tags: ['interaction'],
+  globals: { viewport: { value: 'desktop', isRotated: false } },
   parameters: { selfThemed: true, docs: { source: { code: barCode } } },
   render: (_args, { globals }) => (
     <LiveProvider globals={globals}>
@@ -178,14 +179,50 @@ export const BrandOnly: Story = {
   ),
 };
 
-/** At 320 CSS px the parts wrap onto new lines instead of overflowing. */
+const mobile = { viewport: { value: 'mobile1', isRotated: false } };
+
+/**
+ * Below `48em` the brand stays and a Menu button shows or hides a panel with the navigation and
+ * the actions. Escape closes it and returns focus to the button; following a link closes it too.
+ */
 export const Narrow: Story = {
+  tags: ['interaction'],
+  globals: mobile,
   parameters: { docs: { source: { code: barCode } } },
-  render: () => (
-    <div style={{ inlineSize: '320px', maxInlineSize: '100%' }}>
-      <Bar />
-    </div>
-  ),
+  render: () => <Bar />,
+  play: async ({ canvas, step, globals }) => {
+    const menu = canvas.getByRole('button', {
+      name: t('appHeader.menu', (globals.locale ?? 'en') as Locale),
+    });
+    await step('the menu button opens the panel', async () => {
+      await expect(menu).toHaveAttribute('aria-expanded', 'false');
+      await expect(canvas.queryByRole('navigation')).toBeNull();
+      await userEvent.click(menu);
+      await expect(menu).toHaveAttribute('aria-expanded', 'true');
+      await expect(canvas.getByRole('navigation')).toBeVisible();
+    });
+    await step(
+      'Tab moves into the panel, Escape closes it back on the button',
+      async () => {
+        await userEvent.tab();
+        await expect(canvas.getByRole('link', { name: 'Work' })).toHaveFocus();
+        await userEvent.keyboard('{Escape}');
+        await expect(menu).toHaveAttribute('aria-expanded', 'false');
+        await expect(menu).toHaveFocus();
+        menu.blur();
+      },
+    );
+  },
+};
+
+/** The mobile menu open: navigation first, then the switchers, under the brand row. */
+export const MenuOpen: Story = {
+  globals: mobile,
+  parameters: { docs: { source: { code: barCode } } },
+  render: () => <Bar />,
+  play: async ({ canvas }) => {
+    await userEvent.click(canvas.getByRole('button', { expanded: false }));
+  },
 };
 
 /**

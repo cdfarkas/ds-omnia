@@ -415,7 +415,7 @@ Stories: `molecules-stat--playground`, `molecules-stat--without-hint`, `molecule
 
 ## AppHeader
 
-Global app header: `AppHeader.Brand` at the start, `AppHeader.Nav` (holding a `NavBar`) and `AppHeader.Actions` (switchers, buttons) at the end, wrapping onto new lines when the row runs out of width. Every part is a plain `<div>`: mount it inside `PageTemplate.Header`, which renders the one `<header>` banner landmark. Consumes semantic tokens only.
+Global app header: `AppHeader.Brand` at the start, `AppHeader.Nav` (holding a `NavBar`) and `AppHeader.Actions` (switchers, buttons) at the end. Below `48em` the brand stays and a "Menu" disclosure button shows or hides a panel holding every other part; Escape, a link, an outside click or focus leaving the header closes it. `AppHeader.Brand` must be a direct child to stay outside that panel. Every part is a plain `<div>`: mount it inside `PageTemplate.Header`, which renders the one `<header>` banner landmark.
 
 Source: `src/components/organisms/AppHeader/AppHeader.tsx`
 
@@ -441,7 +441,7 @@ Source: `src/components/organisms/AppHeader/AppHeader.tsx`
 | --- | --- | --- | --- | --- |
 | `ref` | `Ref<HTMLDivElement>` | no | — | — |
 
-Stories: `organisms-appheader--default`, `organisms-appheader--in-page-template`, `organisms-appheader--brand-only`, `organisms-appheader--narrow`, `organisms-appheader--overridden`
+Stories: `organisms-appheader--default`, `organisms-appheader--in-page-template`, `organisms-appheader--brand-only`, `organisms-appheader--narrow`, `organisms-appheader--menu-open`, `organisms-appheader--overridden`
 
 ## PageHeader
 

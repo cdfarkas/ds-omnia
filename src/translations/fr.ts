@@ -19,6 +19,7 @@ export const fr: Record<keyof typeof en, string> = {
   'formField.valueMissing.checkbox': 'Cochez cette case pour continuer.',
   'formField.valueMissing.switch': 'Activez cette option pour continuer.',
   'languageSwitcher.label': 'Langue',
+  'appHeader.menu': 'Menu',
   'link.external': '(ouvre dans une nouvelle fenêtre)',
   'navBar.label': 'Principale',
   'spinner.loading': 'Chargement',

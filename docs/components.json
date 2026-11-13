@@ -1875,7 +1875,7 @@
     },
     {
       "name": "AppHeader",
-      "description": "Global app header: `AppHeader.Brand` at the start, `AppHeader.Nav` (holding a `NavBar`) and `AppHeader.Actions` (switchers, buttons) at the end, wrapping onto new lines when the row runs out of width. Every part is a plain `<div>`: mount it inside `PageTemplate.Header`, which renders the one `<header>` banner landmark. Consumes semantic tokens only.",
+      "description": "Global app header: `AppHeader.Brand` at the start, `AppHeader.Nav` (holding a `NavBar`) and `AppHeader.Actions` (switchers, buttons) at the end. Below `48em` the brand stays and a \"Menu\" disclosure button shows or hides a panel holding every other part; Escape, a link, an outside click or focus leaving the header closes it. `AppHeader.Brand` must be a direct child to stay outside that panel. Every part is a plain `<div>`: mount it inside `PageTemplate.Header`, which renders the one `<header>` banner landmark.",
       "source": "src/components/organisms/AppHeader/AppHeader.tsx",
       "props": [
         {
@@ -1936,6 +1936,10 @@
         {
           "name": "Narrow",
           "id": "organisms-appheader--narrow"
+        },
+        {
+          "name": "MenuOpen",
+          "id": "organisms-appheader--menu-open"
         },
         {
           "name": "Overridden",

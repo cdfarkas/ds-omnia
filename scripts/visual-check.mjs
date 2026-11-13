@@ -194,6 +194,7 @@ const stories = [
   { id: 'organisms-appheader--in-page-template', name: 'app-header-in-page-template' },
   { id: 'organisms-appheader--brand-only', name: 'app-header-brand-only' },
   { id: 'organisms-appheader--narrow', name: 'app-header-narrow' },
+  { id: 'organisms-appheader--menu-open', name: 'app-header-menu-open' },
   { id: 'organisms-appheader--overridden', name: 'app-header-overridden' },
   { id: 'organisms-pageheader--default', name: 'page-header-default' },
   { id: 'organisms-pageheader--title-only', name: 'page-header-title-only' },

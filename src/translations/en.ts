@@ -16,6 +16,7 @@ export const en = {
   'formField.valueMissing.checkbox': 'Check this box to continue.',
   'formField.valueMissing.switch': 'Turn this on to continue.',
   'languageSwitcher.label': 'Language',
+  'appHeader.menu': 'Menu',
   'link.external': '(opens in new window)',
   'navBar.label': 'Main',
   'spinner.loading': 'Loading',

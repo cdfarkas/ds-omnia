@@ -35,9 +35,11 @@ import * as AppHeaderStories from './AppHeader.stories';
           landmark either.
         </li>
         <li>
-          <strong>Wraps, never overflows.</strong> When the row runs out of width, the
-          navigation and the actions move onto their own lines, down to 320 CSS px. There
-          is no collapsing mobile menu yet.
+          <strong>A menu button on small screens.</strong> Below <code>48em</code> (768
+          px) the brand stays and a <strong>Menu</strong> button shows or hides a panel
+          with the navigation and the actions; Escape, a link, a tap outside or focus
+          leaving the header closes it, and Escape returns focus to the button. From{' '}
+          <code>48em</code> everything sits on one row, no button.
         </li>
       </ul>
     </>
@@ -70,9 +72,11 @@ import * as AppHeaderStories from './AppHeader.stories';
           aucun repère de navigation.
         </li>
         <li>
-          <strong>Passe à la ligne, ne déborde jamais.</strong> Quand la ligne manque de
-          largeur, la navigation et les actions passent sur leur propre ligne, jusqu'à 320
-          px CSS. Pas encore de menu mobile repliable.
+          <strong>Un bouton de menu sur petit écran.</strong> Sous <code>48em</code> (768
+          px), la marque reste et un bouton <strong>Menu</strong> affiche ou masque un
+          panneau avec la navigation et les actions ; Échap, un lien, un appui en dehors
+          ou un focus qui quitte l'en-tête le ferme, et Échap rend le focus au bouton. À
+          partir de <code>48em</code>, tout tient sur une ligne, sans bouton.
         </li>
       </ul>
     </>
@@ -108,6 +112,8 @@ import * as AppHeaderStories from './AppHeader.stories';
 
 <Canvas of={AppHeaderStories.Narrow} />
 
+<Canvas of={AppHeaderStories.MenuOpen} />
+
 ### <Localized en="Props" fr="Propriétés" />
 
 <Controls />
@@ -138,8 +144,10 @@ import * as AppHeaderStories from './AppHeader.stories';
             <code>data-part</code>
           </strong>
           : <code>root</code> (where your <code>className</code> merges),{' '}
-          <code>brand</code>, <code>nav</code>, <code>actions</code>. The navigation keeps
-          its own <code>navbar</code> scope.
+          <code>brand</code>, <code>panel</code> (the mobile menu, with{' '}
+          <code>data-state</code> <code>open</code> or <code>closed</code>),{' '}
+          <code>nav</code>, <code>actions</code>. The navigation keeps its own{' '}
+          <code>navbar</code> scope.
         </li>
       </ul>
     </>
@@ -169,8 +177,10 @@ import * as AppHeaderStories from './AppHeader.stories';
             <code>data-part</code>
           </strong>{' '}
           : <code>root</code> (où votre <code>className</code> fusionne),{' '}
-          <code>brand</code>, <code>nav</code>, <code>actions</code>. La navigation garde
-          son propre scope <code>navbar</code>.
+          <code>brand</code>, <code>panel</code> (le menu mobile, avec{' '}
+          <code>data-state</code> <code>open</code> ou <code>closed</code>),{' '}
+          <code>nav</code>, <code>actions</code>. La navigation garde son propre scope{' '}
+          <code>navbar</code>.
         </li>
       </ul>
     </>
