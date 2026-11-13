@@ -1,0 +1,180 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as AppHeaderStories from './AppHeader.stories';
+
+<Meta of={AppHeaderStories} />
+
+# AppHeader
+
+<Localized
+  en={
+    <>
+      <p>
+        <strong>
+          AppHeader goes inside <code>PageTemplate.Header</code> and renders no landmark
+          of its own.
+        </strong>
+      </p>
+      <p>
+        Use it for the global bar at the top of every page: the brand at the start, the
+        primary navigation, and the actions (theme and language switchers, buttons) at the
+        end.
+      </p>
+      <ul>
+        <li>
+          <strong>Three opt-in parts.</strong> <code>AppHeader.Brand</code> holds your
+          logo or name (put a <code>Link</code> to the home page inside),{' '}
+          <code>AppHeader.Nav</code> holds a <code>NavBar</code>, and{' '}
+          <code>AppHeader.Actions</code> holds the switchers and buttons.
+        </li>
+        <li>
+          <strong>No second banner.</strong> Every part is a plain{' '}
+          <code>&lt;div&gt;</code>. <code>PageTemplate.Header</code> already renders the
+          page's one <code>&lt;header&gt;</code>, and <code>NavBar</code> its labelled{' '}
+          <code>&lt;nav&gt;</code>, so <code>AppHeader.Nav</code> adds no extra navigation
+          landmark either.
+        </li>
+        <li>
+          <strong>Wraps, never overflows.</strong> When the row runs out of width, the
+          navigation and the actions move onto their own lines, down to 320 CSS px. There
+          is no collapsing mobile menu yet.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        <strong>
+          AppHeader se place dans <code>PageTemplate.Header</code> et ne rend aucun repère
+          propre.
+        </strong>
+      </p>
+      <p>
+        Utilisez-le pour la barre globale en haut de chaque page : la marque au début, la
+        navigation principale, et les actions (sélecteurs de thème et de langue, boutons)
+        à la fin.
+      </p>
+      <ul>
+        <li>
+          <strong>Trois parties optionnelles.</strong> <code>AppHeader.Brand</code> porte
+          votre logo ou votre nom (placez-y un <code>Link</code> vers l'accueil),{' '}
+          <code>AppHeader.Nav</code> porte un <code>NavBar</code>, et{' '}
+          <code>AppHeader.Actions</code> porte les sélecteurs et les boutons.
+        </li>
+        <li>
+          <strong>Pas de second banner.</strong> Chaque partie est un simple{' '}
+          <code>&lt;div&gt;</code>. <code>PageTemplate.Header</code> rend déjà l'unique{' '}
+          <code>&lt;header&gt;</code> de la page, et <code>NavBar</code> son{' '}
+          <code>&lt;nav&gt;</code> étiqueté : <code>AppHeader.Nav</code> n'ajoute donc
+          aucun repère de navigation.
+        </li>
+        <li>
+          <strong>Passe à la ligne, ne déborde jamais.</strong> Quand la ligne manque de
+          largeur, la navigation et les actions passent sur leur propre ligne, jusqu'à 320
+          px CSS. Pas encore de menu mobile repliable.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={AppHeaderStories.Default} />
+
+### <Localized en="Inside the page template" fr="Dans le gabarit de page" />
+
+<Localized
+  en={
+    <p>
+      Mount it in <code>PageTemplate.Header</code>: the page then exposes exactly one
+      banner landmark, which contains the header.
+    </p>
+  }
+  fr={
+    <p>
+      Montez-le dans <code>PageTemplate.Header</code> : la page expose alors un seul
+      repère banner, qui contient l'en-tête.
+    </p>
+  }
+/>
+
+<Canvas of={AppHeaderStories.InPageTemplate} />
+
+### <Localized en="Brand only" fr="Marque seule" />
+
+<Canvas of={AppHeaderStories.BrandOnly} />
+
+### <Localized en="Narrow screen" fr="Écran étroit" />
+
+<Canvas of={AppHeaderStories.Narrow} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        AppHeader follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-app-header-bg</code>,{' '}
+          <code>--omnia-app-header-border-color</code>,{' '}
+          <code>--omnia-app-header-padding</code> and <code>--omnia-app-header-gap</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>app-header</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code> (where your <code>className</code> merges),{' '}
+          <code>brand</code>, <code>nav</code>, <code>actions</code>. The navigation keeps
+          its own <code>navbar</code> scope.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        AppHeader suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-app-header-bg</code>,{' '}
+          <code>--omnia-app-header-border-color</code>,{' '}
+          <code>--omnia-app-header-padding</code> et <code>--omnia-app-header-gap</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>app-header</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code> (où votre <code>className</code> fusionne),{' '}
+          <code>brand</code>, <code>nav</code>, <code>actions</code>. La navigation garde
+          son propre scope <code>navbar</code>.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={AppHeaderStories.Overridden} />

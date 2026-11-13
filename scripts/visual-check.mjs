@@ -189,6 +189,11 @@ const stories = [
   { id: 'molecules-stat--several', name: 'stat-several' },
   { id: 'molecules-stat--vertical', name: 'stat-vertical' },
   { id: 'molecules-stat--overridden', name: 'stat-overridden' },
+  { id: 'organisms-appheader--default', name: 'app-header-default' },
+  { id: 'organisms-appheader--in-page-template', name: 'app-header-in-page-template' },
+  { id: 'organisms-appheader--brand-only', name: 'app-header-brand-only' },
+  { id: 'organisms-appheader--narrow', name: 'app-header-narrow' },
+  { id: 'organisms-appheader--overridden', name: 'app-header-overridden' },
   { id: 'templates-pagetemplate--playground', name: 'page-template-playground' },
   { id: 'templates-pagetemplate--minimal-shell', name: 'page-template-minimal-shell' },
   { id: 'templates-pagetemplate--with-aside', name: 'page-template-with-aside' },
@@ -436,6 +441,27 @@ if (!filter || filter.includes('stack')) {
       `${m.key}__w1000`,
     );
     await shoot('atoms-stack--alignment', 'stack-alignment', m, 'en', `${m.key}__w1000`);
+  }
+  await page.setViewportSize({ width: 440, height: 220 });
+}
+if (!filter || filter.includes('appheader')) {
+  await page.setViewportSize({ width: 1000, height: 400 });
+  for (const m of modes) {
+    await shoot(
+      'organisms-appheader--default',
+      'app-header-default',
+      m,
+      'en',
+      `${m.key}__w1000`,
+    );
+    await shoot(
+      'organisms-appheader--default',
+      'app-header-default',
+      m,
+      'en',
+      `focus-${m.key}`,
+      true,
+    );
   }
   await page.setViewportSize({ width: 440, height: 220 });
 }

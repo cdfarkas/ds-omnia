@@ -1,0 +1,17 @@
+@layer components {
+  /* Wrapping is the narrow layout: parts flow onto new lines, no breakpoint needed. */
+  .root {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: var(
+      --omnia-app-header-gap,
+      var(--omnia-palette-space-3) var(--omnia-palette-space-5)
+    );
+    padding: var(--omnia-app-header-padding, var(--omnia-palette-space-4));
+    border-block-end: var(--omnia-border-width-regular) solid
+      var(--omnia-app-header-border-color, var(--omnia-color-border-default));
+    background-color: var(--omnia-app-header-bg, var(--omnia-color-bg-surface));
+    color: var(--omnia-color-text-primary);
+  }
+}

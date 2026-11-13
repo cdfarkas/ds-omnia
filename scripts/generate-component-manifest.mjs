@@ -19,7 +19,8 @@ function jsDocText(node) {
 
 export function discoverComponents(root) {
   const source = readFileSync(join(root, 'src', 'index.ts'), 'utf8');
-  const re = /export \* from '\.\/(components\/(?:atoms|molecules|templates)\/[^']+)'/g;
+  const re =
+    /export \* from '\.\/(components\/(?:atoms|molecules|organisms|templates)\/[^']+)'/g;
   const found = [];
   let match;
   while ((match = re.exec(source)))
