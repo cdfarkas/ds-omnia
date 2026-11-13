@@ -77,7 +77,7 @@ WCAG **2.2 AA** is the floor — one level above the EU legal baseline (EN 301 5
 European Accessibility Act). The a11y addon runs every axe tag up to `wcag22aa` with
 `a11y.test: 'error'` across **every theme and skin, pixel included** — the pixel palette is chosen to
 meet 4.5:1 contrast. An axe *incomplete* result fails like a violation, and
-`src/styles/contrast.test.ts` asserts SC 1.4.11 (3:1) on boundary/indicator tokens in all four modes.
+`src/styles/contrast.test.ts` asserts SC 1.4.11 (3:1) on boundary/indicator tokens in all six modes.
 There is no `'warn'` tier. See ADR 0026.
 
 ## Bilingual rule
@@ -110,7 +110,7 @@ Work is done only when all five are green, the last before any human review:
 - `pnpm typecheck` (`tsc --noEmit` — full TypeScript type-check)
 - `pnpm test` (unit + interaction + a11y)
 - `pnpm build-storybook`
-- **agent visual validation** — `pnpm visual-check` screenshots every state in all four
+- **agent visual validation** — `pnpm visual-check` screenshots every state in all six
   theme×skin modes; the agent reads the images and records a per-mode PASS/CONCERNS
   verdict, fixing or flagging before handover. It never loosens a WCAG threshold to pass.
   See `docs/visual-validation.md`.

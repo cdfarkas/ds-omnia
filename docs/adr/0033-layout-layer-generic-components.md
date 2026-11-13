@@ -66,3 +66,15 @@ actions block composes directly from existing primitives (Stack, Heading, Text, 
 belongs in the consuming app, consistent with the generic-components / no-fixed-templates principle
 above. `Masthead` is kept as the one generic hero organism. `AppShell` ships first, as the template
 tier's first component; `Masthead` follows in its own PR.
+
+## Update 2026-11-13
+
+By the owner's decision, `Masthead` is dropped: a generic hero is composed in the consuming app,
+like `CallToAction`. The organism tier gets two headers instead, split by scope. `AppHeader` is the
+global app header (brand, navigation, actions) that fills the `PageTemplate.Header` slot (the name
+avoids colliding with that slot and `Card.Header`); because that slot already renders the
+`<header>` banner landmark, `AppHeader` renders no landmark of its own
+(a second banner would be a double-landmark violation). `PageHeader` is the title block at the top
+of page content (breadcrumb slot, title, description, page-level actions), placed inside
+`PageTemplate.Main`, also without a landmark. Each still passes a naming study and the acceptance
+gates before merge.
