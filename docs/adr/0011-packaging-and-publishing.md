@@ -179,3 +179,15 @@ switches to trusted publishing (`id-token: write`, no token) and the token is de
 The package is renamed `@cdfarkas/omnia` to `@cfarkas/omnia`: the npm account is `cfarkas`, and the
 `cdfarkas` npm scope belongs to a lost account. The GitHub repository (`cdfarkas/ds-omnia`) is
 unchanged. Every earlier mention of the package name in this ADR now reads `@cfarkas/omnia`.
+
+The skin fonts ship with the package, opt-in. This supersedes "Fonts are not bundled": the four
+`@fontsource` packages (Fraunces, Space Grotesk, Press Start 2P, Archivo Black) move from
+`devDependencies` to `dependencies`, and the export map gains `./fonts.css` (all four) plus
+`./fonts/neutral.css`, `./fonts/pixel.css` and `./fonts/brutalist.css`. They are plain CSS `@import`
+files copied to `dist/` by `scripts/copy-fonts.mjs`; the consumer's bundler resolves the bare imports.
+`styles.css` never imports fonts, so an app that serves its own pays nothing.
+
+Override contract: every family reaches the components through a public custom property, so a consumer
+can swap a face without the entry: `--omnia-palette-font-display`, `--omnia-palette-font-sans`,
+`--omnia-palette-font-brutalist` and `--omnia-palette-font-pixel` (the last one was a literal in
+`skins.css` and is now a palette token like the others).

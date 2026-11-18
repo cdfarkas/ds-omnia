@@ -1,6 +1,5 @@
 /* Pixel skin structural carve-out (ADR/ARCHITECTURE): not design tokens.
-   'Press Start 2P' is bundled via @fontsource/press-start-2p (imported in the
-   Storybook preview, alongside the other faces). */
+   Faces load from the opt-in fonts.css entry (src/fonts.css in Storybook). */
 @layer base {
   :root {
     --omnia-font-family-base: var(--omnia-font-sans);
@@ -8,7 +7,7 @@
 
   :root[data-skin='pixel'] {
     /* Prose/body keeps the readable sans; controls and headings opt into pixel. */
-    --omnia-font-pixel: 'Press Start 2P', 'Courier New', monospace;
+    --omnia-font-pixel: var(--omnia-palette-font-pixel);
 
     image-rendering: pixelated;
   }

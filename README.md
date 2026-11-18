@@ -50,8 +50,17 @@ export const App = () => (
 );
 ```
 
-Fonts are not bundled. Install and import `@fontsource-variable/fraunces` and
-`@fontsource-variable/space-grotesk` yourself; without them the stacks fall back to system fonts.
+Fonts are optional and load from a separate entry, so a consumer that serves its own skips them:
+
+```tsx
+import '@cfarkas/omnia/fonts.css'; // all four skins: Fraunces, Space Grotesk, Press Start 2P, Archivo Black
+import '@cfarkas/omnia/fonts/neutral.css'; // or per skin: neutral | pixel | brutalist
+```
+
+Without them the stacks fall back to system fonts. To use your own faces, skip the entry and set the
+font variables after the library styles (any layer or selector that wins): `--omnia-palette-font-display`
+(neutral headings), `--omnia-palette-font-sans` (body), `--omnia-palette-font-brutalist` (brutalist
+headings) and `--omnia-palette-font-pixel` (pixel skin).
 
 ## How to run
 
