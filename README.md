@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assets/brand/logo-readme.svg" alt="Omnia" width="380" />
+  <img src="https://raw.githubusercontent.com/cdfarkas/ds-omnia/main/src/assets/brand/logo-readme.svg" alt="Omnia" width="380" />
 </p>
 
 <h1 align="center">Omnia</h1>
@@ -66,8 +66,8 @@ pnpm lint               # ESLint + Prettier + stylelint (incl. no-raw-color)
 
 ## Documentation
 
-- [`CLAUDE.md`](./CLAUDE.md) — the contract every contributor and agent reads first.
-- [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — structure, tokens, theming, tooling.
-- [`docs/testing.md`](./docs/testing.md) — the testing contract and a11y gate.
-- [`docs/governance.md`](./docs/governance.md) — how decisions change.
-- [`docs/adr/`](./docs/adr/) — the recorded architecture decisions.
+- [`CLAUDE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/CLAUDE.md) — the contract every contributor and agent reads first.
+- [`docs/ARCHITECTURE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/ARCHITECTURE.md) — structure, tokens, theming, tooling.
+- [`docs/testing.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/testing.md) — the testing contract and a11y gate.
+- [`docs/governance.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/governance.md) — how decisions change.
+- [`docs/adr/`](https://github.com/cdfarkas/ds-omnia/tree/main/docs/adr) — the recorded architecture decisions.
