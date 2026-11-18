@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./src/assets/brand/logo-readme.svg" alt="Omnia" width="380" />
+  <img src="https://raw.githubusercontent.com/cdfarkas/ds-omnia/main/src/assets/brand/logo-readme.svg" alt="Omnia" width="380" />
 </p>
 
 <h1 align="center">Omnia</h1>
@@ -30,6 +30,38 @@ token contract (no raw colours in component CSS), real dark mode and a reskin th
 work, accessibility gated at WCAG 2.2 AA, a level above the EU legal floor (2.1 AA), and tests that
 live next to the stories they cover.
 
+## Install
+
+```sh
+pnpm add @cfarkas/omnia
+```
+
+React 19 (`react` and `react-dom`) is a peer dependency. Import the stylesheet once, then wrap the
+app in `OmniaThemeProvider`:
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+import { OmniaThemeProvider, Button } from '@cfarkas/omnia';
+
+export const App = () => (
+  <OmniaThemeProvider>
+    <Button>Hello</Button>
+  </OmniaThemeProvider>
+);
+```
+
+Fonts are optional and load from a separate entry, so a consumer that serves its own skips them:
+
+```tsx
+import '@cfarkas/omnia/fonts.css'; // all four skins: Fraunces, Space Grotesk, Press Start 2P, Archivo Black
+import '@cfarkas/omnia/fonts/neutral.css'; // or per skin: neutral | pixel | brutalist
+```
+
+Without them the stacks fall back to system fonts. To use your own faces, skip the entry and set the
+font variables after the library styles (any layer or selector that wins): `--omnia-palette-font-display`
+(neutral headings), `--omnia-palette-font-sans` (body), `--omnia-palette-font-brutalist` (brutalist
+headings) and `--omnia-palette-font-pixel` (pixel skin).
+
 ## How to run
 
 ```sh
@@ -43,8 +75,8 @@ pnpm lint               # ESLint + Prettier + stylelint (incl. no-raw-color)
 
 ## Documentation
 
-- [`CLAUDE.md`](./CLAUDE.md) — the contract every contributor and agent reads first.
-- [`docs/ARCHITECTURE.md`](./docs/ARCHITECTURE.md) — structure, tokens, theming, tooling.
-- [`docs/testing.md`](./docs/testing.md) — the testing contract and a11y gate.
-- [`docs/governance.md`](./docs/governance.md) — how decisions change.
-- [`docs/adr/`](./docs/adr/) — the recorded architecture decisions.
+- [`CLAUDE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/CLAUDE.md) — the contract every contributor and agent reads first.
+- [`docs/ARCHITECTURE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/ARCHITECTURE.md) — structure, tokens, theming, tooling.
+- [`docs/testing.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/testing.md) — the testing contract and a11y gate.
+- [`docs/governance.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/governance.md) — how decisions change.
+- [`docs/adr/`](https://github.com/cdfarkas/ds-omnia/tree/main/docs/adr) — the recorded architecture decisions.

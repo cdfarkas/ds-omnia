@@ -2,14 +2,14 @@
 
 ## Status
 
-Proposed — the "Release CI" clause is amended by ADR 0018 (release.yml now runs on push to main so
-the Version PR opens while private; npm publish stays gated by `"private": true`).
+Proposed — the "Release CI" clause is amended by ADR 0018 (release.yml runs on push to main). The
+publish lock (`"private": true`) was lifted on 2026-11-18, see "Update 2026-11-18".
 
 ## Context
 
 Omnia has so far only existed inside Storybook: there was no build, no `exports` map, and `react` /
 `react-dom` sat in `dependencies`, so a consumer could not install it as a package. The package name
-`@cdfarkas/omnia` is reserved in `package.json`, which stays `"private": true`.
+`@cfarkas/omnia` is reserved in `package.json`, which stays `"private": true`.
 
 Facts that shape the choice:
 
@@ -104,7 +104,7 @@ run publishes. `ci.yml` runs `pnpm build` after lint so the library build cannot
 
 ## Consequences
 
-- A consumer installs `@cdfarkas/omnia`, imports `@cdfarkas/omnia/styles.css` once and uses `Button`
+- A consumer installs `@cfarkas/omnia`, imports `@cfarkas/omnia/styles.css` once and uses `Button`
   with full types. React is never duplicated in their bundle.
 - The export map is now a public contract alongside the tokens, `--omnia-*` variables and `data-*`
   attributes: removing an export or renaming the stylesheet path is a breaking change.
@@ -165,3 +165,29 @@ package/dist/index.d.ts
 No `src/`, story, test, MDX or `Button.overrides.css` file is in the tarball. `dist/index.js` imports
 `react/jsx-runtime` and bundles no React source. A scratch consumer with `skipLibCheck: false`
 typechecks against `dist/index.d.ts` with zero errors.
+
+## Update 2026-11-18
+
+Publish prerequisite (b), timing, is resolved: Omnia publishes now, at `0.3.0`, with 28 components
+and l4ir.fr as the first consumer. `"private": true` is removed from `package.json`.
+
+Release runs on every push to `main` (ADR 0018), so merging the "Version Packages" PR publishes to
+npm. npm trusted publishing can only be configured once the package exists on the registry, so the
+first publish uses a short-lived granular `NPM_TOKEN` repository secret. A follow-up PR then
+switches to trusted publishing (`id-token: write`, no token) and the token is deleted.
+
+The package is renamed `@cdfarkas/omnia` to `@cfarkas/omnia`: the npm account is `cfarkas`, and the
+`cdfarkas` npm scope belongs to a lost account. The GitHub repository (`cdfarkas/ds-omnia`) is
+unchanged. Every earlier mention of the package name in this ADR now reads `@cfarkas/omnia`.
+
+The skin fonts ship with the package, opt-in. This supersedes "Fonts are not bundled": the four
+`@fontsource` packages (Fraunces, Space Grotesk, Press Start 2P, Archivo Black) move from
+`devDependencies` to `dependencies`, and the export map gains `./fonts.css` (all four) plus
+`./fonts/neutral.css`, `./fonts/pixel.css` and `./fonts/brutalist.css`. They are plain CSS `@import`
+files copied to `dist/` by `scripts/copy-fonts.mjs`; the consumer's bundler resolves the bare imports.
+`styles.css` never imports fonts, so an app that serves its own pays nothing.
+
+Override contract: every family reaches the components through a public custom property, so a consumer
+can swap a face without the entry: `--omnia-palette-font-display`, `--omnia-palette-font-sans`,
+`--omnia-palette-font-brutalist` and `--omnia-palette-font-pixel` (the last one was a literal in
+`skins.css` and is now a palette token like the others).

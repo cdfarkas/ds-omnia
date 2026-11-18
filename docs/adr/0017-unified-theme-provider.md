@@ -14,7 +14,7 @@ ADR 0004 set up theming with two mechanisms on the preview root: `@storybook/add
 `skin` axis. That wiring lived only in `.storybook/preview.tsx`, and `src/lib/DocsTheme.tsx`
 re-applied the same attributes by hand for story-less MDX pages.
 
-Two gaps followed. The published package exported no provider, so a consumer of `@cdfarkas/omnia`
+Two gaps followed. The published package exported no provider, so a consumer of `@cfarkas/omnia`
 had to set `data-theme`/`data-skin` by hand to theme their app. And the `theme` axis depended on a
 Storybook-only addon, so the catalogue and a real consumer themed through different code.
 

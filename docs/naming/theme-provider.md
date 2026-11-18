@@ -29,7 +29,7 @@ Omnia exports no theming entry point today; Storybook themes via `@storybook/add
 
 ## Options for Omnia
 
-**A. `OmniaThemeProvider` + `useTheme()`.** Prefixed (ADR 0013 namespacing), precise (owns theme + skin), collision-safe: an unprefixed `ThemeProvider` from `@cdfarkas/omnia` clashes on import with a consumer's existing MUI / styled-components `ThemeProvider`.
+**A. `OmniaThemeProvider` + `useTheme()`.** Prefixed (ADR 0013 namespacing), precise (owns theme + skin), collision-safe: an unprefixed `ThemeProvider` from `@cfarkas/omnia` clashes on import with a consumer's existing MUI / styled-components `ThemeProvider`.
 
 **B. `OmniaProvider`.** Brand-provider pattern (Mantine/Chakra/Fluent); room to also own locale later. But today it only does theme + skin, so the broader name is speculative.
 

@@ -2,7 +2,7 @@
 
 # Omnia components
 
-Machine-readable API index: [`components.json`](./components.json). Package `@cdfarkas/omnia`.
+Machine-readable API index: [`components.json`](./components.json). Package `@cfarkas/omnia`.
 
 ## Button
 

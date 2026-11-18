@@ -4,10 +4,7 @@ import { GLOBALS_UPDATED, SET_GLOBALS } from 'storybook/internal/core-events';
 import { type Locale } from '../src/lib/i18n';
 import { OmniaThemeProvider, type Theme, type Skin } from '../src/lib/OmniaThemeProvider';
 
-import '@fontsource-variable/fraunces';
-import '@fontsource-variable/space-grotesk';
-import '@fontsource/press-start-2p';
-import '@fontsource/archivo-black';
+import '../src/fonts.css';
 import '../src/styles/layers.css';
 import '../src/styles/reset.css';
 import '../src/styles/tokens.css';

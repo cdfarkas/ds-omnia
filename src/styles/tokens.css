@@ -126,6 +126,7 @@
       'Space Grotesk Variable', 'Space Grotesk', system-ui, -apple-system, 'Segoe UI',
       roboto, sans-serif;
     --omnia-palette-font-brutalist: 'Archivo Black', 'Archivo', system-ui, sans-serif;
+    --omnia-palette-font-pixel: 'Press Start 2P', 'Courier New', monospace;
 
     /* Tier 2 — semantic aliases. Themes and skins reassign only this layer. */
     --omnia-color-bg-surface: var(--omnia-palette-cream);

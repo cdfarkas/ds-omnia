@@ -1,5 +1,5 @@
 ---
-'@cdfarkas/omnia': patch
+'@cfarkas/omnia': patch
 ---
 
 Fix the 320 CSS px layout: `Stat` figures drop from 3rem to 2rem in a list narrower than 24rem;

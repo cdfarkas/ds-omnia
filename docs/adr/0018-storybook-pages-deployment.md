@@ -53,3 +53,7 @@ a credential is still the explicit, separate step that enables publishing.
   `brandImage` in `.storybook/manager.ts`, and the Favicon foundations page) are relative
   (`brand/*`, no leading slash) so they resolve under the deploy base: `/brand/*` at the dev root
   and `/ds-omnia/brand/*` on Pages. They were absolute `/brand/*` and 404'd on the subpath.
+
+## Update 2026-11-18
+
+Publishing is now enabled (`"private": true` removed, package renamed to `@cfarkas/omnia`): see the ADR 0011 update of the same date.

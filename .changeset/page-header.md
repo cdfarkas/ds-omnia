@@ -1,5 +1,5 @@
 ---
-'@cdfarkas/omnia': minor
+'@cfarkas/omnia': minor
 ---
 
 Add the `PageHeader` organism: the title block at the top of a page's content (breadcrumb slot, an
