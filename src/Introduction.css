@@ -110,6 +110,21 @@
   color: var(--omnia-palette-ink);
 }
 
+.omnia-type-pixel {
+  margin: 0;
+  font-family: var(--omnia-palette-font-pixel);
+  font-size: 1.5rem;
+  color: var(--omnia-palette-ink);
+}
+
+.omnia-type-brutalist {
+  margin: 0;
+  font-family: var(--omnia-palette-font-brutalist);
+  font-size: 3rem;
+  line-height: 1.05;
+  color: var(--omnia-palette-ink);
+}
+
 .omnia-type-label {
   display: block;
   margin-bottom: var(--omnia-palette-space-2);
@@ -120,17 +135,12 @@
   color: var(--omnia-palette-ink-soft);
 }
 
-.omnia-nav.omnia-nav {
+.omnia-nav {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: var(--omnia-palette-space-3);
   margin: var(--omnia-palette-space-4) 0;
   padding: 0;
-  list-style: none;
-}
-
-.omnia-nav.omnia-nav li {
-  margin: 0;
   list-style: none;
 }
 
@@ -261,19 +271,12 @@
   color: var(--omnia-palette-ink-soft);
 }
 
-/* doubled class beats Storybook's .sbdocs-content ul docs reset (0,1,1) */
-.omnia-downloads.omnia-downloads {
+.omnia-downloads {
   display: flex;
   flex-wrap: wrap;
   gap: var(--omnia-palette-space-3);
   margin: var(--omnia-palette-space-4) 0;
   padding: 0;
-  list-style: none;
-}
-
-.omnia-downloads.omnia-downloads li {
-  /* reset Storybook's docs li margin that offsets the flex cards */
-  margin: 0;
   list-style: none;
 }
 

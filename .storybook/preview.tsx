@@ -35,6 +35,7 @@ const preview: Preview = {
       storySort: {
         order: [
           'Introduction',
+          'Getting started',
           'Foundations',
           ['Logo', 'Colors', 'Typography', 'Favicon & app icons'],
           'Guidelines',

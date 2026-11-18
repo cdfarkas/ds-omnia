@@ -5,7 +5,7 @@ import './Introduction.css';
 
 <Meta title="Introduction" />
 
-<div className="omnia-hero">
+<div className="omnia-hero sb-unstyled">
   <span dangerouslySetInnerHTML={{ __html: logoLight }} />
   <Localized
     en={
@@ -59,9 +59,25 @@ import './Introduction.css';
   }
 />
 
+<Localized
+  en={
+    <p>
+      New to Omnia? <a href="?path=/docs/getting-started--docs">Getting started</a> covers
+      installing the package, loading the styles and fonts, and wrapping the app.
+    </p>
+  }
+  fr={
+    <p>
+      Première fois ? La page <a href="?path=/docs/getting-started--docs">Installation</a>{' '}
+      explique comment installer le paquet, charger les styles et les polices, et
+      envelopper l'application.
+    </p>
+  }
+/>
+
 ## <Localized en="Foundations" fr="Fondations" />
 
-<ul className="omnia-nav">
+<ul className="omnia-nav sb-unstyled">
   <li>
     <a href="?path=/docs/foundations-logo--docs">
       <strong>
