@@ -110,7 +110,7 @@ import * as FormFieldStories from './FormField.stories';
 />
 
 ```tsx
-import { FormField, Input } from '@cdfarkas/omnia';
+import { FormField, Input } from '@cfarkas/omnia';
 
 <FormField invalid={Boolean(error)} required>
   <FormField.Label>Email</FormField.Label>
@@ -413,7 +413,7 @@ import { FormField, Input } from '@cdfarkas/omnia';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { FormField, Input } from '@cdfarkas/omnia';
+import { FormField, Input } from '@cfarkas/omnia';
 
 const schema = z.object({
   email: z.email('Enter an email address like name@example.com.'),

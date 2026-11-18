@@ -6,7 +6,7 @@ Accepted
 
 ## Context
 
-Each skin needs one icon set that matches its look. The set ships inside `@cdfarkas/omnia`, an MIT
+Each skin needs one icon set that matches its look. The set ships inside `@cfarkas/omnia`, an MIT
 npm package, so it must be free to use and to redistribute there.
 
 Colour must come from the semantic tokens like everything else (ADR 0003): a glyph paints with

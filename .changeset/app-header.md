@@ -1,5 +1,5 @@
 ---
-'@cdfarkas/omnia': minor
+'@cfarkas/omnia': minor
 ---
 
 Add the `AppHeader` organism: the global app header (`AppHeader.Brand`, `AppHeader.Nav`,

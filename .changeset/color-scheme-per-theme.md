@@ -1,5 +1,5 @@
 ---
-'@cdfarkas/omnia': patch
+'@cfarkas/omnia': patch
 ---
 
 Declare `color-scheme` per theme (`light` on `:root`, `dark` on `:root[data-theme='dark']`) so

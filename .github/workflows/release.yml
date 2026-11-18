@@ -1,5 +1,5 @@
 # Changesets open/update a "Version Packages" PR; merging it bumps version + CHANGELOG (= the release).
-# npm publish stays a no-op while "private": true and privatePackages.tag: false hold (ADR 0011, 0018).
+# Merging the Version Packages PR runs `changeset publish` and publishes to npm (ADR 0011, 0018).
 name: Release
 
 on:

@@ -1,5 +1,5 @@
 ---
-'@cdfarkas/omnia': patch
+'@cfarkas/omnia': patch
 ---
 
 `OmniaThemeProvider` sets `lang` on the document root from the active locale, so screen readers

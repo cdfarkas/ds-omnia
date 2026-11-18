@@ -115,8 +115,8 @@ callback. Omit the prop and the provider **owns** that axis, persisting the choi
 (`omnia-theme`). An uncontrolled app wraps once and lets a toggle flip the theme:
 
 ```tsx
-import { OmniaThemeProvider, useTheme } from '@cdfarkas/omnia';
-import '@cdfarkas/omnia/styles.css';
+import { OmniaThemeProvider, useTheme } from '@cfarkas/omnia';
+import '@cfarkas/omnia/styles.css';
 
 <OmniaThemeProvider defaultTheme="dark" defaultSkin="pixel">
   <App />

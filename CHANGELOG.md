@@ -1,4 +1,4 @@
-# @cdfarkas/omnia
+# @cfarkas/omnia
 
 ## 0.2.0
 

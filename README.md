@@ -30,6 +30,29 @@ token contract (no raw colours in component CSS), real dark mode and a reskin th
 work, accessibility gated at WCAG 2.2 AA, a level above the EU legal floor (2.1 AA), and tests that
 live next to the stories they cover.
 
+## Install
+
+```sh
+pnpm add @cfarkas/omnia
+```
+
+React 19 (`react` and `react-dom`) is a peer dependency. Import the stylesheet once, then wrap the
+app in `OmniaThemeProvider`:
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+import { OmniaThemeProvider, Button } from '@cfarkas/omnia';
+
+export const App = () => (
+  <OmniaThemeProvider>
+    <Button>Hello</Button>
+  </OmniaThemeProvider>
+);
+```
+
+Fonts are not bundled. Install and import `@fontsource-variable/fraunces` and
+`@fontsource-variable/space-grotesk` yourself; without them the stacks fall back to system fonts.
+
 ## How to run
 
 ```sh

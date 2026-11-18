@@ -101,8 +101,8 @@ import * as ThemeProviderStories from './OmniaThemeProvider.stories';
 />
 
 ```tsx
-import { OmniaThemeProvider } from '@cdfarkas/omnia';
-import '@cdfarkas/omnia/styles.css';
+import { OmniaThemeProvider } from '@cfarkas/omnia';
+import '@cfarkas/omnia/styles.css';
 
 export function App() {
   return (
@@ -128,7 +128,7 @@ export function App() {
 />
 
 ```tsx
-import { useTheme } from '@cdfarkas/omnia';
+import { useTheme } from '@cfarkas/omnia';
 
 function ThemeToggle() {
   const { theme, toggleTheme } = useTheme();
@@ -232,7 +232,7 @@ function ThemeToggle() {
 />
 
 ```tsx
-import { getThemeInitScript } from '@cdfarkas/omnia';
+import { getThemeInitScript } from '@cfarkas/omnia';
 
 // In the server-rendered <head>:
 <script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />;
