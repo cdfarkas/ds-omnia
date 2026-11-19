@@ -1,0 +1,205 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import { Localized } from './lib/Localized';
+
+<Meta title="Getting started" />
+
+# <Localized en="Getting started" fr="Installation" />
+
+<Localized
+  en={
+    <p>
+      Four steps take an app from zero to a themed Omnia screen: install the package, load
+      the stylesheet, pick the fonts, and wrap the app in the theme provider.
+    </p>
+  }
+  fr={
+    <p>
+      Quatre étapes mènent une application de zéro à un écran Omnia thématisé : installer
+      le paquet, charger la feuille de style, choisir les polices et envelopper
+      l'application dans le fournisseur de thème.
+    </p>
+  }
+/>
+
+## <Localized en="1. Install" fr="1. Installer" />
+
+```sh
+pnpm add @cfarkas/omnia
+```
+
+<Localized
+  en={
+    <p>
+      React 19 (<code>react</code> and <code>react-dom</code>) is a peer dependency.
+    </p>
+  }
+  fr={
+    <p>
+      React 19 (<code>react</code> et <code>react-dom</code>) est une dépendance{' '}
+      <em>peer</em> (homologue).
+    </p>
+  }
+/>
+
+## <Localized en="2. Import the styles" fr="2. Importer les styles" />
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+```
+
+<Localized
+  en={
+    <p>
+      Import it once, at the app entry, <strong>before</strong> any of your own{' '}
+      <code>@layer overrides</code> rules. The stylesheet opens with the cascade-layer
+      order, ending in <code>overrides</code>; if your CSS names that layer first, the
+      order flips and your overrides lose.
+    </p>
+  }
+  fr={
+    <p>
+      Importez-la une seule fois, à l'entrée de l'application, <strong>avant</strong> vos
+      propres règles <code>@layer overrides</code>. La feuille de style commence par
+      l'ordre des couches de cascade, qui se termine par <code>overrides</code> ; si votre
+      CSS nomme cette couche en premier, l'ordre s'inverse et vos surcharges perdent.
+    </p>
+  }
+/>
+
+## <Localized en="3. Load the fonts" fr="3. Charger les polices" />
+
+<Localized
+  en={
+    <p>
+      Fonts ship in a separate, optional entry, so an app that serves its own faces skips
+      them. Load all four families at once:
+    </p>
+  }
+  fr={
+    <p>
+      Les polices sont livrées dans une entrée séparée et optionnelle : une application
+      qui sert ses propres fontes s'en passe. Chargez les quatre familles d'un coup :
+    </p>
+  }
+/>
+
+```tsx
+import '@cfarkas/omnia/fonts.css';
+```
+
+<Localized
+  en={<p>Or only the skins you use, instead of the line above:</p>}
+  fr={<p>Ou seulement les habillages utilisés, à la place de la ligne ci-dessus :</p>}
+/>
+
+```tsx
+import '@cfarkas/omnia/fonts/neutral.css';
+import '@cfarkas/omnia/fonts/pixel.css';
+import '@cfarkas/omnia/fonts/brutalist.css';
+```
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <code>fonts/neutral.css</code> — Fraunces (display) and Space Grotesk (body).
+      </li>
+      <li>
+        <code>fonts/pixel.css</code> — Press Start 2P (pixel headings and controls).
+      </li>
+      <li>
+        <code>fonts/brutalist.css</code> — Archivo Black (brutalist headings).
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <code>fonts/neutral.css</code> — Fraunces (affichage) et Space Grotesk (corps).
+      </li>
+      <li>
+        <code>fonts/pixel.css</code> — Press Start 2P (titres et contrôles pixel).
+      </li>
+      <li>
+        <code>fonts/brutalist.css</code> — Archivo Black (titres brutalistes).
+      </li>
+    </ul>
+  }
+/>
+
+<Localized
+  en={
+    <p>
+      To use your own faces, skip the entry and set the font variables in{' '}
+      <code>@layer overrides</code>:
+    </p>
+  }
+  fr={
+    <p>
+      Pour utiliser vos propres fontes, ignorez l'entrée et définissez les variables de
+      police dans <code>@layer overrides</code> :
+    </p>
+  }
+/>
+
+```css
+@layer overrides {
+  :root {
+    --omnia-palette-font-display: 'Your Serif', georgia, serif; /* neutral headings */
+    --omnia-palette-font-sans: 'Your Sans', system-ui, sans-serif; /* body */
+    --omnia-palette-font-brutalist: 'Your Heavy', system-ui, sans-serif; /* brutalist */
+    --omnia-palette-font-pixel: 'Your Pixel Font', monospace; /* pixel skin */
+  }
+}
+```
+
+<Localized
+  en={
+    <p>
+      When no face loads, each stack falls back to system fonts: Georgia or the system
+      serif for display, <code>system-ui</code> for body and brutalist headings, Courier
+      New or the system monospace for pixel.
+    </p>
+  }
+  fr={
+    <p>
+      Si aucune fonte ne se charge, chaque pile retombe sur les polices système : Georgia
+      ou la serif système pour l'affichage, <code>system-ui</code> pour le corps et les
+      titres brutalistes, Courier New ou la monospace système pour le pixel.
+    </p>
+  }
+/>
+
+## <Localized en="4. Wrap the app" fr="4. Envelopper l'application" />
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+import { OmniaThemeProvider, Button } from '@cfarkas/omnia';
+
+export const App = () => (
+  <OmniaThemeProvider>
+    <Button>Hello</Button>
+  </OmniaThemeProvider>
+);
+```
+
+<Localized
+  en={
+    <p>
+      <code>OmniaThemeProvider</code> holds the theme, skin and locale, and writes{' '}
+      <code>data-theme</code>, <code>data-skin</code> and <code>lang</code> on{' '}
+      <code>&lt;html&gt;</code>. Its options, controlled mode and <code>useTheme()</code>{' '}
+      are on the <a href="?path=/docs/foundations-theme-provider--docs">theme provider</a>{' '}
+      page.
+    </p>
+  }
+  fr={
+    <p>
+      <code>OmniaThemeProvider</code> porte le thème, l'habillage et la langue, et écrit{' '}
+      <code>data-theme</code>, <code>data-skin</code> et <code>lang</code> sur{' '}
+      <code>&lt;html&gt;</code>. Ses options, le mode contrôlé et <code>useTheme()</code>{' '}
+      sont sur la page du{' '}
+      <a href="?path=/docs/foundations-theme-provider--docs">fournisseur de thème</a>.
+    </p>
+  }
+/>

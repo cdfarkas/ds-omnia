@@ -53,14 +53,34 @@ export const App = () => (
 Fonts are optional and load from a separate entry, so a consumer that serves its own skips them:
 
 ```tsx
-import '@cfarkas/omnia/fonts.css'; // all four skins: Fraunces, Space Grotesk, Press Start 2P, Archivo Black
-import '@cfarkas/omnia/fonts/neutral.css'; // or per skin: neutral | pixel | brutalist
+import '@cfarkas/omnia/fonts.css';
 ```
 
-Without them the stacks fall back to system fonts. To use your own faces, skip the entry and set the
-font variables after the library styles (any layer or selector that wins): `--omnia-palette-font-display`
-(neutral headings), `--omnia-palette-font-sans` (body), `--omnia-palette-font-brutalist` (brutalist
-headings) and `--omnia-palette-font-pixel` (pixel skin).
+Or only the skins you use, instead of the line above:
+
+```tsx
+import '@cfarkas/omnia/fonts/neutral.css';
+import '@cfarkas/omnia/fonts/pixel.css';
+import '@cfarkas/omnia/fonts/brutalist.css';
+```
+
+Per skin, `fonts/neutral.css` loads Fraunces and Space Grotesk, `fonts/pixel.css` Press Start 2P and
+`fonts/brutalist.css` Archivo Black. Without them the stacks fall back to system fonts. To use your own
+faces, skip the entry and set the font variables in `@layer overrides`, after importing `styles.css`
+(it declares the layer order, so it must come before your own `@layer overrides` rules):
+
+```css
+@layer overrides {
+  :root {
+    --omnia-palette-font-display: 'Your Serif', georgia, serif; /* neutral headings */
+    --omnia-palette-font-sans: 'Your Sans', system-ui, sans-serif; /* body */
+    --omnia-palette-font-brutalist: 'Your Heavy', system-ui, sans-serif; /* brutalist */
+    --omnia-palette-font-pixel: 'Your Pixel Font', monospace; /* pixel skin */
+  }
+}
+```
+
+The Storybook **Getting started** page walks through the same steps.
 
 ## How to run
 

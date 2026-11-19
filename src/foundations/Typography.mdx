@@ -9,39 +9,56 @@ import '../Introduction.css';
 <Localized
   en={
     <p>
-      Two variable typefaces carry the whole system. <strong>Fraunces</strong> — a
-      high-contrast display serif — sets headings and expressive moments.{' '}
-      <strong>Space Grotesk</strong> sets body text, labels, and the wordmark. Both ship
-      as variable fonts via <code>@fontsource-variable</code>, so weight is fluid without
-      extra network requests.
+      Four typefaces across three skins. In the neutral skin <strong>Fraunces</strong> — a
+      high-contrast display serif — sets headings and expressive moments, and{' '}
+      <strong>Space Grotesk</strong> sets body text, labels, and the wordmark; both are
+      variable fonts, so weight is fluid without extra network requests. The pixel skin
+      sets headings and controls in <strong>Press Start 2P</strong>, the brutalist skin
+      sets headings in <strong>Archivo Black</strong>; body text stays in Space Grotesk.
+      To load or replace them, see{' '}
+      <a href="?path=/docs/getting-started--docs">Getting started</a>.
     </p>
   }
   fr={
     <p>
-      Deux polices variables portent tout le système. <strong>Fraunces</strong> — une
-      serif d'affichage à fort contraste — compose les titres et les moments expressifs.{' '}
-      <strong>Space Grotesk</strong> compose le corps de texte, les libellés et le
-      logotype. Les deux sont livrées en polices variables via{' '}
-      <code>@fontsource-variable</code> : le poids est fluide sans requête réseau
-      supplémentaire.
+      Quatre polices pour trois habillages. Dans l'habillage neutre,{' '}
+      <strong>Fraunces</strong> — une serif d'affichage à fort contraste — compose les
+      titres et les moments expressifs, et <strong>Space Grotesk</strong> le corps de
+      texte, les libellés et le logotype ; les deux sont variables, le poids est donc
+      fluide sans requête réseau supplémentaire. L'habillage pixel compose titres et
+      contrôles en <strong>Press Start 2P</strong>, l'habillage brutaliste ses titres en{' '}
+      <strong>Archivo Black</strong> ; le corps reste en Space Grotesk. Pour les charger
+      ou les remplacer, voir <a href="?path=/docs/getting-started--docs">Installation</a>.
     </p>
   }
 />
 
 ## <Localized en="Display — Fraunces" fr="Affichage — Fraunces" />
 
-<div className="omnia-type-specimen">
+<div className="omnia-type-specimen sb-unstyled">
   <span className="omnia-type-label">Fraunces — Display</span>
   <p className="omnia-type-display">Chromaticity</p>
 </div>
 
 ## <Localized en="Body — Space Grotesk" fr="Corps — Space Grotesk" />
 
-<div className="omnia-type-specimen">
+<div className="omnia-type-specimen sb-unstyled">
   <span className="omnia-type-label">Space Grotesk — Sans</span>
   <p className="omnia-type-sans">
     The quick brown fox jumps over the lazy dog — 0123456789
   </p>
+</div>
+
+## <Localized en="Skin headings" fr="Titres des habillages" />
+
+<div className="omnia-type-specimen sb-unstyled">
+  <span className="omnia-type-label">Press Start 2P — Pixel</span>
+  <p className="omnia-type-pixel">Chromaticity</p>
+</div>
+
+<div className="omnia-type-specimen sb-unstyled">
+  <span className="omnia-type-label">Archivo Black — Brutalist</span>
+  <p className="omnia-type-brutalist">Chromaticity</p>
 </div>
 
 ## <Localized en="Type scale" fr="Échelle typographique" />
@@ -61,7 +78,7 @@ import '../Introduction.css';
   }
 />
 
-<ul className="omnia-scale">
+<ul className="omnia-scale sb-unstyled">
   <li className="omnia-scale-row">
     <span className="omnia-scale-meta">Display · 3rem</span>
     <span className="omnia-scale-display omnia-scale-xl">Omnia</span>
