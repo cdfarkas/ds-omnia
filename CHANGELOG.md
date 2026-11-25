@@ -1,5 +1,18 @@
 # @cfarkas/omnia
 
+## 0.4.0
+
+### Minor Changes
+
+- 95bdd3c: Add the `Textarea` atom: the bare native `<textarea>` with `variantSize` (`sm`, `md`, `lg`) and
+  `invalid`. Its height is the native `rows`; the resize handle works on both axes, within its parent.
+  Every other prop and `ref` land on the element.
+
+### Patch Changes
+
+- 4edd983: Document server-side rendering (Next.js, React Router, Astro). `getThemeInitScript()` cannot be called
+  from a Server Component: the previous Next.js recipe failed at build.
+
 ## 0.3.0
 
 ### Minor Changes
