@@ -348,6 +348,85 @@
       ]
     },
     {
+      "name": "Textarea",
+      "description": "Bare multi-line text control; label, hint and error belong to a wrapping field. Renders the native `<textarea>` with no wrapper: every prop, `className`, `style` and `ref` included, lands on it. Users resize it on both axes, within its parent.",
+      "source": "src/components/atoms/Textarea/Textarea.tsx",
+      "props": [
+        {
+          "name": "variantSize",
+          "type": "TextareaSize",
+          "required": false,
+          "default": "'md'",
+          "options": [
+            "sm",
+            "md",
+            "lg"
+          ]
+        },
+        {
+          "name": "invalid",
+          "type": "boolean",
+          "required": false,
+          "default": "false",
+          "description": "Sets `aria-invalid=\"true\"` and the danger border."
+        },
+        {
+          "name": "ref",
+          "type": "Ref<HTMLTextAreaElement>",
+          "required": false
+        }
+      ],
+      "variantAxes": [
+        "variantSize"
+      ],
+      "stories": [
+        {
+          "name": "Playground",
+          "id": "atoms-textarea--playground"
+        },
+        {
+          "name": "Sizes",
+          "id": "atoms-textarea--sizes"
+        },
+        {
+          "name": "Rows",
+          "id": "atoms-textarea--rows"
+        },
+        {
+          "name": "Invalid",
+          "id": "atoms-textarea--invalid"
+        },
+        {
+          "name": "Disabled",
+          "id": "atoms-textarea--disabled"
+        },
+        {
+          "name": "ReadOnly",
+          "id": "atoms-textarea--read-only"
+        },
+        {
+          "name": "States",
+          "id": "atoms-textarea--states"
+        },
+        {
+          "name": "Overridden",
+          "id": "atoms-textarea--overridden"
+        },
+        {
+          "name": "DarkNeutral",
+          "id": "atoms-textarea--dark-neutral"
+        },
+        {
+          "name": "PixelLight",
+          "id": "atoms-textarea--pixel-light"
+        },
+        {
+          "name": "PixelDark",
+          "id": "atoms-textarea--pixel-dark"
+        }
+      ]
+    },
+    {
       "name": "Checkbox",
       "description": "Native checkbox drawn by CSS, wrapped in a `<label>` so the whole row is the click target. `className` and `style` land on the root `<label>`; every other prop, `ref` included, lands on the native `<input type=\"checkbox\">`.",
       "source": "src/components/atoms/Checkbox/Checkbox.tsx",
@@ -1574,6 +1653,10 @@
         {
           "name": "WithSwitch",
           "id": "molecules-formfield--with-switch"
+        },
+        {
+          "name": "WithTextarea",
+          "id": "molecules-formfield--with-textarea"
         },
         {
           "name": "CustomControl",

@@ -24,7 +24,8 @@ pass — a real contrast failure is flagged, not hidden.
    a tall story is not cut at the viewport; on Button it also captures hover/press, the
    keyboard-focus state, and both locales on one representative story; on Input it
    captures the keyboard-focus state of `WithAdornments` in all six modes
-   (`input-with-adornments__focus-<mode>.png`); on Checkbox it captures the keyboard-focus
+   (`input-with-adornments__focus-<mode>.png`); on Textarea it captures the keyboard-focus
+   state of `Rows` in all six modes (`textarea-rows__focus-<mode>.png`); on Checkbox it captures the keyboard-focus
    state of `Checked` in all six modes (`checkbox-checked__focus-<mode>.png`); on Switch it captures the keyboard-focus
    state of `Checked` in all six modes (`switch-checked__focus-<mode>.png`); on NavBar it captures the keyboard-focus
    state of `Playground` in all six modes (`navbar-playground__focus-<mode>.png`); on FormField it captures the keyboard-focus
@@ -36,7 +37,8 @@ pass — a real contrast failure is flagged, not hidden.
    at 320 × 568 CSS px, the WCAG 1.4.10 reflow width (ADR 0014), as
    `<story>__<mode>__w320.png`. An optional argument filters by story id
    (`pnpm visual-check badge`); the Button-only shots run when it is absent or contains
-   `button`, the Input focus shots when it is absent or contains `input`, the Checkbox focus shots when
+   `button`, the Input focus shots when it is absent or contains `input`, the Textarea focus shots when it is absent or contains
+   `textarea`, the Checkbox focus shots when
    it is absent or contains `checkbox`, the Switch focus shots when it is absent or contains
    `switch`, the NavBar focus shots when it is absent or contains `navbar`, the FormField focus shots when it is absent or
    contains `formfield`, the Heading 1000 px shots when it is absent or contains `heading`, the AppHeader shots when it is absent or contains `appheader`. Output and a `manifest.json`

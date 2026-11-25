@@ -9,6 +9,7 @@ import { setLocale } from '../../../lib/i18n';
 import { Checkbox } from '../../atoms/Checkbox';
 import { Input } from '../../atoms/Input';
 import { Switch } from '../../atoms/Switch';
+import { Textarea } from '../../atoms/Textarea';
 import { FormField, useFormField, type FormFieldProps } from './FormField';
 import * as stories from './FormField.stories';
 
@@ -544,6 +545,39 @@ describe('FormField native validation', () => {
       'Check this box to continue.',
       'Turn this on to continue.',
     ]);
+  });
+
+  test('Textarea receives the label, description, error and native validity wiring', async () => {
+    await mount(
+      <InForm>
+        <FormField validateOn="submit" required>
+          <FormField.Label>Message</FormField.Label>
+          <FormField.Control
+            render={(props, { invalid }) => <Textarea {...props} invalid={invalid} />}
+          />
+          <FormField.Description>A few lines are enough.</FormField.Description>
+          <FormField.Error />
+        </FormField>
+      </InForm>,
+    );
+    const textarea = control('textarea') as HTMLTextAreaElement;
+    expect(part('label')!.getAttribute('for')).toBe(textarea.id);
+    expect(textarea.required).toBe(true);
+    expect(textarea.getAttribute('aria-describedby')).toBe(part('description')!.id);
+
+    await submit();
+    expect(errorText()).toBe(missing);
+    expect(document.activeElement).toBe(textarea);
+    expect(textarea.getAttribute('aria-invalid')).toBe('true');
+    expect(textarea.hasAttribute('data-invalid')).toBe(true);
+    expect(textarea.getAttribute('aria-describedby')).toBe(
+      `${part('description')!.id} ${part('error')!.id}`,
+    );
+
+    await typeIn(textarea, 'Hello');
+    expect(part('error')).toBeNull();
+    expect(textarea.hasAttribute('aria-invalid')).toBe(false);
+    expect(textarea.hasAttribute('data-invalid')).toBe(false);
   });
 
   test('the message follows the locale at render', async () => {

@@ -1,0 +1,172 @@
+@layer components {
+  .root {
+    --omnia-textarea-edge: var(--omnia-border-width-thick);
+    --omnia-textarea-frame: var(
+      --omnia-textarea-border-color,
+      var(--omnia-color-border-strong)
+    );
+    display: block;
+    inline-size: 100%;
+    min-inline-size: min(100%, 6rem);
+    max-inline-size: 100%;
+    min-block-size: calc(
+      1lh + 2 * (var(--omnia-textarea-inner-y) + var(--omnia-textarea-edge))
+    );
+    max-block-size: 100%;
+    padding-block: var(--omnia-textarea-inner-y);
+    padding-inline: var(--omnia-textarea-inner-x);
+    border: var(--omnia-textarea-edge) solid var(--omnia-textarea-frame);
+    border-radius: var(--omnia-textarea-radius, var(--omnia-radius-md));
+    background-color: var(--omnia-textarea-bg, var(--omnia-color-bg-surface));
+    box-shadow: var(--omnia-textarea-shadow, var(--omnia-shadow-raised));
+    color: var(--omnia-textarea-fg, var(--omnia-color-text-primary));
+    line-height: 1.5;
+    resize: both;
+    transition:
+      box-shadow var(--omnia-dur-fast) var(--omnia-ease-out),
+      background-color var(--omnia-dur-fast) var(--omnia-ease-out),
+      border-color var(--omnia-dur-fast) var(--omnia-ease-out);
+  }
+
+  .root::placeholder {
+    color: var(--omnia-color-text-placeholder);
+    opacity: 1;
+  }
+
+  .sm {
+    --omnia-textarea-inner-y: var(
+      --omnia-textarea-padding-y,
+      var(--omnia-palette-space-1)
+    );
+    --omnia-textarea-inner-x: var(
+      --omnia-textarea-padding-x,
+      var(--omnia-palette-space-3)
+    );
+    font-size: 0.875rem;
+  }
+
+  .md {
+    --omnia-textarea-inner-y: var(
+      --omnia-textarea-padding-y,
+      var(--omnia-palette-space-2)
+    );
+    --omnia-textarea-inner-x: var(
+      --omnia-textarea-padding-x,
+      var(--omnia-palette-space-4)
+    );
+    font-size: 1rem;
+  }
+
+  .lg {
+    --omnia-textarea-inner-y: var(
+      --omnia-textarea-padding-y,
+      var(--omnia-palette-space-3)
+    );
+    --omnia-textarea-inner-x: var(
+      --omnia-textarea-padding-x,
+      var(--omnia-palette-space-5)
+    );
+    font-size: 1.125rem;
+  }
+
+  .root:focus {
+    outline: 2px solid var(--omnia-color-border-focus);
+    outline-offset: 2px;
+  }
+
+  /* No lift: the box would move under a pointer that is grabbing the resize handle. */
+  .root:where(:hover, :focus):not(:disabled, [data-readonly]) {
+    box-shadow: var(--omnia-shadow-raised-hover);
+  }
+
+  .root[data-invalid] {
+    --omnia-textarea-frame: var(--omnia-color-danger-border);
+  }
+
+  .root[data-readonly] {
+    background-color: var(--omnia-color-bg-subtle);
+    box-shadow: none;
+  }
+
+  .root:disabled {
+    border-style: dashed;
+    border-color: var(--omnia-color-border-default);
+    background-color: var(--omnia-color-bg-disabled);
+    box-shadow: none;
+    color: var(--omnia-color-text-muted);
+    cursor: not-allowed;
+    resize: none;
+  }
+
+  /* Pixel skin: notched box, 2px border. The notch clips box-shadow and an outer
+     outline (docs/adr/0009), so the shadow is dropped and the focus ring inset. */
+  :global([data-skin='pixel']) .root {
+    --omnia-textarea-edge: var(--omnia-palette-border-med);
+    border-radius: 0;
+    box-shadow: none;
+    clip-path: var(--omnia-clip-notch);
+    font-family: var(--omnia-font-pixel);
+    -webkit-font-smoothing: none;
+  }
+
+  /* Text scrolls through padding, never through a border: frame, gap and focus ring
+     are one border, of which border-image paints only the frame. */
+  :global([data-skin='pixel']) .root:not(:disabled) {
+    min-block-size: calc(
+      1lh + 2 *
+        (
+          max(2 * var(--omnia-textarea-edge), var(--omnia-textarea-inner-y)) +
+            var(--omnia-textarea-edge)
+        )
+    );
+    padding-block: max(
+      0px,
+      var(--omnia-textarea-inner-y) - 2 * var(--omnia-textarea-edge)
+    );
+    padding-inline: max(
+      0px,
+      var(--omnia-textarea-inner-x) - 2 * var(--omnia-textarea-edge)
+    );
+    border-width: calc(3 * var(--omnia-textarea-edge));
+    border-image: linear-gradient(
+        var(--omnia-textarea-frame),
+        var(--omnia-textarea-frame)
+      )
+      1 / var(--omnia-textarea-edge);
+  }
+
+  /* axe cannot resolve the background of an `overflow: auto` box whose border is wider
+     than its padding. Wrapped text never overflows this axis. */
+  :global([data-skin='pixel']) .root:not(:disabled, [wrap='off' i]) {
+    overflow-x: hidden;
+  }
+
+  :global([data-skin='pixel']) .sm {
+    font-size: 0.63rem;
+  }
+
+  :global([data-skin='pixel']) .md {
+    font-size: 0.72rem;
+  }
+
+  :global([data-skin='pixel']) .lg {
+    font-size: 0.81rem;
+  }
+
+  :global([data-skin='pixel']) .root:focus {
+    outline-offset: -6px;
+  }
+
+  /* Forced colors repaint a border colour but not a border-image. */
+  @media (forced-colors: active) {
+    :global([data-skin='pixel']) .root:not(:disabled) {
+      --omnia-textarea-frame: currentcolor;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .root {
+      transition: none;
+    }
+  }
+}

@@ -79,6 +79,14 @@ const stories = [
   { id: 'atoms-input--read-only', name: 'input-read-only' },
   { id: 'atoms-input--states', name: 'input-states' },
   { id: 'atoms-input--overridden', name: 'input-overridden' },
+  { id: 'atoms-textarea--playground', name: 'textarea-playground' },
+  { id: 'atoms-textarea--sizes', name: 'textarea-sizes' },
+  { id: 'atoms-textarea--rows', name: 'textarea-rows' },
+  { id: 'atoms-textarea--invalid', name: 'textarea-invalid' },
+  { id: 'atoms-textarea--disabled', name: 'textarea-disabled' },
+  { id: 'atoms-textarea--read-only', name: 'textarea-read-only' },
+  { id: 'atoms-textarea--states', name: 'textarea-states' },
+  { id: 'atoms-textarea--overridden', name: 'textarea-overridden' },
   { id: 'atoms-checkbox--playground', name: 'checkbox-playground' },
   { id: 'atoms-checkbox--checked', name: 'checkbox-checked' },
   { id: 'atoms-checkbox--indeterminate', name: 'checkbox-indeterminate' },
@@ -163,6 +171,7 @@ const stories = [
   { id: 'molecules-formfield--required', name: 'form-field-required' },
   { id: 'molecules-formfield--with-checkbox', name: 'form-field-with-checkbox' },
   { id: 'molecules-formfield--with-switch', name: 'form-field-with-switch' },
+  { id: 'molecules-formfield--with-textarea', name: 'form-field-with-textarea' },
   { id: 'molecules-formfield--custom-control', name: 'form-field-custom-control' },
   { id: 'molecules-formfield--server-error', name: 'form-field-server-error' },
   { id: 'molecules-formfield--validate-on-blur', name: 'form-field-validate-on-blur' },
@@ -337,6 +346,12 @@ if (!filter || filter.includes('input')) {
       `focus-${m.key}`,
       true,
     );
+  }
+}
+
+if (!filter || filter.includes('textarea')) {
+  for (const m of modes) {
+    await shoot('atoms-textarea--rows', 'textarea-rows', m, 'en', `focus-${m.key}`, true);
   }
 }
 

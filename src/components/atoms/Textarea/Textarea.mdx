@@ -1,0 +1,313 @@
+import { Meta, Canvas, Controls } from '@storybook/addon-docs/blocks';
+import { Localized } from '../../../lib/Localized';
+import * as TextareaStories from './Textarea.stories';
+
+<Meta of={TextareaStories} />
+
+# Textarea
+
+<Localized
+  en={
+    <>
+      <p>
+        Use <strong>Textarea</strong> for text that runs over several lines — a comment, a
+        message, a description. It is the bare field: the label, hint and error message go
+        around it.
+      </p>
+      <ul>
+        <li>
+          <strong>Always give it a name.</strong> Wrap it in <code>FormField</code>, or
+          pair it with a <code>&lt;label htmlFor&gt;</code> or an <code>aria-label</code>.
+          A placeholder is never a label.
+        </li>
+        <li>
+          <strong>A native textarea, with no wrapper.</strong> Every prop reaches it,{' '}
+          <code>className</code>, <code>style</code> and <code>ref</code> included.
+        </li>
+        <li>
+          <strong>
+            Set the height with <code>rows</code>.
+          </strong>{' '}
+          Match it to the text you expect; the browser shows two lines without it. A
+          longer text scrolls inside.
+        </li>
+        <li>
+          <strong>Users resize it, and its parent sets the limit.</strong> The box fills
+          the width of its parent. The handle drags both axes, down to one line high and{' '}
+          <code>6rem</code> wide. A read-only field keeps the handle; a disabled field has
+          none.
+        </li>
+        <li>
+          <strong>Three sizes.</strong> <code>variantSize</code> sets the scale, from{' '}
+          <code>sm</code> to <code>lg</code>; it is the same scale as Input. It changes
+          the text and the padding, not the number of lines.
+        </li>
+        <li>
+          <strong>An invalid look, no validation.</strong> <code>invalid</code> marks the
+          field invalid for assistive technology and draws a danger border. Pair it with
+          an error message in text.
+        </li>
+        <li>
+          <strong>States show without colour alone.</strong> Focus draws a ring around the
+          field. Outside the pixel skin the shadow grows on hover and focus; unlike Input,
+          the field itself never moves, so the handle stays under the pointer. Disabled
+          and read-only stay flat, and a disabled field adds a dashed border.
+        </li>
+      </ul>
+    </>
+  }
+  fr={
+    <>
+      <p>
+        Utilisez <strong>Textarea</strong> pour un texte sur plusieurs lignes — un
+        commentaire, un message, une description. C'est le champ nu : le libellé, l'aide
+        et le message d'erreur se placent autour.
+      </p>
+      <ul>
+        <li>
+          <strong>Donnez-lui toujours un nom.</strong> Placez-le dans un{' '}
+          <code>FormField</code>, ou associez-le à un <code>&lt;label htmlFor&gt;</code>{' '}
+          ou à un <code>aria-label</code>. Un texte indicatif (placeholder) n'est jamais
+          un libellé.
+        </li>
+        <li>
+          <strong>Un vrai textarea natif, sans conteneur.</strong> Toutes les propriétés
+          vont dessus, <code>className</code>, <code>style</code> et <code>ref</code>{' '}
+          compris.
+        </li>
+        <li>
+          <strong>
+            Réglez la hauteur avec <code>rows</code>.
+          </strong>{' '}
+          Adaptez-la au texte attendu ; sans elle, le navigateur affiche deux lignes. Un
+          texte plus long défile à l'intérieur.
+        </li>
+        <li>
+          <strong>L'utilisateur le redimensionne, son parent fixe la limite.</strong> Le
+          champ remplit la largeur de son parent. La poignée agit sur les deux axes,
+          jusqu'à une ligne de haut et <code>6rem</code> de large. Un champ en lecture
+          seule garde la poignée ; un champ désactivé n'en a pas.
+        </li>
+        <li>
+          <strong>Trois tailles.</strong> <code>variantSize</code> règle l'échelle, de{' '}
+          <code>sm</code> à <code>lg</code> ; c'est la même échelle que Input. Elle change
+          le texte et les marges internes, pas le nombre de lignes.
+        </li>
+        <li>
+          <strong>Un aspect invalide, sans validation.</strong> <code>invalid</code>{' '}
+          signale le champ comme invalide aux technologies d'assistance et trace une
+          bordure de danger. Accompagnez-le d'un message d'erreur en texte.
+        </li>
+        <li>
+          <strong>Les états se lisent sans la couleur seule.</strong> Le focus trace un
+          anneau autour du champ. Hors de l'habillage pixel, l'ombre grandit au survol et
+          au focus ; contrairement à Input, le champ ne bouge jamais, et la poignée reste
+          donc sous le pointeur. Les états désactivé et lecture seule restent à plat, et
+          un champ désactivé ajoute une bordure en tirets.
+        </li>
+      </ul>
+    </>
+  }
+/>
+
+<Canvas of={TextareaStories.Playground} />
+
+### <Localized en="Props" fr="Propriétés" />
+
+<Controls />
+
+### <Localized en="Height" fr="Hauteur" />
+
+<Canvas of={TextareaStories.Rows} />
+
+### <Localized en="Resize limits" fr="Limites du redimensionnement" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>Width.</strong> A block, a flex container, <code>Stack</code> or{' '}
+        <code>FormField</code> that has a width of its own stops the drag.{' '}
+        <code>Grid</code> does too, as long as its columns fit.
+      </li>
+      <li>
+        <strong>A CSS grid needs</strong> <code>minmax(0, 1fr)</code>{' '}
+        <strong>columns.</strong> An <code>auto</code> or <code>1fr</code> column grows
+        with a Textarea placed in it.
+      </li>
+      <li>
+        <strong>A parent sized by its content does not stop the drag.</strong>{' '}
+        <code>width: fit-content</code> is one; a <code>FormField</code> inside{' '}
+        <code>{'<Stack alignItems="start">'}</code> is another, until you give it{' '}
+        <code>width: 100%</code>.
+      </li>
+      <li>
+        <strong>Height.</strong> It is free until the direct parent has a definite height.
+        Put that height on the <code>FormField</code> itself: a height further up does not
+        reach the box. A CSS grid, <code>Grid</code> included, also needs a{' '}
+        <code>minmax(0, 1fr)</code> row.
+      </li>
+      <li>
+        <strong>Room for a label.</strong> A block stops the box at its whole height, so a
+        label above pushes it past the edge. A flex column (<code>Stack</code>,{' '}
+        <code>FormField</code>) stops it at the room left.
+      </li>
+      <li>
+        <strong>
+          <code>max-height</code> alone
+        </strong>{' '}
+        stops the drag only on a flex column that directly holds the box. A block, a flex
+        row and <code>Grid</code> let it overflow: use a definite height, as above.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Largeur.</strong> Un bloc, un conteneur flex, <code>Stack</code> ou{' '}
+        <code>FormField</code> qui a sa propre largeur arrête la poignée.{' '}
+        <code>Grid</code> aussi, tant que ses colonnes tiennent.
+      </li>
+      <li>
+        <strong>Une grille CSS demande des colonnes</strong> <code>minmax(0, 1fr)</code>.
+        Une colonne <code>auto</code> ou <code>1fr</code> grandit avec le Textarea placé
+        dedans.
+      </li>
+      <li>
+        <strong>Un parent dimensionné par son contenu n'arrête pas la poignée.</strong>{' '}
+        C'est le cas de <code>width: fit-content</code>, et d'un <code>FormField</code>{' '}
+        dans <code>{'<Stack alignItems="start">'}</code> tant qu'il n'a pas{' '}
+        <code>width: 100%</code>.
+      </li>
+      <li>
+        <strong>Hauteur.</strong> Elle est libre tant que le parent direct n'a pas de
+        hauteur définie. Donnez cette hauteur au <code>FormField</code> lui-même : une
+        hauteur posée plus haut n'atteint pas le champ. Une grille CSS, <code>Grid</code>{' '}
+        compris, demande aussi une ligne <code>minmax(0, 1fr)</code>.
+      </li>
+      <li>
+        <strong>La place d'un libellé.</strong> Un bloc arrête le champ à toute sa
+        hauteur, et un libellé au-dessus le pousse alors hors du bord. Une colonne flex (
+        <code>Stack</code>, <code>FormField</code>) l'arrête à la place restante.
+      </li>
+      <li>
+        <strong>
+          <code>max-height</code> seul
+        </strong>{' '}
+        n'arrête la poignée que sur une colonne flex qui contient directement le champ. Un
+        bloc, une ligne flex et <code>Grid</code> le laissent déborder : utilisez une
+        hauteur définie, comme ci-dessus.
+      </li>
+    </ul>
+  }
+/>
+
+### <Localized en="Sizes" fr="Tailles" />
+
+<Canvas of={TextareaStories.Sizes} />
+
+### <Localized en="States" fr="États" />
+
+<Canvas of={TextareaStories.Invalid} />
+
+<Canvas of={TextareaStories.Disabled} />
+
+<Canvas of={TextareaStories.ReadOnly} />
+
+<Canvas of={TextareaStories.States} />
+
+<Localized
+  en={
+    <>
+      <h3>Overriding</h3>
+      <p>
+        Textarea follows the system override contract (see <code>docs/overrides.md</code>
+        ). Restyle it through this public surface — never through the hashed CSS-Module
+        class names.
+      </p>
+      <ul>
+        <li>
+          <strong>Component variables</strong>: <code>--omnia-textarea-bg</code>,{' '}
+          <code>--omnia-textarea-fg</code>, <code>--omnia-textarea-radius</code>,{' '}
+          <code>--omnia-textarea-border-color</code>, <code>--omnia-textarea-shadow</code>
+          , <code>--omnia-textarea-padding-x</code>,{' '}
+          <code>--omnia-textarea-padding-y</code>. Each falls back to its semantic token.
+          Give the vertical padding as a length with a unit (<code>0px</code>, not{' '}
+          <code>0</code>): the one-line minimum is computed from it.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>
+          : <code>textarea</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>
+          : <code>root</code>, the native textarea, where your <code>className</code> and{' '}
+          <code>style</code> merge.
+        </li>
+        <li>
+          <strong>State attributes</strong>: <code>data-size</code>,{' '}
+          <code>data-invalid</code> (present when invalid), <code>data-disabled</code>{' '}
+          (present when disabled), <code>data-readonly</code> (present when read-only).
+        </li>
+      </ul>
+      <p>
+        The <code>Overridden</code> story below re-points{' '}
+        <code>--omnia-textarea-radius</code>/<code>--omnia-textarea-bg</code>/
+        <code>--omnia-textarea-border-color</code> from <code>@layer overrides</code>,
+        with no <code>!important</code>.
+      </p>
+    </>
+  }
+  fr={
+    <>
+      <h3>Personnalisation</h3>
+      <p>
+        Textarea suit le contrat de personnalisation du système (voir{' '}
+        <code>docs/overrides.md</code>). Restylez-le via cette surface publique — jamais
+        via les noms de classes CSS-Module hachés.
+      </p>
+      <ul>
+        <li>
+          <strong>Variables de composant</strong> : <code>--omnia-textarea-bg</code>,{' '}
+          <code>--omnia-textarea-fg</code>, <code>--omnia-textarea-radius</code>,{' '}
+          <code>--omnia-textarea-border-color</code>, <code>--omnia-textarea-shadow</code>
+          , <code>--omnia-textarea-padding-x</code>,{' '}
+          <code>--omnia-textarea-padding-y</code>. Chacune se rabat sur son jeton
+          sémantique. Donnez la marge interne verticale comme une longueur avec une unité
+          (<code>0px</code>, pas <code>0</code>) : la hauteur minimale d'une ligne en
+          dépend.
+        </li>
+        <li>
+          <strong>
+            <code>data-scope</code>
+          </strong>{' '}
+          : <code>textarea</code>.
+        </li>
+        <li>
+          <strong>
+            <code>data-part</code>
+          </strong>{' '}
+          : <code>root</code>, le textarea natif, où votre <code>className</code> et votre{' '}
+          <code>style</code> fusionnent.
+        </li>
+        <li>
+          <strong>Attributs d'état</strong> : <code>data-size</code>,{' '}
+          <code>data-invalid</code> (présent si invalide), <code>data-disabled</code>{' '}
+          (présent si désactivé), <code>data-readonly</code> (présent en lecture seule).
+        </li>
+      </ul>
+      <p>
+        L'histoire <code>Overridden</code> ci-dessous redirige{' '}
+        <code>--omnia-textarea-radius</code>/<code>--omnia-textarea-bg</code>/
+        <code>--omnia-textarea-border-color</code> depuis <code>@layer overrides</code>,
+        sans <code>!important</code>.
+      </p>
+    </>
+  }
+/>
+
+<Canvas of={TextareaStories.Overridden} />

@@ -64,6 +64,20 @@ Source: `src/components/atoms/Input/Input.tsx`
 
 Stories: `atoms-input--playground`, `atoms-input--sizes`, `atoms-input--with-adornments`, `atoms-input--invalid`, `atoms-input--disabled`, `atoms-input--read-only`, `atoms-input--states`, `atoms-input--overridden`, `atoms-input--dark-neutral`, `atoms-input--pixel-light`, `atoms-input--pixel-dark`
 
+## Textarea
+
+Bare multi-line text control; label, hint and error belong to a wrapping field. Renders the native `<textarea>` with no wrapper: every prop, `className`, `style` and `ref` included, lands on it. Users resize it on both axes, within its parent.
+
+Source: `src/components/atoms/Textarea/Textarea.tsx`
+
+| Prop | Type | Required | Default | Options |
+| --- | --- | --- | --- | --- |
+| `variantSize` | `TextareaSize` | no | `'md'` | `sm`, `md`, `lg` |
+| `invalid` | `boolean` | no | `false` | — |
+| `ref` | `Ref<HTMLTextAreaElement>` | no | — | — |
+
+Stories: `atoms-textarea--playground`, `atoms-textarea--sizes`, `atoms-textarea--rows`, `atoms-textarea--invalid`, `atoms-textarea--disabled`, `atoms-textarea--read-only`, `atoms-textarea--states`, `atoms-textarea--overridden`, `atoms-textarea--dark-neutral`, `atoms-textarea--pixel-light`, `atoms-textarea--pixel-dark`
+
 ## Checkbox
 
 Native checkbox drawn by CSS, wrapped in a `<label>` so the whole row is the click target. `className` and `style` land on the root `<label>`; every other prop, `ref` included, lands on the native `<input type="checkbox">`.
@@ -345,7 +359,7 @@ Source: `src/components/molecules/FormField/FormField.tsx`
 | --- | --- | --- | --- | --- |
 | `ref` | `Ref<HTMLDivElement>` | no | — | — |
 
-Stories: `molecules-formfield--playground`, `molecules-formfield--invalid`, `molecules-formfield--required`, `molecules-formfield--with-checkbox`, `molecules-formfield--with-switch`, `molecules-formfield--custom-control`, `molecules-formfield--server-error`, `molecules-formfield--validate-on-blur`, `molecules-formfield--native-validation`, `molecules-formfield--overridden`, `molecules-formfield--dark-neutral`, `molecules-formfield--pixel-light`, `molecules-formfield--pixel-dark`
+Stories: `molecules-formfield--playground`, `molecules-formfield--invalid`, `molecules-formfield--required`, `molecules-formfield--with-checkbox`, `molecules-formfield--with-switch`, `molecules-formfield--with-textarea`, `molecules-formfield--custom-control`, `molecules-formfield--server-error`, `molecules-formfield--validate-on-blur`, `molecules-formfield--native-validation`, `molecules-formfield--overridden`, `molecules-formfield--dark-neutral`, `molecules-formfield--pixel-light`, `molecules-formfield--pixel-dark`
 
 ## List
 
