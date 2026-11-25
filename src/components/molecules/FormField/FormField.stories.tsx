@@ -5,6 +5,7 @@ import { Button } from '../../atoms/Button';
 import { Checkbox } from '../../atoms/Checkbox';
 import { Input } from '../../atoms/Input';
 import { Switch } from '../../atoms/Switch';
+import { Textarea } from '../../atoms/Textarea';
 import { FormField, useFormField, type FormFieldProps } from './FormField';
 import './FormField.overrides.css';
 
@@ -163,6 +164,55 @@ export const WithSwitch: Story = {
       <FormField.Description>A weekly digest, never more.</FormField.Description>
     </FormField>
   ),
+};
+
+/** Textarea takes the same wiring as Input; `validateOn` reads its native `required`. */
+export const WithTextarea: Story = {
+  tags: ['interaction'],
+  args: { required: true, validateOn: 'blur' },
+  parameters: {
+    docs: {
+      source: {
+        code: `<FormField required validateOn="blur">
+  <FormField.Label>Message</FormField.Label>
+  <FormField.Control
+    render={(props, { invalid }) => <Textarea {...props} rows={3} invalid={invalid} />}
+  />
+  <FormField.Description>A few lines are enough.</FormField.Description>
+  <FormField.Error />
+</FormField>`,
+      },
+    },
+  },
+  render: (args) => (
+    <FormField {...args}>
+      <FormField.Label>Message</FormField.Label>
+      <FormField.Control
+        render={(props, { invalid }) => (
+          <Textarea {...props} rows={3} invalid={invalid} />
+        )}
+      />
+      <FormField.Description>A few lines are enough.</FormField.Description>
+      <FormField.Error />
+    </FormField>
+  ),
+  play: async ({ canvas, step }) => {
+    const textarea = canvas.getByRole('textbox', { name: 'Message' });
+    await step('the description describes the textarea', async () => {
+      await expect(textarea).toHaveAccessibleDescription('A few lines are enough.');
+    });
+    await step('leaving it empty shows the error and wires it', async () => {
+      await userEvent.type(textarea, 'Hello');
+      await userEvent.clear(textarea);
+      textarea.blur();
+      await waitFor(() =>
+        expect(textarea).toHaveAccessibleDescription(
+          'A few lines are enough. Fill in this field to continue.',
+        ),
+      );
+      await expect(textarea).toHaveAttribute('aria-invalid', 'true');
+    });
+  },
 };
 
 const selectStyle = {

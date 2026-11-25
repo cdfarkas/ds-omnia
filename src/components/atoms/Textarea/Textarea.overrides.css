@@ -1,0 +1,9 @@
+/* Consumer override demo (see docs/overrides.md): lives in the public
+   @layer overrides and wins over @layer components without !important. */
+@layer overrides {
+  .omnia-demo-override-textarea {
+    --omnia-textarea-radius: 0;
+    --omnia-textarea-bg: var(--omnia-color-bg-subtle);
+    --omnia-textarea-border-color: var(--omnia-color-border-focus);
+  }
+}
