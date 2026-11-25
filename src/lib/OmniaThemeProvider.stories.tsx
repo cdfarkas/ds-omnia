@@ -37,9 +37,9 @@ function Demo(): ReactElement {
         theme, skin and locale come back.
       </p>
       <p style={{ margin: 0 }}>
-        No-flash: inject <code>getThemeInitScript()</code> as an inline{' '}
-        <code>&lt;head&gt;</code> script so the root attributes are set before first
-        paint.
+        No-flash: in a static HTML page, paste what <code>getThemeInitScript()</code>{' '}
+        returns as an inline <code>&lt;head&gt;</code> script so the root attributes are
+        set before first paint.
       </p>
       <pre
         style={{
