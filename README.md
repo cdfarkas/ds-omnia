@@ -98,7 +98,7 @@ pnpm lint               # ESLint + Prettier + stylelint (incl. no-raw-color)
 
 ## Documentation
 
-- [`CLAUDE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/CLAUDE.md) — the contract every contributor and agent reads first.
+- [`AGENTS.md`](https://github.com/cdfarkas/ds-omnia/blob/main/AGENTS.md) — the contract every contributor and agent reads first.
 - [`docs/ARCHITECTURE.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/ARCHITECTURE.md) — structure, tokens, theming, tooling.
 - [`docs/testing.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/testing.md) — the testing contract and a11y gate.
 - [`docs/governance.md`](https://github.com/cdfarkas/ds-omnia/blob/main/docs/governance.md) — how decisions change.
