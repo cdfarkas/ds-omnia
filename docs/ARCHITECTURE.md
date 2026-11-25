@@ -1,6 +1,6 @@
 # Architecture
 
-How Omnia is laid out and why. Rules here are binding; the summaries in `CLAUDE.md` point at
+How Omnia is laid out and why. Rules here are binding; the summaries in `AGENTS.md` point at
 this file for the detail.
 
 ## Folder layering
