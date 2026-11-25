@@ -21,6 +21,8 @@ const modes = [
 
 export default defineConfig({
   test: {
+    // Vitest counts workers per project: seven browser projects at its default swamp the CDP traffic.
+    maxWorkers: 3,
     coverage: {
       provider: 'v8',
       include: ['src/**/*.{ts,tsx}'],

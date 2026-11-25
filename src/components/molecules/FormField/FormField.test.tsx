@@ -499,8 +499,8 @@ describe('FormField native validation', () => {
         </FormField>
       </InForm>,
     );
-    await realUser.type(input(0), '1.5');
-    await realUser.type(input(1), '0.25');
+    await typeIn(input(0), '1.5');
+    await typeIn(input(1), '0.25');
     await submit();
     const messages = [...container.querySelectorAll('[data-part="error"]')].map(
       (el) => el.textContent,
