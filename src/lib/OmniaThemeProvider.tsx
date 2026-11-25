@@ -171,7 +171,8 @@ export function useTheme(): ThemeContextValue {
 /**
  * Inline `<head>` script that applies the persisted (or fallback) theme/skin to the document root
  * before first paint, avoiding a flash before the provider's effect runs. Inject the returned string
- * via `dangerouslySetInnerHTML` on a `<script>` placed ahead of the app markup.
+ * via `dangerouslySetInnerHTML` on a `<script>` placed ahead of the app markup. Cannot be called from
+ * a Server Component.
  */
 export function getThemeInitScript(
   fallback: { theme?: Theme; skin?: Skin } = {},

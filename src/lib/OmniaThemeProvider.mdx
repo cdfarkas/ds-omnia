@@ -219,24 +219,20 @@ function ThemeToggle() {
 <Localized
   en={
     <p>
-      <strong>Server-rendered head</strong> (Next.js app router, Remix, Astro): inject the
-      helper's output as an inline script.
+      <strong>Server-rendered app</strong>: follow Server-side rendering (SSR) on the{' '}
+      <a href="?path=/docs/getting-started--docs">Getting started</a> page.{' '}
+      <code>getThemeInitScript()</code> cannot be called from a Server Component.
     </p>
   }
   fr={
     <p>
-      <strong>Head rendu côté serveur</strong> (Next.js app router, Remix, Astro) :
-      injectez la sortie du helper comme script en ligne.
+      <strong>Application rendue côté serveur</strong> : suivez Rendu serveur (SSR) sur la
+      page <a href="?path=/docs/getting-started--docs">Installation</a>.{' '}
+      <code>getThemeInitScript()</code> ne peut pas être appelé depuis un Server
+      Component.
     </p>
   }
 />
-
-```tsx
-import { getThemeInitScript } from '@cfarkas/omnia';
-
-// In the server-rendered <head>:
-<script dangerouslySetInnerHTML={{ __html: getThemeInitScript() }} />;
-```
 
 ## <Localized en="Live demo" fr="Démo interactive" />
 

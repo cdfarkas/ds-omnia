@@ -82,6 +82,9 @@ faces, skip the entry and set the font variables in `@layer overrides`, after im
 
 The Storybook **Getting started** page walks through the same steps.
 
+For server-side rendering (SSR), follow the SSR section of
+[Getting started](https://cdfarkas.github.io/ds-omnia/?path=/docs/getting-started--docs).
+
 ## How to run
 
 ```sh

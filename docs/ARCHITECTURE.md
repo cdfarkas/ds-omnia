@@ -123,8 +123,10 @@ import '@cfarkas/omnia/styles.css';
 </OmniaThemeProvider>;
 ```
 
-To avoid a theme flash before the provider's effect runs, inject `getThemeInitScript()` as an inline
-`<script>` in `<head>` — it applies the persisted (or fallback) attributes before first paint.
+To avoid a theme flash before the provider's effect runs in a static HTML page, paste the script that
+`getThemeInitScript()` returns into the `<head>` of `index.html` as an inline `<script>`. It applies the
+persisted (or fallback) attributes before first paint. For a server-rendered app, follow the SSR
+section of `src/GettingStarted.mdx`.
 
 Storybook drives the same provider in controlled mode from one decorator reading the `theme`, `skin`
 and `locale` toolbar globals; the `theme` global defaults to the viewer's `prefers-color-scheme`. CSS

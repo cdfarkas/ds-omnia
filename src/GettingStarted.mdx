@@ -203,3 +203,324 @@ export const App = () => (
     </p>
   }
 />
+
+## <Localized en="Server-side rendering (SSR)" fr="Rendu serveur (SSR)" />
+
+### <Localized en="What Omnia requires" fr="Ce qu'Omnia exige" />
+
+<Localized
+  en={
+    <ul>
+      <li>
+        <strong>Server Components need a client file.</strong> In a Server Components
+        framework, the file that imports Omnia components starts with{' '}
+        <code>'use client'</code>. Imported in a Server Component, they fail the build
+        (measured in the Next.js App Router). Compound parts such as{' '}
+        <code>Card.Body</code> work inside the client file. The stylesheets are imported
+        from the server layout.
+      </li>
+      <li>
+        <strong>
+          Pass <code>theme</code>, <code>skin</code> and <code>locale</code>.
+        </strong>{' '}
+        Without them, the provider reads <code>localStorage</code> on its first render. If
+        the stored locale differs from the server HTML, React reports hydration error
+        #418. If the stored theme differs, the page shows the stored theme but{' '}
+        <code>ThemeSwitcher</code> keeps the server's <code>aria-pressed</code>, with no
+        console error.
+      </li>
+      <li>
+        <strong>One locale per server process.</strong> The whole process shares one
+        locale. Do not render two locales at once on one server: a component that suspends
+        can come out in the other request's language.
+      </li>
+    </ul>
+  }
+  fr={
+    <ul>
+      <li>
+        <strong>Les Server Components exigent un fichier client.</strong> Dans un
+        framework à Server Components, le fichier qui importe des composants Omnia
+        commence par <code>'use client'</code>. Importés dans un Server Component, ils
+        font échouer le build (mesuré dans le Next.js App Router). Les sous-composants
+        comme <code>Card.Body</code> fonctionnent dans le fichier client. Les feuilles de
+        style s'importent depuis le layout serveur.
+      </li>
+      <li>
+        <strong>
+          Passez <code>theme</code>, <code>skin</code> et <code>locale</code>.
+        </strong>{' '}
+        Sans eux, le provider lit <code>localStorage</code> à son premier rendu. Si la
+        langue enregistrée diffère du HTML du serveur, React signale l'erreur
+        d'hydratation #418. Si le thème enregistré diffère, la page affiche le thème
+        enregistré mais <code>ThemeSwitcher</code> garde le <code>aria-pressed</code> du
+        serveur, sans erreur dans la console.
+      </li>
+      <li>
+        <strong>Une langue par processus serveur.</strong> Tout le processus partage une
+        seule langue. Ne rendez pas deux langues en même temps sur un même serveur : un
+        composant qui suspend peut sortir dans la langue de l'autre requête.
+      </li>
+    </ul>
+  }
+/>
+
+### <Localized en="The common pattern" fr="Le modèle commun" />
+
+<Localized
+  en={
+    <p>
+      The server reads the saved preference, writes it on <code>&lt;html&gt;</code>, and
+      passes the same value to a controlled provider. This replaces step 4. The two files
+      below are the same in the three frameworks; the <code>'use client'</code> line is
+      only needed with Server Components. Only the theme is saved here. The skin and
+      locale are fixed: if you change them, also change <code>data-skin</code> and{' '}
+      <code>lang</code> on <code>&lt;html&gt;</code>.
+    </p>
+  }
+  fr={
+    <p>
+      Le serveur lit la préférence enregistrée, l'écrit sur <code>&lt;html&gt;</code> et
+      passe la même valeur à un provider contrôlé. Cela remplace l'étape 4. Les deux
+      fichiers ci-dessous sont les mêmes dans les trois frameworks ; la ligne{' '}
+      <code>'use client'</code> n'est nécessaire qu'avec les Server Components. Seul le
+      thème est enregistré ici. L'habillage et la langue sont fixes : si vous les changez,
+      changez aussi <code>data-skin</code> et <code>lang</code> sur{' '}
+      <code>&lt;html&gt;</code>.
+    </p>
+  }
+/>
+
+`providers.tsx`
+
+```tsx
+'use client';
+
+import { useState, type ReactNode } from 'react';
+import { OmniaThemeProvider, type Theme } from '@cfarkas/omnia';
+
+export function Providers({
+  initialTheme,
+  children,
+}: {
+  initialTheme: Theme;
+  children: ReactNode;
+}) {
+  const [theme, setTheme] = useState(initialTheme);
+  return (
+    <OmniaThemeProvider
+      theme={theme}
+      skin="default"
+      locale="en"
+      onThemeChange={(next) => {
+        document.cookie = `theme=${next}; path=/; max-age=31536000; samesite=lax`;
+        setTheme(next);
+      }}
+    >
+      {children}
+    </OmniaThemeProvider>
+  );
+}
+```
+
+`screen.tsx`
+
+```tsx
+'use client';
+
+import { Button, Card, ThemeSwitcher } from '@cfarkas/omnia';
+
+export function Screen() {
+  return (
+    <Card>
+      <Card.Body>
+        <ThemeSwitcher />
+        <Button>Save</Button>
+      </Card.Body>
+    </Card>
+  );
+}
+```
+
+<Localized
+  en={
+    <p>
+      Tested with Omnia 0.3.0 and React 19.3.1, in Next.js 16.4.6, React Router 8.5.3 and
+      Astro 7.4.13 (<code>@astrojs/react</code> 7.1.9, <code>@astrojs/node</code>{' '}
+      11.1.14).
+    </p>
+  }
+  fr={
+    <p>
+      Testé avec Omnia 0.3.0 et React 19.3.1, dans Next.js 16.4.6, React Router 8.5.3 et
+      Astro 7.4.13 (<code>@astrojs/react</code> 7.1.9, <code>@astrojs/node</code>{' '}
+      11.1.14).
+    </p>
+  }
+/>
+
+### Next.js App Router
+
+<Localized
+  en={
+    <p>
+      Put the two files in <code>app/</code>. Reading the cookie in the root layout makes
+      the routes dynamic.
+    </p>
+  }
+  fr={
+    <p>
+      Placez les deux fichiers dans <code>app/</code>. Lire le cookie dans le layout
+      racine rend les routes dynamiques.
+    </p>
+  }
+/>
+
+`app/layout.tsx`
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+import '@cfarkas/omnia/fonts.css';
+import { cookies } from 'next/headers';
+import type { ReactNode } from 'react';
+import { Providers } from './providers';
+
+export default async function RootLayout({ children }: { children: ReactNode }) {
+  const theme = (await cookies()).get('theme')?.value === 'dark' ? 'dark' : 'light';
+  return (
+    <html lang="en" data-theme={theme} data-skin="default">
+      <body>
+        <Providers initialTheme={theme}>{children}</Providers>
+      </body>
+    </html>
+  );
+}
+```
+
+`app/page.tsx`
+
+```tsx
+import { Screen } from './screen';
+
+export default function Page() {
+  return <Screen />;
+}
+```
+
+### React Router
+
+<Localized
+  en={
+    <p>
+      In framework mode, put the two files in <code>app/</code> and render{' '}
+      <code>Screen</code> from a route. The Server Components mode was not tested.
+    </p>
+  }
+  fr={
+    <p>
+      En mode framework, placez les deux fichiers dans <code>app/</code> et rendez{' '}
+      <code>Screen</code> depuis une route. Le mode Server Components n'a pas été testé.
+    </p>
+  }
+/>
+
+`app/root.tsx`
+
+```tsx
+import '@cfarkas/omnia/styles.css';
+import '@cfarkas/omnia/fonts.css';
+import type { ReactNode } from 'react';
+import {
+  Links,
+  Meta,
+  Outlet,
+  Scripts,
+  ScrollRestoration,
+  useRouteLoaderData,
+} from 'react-router';
+import type { Theme } from '@cfarkas/omnia';
+import { Providers } from './providers';
+
+export function loader({ request }: { request: Request }) {
+  const dark = /(?:^|;\s*)theme=dark(?:;|$)/.test(request.headers.get('cookie') ?? '');
+  return { theme: (dark ? 'dark' : 'light') as Theme };
+}
+
+export function Layout({ children }: { children: ReactNode }) {
+  const data = useRouteLoaderData<typeof loader>('root');
+  return (
+    <html lang="en" data-theme={data?.theme ?? 'light'} data-skin="default">
+      <head>
+        <meta charSet="utf-8" />
+        <Meta />
+        <Links />
+      </head>
+      <body>
+        {children}
+        <ScrollRestoration />
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
+export default function App({ loaderData }: { loaderData: { theme: Theme } }) {
+  return (
+    <Providers initialTheme={loaderData.theme}>
+      <Outlet />
+    </Providers>
+  );
+}
+```
+
+### Astro
+
+<Localized
+  en={
+    <p>
+      Put the two files in <code>src/components/</code> and render the provider inside the
+      island. Tested with <code>output: 'server'</code> and the Node adapter.
+    </p>
+  }
+  fr={
+    <p>
+      Placez les deux fichiers dans <code>src/components/</code> et rendez le provider
+      dans l'îlot. Testé avec <code>output: 'server'</code> et l'adaptateur Node.
+    </p>
+  }
+/>
+
+`src/components/island.tsx`
+
+```tsx
+import type { Theme } from '@cfarkas/omnia';
+import { Providers } from './providers';
+import { Screen } from './screen';
+
+export function Island({ initialTheme }: { initialTheme: Theme }) {
+  return (
+    <Providers initialTheme={initialTheme}>
+      <Screen />
+    </Providers>
+  );
+}
+```
+
+`src/pages/index.astro`
+
+```astro
+---
+import '@cfarkas/omnia/styles.css';
+import '@cfarkas/omnia/fonts.css';
+import { Island } from '../components/island';
+
+const theme = Astro.cookies.get('theme')?.value === 'dark' ? 'dark' : 'light';
+---
+
+<html lang="en" data-theme={theme} data-skin="default">
+  <head><meta charset="utf-8" /></head>
+  <body>
+    <Island client:load initialTheme={theme} />
+  </body>
+</html>
+```
