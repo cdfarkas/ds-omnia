@@ -4,6 +4,7 @@
 
 Proposed — the "Release CI" clause is amended by ADR 0018 (release.yml runs on push to main). The
 publish lock (`"private": true`) was lifted on 2026-11-18, see "Update 2026-11-18".
+Publishing moved to npm trusted publishing on 2026-11-25, see "Update 2026-11-25".
 
 ## Context
 
@@ -191,3 +192,23 @@ Override contract: every family reaches the components through a public custom p
 can swap a face without the entry: `--omnia-palette-font-display`, `--omnia-palette-font-sans`,
 `--omnia-palette-font-brutalist` and `--omnia-palette-font-pixel` (the last one was a literal in
 `skins.css` and is now a palette token like the others).
+
+## Update 2026-11-25
+
+Publishing moves from the `NPM_TOKEN` secret to npm trusted publishing (GitHub Actions OIDC).
+`0.3.0` is the first version on npm. The `0.4.0` publish failed with a 404 because the short-lived
+granular token had expired that day ([Release run](https://github.com/cdfarkas/ds-omnia/actions/runs/45686536591)).
+
+`release.yml` now carries `id-token: write` and no npm token. pnpm 12.21.0 (the pinned package
+manager, which `changeset publish` 3.0.3 calls) supports OIDC publishing. The owner configured the
+trusted publisher on npmjs.com for `cdfarkas/ds-omnia`, workflow file `release.yml`, no environment,
+with direct `npm publish` allowed (the default allows only staged publishing, and `changeset publish`
+publishes directly). Renaming `release.yml` breaks publishing until the trusted publisher is
+recreated. The publisher configuration expires unless a first successful publish completes within 2
+days of creation.
+
+Trade-off: the permission covers the whole job, so the install and build steps can also request an
+OIDC token. The publish through OIDC has not been exercised yet.
+
+Follow-up once `0.4.0` is published: delete the `NPM_TOKEN` secret and the npm token, and disallow
+tokens in the package's publishing access.
